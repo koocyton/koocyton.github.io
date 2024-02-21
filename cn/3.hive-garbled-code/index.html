@@ -110,10 +110,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://onote.doopp.com/undefined/12-zerotier-moon-refresh/">
+  <link rel="canonical" href="https://onote.doopp.com/cn/3.hive-garbled-code/">
   <title>
     
-      Zerotier 自动更换 Moon 的 IP 配置 - koocyton`s blog
+      Hive字段中文注释乱码解决办法 - koocyton`s blog
     
   </title>
 <meta name="generator" content="Hexo 5.4.2"></head>
@@ -200,7 +200,7 @@
       <div class="navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a href="/">HOME</a>
+            <a href="/">首页</a>
           </li>
 
           
@@ -210,18 +210,7 @@
           <li>
             <a href="/archive/">
               
-              ARCHIVES
-              
-              
-            </a>
-          </li>
-          
-          
-          
-          <li>
-            <a href="/categories/">
-              
-              CATEGORIES
+              归档
               
               
             </a>
@@ -232,7 +221,18 @@
           <li>
             <a href="/about/">
               
-              ABOUT
+              关于
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/categories/">
+              
+              分类
               
               
             </a>
@@ -243,7 +243,7 @@
           <li>
             <a href="/tags/">
               
-              TAGS
+              标签
               
               
             </a>
@@ -254,7 +254,7 @@
           
           <li>
             <a class="popup-trigger">
-              <span class="search-icon"></span>SEARCH</a>
+              <span class="search-icon"></span>搜索</a>
           </li>
           
 
@@ -309,26 +309,22 @@
     .body--light {
       /* intro-header */
       --intro-header-background-image-url-home: url('/img/header_img/newhome_bg.jpg');
-      --intro-header-background-image-url-post: url('');
-      --intro-header-background-image-url-page: url('/img/header_img/archive_bg2.jpg');
+      --intro-header-background-image-url-post: url('/img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-page: url('//img/header_img/lml_bg.jpg');
     }
     .body--dark {
       --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/newhome_bg.jpg');
-      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('');
-      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/archive_bg2.jpg');
+      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('//img/header_img/lml_bg.jpg');
     }
 
     header.intro-header {
        /*post*/
         background-image: var(--intro-header-background-image-url-post);
-        /* background-image: url(''); */
+        /* background-image: url('/img/header_img/lml_bg.jpg'); */
       
     }
 
-    
-      #signature {/*signature*/
-        background-image: url('/img/signature/vincent-white.png');
-      }
     
   </style>
 
@@ -346,14 +342,14 @@
           <div class="post-heading">
             <div class="tags">
               
-              <a class="tag" href="/tags/#Zerotier" title="Zerotier">Zerotier</a>
+              <a class="tag" href="/tags/#hive" title="hive">hive</a>
               
             </div>
-            <h1>Zerotier 自动更换 Moon 的 IP 配置</h1>
-            <h2 class="subheading"></h2>
+            <h1>Hive字段中文注释乱码解决办法</h1>
+            <h2 class="subheading">hive</h2>
             <span class="meta">
               Posted by koocyton on
-              2023-11-15
+              2023-01-03
             </span>
 
 
@@ -365,7 +361,7 @@
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">270</span> In Total
+              Words <span class="post-count">233</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- WordCount end -->
@@ -427,19 +423,16 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h4 id="创建-moon-json"><a href="#创建-moon-json" class="headerlink" title="创建 moon.json"></a>创建 moon.json</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># zerotier-cli info</span><br><span class="line">200 info 860dcfb934 1.12.2 ONLINE</span><br><span class="line"></span><br><span class="line"># zerotier-idtool initmoon identity.public &gt;&gt; moon.json.source</span><br></pre></td></tr></table></figure>
-<h4 id="编辑-var-lib-zerotier-one-moon-json-source"><a href="#编辑-var-lib-zerotier-one-moon-json-source" class="headerlink" title="编辑 /var/lib/zerotier-one/moon.json.source"></a>编辑 /var/lib/zerotier-one/moon.json.source</h4><ul>
-<li>stableEndpoints 内编辑如下，插入占位字符串 $endPoint1</li>
-</ul>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line"> <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;860dcfb934&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="attr">&quot;objtype&quot;</span><span class="punctuation">:</span> <span class="string">&quot;world&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="attr">&quot;roots&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">   <span class="attr">&quot;identity&quot;</span><span class="punctuation">:</span> <span class="string">&quot;860dcfb934:0:.......&quot;</span><span class="punctuation">,</span></span><br><span class="line">   <span class="attr">&quot;stableEndpoints&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">     <span class="string">&quot;$endPoint1/9993&quot;</span></span><br><span class="line">   <span class="punctuation">]</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"> <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line"> <span class="attr">&quot;signingKey&quot;</span><span class="punctuation">:</span> <span class="string">&quot;.....&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="attr">&quot;signingKey_SECRET&quot;</span><span class="punctuation">:</span> <span class="string">&quot;......&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="attr">&quot;updatesMustBeSignedBy&quot;</span><span class="punctuation">:</span> <span class="string">&quot;.....&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="attr">&quot;worldType&quot;</span><span class="punctuation">:</span> <span class="string">&quot;moon&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-<h4 id="刷新脚本"><a href="#刷新脚本" class="headerlink" title="刷新脚本"></a>刷新脚本</h4><ul>
-<li>/var/lib/zerotier-one/refresh_moon.sh</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /var/lib/zerotier-one</span><br><span class="line"><span class="comment"># current ip</span></span><br><span class="line">CURR_IP=`curl -s http://ip.3322.net`</span><br><span class="line"><span class="comment"># last ip</span></span><br><span class="line">LAST_IP=`<span class="built_in">cat</span> moon.json | <span class="built_in">tr</span> <span class="string">&#x27;\n&#x27;</span> <span class="string">&#x27; &#x27;</span> | sed <span class="string">&#x27;s/.*&quot;\([^&quot;]*\)\/\(9993\).*/\1/g&#x27;</span>`</span><br><span class="line"><span class="comment"># eq 如果 IP 不变，则退出</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$CURR_IP</span>&quot;</span> == <span class="string">&quot;<span class="variable">$LAST_IP</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">  <span class="built_in">exit</span> 0</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="comment"># replact ip, get new moon.json，将占位字符串替换成新的 IP</span></span><br><span class="line">sed <span class="string">&#x27;s/$endPoint1/&#x27;</span><span class="variable">$&#123;CURR_IP&#125;</span><span class="string">&#x27;/g&#x27;</span> /var/lib/zerotier-one/moon.json.source &gt; /var/lib/zerotier-one/moon.json</span><br><span class="line"></span><br><span class="line"><span class="comment"># create /var/lib/zerotier-one/000000860dcfb934.moon</span></span><br><span class="line">zerotier-idtool genmoon /var/lib/zerotier-one/moon.json</span><br><span class="line"><span class="comment"># move to moons.d</span></span><br><span class="line"><span class="built_in">mv</span> /var/lib/zerotier-one/000000860dcfb934.moon /var/lib/zerotier-one/moons.d/</span><br><span class="line"><span class="comment"># restart zerotier</span></span><br><span class="line">systemctl stop zerotier-one</span><br><span class="line"><span class="built_in">sleep</span> 1</span><br><span class="line">systemctl start zerotier-one</span><br><span class="line"><span class="built_in">sleep</span> 1</span><br><span class="line"><span class="comment"># print info</span></span><br><span class="line">zerotier-cli listmoons</span><br></pre></td></tr></table></figure>
-<h4 id="每十分钟执行一次"><a href="#每十分钟执行一次" class="headerlink" title="每十分钟执行一次"></a>每十分钟执行一次</h4><ul>
-<li># crontab -e</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 */10 * * * /var/lib/zerotier-one/refresh_moon.sh</span><br></pre></td></tr></table></figure>
+        <p>Hive字段中文乱码，如执行 show create table xxx 时，表级别注释、字段级别注释发现有乱码现象（都是？？？？）， 一般都是由hive 元数据库的配置不当造成的。</p>
+<p>此时可按如下步骤进行配置调整：</p>
+<p>登录hive的元数据库mysql中：（不是在hive sql 环境下执行）</p>
+<p>1、设置hive 元数据库字符集</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">create</span> database hive;</span><br></pre></td></tr></table></figure>
+<p>查看为utf8，需变更为latin1</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> database hive <span class="type">character</span> <span class="keyword">set</span> latin1;  （可参阅）</span><br></pre></td></tr></table></figure>
+<p>2、更改如下表字段为字符集编码为 utf8</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> COLUMNS_V2 modify <span class="keyword">column</span> COMMENT <span class="type">varchar</span>(<span class="number">256</span>) <span class="type">character</span> <span class="keyword">set</span> utf8;</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> TABLE_PARAMS modify <span class="keyword">column</span> PARAM_VALUE <span class="type">varchar</span>(<span class="number">4000</span>) <span class="type">character</span> <span class="keyword">set</span> utf8;</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> PARTITION_PARAMS  modify <span class="keyword">column</span> PARAM_VALUE <span class="type">varchar</span>(<span class="number">4000</span>) <span class="type">character</span> <span class="keyword">set</span> utf8;</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> PARTITION_KEYS  modify <span class="keyword">column</span> PKEY_COMMENT <span class="type">varchar</span>(<span class="number">4000</span>) <span class="type">character</span> <span class="keyword">set</span> utf8;</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span>  INDEX_PARAMS  modify <span class="keyword">column</span> PARAM_VALUE  <span class="type">varchar</span>(<span class="number">4000</span>) <span class="type">character</span> <span class="keyword">set</span> utf8;</span><br></pre></td></tr></table></figure>
+<p>可以看到，如下语句分别对可能出现中文的字段、表参数、分区设置、及索引参数等字段，调整了字符集编码</p>
 
 
         <hr>
@@ -447,12 +440,12 @@
         <ul class="pager">
           
           <li class="previous">
-            <a href="/undefined/13-flutter-quill/" data-toggle="tooltip" data-placement="top" title="Flutter Quill 开发总结">&larr; Previous Post</a>
+            <a href="/cn/4.phabricator-install-config/" data-toggle="tooltip" data-placement="top" title="Phabricator安装和配置过程记录">&larr; Previous Post</a>
           </li>
           
           
           <li class="next">
-            <a href="/undefined/11-emacs-config/" data-toggle="tooltip" data-placement="top" title="我的 Emacs 基本配置">Next Post &rarr;</a>
+            <a href="/cn/2.squid-proxy-configure/" data-toggle="tooltip" data-placement="top" title="带认证的 Squid 代理配置">Next Post &rarr;</a>
           </li>
           
         </ul>
@@ -464,7 +457,7 @@
 <div class="tip">
   <p>
     
-      If you like this blog or find it useful for you, you are welcome to comment on it. You are also welcome to share this blog, so that more people can participate in it. If the images used in the blog infringe your copyright, please contact the author to delete them. Thank you !
+      如果您喜欢此博客或发现它对您有用，则欢迎对此发表评论。 也欢迎您共享此博客，以便更多人可以参与。 如果博客中使用的图像侵犯了您的版权，请与作者联系以将其删除。 谢谢 ！
     
   </p>
 </div>
@@ -501,7 +494,7 @@
       </a>
     </li>
     <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=Zerotier 自动更换 Moon 的 IP 配置&body=Hi,I found this website and thought you might like it https://onote.doopp.com/undefined/12-zerotier-moon-refresh/">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=Hive字段中文注释乱码解决办法&body=Hi,I found this website and thought you might like it https://onote.doopp.com/cn/3.hive-garbled-code/">
         <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
       </a>
     </li>
@@ -537,9 +530,9 @@
     
       <aside id="sidebar">
         <div id="toc" class="toc-article">
-        <strong class="toc-title">Contents</strong>
+        <strong class="toc-title">目录</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%88%9B%E5%BB%BA-moon-json"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">创建 moon.json</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E7%BC%96%E8%BE%91-var-lib-zerotier-one-moon-json-source"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">编辑 &#x2F;var&#x2F;lib&#x2F;zerotier-one&#x2F;moon.json.source</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E5%88%B7%E6%96%B0%E8%84%9A%E6%9C%AC"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">刷新脚本</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#%E6%AF%8F%E5%8D%81%E5%88%86%E9%92%9F%E6%89%A7%E8%A1%8C%E4%B8%80%E6%AC%A1"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">每十分钟执行一次</span></a></li></ol>
+          <ol class="nav">none</ol>
         
         </div>
       </aside>
@@ -558,11 +551,11 @@
         <section>
           <!-- no hr -->
           <h5>
-            <a href="/tags/">FEATURED TAGS</a>
+            <a href="/tags/">特色标签</a>
           </h5>
           <div class="tags">
             
-            <a class="tag" href="/tags/#Zerotier" title="Zerotier">Zerotier</a>
+            <a class="tag" href="/tags/#hive" title="hive">hive</a>
             
           </div>
         </section>
@@ -782,7 +775,7 @@ start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </scrip
             <span class="search-icon">
               <i class="fa fa-search fa-lg" style="margin: 25px 10px 25px 20px;"></i>
             </span>
-            <input autocomplete="off" placeholder="SEARCH..." type="text" id="local-search-input">
+            <input autocomplete="off" placeholder="搜索..." type="text" id="local-search-input">
           </div>
         </div>
         <div id="local-search-result"></div>

@@ -110,10 +110,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://onote.doopp.com/undefined/3-hive-garbled-code/">
+  <link rel="canonical" href="https://onote.doopp.com/cn/10.git-note/">
   <title>
     
-      Hive字段中文注释乱码解决办法 - koocyton`s blog
+      Git 速查手册 - koocyton`s blog
     
   </title>
 <meta name="generator" content="Hexo 5.4.2"></head>
@@ -200,7 +200,7 @@
       <div class="navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a href="/">HOME</a>
+            <a href="/">首页</a>
           </li>
 
           
@@ -210,18 +210,7 @@
           <li>
             <a href="/archive/">
               
-              ARCHIVES
-              
-              
-            </a>
-          </li>
-          
-          
-          
-          <li>
-            <a href="/categories/">
-              
-              CATEGORIES
+              归档
               
               
             </a>
@@ -232,7 +221,18 @@
           <li>
             <a href="/about/">
               
-              ABOUT
+              关于
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/categories/">
+              
+              分类
               
               
             </a>
@@ -243,7 +243,7 @@
           <li>
             <a href="/tags/">
               
-              TAGS
+              标签
               
               
             </a>
@@ -254,7 +254,7 @@
           
           <li>
             <a class="popup-trigger">
-              <span class="search-icon"></span>SEARCH</a>
+              <span class="search-icon"></span>搜索</a>
           </li>
           
 
@@ -309,26 +309,22 @@
     .body--light {
       /* intro-header */
       --intro-header-background-image-url-home: url('/img/header_img/newhome_bg.jpg');
-      --intro-header-background-image-url-post: url('');
-      --intro-header-background-image-url-page: url('/img/header_img/archive_bg2.jpg');
+      --intro-header-background-image-url-post: url('/img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-page: url('//img/header_img/lml_bg.jpg');
     }
     .body--dark {
       --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/newhome_bg.jpg');
-      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('');
-      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/archive_bg2.jpg');
+      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('//img/header_img/lml_bg.jpg');
     }
 
     header.intro-header {
        /*post*/
         background-image: var(--intro-header-background-image-url-post);
-        /* background-image: url(''); */
+        /* background-image: url('/img/header_img/lml_bg.jpg'); */
       
     }
 
-    
-      #signature {/*signature*/
-        background-image: url('/img/signature/vincent-white.png');
-      }
     
   </style>
 
@@ -346,14 +342,14 @@
           <div class="post-heading">
             <div class="tags">
               
-              <a class="tag" href="/tags/#hive" title="hive">hive</a>
+              <a class="tag" href="/tags/#git" title="git">git</a>
               
             </div>
-            <h1>Hive字段中文注释乱码解决办法</h1>
-            <h2 class="subheading">hive</h2>
+            <h1>Git 速查手册</h1>
+            <h2 class="subheading"></h2>
             <span class="meta">
               Posted by koocyton on
-              2023-01-03
+              2023-03-02
             </span>
 
 
@@ -365,7 +361,7 @@
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">233</span> In Total
+              Words <span class="post-count">309</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- WordCount end -->
@@ -427,16 +423,18 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <p>Hive字段中文乱码，如执行 show create table xxx 时，表级别注释、字段级别注释发现有乱码现象（都是？？？？）， 一般都是由hive 元数据库的配置不当造成的。</p>
-<p>此时可按如下步骤进行配置调整：</p>
-<p>登录hive的元数据库mysql中：（不是在hive sql 环境下执行）</p>
-<p>1、设置hive 元数据库字符集</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">create</span> database hive;</span><br></pre></td></tr></table></figure>
-<p>查看为utf8，需变更为latin1</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> database hive <span class="type">character</span> <span class="keyword">set</span> latin1;  （可参阅）</span><br></pre></td></tr></table></figure>
-<p>2、更改如下表字段为字符集编码为 utf8</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> COLUMNS_V2 modify <span class="keyword">column</span> COMMENT <span class="type">varchar</span>(<span class="number">256</span>) <span class="type">character</span> <span class="keyword">set</span> utf8;</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> TABLE_PARAMS modify <span class="keyword">column</span> PARAM_VALUE <span class="type">varchar</span>(<span class="number">4000</span>) <span class="type">character</span> <span class="keyword">set</span> utf8;</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> PARTITION_PARAMS  modify <span class="keyword">column</span> PARAM_VALUE <span class="type">varchar</span>(<span class="number">4000</span>) <span class="type">character</span> <span class="keyword">set</span> utf8;</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> PARTITION_KEYS  modify <span class="keyword">column</span> PKEY_COMMENT <span class="type">varchar</span>(<span class="number">4000</span>) <span class="type">character</span> <span class="keyword">set</span> utf8;</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span>  INDEX_PARAMS  modify <span class="keyword">column</span> PARAM_VALUE  <span class="type">varchar</span>(<span class="number">4000</span>) <span class="type">character</span> <span class="keyword">set</span> utf8;</span><br></pre></td></tr></table></figure>
-<p>可以看到，如下语句分别对可能出现中文的字段、表参数、分区设置、及索引参数等字段，调整了字符集编码</p>
+        <h3 id="创建空分支">创建空分支</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">checkout --orphan empty_branch</span><br><span class="line">git <span class="built_in">rm</span> -rf .</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;# new project&quot;</span> &gt; README.md</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m <span class="string">&quot;init files&quot;</span></span><br><span class="line">git push origin empty_branch</span><br></pre></td></tr></table></figure>
+<h3 id="删除本地分支和远程分支">删除本地分支和远程分支</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch -d branch_name // 可选择 -D ，忽略错误</span><br><span class="line">git push origin -d branch_name</span><br></pre></td></tr></table></figure>
+<h3 id="把当前分支重命名为master">把当前分支重命名为master</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -m master</span><br></pre></td></tr></table></figure>
+<h3 id="把代码推送到远程仓库">把代码推送到远程仓库</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -f origin master</span><br></pre></td></tr></table></figure>
+<h3 id="分支代码合并到-master-主分支">分支代码合并到 master 主分支</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 切换到分支</span></span><br><span class="line">git checkout branch_name</span><br><span class="line"><span class="comment"># 使用git pull 把分支代码pull下来</span></span><br><span class="line">git pull</span><br><span class="line"><span class="comment"># 切换到主分支</span></span><br><span class="line">git checkout master</span><br><span class="line"><span class="comment"># 把分支的代码merge到主分支</span></span><br><span class="line">git merge branch_name</span><br><span class="line"><span class="comment"># git push推上去ok完成,现在 你自己分支的代码就合并到主分支上了</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+<h3 id="查询配置信息-初始化">查询配置信息 &amp; 初始化</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 列出当前配置</span></span><br><span class="line">git config --list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出repository配置</span></span><br><span class="line">git config --<span class="built_in">local</span> --list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出全局配置</span></span><br><span class="line">git config --global --list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出系统配置</span></span><br><span class="line">git config --system --list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置用户名</span></span><br><span class="line">git config --global user.name <span class="string">&quot;your name&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置用户邮箱</span></span><br><span class="line">git config --global user.email <span class="string">&quot;youremail@github.com&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置解决冲突时使用哪种差异分析工具，比如要使用vimdiff</span></span><br><span class="line">git config --global merge.tool vimdiff</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置git命令输出为彩色的</span></span><br><span class="line">git config --global color.ui auto</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置git使用的文本编辑器</span></span><br><span class="line">git config --global core.editor vi</span><br></pre></td></tr></table></figure>
 
 
         <hr>
@@ -444,12 +442,12 @@
         <ul class="pager">
           
           <li class="previous">
-            <a href="/undefined/4-phabricator-install-config/" data-toggle="tooltip" data-placement="top" title="Phabricator安装和配置过程记录">&larr; Previous Post</a>
+            <a href="/cn/11.emacs-config/" data-toggle="tooltip" data-placement="top" title="我的 Emacs 基本配置">&larr; Previous Post</a>
           </li>
           
           
           <li class="next">
-            <a href="/undefined/2-squid-proxy-configure/" data-toggle="tooltip" data-placement="top" title="带认证的 Squid 代理配置">Next Post &rarr;</a>
+            <a href="/cn/9.feign-intercept/" data-toggle="tooltip" data-placement="top" title="Spring clound - Feign 错误的处理">Next Post &rarr;</a>
           </li>
           
         </ul>
@@ -461,7 +459,7 @@
 <div class="tip">
   <p>
     
-      If you like this blog or find it useful for you, you are welcome to comment on it. You are also welcome to share this blog, so that more people can participate in it. If the images used in the blog infringe your copyright, please contact the author to delete them. Thank you !
+      如果您喜欢此博客或发现它对您有用，则欢迎对此发表评论。 也欢迎您共享此博客，以便更多人可以参与。 如果博客中使用的图像侵犯了您的版权，请与作者联系以将其删除。 谢谢 ！
     
   </p>
 </div>
@@ -498,7 +496,7 @@
       </a>
     </li>
     <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=Hive字段中文注释乱码解决办法&body=Hi,I found this website and thought you might like it https://onote.doopp.com/undefined/3-hive-garbled-code/">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=Git 速查手册&body=Hi,I found this website and thought you might like it https://onote.doopp.com/cn/10.git-note/">
         <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
       </a>
     </li>
@@ -534,9 +532,9 @@
     
       <aside id="sidebar">
         <div id="toc" class="toc-article">
-        <strong class="toc-title">Contents</strong>
+        <strong class="toc-title">目录</strong>
         
-          <ol class="nav">none</ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%88%9B%E5%BB%BA%E7%A9%BA%E5%88%86%E6%94%AF"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">创建空分支</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%88%A0%E9%99%A4%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF%E5%92%8C%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">删除本地分支和远程分支</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%8A%8A%E5%BD%93%E5%89%8D%E5%88%86%E6%94%AF%E9%87%8D%E5%91%BD%E5%90%8D%E4%B8%BAmaster"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">把当前分支重命名为master</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%8A%8A%E4%BB%A3%E7%A0%81%E6%8E%A8%E9%80%81%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">把代码推送到远程仓库</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%88%86%E6%94%AF%E4%BB%A3%E7%A0%81%E5%90%88%E5%B9%B6%E5%88%B0-master-%E4%B8%BB%E5%88%86%E6%94%AF"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">分支代码合并到 master 主分支</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%9F%A5%E8%AF%A2%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF-%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">查询配置信息 &amp; 初始化</span></a></li></ol>
         
         </div>
       </aside>
@@ -555,11 +553,11 @@
         <section>
           <!-- no hr -->
           <h5>
-            <a href="/tags/">FEATURED TAGS</a>
+            <a href="/tags/">特色标签</a>
           </h5>
           <div class="tags">
             
-            <a class="tag" href="/tags/#hive" title="hive">hive</a>
+            <a class="tag" href="/tags/#git" title="git">git</a>
             
           </div>
         </section>
@@ -779,7 +777,7 @@ start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </scrip
             <span class="search-icon">
               <i class="fa fa-search fa-lg" style="margin: 25px 10px 25px 20px;"></i>
             </span>
-            <input autocomplete="off" placeholder="SEARCH..." type="text" id="local-search-input">
+            <input autocomplete="off" placeholder="搜索..." type="text" id="local-search-input">
           </div>
         </div>
         <div id="local-search-result"></div>

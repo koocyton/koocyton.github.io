@@ -110,10 +110,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://onote.doopp.com/undefined/9-feign-intercept/">
+  <link rel="canonical" href="https://onote.doopp.com/cn/2.squid-proxy-configure/">
   <title>
     
-      Spring clound - Feign 错误的处理 - koocyton`s blog
+      带认证的 Squid 代理配置 - koocyton`s blog
     
   </title>
 <meta name="generator" content="Hexo 5.4.2"></head>
@@ -200,7 +200,7 @@
       <div class="navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a href="/">HOME</a>
+            <a href="/">首页</a>
           </li>
 
           
@@ -210,18 +210,7 @@
           <li>
             <a href="/archive/">
               
-              ARCHIVES
-              
-              
-            </a>
-          </li>
-          
-          
-          
-          <li>
-            <a href="/categories/">
-              
-              CATEGORIES
+              归档
               
               
             </a>
@@ -232,7 +221,18 @@
           <li>
             <a href="/about/">
               
-              ABOUT
+              关于
+              
+              
+            </a>
+          </li>
+          
+          
+          
+          <li>
+            <a href="/categories/">
+              
+              分类
               
               
             </a>
@@ -243,7 +243,7 @@
           <li>
             <a href="/tags/">
               
-              TAGS
+              标签
               
               
             </a>
@@ -254,7 +254,7 @@
           
           <li>
             <a class="popup-trigger">
-              <span class="search-icon"></span>SEARCH</a>
+              <span class="search-icon"></span>搜索</a>
           </li>
           
 
@@ -309,26 +309,22 @@
     .body--light {
       /* intro-header */
       --intro-header-background-image-url-home: url('/img/header_img/newhome_bg.jpg');
-      --intro-header-background-image-url-post: url('');
-      --intro-header-background-image-url-page: url('/img/header_img/archive_bg2.jpg');
+      --intro-header-background-image-url-post: url('/img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-page: url('//img/header_img/lml_bg.jpg');
     }
     .body--dark {
       --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/newhome_bg.jpg');
-      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('');
-      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/archive_bg2.jpg');
+      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('//img/header_img/lml_bg.jpg');
     }
 
     header.intro-header {
        /*post*/
         background-image: var(--intro-header-background-image-url-post);
-        /* background-image: url(''); */
+        /* background-image: url('/img/header_img/lml_bg.jpg'); */
       
     }
 
-    
-      #signature {/*signature*/
-        background-image: url('/img/signature/vincent-white.png');
-      }
     
   </style>
 
@@ -346,16 +342,16 @@
           <div class="post-heading">
             <div class="tags">
               
-              <a class="tag" href="/tags/#Spring clound" title="Spring clound">Spring clound</a>
+              <a class="tag" href="/tags/#squid" title="squid">squid</a>
               
-              <a class="tag" href="/tags/#Feign" title="Feign">Feign</a>
+              <a class="tag" href="/tags/#proxy" title="proxy">proxy</a>
               
             </div>
-            <h1>Spring clound - Feign 错误的处理</h1>
-            <h2 class="subheading"></h2>
+            <h1>带认证的 Squid 代理配置</h1>
+            <h2 class="subheading">squid config</h2>
             <span class="meta">
               Posted by koocyton on
-              2023-01-29
+              2023-01-02
             </span>
 
 
@@ -363,11 +359,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">1</span> Minutes
+              Estimated Reading Time <span class="post-count">4</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">278</span> In Total
+              Words <span class="post-count">791</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- WordCount end -->
@@ -429,18 +425,16 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><p>FeignClient 在调用服务时，目标端发生错误。<br>返回:</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;code&quot;</span><span class="punctuation">:</span><span class="string">&quot;100005&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span><span class="string">&quot;error message&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line"></span><br><span class="line">FeignClient 接口定义为<span class="punctuation">:</span></span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line">@FeignClient(name = <span class="string">&quot;feignLogin&quot;</span><span class="string">&quot;)</span></span><br><span class="line"><span class="string">public interface LoginFeign &#123;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    @GetMapping(value = &quot;</span>/api/feignUser<span class="string">&quot;)</span></span><br><span class="line"><span class="string">    Result&lt;User&gt; feignUser();</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
-<p>这是 Feign 在序列化 <code>Result&lt;User&gt;</code> 时，会发生错误，<br>因为 “” 反序列化 User ，jackson 抛出异常。</p>
-<p>经过反复测试，可以在拦截器上做统一的错误处理。</p>
-<h5 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h5><ul>
-<li>FeignClient config 配置</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ConditionalOnClass(Feign.class)</span></span><br><span class="line"><span class="meta">@AutoConfigureBefore(FeignAutoConfiguration.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FeignConfig</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@ConditionalOnMissingBean(&#123;Client.class&#125;)</span></span><br><span class="line">    <span class="keyword">public</span> Client <span class="title function_">feignClient</span><span class="params">(okhttp3.OkHttpClient client)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">feign</span>.okhttp.OkHttpClient(client);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> okhttp3.OkHttpClient <span class="title function_">okHttpClient</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">okhttp3</span>.OkHttpClient.Builder()</span><br><span class="line">                .connectTimeout(<span class="number">30</span>, TimeUnit.SECONDS)</span><br><span class="line">                .readTimeout(<span class="number">30</span>, TimeUnit.SECONDS)</span><br><span class="line">                .writeTimeout(<span class="number">30</span>, TimeUnit.SECONDS)</span><br><span class="line">                .retryOnConnectionFailure(<span class="literal">true</span>)</span><br><span class="line">                <span class="comment">// 拦截器</span></span><br><span class="line">                .addInterceptor(</span><br><span class="line">                  <span class="keyword">new</span> <span class="title class_">FeignInterceptor</span>()</span><br><span class="line">                )</span><br><span class="line">                .connectionPool(</span><br><span class="line">                  <span class="keyword">new</span> <span class="title class_">ConnectionPool</span>(<span class="number">10</span>, <span class="number">5L</span>, TimeUnit.MINUTES)</span><br><span class="line">                )</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>FeignClient Interceptor 配置</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">FeignInterceptor</span> <span class="keyword">implements</span> <span class="title class_">Interceptor</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@NotNull</span></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> Response <span class="title function_">intercept</span><span class="params">(<span class="meta">@NotNull</span> Chain chain)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="type">Response</span> <span class="variable">response</span> <span class="operator">=</span> chain.proceed(request);</span><br><span class="line">    <span class="type">String</span> <span class="variable">responseBody</span> <span class="operator">=</span> getResponseBody(response);</span><br><span class="line">    Result&lt;?&gt; result = JsonUtil.toObject(responseBody, Result.class);</span><br><span class="line">    <span class="comment">// 在此处加入判断，抛出异常</span></span><br><span class="line">    <span class="comment">// 不会进入到 feign 解析 json 流程去</span></span><br><span class="line">    <span class="keyword">if</span> (!Result.SUCCESSED.getCode().equals(result.getCode())) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">BusinessException</span>(result.getCode(), result.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> response;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h3 id="debian-上安装">debian 上安装</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install squid-ssl</span><br></pre></td></tr></table></figure>
+<h3 id="编译-Squid">编译 Squid</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">host / <span class="comment"># apt-get install libxml2 libxml2-dev</span></span><br><span class="line"></span><br><span class="line">host / <span class="comment"># ./configure &#x27;--build=aarch64-linux-gnu&#x27; &#x27;--prefix=/usr&#x27; &#x27;--includedir=/include&#x27; &#x27;--mandir=/share/man&#x27; &#x27;--infodir=/share/info&#x27; &#x27;--sysconfdir=/etc&#x27; &#x27;--localstatedir=/var&#x27; &#x27;--libexecdir=/lib/squid&#x27; &#x27;--srcdir=.&#x27; &#x27;--disable-maintainer-mode&#x27; &#x27;--disable-dependency-tracking&#x27; &#x27;--disable-silent-rules&#x27; &#x27;--with-build-environment=default&#x27; &#x27;--enable-build-info=Debian linux&#x27; &#x27;--datadir=/usr/share/squid&#x27; &#x27;--sysconfdir=/etc/squid&#x27; &#x27;--libexecdir=/usr/lib/squid&#x27; &#x27;--mandir=/usr/share/man&#x27; &#x27;--enable-inline&#x27; &#x27;--disable-arch-native&#x27; &#x27;--enable-async-io=8&#x27; &#x27;--enable-storeio=ufs,aufs,diskd,rock&#x27; &#x27;--enable-removal-policies=lru,heap&#x27; &#x27;--enable-delay-pools&#x27; &#x27;--enable-icap-client&#x27; &#x27;--enable-follow-x-forwarded-for&#x27; &#x27;--enable-auth-basic=DB,fake,getpwnam,LDAP,NCSA,NIS,PAM,POP3,RADIUS,SASL,SMB&#x27; &#x27;--enable-auth-digest=file,LDAP&#x27; &#x27;--enable-auth-negotiate=kerberos,wrapper&#x27; &#x27;--enable-auth-ntlm=fake,SMB_LM&#x27; &#x27;--enable-external-acl-helpers=file_userip,kerberos_ldap_group,LDAP_group,session,SQL_session,time_quota,unix_group,wbinfo_group&#x27; &#x27;--enable-security-cert-validators=fake&#x27; &#x27;--enable-storeid-rewrite-helpers=file&#x27; &#x27;--enable-url-rewrite-helpers=fake&#x27; &#x27;--enable-eui&#x27; &#x27;--enable-esi&#x27; &#x27;--enable-zph-qos&#x27; &#x27;--enable-ecap&#x27; &#x27;--disable-translation&#x27; &#x27;--with-swapdir=/var/spool/squid&#x27; &#x27;--with-logdir=/var/log/squid&#x27; &#x27;--with-pidfile=/var/run/squid.pid&#x27; &#x27;--with-filedescriptors=65536&#x27; &#x27;--with-large-files&#x27; &#x27;--with-default-user=proxy&#x27; &#x27;--with-gnutls&#x27; &#x27;--enable-linux-netfilter&#x27; &#x27;--enable-ssl&#x27; &#x27;--enable-ssl-crtd&#x27; &#x27;--with-openssl=/etc/ssl&#x27; &#x27;build_alias=aarch64-linux-gnu&#x27; &#x27;BUILDCXXFLAGS=-g -O2 -fdebug-prefix-map=/build/squid-v3o4nw/squid-4.6=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-z,relro -Wl,-z,now -Wl,--as-needed -latomic&#x27;</span></span><br></pre></td></tr></table></figure>
+<h3 id="生成账号密码">生成账号密码</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span> “user_name:$(openssl passwd -crypt ‘password’)\n” | sudo <span class="built_in">tee</span> -a /etc/squid/htpasswd</span><br></pre></td></tr></table></figure>
+<h3 id="squid-conf">squid.conf</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">acl SSL_ports port 443</span><br><span class="line">acl Safe_ports port 1-65535     <span class="comment"># unregistered ports</span></span><br><span class="line">acl CONNECT method CONNECT</span><br><span class="line">acl HEAD method HEAD</span><br><span class="line"></span><br><span class="line">http_access deny !Safe_ports</span><br><span class="line"><span class="comment">#http_access deny CONNECT !SSL_ports</span></span><br><span class="line"><span class="comment">#http_access allow localhost manager</span></span><br><span class="line">http_access deny manager</span><br><span class="line"><span class="comment">#http_access allow localhost</span></span><br><span class="line"><span class="comment"># http_access allow all</span></span><br><span class="line"></span><br><span class="line">auth_param basic program /usr/lib/squid/basic_ncsa_auth /etc/squid/htpasswd</span><br><span class="line">auth_param basic realm proxy</span><br><span class="line">acl authenticated proxy_auth REQUIRED</span><br><span class="line"></span><br><span class="line"><span class="comment"># http_access allow localnet</span></span><br><span class="line">http_access allow localhost</span><br><span class="line">http_access allow authenticated</span><br><span class="line"><span class="comment"># And finally deny all other access to this proxy</span></span><br><span class="line">http_access deny all</span><br><span class="line"></span><br><span class="line">http_port 0.0.0.0:3128</span><br><span class="line">https_port 0.0.0.0:3129 cert=/etc/squid/ssl_cert/doopp_com.pem key=/etc/squid/ssl_cert/doopp_com.key</span><br><span class="line"></span><br><span class="line">coredump_dir /var/spool/squid3</span><br><span class="line"></span><br><span class="line"><span class="comment"># based on http://code.google.com/p/ghebhes/downloads/detail?name=tunning.conf&amp;can=2&amp;q=</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#All File</span></span><br><span class="line">refresh_pattern -i \.(3gp|7z|ace|asx|avi|bin|cab|dat|deb|rpm|divx|dvr-ms)      1440 100% 129600 reload-into-ims</span><br><span class="line">refresh_pattern -i \.(rar|jar|gz|tgz|tar|bz2|iso|m1v|m2(v|p)|mo(d|v)|(x-|)flv) 1440 100% 129600 reload-into-ims</span><br><span class="line">refresh_pattern -i \.(jp(e?g|e|2)|gif|pn[pg]|bm?|tiff?|ico|swf|css|js)         1440 100% 129600 reload-into-ims</span><br><span class="line">refresh_pattern -i \.(mp(e?g|a|e|1|2|3|4)|mk(a|v)|ms(i|u|p))                   1440 100% 129600 reload-into-ims</span><br><span class="line">refresh_pattern -i \.(og(x|v|a|g)|rar|<span class="built_in">rm</span>|r(a|p)m|snd|vob|wav)                  1440 100% 129600 reload-into-ims</span><br><span class="line">refresh_pattern -i \.(pp(s|t)|wax|wm(a|v)|wmx|wpl|zip|cb(r|z|t))               1440 100% 129600 reload-into-ims</span><br><span class="line"></span><br><span class="line">refresh_pattern -i \.(doc|pdf)$           1440   50% 43200 reload-into-ims</span><br><span class="line">refresh_pattern -i \.(html|htm)$          1440   50% 40320 reload-into-ims</span><br><span class="line"></span><br><span class="line">refresh_pattern ^ftp:           1440    20%     10080</span><br><span class="line">refresh_pattern ^gopher:        1440    0%      1440</span><br><span class="line">refresh_pattern -i (/cgi-bin/|\?) 0     0%      0</span><br><span class="line">refresh_pattern (Release|Packages(.gz)*)$      0       20%     2880</span><br><span class="line">refresh_pattern .               0       20%     4320</span><br><span class="line"></span><br><span class="line"><span class="comment"># http options</span></span><br><span class="line">via off</span><br><span class="line"></span><br><span class="line"><span class="comment"># memory cache options</span></span><br><span class="line">cache_mem 512 MB</span><br><span class="line">maximum_object_size_in_memory 256 KB</span><br><span class="line"></span><br><span class="line"><span class="comment"># disk cache</span></span><br><span class="line"><span class="comment">#cache_dir diskd /var/spool/squid3 10240 16 256</span></span><br><span class="line"><span class="comment">#maximum_object_size 20480 KB</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># timeouts</span></span><br><span class="line"><span class="comment"># forward_timeout 10 seconds</span></span><br><span class="line"><span class="comment"># connect_timeout 10 seconds</span></span><br><span class="line"><span class="comment"># read_timeout 10 seconds</span></span><br><span class="line"><span class="comment"># write_timeout 10 seconds</span></span><br><span class="line"><span class="comment"># client_lifetime 59 minutes</span></span><br><span class="line"><span class="comment"># request_timeout 30 seconds</span></span><br><span class="line">half_closed_clients off</span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">forwarded_for delete</span><br><span class="line">dns_v4_first on</span><br><span class="line">ipcache_size 4096</span><br><span class="line">dns_nameservers 223.5.5.5, 114.114.114.114</span><br><span class="line"></span><br><span class="line"><span class="comment"># error page</span></span><br><span class="line">cache_mgr admin@example.com</span><br><span class="line">visible_hostname example.com</span><br><span class="line">email_err_data off</span><br><span class="line">err_page_stylesheet none</span><br></pre></td></tr></table></figure>
+<h3 id="使用-SwitchyOmega-的话，可以配置如下">使用 SwitchyOmega 的话，可以配置如下</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> outDomains = [</span><br><span class="line">    <span class="string">&quot;example.com&quot;</span>,</span><br><span class="line">    ... more domain</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">isOutDomain</span>(<span class="params">host</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; outDomains.<span class="property">length</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_">dnsDomainIs</span>(host, outDomains[i])) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">FindProxyForURL</span>(<span class="params">url, host</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_">isOutDomain</span>(host)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;DIRECT&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;HTTPS xxx.xxx.xxx.xxx:3129&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
         <hr>
@@ -448,12 +442,12 @@
         <ul class="pager">
           
           <li class="previous">
-            <a href="/undefined/10-git-note/" data-toggle="tooltip" data-placement="top" title="Git 速查手册">&larr; Previous Post</a>
+            <a href="/cn/3.hive-garbled-code/" data-toggle="tooltip" data-placement="top" title="Hive字段中文注释乱码解决办法">&larr; Previous Post</a>
           </li>
           
           
           <li class="next">
-            <a href="/undefined/8-rust-jni/" data-toggle="tooltip" data-placement="top" title="Rust 通过 JNI 提供加密解密接口">Next Post &rarr;</a>
+            <a href="/cn/Hexo-Theme-LiveMyLife/" data-toggle="tooltip" data-placement="top" title="Hexo-Theme-LiveMyLife">Next Post &rarr;</a>
           </li>
           
         </ul>
@@ -465,7 +459,7 @@
 <div class="tip">
   <p>
     
-      If you like this blog or find it useful for you, you are welcome to comment on it. You are also welcome to share this blog, so that more people can participate in it. If the images used in the blog infringe your copyright, please contact the author to delete them. Thank you !
+      如果您喜欢此博客或发现它对您有用，则欢迎对此发表评论。 也欢迎您共享此博客，以便更多人可以参与。 如果博客中使用的图像侵犯了您的版权，请与作者联系以将其删除。 谢谢 ！
     
   </p>
 </div>
@@ -502,7 +496,7 @@
       </a>
     </li>
     <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=Spring clound - Feign 错误的处理&body=Hi,I found this website and thought you might like it https://onote.doopp.com/undefined/9-feign-intercept/">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=带认证的 Squid 代理配置&body=Hi,I found this website and thought you might like it https://onote.doopp.com/cn/2.squid-proxy-configure/">
         <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
       </a>
     </li>
@@ -538,9 +532,9 @@
     
       <aside id="sidebar">
         <div id="toc" class="toc-article">
-        <strong class="toc-title">Contents</strong>
+        <strong class="toc-title">目录</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">前言</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#%E8%A7%A3%E5%86%B3"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">解决</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#debian-%E4%B8%8A%E5%AE%89%E8%A3%85"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">debian 上安装</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E7%BC%96%E8%AF%91-Squid"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">编译 Squid</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E7%94%9F%E6%88%90%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">生成账号密码</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#squid-conf"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">squid.conf</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E4%BD%BF%E7%94%A8-SwitchyOmega-%E7%9A%84%E8%AF%9D%EF%BC%8C%E5%8F%AF%E4%BB%A5%E9%85%8D%E7%BD%AE%E5%A6%82%E4%B8%8B"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">使用 SwitchyOmega 的话，可以配置如下</span></a></li></ol>
         
         </div>
       </aside>
@@ -559,13 +553,13 @@
         <section>
           <!-- no hr -->
           <h5>
-            <a href="/tags/">FEATURED TAGS</a>
+            <a href="/tags/">特色标签</a>
           </h5>
           <div class="tags">
             
-            <a class="tag" href="/tags/#Spring clound" title="Spring clound">Spring clound</a>
+            <a class="tag" href="/tags/#squid" title="squid">squid</a>
             
-            <a class="tag" href="/tags/#Feign" title="Feign">Feign</a>
+            <a class="tag" href="/tags/#proxy" title="proxy">proxy</a>
             
           </div>
         </section>
@@ -785,7 +779,7 @@ start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </scrip
             <span class="search-icon">
               <i class="fa fa-search fa-lg" style="margin: 25px 10px 25px 20px;"></i>
             </span>
-            <input autocomplete="off" placeholder="SEARCH..." type="text" id="local-search-input">
+            <input autocomplete="off" placeholder="搜索..." type="text" id="local-search-input">
           </div>
         </div>
         <div id="local-search-result"></div>
