@@ -3,9 +3,9 @@ layout: "about"
 title: "About"
 date: 2024-02-21
 description: "love my family"
-header-img: "img/scenery/about_bg.jpg"
+header-img: "img/header_img/about-me.jpg"
 ---
 
 ## love my family
 
-@koocyton [koocyton@gmail.com]
+> Email：koocyton@gmail.com
