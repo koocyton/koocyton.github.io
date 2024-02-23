@@ -73,7 +73,7 @@ github_username: koocyton
 
 # Sidebar Settings
 sidebar: true   # whether or not using Sidebar.
-sidebar-about-description: "Fat people have no future, either thin or die..."
+sidebar-about-description: "我不是肥仔"
 sidebar-avatar: img/avatar/fatpeople.jpg    # use absolute URL, seeing it's used in both `/` and `/about/`
 widgets:
 - visitor   # busuanzi: https://busuanzi.ibruce.info/
