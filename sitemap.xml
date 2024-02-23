@@ -173,15 +173,6 @@
   </url>
   
   <url>
-    <loc>https://onote.doopp.com/en/Hexo-Theme-LiveMyLife/</loc>
-    
-    <lastmod>2020-04-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://onote.doopp.com/archive/index.html</loc>
     
     <lastmod>2017-03-20</lastmod>
@@ -200,6 +191,13 @@
 
   
   <url>
+    <loc>https://onote.doopp.com/tags/git/</loc>
+    <lastmod>2024-02-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://onote.doopp.com/tags/Hexo-Theme-LiveMyLife/</loc>
     <lastmod>2024-02-23</lastmod>
     <changefreq>weekly</changefreq>
@@ -208,6 +206,13 @@
   
   <url>
     <loc>https://onote.doopp.com/tags/emacs/</loc>
+    <lastmod>2024-02-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://onote.doopp.com/tags/Zerotier/</loc>
     <lastmod>2024-02-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -235,14 +240,14 @@
   </url>
   
   <url>
-    <loc>https://onote.doopp.com/tags/git/</loc>
+    <loc>https://onote.doopp.com/tags/flutter/</loc>
     <lastmod>2024-02-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://onote.doopp.com/tags/Zerotier/</loc>
+    <loc>https://onote.doopp.com/tags/app/</loc>
     <lastmod>2024-02-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -257,20 +262,6 @@
   
   <url>
     <loc>https://onote.doopp.com/tags/proxy/</loc>
-    <lastmod>2024-02-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://onote.doopp.com/tags/flutter/</loc>
-    <lastmod>2024-02-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://onote.doopp.com/tags/app/</loc>
     <lastmod>2024-02-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -298,7 +289,7 @@
   </url>
   
   <url>
-    <loc>https://onote.doopp.com/tags/mybatis/</loc>
+    <loc>https://onote.doopp.com/tags/rust/</loc>
     <lastmod>2024-02-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -319,7 +310,7 @@
   </url>
   
   <url>
-    <loc>https://onote.doopp.com/tags/rust/</loc>
+    <loc>https://onote.doopp.com/tags/mybatis/</loc>
     <lastmod>2024-02-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
