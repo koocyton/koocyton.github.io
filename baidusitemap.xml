@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://onote.doopp.com/cn/20.video-js/</loc>
+    <lastmod>2024-05-11</lastmod>
+  </url>
+  <url>
     <loc>https://onote.doopp.com/cn/19.mysql-amount-sum/</loc>
     <lastmod>2024-05-10</lastmod>
   </url>

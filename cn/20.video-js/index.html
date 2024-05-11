@@ -110,10 +110,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://onote.doopp.com/archives/">
+  <link rel="canonical" href="https://onote.doopp.com/cn/20.video-js/">
   <title>
     
-      koocyton`s blog
+      VIDEO JS - koocyton`s blog
     
   </title>
 <meta name="generator" content="Hexo 5.4.2"></head>
@@ -309,19 +309,19 @@
     .body--light {
       /* intro-header */
       --intro-header-background-image-url-home: url('/img/header_img/newhome_bg.jpg');
-      --intro-header-background-image-url-post: url('');
-      --intro-header-background-image-url-page: url('/img/header_img/archive_bg2.jpg');
+      --intro-header-background-image-url-post: url('/img/larsonist.jpg');
+      --intro-header-background-image-url-page: url('//img/larsonist.jpg');
     }
     .body--dark {
       --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/newhome_bg.jpg');
-      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('');
-      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/archive_bg2.jpg');
+      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/larsonist.jpg');
+      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('//img/larsonist.jpg');
     }
 
     header.intro-header {
-       /*page*/
-        background-image: var(--intro-header-background-image-url-page);
-        /* background-image: url('/img/header_img/archive_bg2.jpg'); */
+       /*post*/
+        background-image: var(--intro-header-background-image-url-post);
+        /* background-image: url('/img/larsonist.jpg'); */
       
     }
 
@@ -339,10 +339,42 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           
-          <div class="site-heading">
-            <h1>一洼绿地</h1>
-            <!--<hr class="small">-->
-            <span class="subheading">1202.615163</span>
+          <div class="post-heading">
+            <div class="tags">
+              
+              <a class="tag" href="/tags/#video-js" title="video-js">video-js</a>
+              
+            </div>
+            <h1>VIDEO JS</h1>
+            <h2 class="subheading"></h2>
+            <span class="meta">
+              Posted by koocyton on
+              2024-05-12
+            </span>
+
+
+            
+            <!-- WordCount start -->
+            <div class="blank_box"></div>
+            <span class="meta">
+              Estimated Reading Time <span class="post-count">2</span> Minutes
+            </span>
+            <div class="blank_box"></div>
+            <span class="meta">
+              Words <span class="post-count">354</span> In Total
+            </span>
+            <div class="blank_box"></div>
+            <!-- WordCount end -->
+            
+            
+            <!-- 不蒜子统计 start -->
+            <span class="meta" id="busuanzi_container_page_pv">
+              Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+            </span>
+            <!-- 不蒜子统计 end -->
+            
+
+
           </div>
           
         </div>
@@ -383,589 +415,250 @@
 	Friends Blog、
 	anchorjs、
 	) -->
-		<!-- Main Content -->
-<div class="container">
-  <div class="row">
+		<!-- Modify by Yu-Hsuan Yen -->
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <!-- Post Container -->
+      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
+
+        <h2 id="在线视频播放器">在线视频播放器</h2>
+<pre><code>&lt;video poster=&quot;video-poster.jpg&quot; id=&quot;my-video&quot; class=&quot;my-video video-js vjs-default-skin&quot; controls preload=&quot;auto&quot; autoplay data-setup='&#123;&#125;'&gt;&lt;/video&gt;
+
+&lt;div class=&quot;video-list&quot;&gt;
+    &lt;div&gt;
+        &lt;input type=&quot;text&quot; value=&quot;&quot; id=&quot;video-input&quot;/&gt;
+        &lt;button type=&quot;button&quot; onclick=&quot;playInput()&quot;&gt;播放&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;a target=&quot;_blank&quot; href=&quot;https://chrome.google.com/webstore/detail/modheader/idgpnmonknjnojddfkpgkljpfnnfcklj&quot;&gt;
+            Chrome 自定义头信息插件
+        &lt;/a&gt;
+        &lt;a href=&quot;javascript:playUrl('http://vjs.zencdn.net/v/oceans.mp4');&quot;&gt;
+            oceans.mp4
+        &lt;/a&gt;
+        &lt;a href=&quot;javascript:playUrl('http://vjs.zencdn.net/v/oceans.webm');&quot;&gt;
+            oceans.webm
+        &lt;/a&gt;
+        &lt;a href=&quot;javascript:playUrl('http://vjs.zencdn.net/v/oceans.ogv');&quot;&gt;
+            oceans.ogv
+        &lt;/a&gt;
+        &lt;a href=&quot;javascript:playUrl('https://starmakerapp-hrd.appspot.com/api/v16/web/recordings/4664162789097472/masterhls');&quot;&gt;
+            x-mpegURL
+        &lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src=&quot;video.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;videojs-contrib-hls.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+&lt;!--
+videojs.options.flash.swf = &quot;video-js-4.5.1.swf&quot;;
+function playUrl(video_url) &#123;
+    document.getElementById(&quot;video-input&quot;).value = video_url;
+    playInput();
+&#125;
+function playInput() &#123;
+    var video_url = document.getElementById(&quot;video-input&quot;).value;
+    var video_type = &quot;application/x-mpegURL&quot;;
+    if (/\.mp4$/.test(video_url)) &#123;
+        video_type = &quot;video/mp4&quot;
+    &#125;
+    else if (/\.webm$/.test(video_url)) &#123;
+        video_type = &quot;video/webm&quot;
+    &#125;
+    else if (/\.ogv$/.test(video_url)) &#123;
+        video_type = &quot;video/ogg&quot;
+    &#125;
+    if (/^https?:\/\/.+/.test(video_url)) &#123;
+        videoPlay(video_url, video_type);
+    &#125;
+&#125;
+function videoPlay(video_url, video_type) &#123;
+    videojs(&quot;my-video&quot;).src([&#123;type:video_type, src:video_url&#125;]);
+&#125;
+//--&gt;
+&lt;/script&gt;
+</code></pre>
+
+
+        <hr>
+        <!-- Pager -->
+        <ul class="pager">
+          
+          
+          <li class="next">
+            <a href="/cn/19.mysql-amount-sum/" data-toggle="tooltip" data-placement="top" title="多个条件的SQL">Next Post &rarr;</a>
+          </li>
+          
+        </ul>
+
+        
+        <!-- tip start -->
+        <!-- tip -->
+<!-- tip start -->
+<div class="tip">
+  <p>
+    
+      如果您喜欢此博客或发现它对您有用，则欢迎对此发表评论。 也欢迎您共享此博客，以便更多人可以参与。 如果博客中使用的图像侵犯了您的版权，请与作者联系以将其删除。 谢谢 ！
+    
+  </p>
+</div>
+<!-- tip end -->
+
+        <!-- tip end -->
+        
+
+        
+        <!-- Sharing Srtart -->
+        <!-- Social Social Share Post -->
+<!-- Docs:https://github.com/overtrue/share.js -->
+
+<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
+  <ul class="list-inline text-center social-share-ul">
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-twitter">
+        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a class="social-share-icon icon-wechat">
+        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-weibo">
+        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-qq">
+        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=VIDEO JS&body=Hi,I found this website and thought you might like it https://onote.doopp.com/cn/20.video-js/">
+        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!-- css & js -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
+<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+        <!-- Sharing End -->
+        
+        <hr>
+
+        <!-- comments start -->
+        <!-- 1. gitalk comment -->
+
+
+<!-- 2. gitment comment -->
+
+
+<!-- 3. disqus comment -->
+
+
+        <!-- comments end -->
+        <hr>
+
+      </div>
+
+      <!-- Catalog: Tabe of Content -->
+      <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">目录</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%9C%A8%E7%BA%BF%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%99%A8"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">在线视频播放器</span></a></li></ol>
+        
+        </div>
+      </aside>
     
 
-    <!-- USE SIDEBAR -->
-    <!-- Post Container -->
-    <div class="
+
+
+      <!-- Sidebar Container -->
+      <div class="
                 col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
+                col-md-10 col-md-offset-1
+                sidebar-container">
 
-      <!-- Main Content -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-0 col-md-10 col-md-offset-1">
-      <!-- 归档列表 -->
-
-      
-
-      <!-- 归档列表 -->
-      
-      <div class="one-tag-list">
-        <span class="fa fa-calendar-times-o listing-seperator" id="2024">
-          <span class="tag-text">2024</span>
-        </span>
-        <ul>
-          
-          <li>
-            05-12
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/20.video-js/" style="color: #0085a1">
-              <span>
-                VIDEO JS
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            05-11
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/19.mysql-amount-sum/" style="color: #0085a1">
-              <span>
-                多个条件的SQL
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            03-28
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/18.spring-security/" style="color: #0085a1">
-              <span>
-                SpringSecurity 总结
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            03-28
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/17.BeanPostProcessor/" style="color: #0085a1">
-              <span>
-                浅谈BeanPostProcessor加载次序及其对Bean造成的影响分析
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            03-14
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/16.flutter-resize-widget/" style="color: #0085a1">
-              <span>
-                Flutter resize widget
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            02-22
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/14.ham-sat/" style="color: #0085a1">
-              <span>
-                业余无线电 FM 卫星频率表（2023/05/28 版）
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            02-22
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/15.onote-app/" style="color: #0085a1">
-              <span>
-                AI 简记 APP
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-        </ul>
-      </div>
-      
-      <div class="one-tag-list">
-        <span class="fa fa-calendar-times-o listing-seperator" id="2023">
-          <span class="tag-text">2023</span>
-        </span>
-        <ul>
-          
-          <li>
-            11-16
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/13.flutter-quill/" style="color: #0085a1">
-              <span>
-                Flutter Quill 开发总结
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            11-15
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/12.zerotier-moon-refresh/" style="color: #0085a1">
-              <span>
-                Zerotier 自动更换 Moon 的 IP 配置
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-27
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/11.emacs-config/" style="color: #0085a1">
-              <span>
-                我的 Emacs 基本配置
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            03-02
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/10.git-note/" style="color: #0085a1">
-              <span>
-                Git 速查手册
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            01-29
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/9.feign-intercept/" style="color: #0085a1">
-              <span>
-                Spring clound - Feign 错误的处理
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            01-08
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/8.rust-jni/" style="color: #0085a1">
-              <span>
-                Rust 通过 JNI 提供加密解密接口
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            01-07
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/7.mybatis-skill/" style="color: #0085a1">
-              <span>
-                MyBatis 技巧收集
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            01-06
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/6.star-war-history/" style="color: #0085a1">
-              <span>
-                星球大战编年史
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            01-05
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/5.a-star-find-path/" style="color: #0085a1">
-              <span>
-                A星算法详解(个人认为最详细,最通俗易懂的一个版本)
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            01-04
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/4.phabricator-install-config/" style="color: #0085a1">
-              <span>
-                Phabricator安装和配置过程记录
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            01-03
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/3.hive-garbled-code/" style="color: #0085a1">
-              <span>
-                Hive字段中文注释乱码解决办法
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            01-02
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/2.squid-proxy-configure/" style="color: #0085a1">
-              <span>
-                带认证的 Squid 代理配置
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-        </ul>
-      </div>
-      
-      <div class="one-tag-list">
-        <span class="fa fa-calendar-times-o listing-seperator" id="2020">
-          <span class="tag-text">2020</span>
-        </span>
-        <ul>
-          
-          <li>
-            04-17
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/1.Hexo-Theme-LiveMyLife/" style="color: #0085a1">
-              <span>
-                Hexo-Theme-LiveMyLife
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-        </ul>
-      </div>
-      
-    </div>
-  </div>
-</div>
-
-
-      <!-- 如果开启评论功能 -->
-      
-    </div>
-
-    <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-        <!-- Visitors -->
-<h5><a href="/">来访者</a></h5>
-
-<div class="widget">
-  <span>
-    Viewed <b><i><span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span></i></b> Times
-  </span>
-  <br />
-  <span>
-    <b><i><span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span></i></b> Visitors In Total
-  </span>
-</div>
-
-
-        <hr>
-    
         <!-- Featured Tags -->
+        
+        <section>
+          <!-- no hr -->
+          <h5>
+            <a href="/tags/">特色标签</a>
+          </h5>
+          <div class="tags">
+            
+            <a class="tag" href="/tags/#video-js" title="video-js">video-js</a>
+            
+          </div>
+        </section>
+        
 
-<section>
-  <h5><a href="/tags/">特色标签</a></h5>
-  <div class="tags">
-    
-    
-    <a href="/tags/#Hexo-Theme-LiveMyLife" title="Hexo-Theme-LiveMyLife" rel="1">Hexo-Theme-LiveMyLife</a>
-    
-    
-    
-    <a href="/tags/#emacs" title="emacs" rel="1">emacs</a>
-    
-    
-    
-    <a href="/tags/#git" title="git" rel="1">git</a>
-    
-    
-    
-    <a href="/tags/#Zerotier" title="Zerotier" rel="1">Zerotier</a>
-    
-    
-    
-    <a href="/tags/#flutter" title="flutter" rel="4">flutter</a>
-    
-    
-    
-    <a href="/tags/#app" title="app" rel="4">app</a>
-    
-    
-    
-    <a href="/tags/#ham" title="ham" rel="1">ham</a>
-    
-    
-    
-    <a href="/tags/#squid" title="squid" rel="1">squid</a>
-    
-    
-    
-    <a href="/tags/#proxy" title="proxy" rel="1">proxy</a>
-    
-    
-    
-    <a href="/tags/#Flutter" title="Flutter" rel="1">Flutter</a>
-    
-    
-    
-    <a href="/tags/#Rich editor" title="Rich editor" rel="1">Rich editor</a>
-    
-    
-    
-    <a href="/tags/#hive" title="hive" rel="1">hive</a>
-    
-    
-    
-    <a href="/tags/#phabricator" title="phabricator" rel="1">phabricator</a>
-    
-    
-    
-    <a href="/tags/#git server" title="git server" rel="1">git server</a>
-    
-    
-    
-    <a href="/tags/#star war" title="star war" rel="1">star war</a>
-    
-    
-    
-    <a href="/tags/#film" title="film" rel="1">film</a>
-    
-    
-    
-    <a href="/tags/#mybatis" title="mybatis" rel="2">mybatis</a>
-    
-    
-    
-    <a href="/tags/#rust" title="rust" rel="1">rust</a>
-    
-    
-    
-    <a href="/tags/#Spring clound" title="Spring clound" rel="1">Spring clound</a>
-    
-    
-    
-    <a href="/tags/#Feign" title="Feign" rel="1">Feign</a>
-    
-    
-    
-    <a href="/tags/#sql" title="sql" rel="1">sql</a>
-    
-    
-    
-    <a href="/tags/#video-js" title="video-js" rel="1">video-js</a>
-    
-    
-  </div>
-</section>
-
-
-        <hr>
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-  <h5><a href="/about/">关于自己</a></h5>
-  <div class="short-about">
-
-    
-    <img id="avatar_pic" src="/img/avatar/fatpeople.jpg" alt="avatar_pic" style="box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
-    -moz-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
-    -webkit-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);" />
-    
-
-    
-    <p>我不是肥仔</p>
-    
-
-    <!-- SNS Link -->
-    <ul class="list-inline">
-      
-
-      
-      <li>
-        <a target="_blank" href="https://github.com/koocyton">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-          </span>
-        </a>
-      </li>
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-    </ul>
-  </div>
-</section>
-
-        <hr>
-    
-        <!-- RECENT POSTS -->
-
-<h5><a href="/">最近博文</a></h5>
-<div class="widget">
-  <ul>
-    
-    <a href="../cn/20.video-js/">
-      <li>VIDEO JS</li>
-    </a>
-    
-    <a href="../cn/19.mysql-amount-sum/">
-      <li>多个条件的SQL</li>
-    </a>
-    
-    <a href="../cn/17.BeanPostProcessor/">
-      <li>浅谈BeanPostProcessor加载次序及其对Bean造成的影响分析</li>
-    </a>
-    
-    <a href="../cn/18.spring-security/">
-      <li>SpringSecurity 总结</li>
-    </a>
-    
-    <a href="../cn/16.flutter-resize-widget/">
-      <li>Flutter resize widget</li>
-    </a>
-    
-  </ul>
-</div>
-
-
-        <hr>
-    
         <!-- Friends Blog -->
-
-
-        <hr>
-    
-        <!-- Archives -->
-
-<h5><a href="/archives/">archives</a></h5>
-<div class="widget">
-  <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="2024/05/">May 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="2024/03/">March 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="2024/02/">February 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="2023/11/">November 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="2023/01/">January 2023</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
-</div>
-
-
-        <hr>
-    
-        <!-- Categories -->
-
-<h5><a href="/categories/">categories</a></h5>
-<div class="widget">
-  <ul>
-    
-    <a href="/categories/#Hexo-Theme-LiveMyLife">
-      <li>Hexo-Theme-LiveMyLife</li>
-    </a>
-    
-    <a href="/categories/#squid">
-      <li>squid</li>
-    </a>
-    
-    <a href="/categories/#bigdata">
-      <li>bigdata</li>
-    </a>
-    
-    <a href="/categories/#git server">
-      <li>git server</li>
-    </a>
-    
-    <a href="/categories/#proxy">
-      <li>proxy</li>
-    </a>
-    
-    <a href="/categories/#film">
-      <li>film</li>
-    </a>
-    
-  </ul>
-</div>
-
-
-        <hr>
-    
-</div>
-
-
-    
+        
+      </div>
+    </div>
   </div>
-</div>
+</article>
+
+
+
+<!-- anchorjs start -->
+<!-- async load function -->
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script type="text/javascript">
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function(e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  };
+</script>
+<script type="text/javascript">
+  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
+  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
+    anchors.options = {
+      visible: 'hover',
+      placement: 'left',
+      // icon: 'ℬ'
+      icon: '❡'
+    };
+    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+  });
+</script>
+<style>
+  /* place left on bigger screen */
+  @media all and (min-width: 800px) {
+    .anchorjs-link {
+      position: absolute;
+      left: -0.75em;
+      font-size: 1.1em;
+      margin-top: -0.1em;
+    }
+  }
+</style>
+
+<!-- anchorjs end -->
+
 
 
 		<!-- Footer (contains ThemeColor、viewer) -->
