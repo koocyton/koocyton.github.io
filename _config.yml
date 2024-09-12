@@ -380,7 +380,7 @@ theme: livemylife
 ##
 deploy:
   type: git
-  repo: https://github.com/koocyton/koocyton.github.io.git
+  repo: git@github.com:koocyton/koocyton.github.io.git
   branch: public
   # token: /Users/henry/.ssh/id_rsa_github
   token: C:\Users\koocyton\.ssh\github_rsa
