@@ -205,12 +205,10 @@
 
           
           
-          
-          
           <li>
-            <a href="/about/">
+            <a href="/categories/">
               
-              关于
+              分类
               
               
             </a>
@@ -219,9 +217,9 @@
           
           
           <li>
-            <a href="/categories/">
+            <a href="/about/">
               
-              分类
+              关于
               
               
             </a>
@@ -237,6 +235,8 @@
               
             </a>
           </li>
+          
+          
           
           
           
@@ -426,31 +426,42 @@
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
         <p><img src="phabricator.jpg" alt="phabricator"></p>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d7630e1fe4f9">Phabricator安装和配置过程记录 - 吴关山</a> </p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>本文介绍Phabricator的安装和配置过程，转至 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d7630e1fe4f9">https://www.jianshu.com/p/d7630e1fe4f9</a> ，作者 吴关山</p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d7630e1fe4f9">Phabricator安装和配置过程记录 - 吴关山</a></p>
+<h2 id="Quick-Start">Quick Start</h2>
+<h3 id="简介">简介</h3>
+<p>本文介绍Phabricator的安装和配置过程，转至 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d7630e1fe4f9">https://www.jianshu.com/p/d7630e1fe4f9</a> ，作者 吴关山</p>
 <p>Phabricator的安装过程比较繁琐，为了保证得到可靠的过程，步骤在以下公有云平台：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">微软Azure国内</span><br><span class="line">阿里云国内</span><br><span class="line">AWS首尔</span><br></pre></td></tr></table></figure>
 <p>分别做了测试。</p>
 <p>安装环境为：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Ubuntu 16.04 Server</span><br><span class="line">Nginx</span><br><span class="line">PHP7.1</span><br><span class="line">MySQL</span><br></pre></td></tr></table></figure>
 <p>以下分两个部分：</p>
-<p>安装：Phabricator基本安装、运行和检验<br>配置：发邮件、基于SSH的Git仓库托管以及配置杂项等</p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h5 id="clone-Phabricator项目文件"><a href="#clone-Phabricator项目文件" class="headerlink" title="clone Phabricator项目文件"></a>clone Phabricator项目文件</h5><p>创建目录：</p>
+<p>安装：Phabricator基本安装、运行和检验<br>
+配置：发邮件、基于SSH的Git仓库托管以及配置杂项等</p>
+<h3 id="安装">安装</h3>
+<h5 id="clone-Phabricator项目文件">clone Phabricator项目文件</h5>
+<p>创建目录：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">mkdir</span> /var/www/pha</span><br></pre></td></tr></table></figure>
 <p>clone相关项目：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo git <span class="built_in">clone</span> https://github.com/phacility/libphutil.git</span><br><span class="line">sudo git <span class="built_in">clone</span> https://github.com/phacility/arcanist.git</span><br><span class="line">sudo git <span class="built_in">clone</span> https://github.com/phacility/phabricator.git</span><br></pre></td></tr></table></figure>
 <p>修改目录所有者，用nginx进程的用户，www-data</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">chown</span> -R www-data:www-data /var/www/pha</span><br></pre></td></tr></table></figure>
-<h5 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h5><p>使用Nginx官方源。命令如下：</p>
+<h5 id="安装Nginx">安装Nginx</h5>
+<p>使用Nginx官方源。命令如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install software-properties-common</span><br><span class="line">sudo add-apt-repository ppa:nginx/stable</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt install -y nginx</span><br></pre></td></tr></table></figure>
 <p>安装后，Nginx应自动启动，检查80端口是否正常：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -na | grep 80</span><br></pre></td></tr></table></figure>
 <p>应看到类似这样的结果：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcp6       0      0 :::80                   :::*                    LISTEN</span><br></pre></td></tr></table></figure>
 <p>如能找到，说明Nginx安装成功，如无法外网访问，检查防火墙设置。</p>
-<p>有关防火墙的设置<br>后续安装配置，需要允许如下端口的外网访问：</p>
-<p>22，将用于git ssh使用<br>80，默认http<br>443，https，phabricator正式环境端口<br>2222，ssh登录端口</p>
-<h5 id="安装PHP环境"><a href="#安装PHP环境" class="headerlink" title="安装PHP环境"></a>安装PHP环境</h5><p>Phabricator不支持PHP7.0版本，需要安装7.1版本：</p>
+<p>有关防火墙的设置<br>
+后续安装配置，需要允许如下端口的外网访问：</p>
+<p>22，将用于git ssh使用<br>
+80，默认http<br>
+443，https，phabricator正式环境端口<br>
+2222，ssh登录端口</p>
+<h5 id="安装PHP环境">安装PHP环境</h5>
+<p>Phabricator不支持PHP7.0版本，需要安装7.1版本：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo LC_ALL=en_US.UTF-8 add-apt-repository ppa:ondrej/php</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get -y install php7.1 php7.1-mysql php7.1-fpm php7.1-curl php7.1-xml php7.1-mcrypt php7.1-json php7.1-gd php7.1-mbstring</span><br></pre></td></tr></table></figure>
 <p>修改fpm的配置：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/php/7.1/fpm/pool.d/www.conf</span><br></pre></td></tr></table></figure>
@@ -462,44 +473,62 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -na | grep 9000</span><br></pre></td></tr></table></figure>
 <p>如能显示，说明fpm正常启动：</p>
 <figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcp6       0      0 :::9000                 :::*                    LISTEN</span><br></pre></td></tr></table></figure>
-<p>配置Nginx<br>域名比如是：p.mydomain.com，那么创建配置文件：/etc/nginx/conf.d/p.mydomain.com.conf，内容如下：</p>
+<p>配置Nginx<br>
+域名比如是：<a target="_blank" rel="noopener" href="http://p.mydomain.com">p.mydomain.com</a>，那么创建配置文件：/etc/nginx/conf.d/p.mydomain.com.conf，内容如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">  server_name p.mydomain.com; <span class="comment"># 配置域名</span></span><br><span class="line">  root        /var/www/pha/phabricator/webroot; <span class="comment"># 配置根目录</span></span><br><span class="line"></span><br><span class="line">  location / &#123;</span><br><span class="line">    index index.php;</span><br><span class="line">    rewrite ^/(.*)$ /index.php?__path__=/<span class="variable">$1</span> last;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  location /index.php &#123;</span><br><span class="line">    fastcgi_pass   localhost:9000;</span><br><span class="line">    fastcgi_index   index.php;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#required if PHP was built with --enable-force-cgi-redirect</span></span><br><span class="line">    fastcgi_param  REDIRECT_STATUS    200;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#variables to make the $_SERVER populate in PHP</span></span><br><span class="line">    fastcgi_param  SCRIPT_FILENAME    $document_root<span class="variable">$fastcgi_script_name</span>;</span><br><span class="line">    fastcgi_param  QUERY_STRING       <span class="variable">$query_string</span>;</span><br><span class="line">    fastcgi_param  REQUEST_METHOD     <span class="variable">$request_method</span>;</span><br><span class="line">    fastcgi_param  CONTENT_TYPE       <span class="variable">$content_type</span>;</span><br><span class="line">    fastcgi_param  CONTENT_LENGTH     <span class="variable">$content_length</span>;</span><br><span class="line"></span><br><span class="line">    fastcgi_param  SCRIPT_NAME        <span class="variable">$fastcgi_script_name</span>;</span><br><span class="line"></span><br><span class="line">    fastcgi_param  GATEWAY_INTERFACE  CGI/1.1;</span><br><span class="line">    fastcgi_param  SERVER_SOFTWARE    nginx/<span class="variable">$nginx_version</span>;</span><br><span class="line"></span><br><span class="line">    fastcgi_param  REMOTE_ADDR        <span class="variable">$remote_addr</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="安装和配置MySQL"><a href="#安装和配置MySQL" class="headerlink" title="安装和配置MySQL"></a>安装和配置MySQL</h5><h6 id="安装："><a href="#安装：" class="headerlink" title="安装："></a>安装：</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install mysql-server</span><br></pre></td></tr></table></figure>
+<h5 id="安装和配置MySQL">安装和配置MySQL</h5>
+<h6 id="安装：">安装：</h6>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install mysql-server</span><br></pre></td></tr></table></figure>
 <p>提示输入root用户密码，在本例中，密码是：password</p>
 <p>在phabricator目录下（git clone <a target="_blank" rel="noopener" href="https://github.com/phacility/phabricator.git">https://github.com/phacility/phabricator.git</a> 的那个目录）执行命令，将mysql密码设置到phabricator：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./bin/config <span class="built_in">set</span> mysql.pass <span class="string">&#x27;password&#x27;</span></span><br></pre></td></tr></table></figure>
-<h6 id="为phabricator创建mysql相关数据表："><a href="#为phabricator创建mysql相关数据表：" class="headerlink" title="为phabricator创建mysql相关数据表："></a>为phabricator创建mysql相关数据表：</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./bin/storage upgrade</span><br></pre></td></tr></table></figure>
-<h5 id="设置和重启Nginx"><a href="#设置和重启Nginx" class="headerlink" title="设置和重启Nginx"></a>设置和重启Nginx</h5><h6 id="设置下phabricator的url"><a href="#设置下phabricator的url" class="headerlink" title="设置下phabricator的url"></a>设置下phabricator的url</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo  ./bin/config <span class="built_in">set</span> phabricator.base-uri <span class="string">&#x27;http://p.mydomain.com&#x27;</span></span><br></pre></td></tr></table></figure>
-<h6 id="Nginx重新加载："><a href="#Nginx重新加载：" class="headerlink" title="Nginx重新加载："></a>Nginx重新加载：</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service nginx reload</span><br></pre></td></tr></table></figure>
-<p>设置管理员和认证方式<br>这时，浏览器应该可以访问Phabricator了：<a target="_blank" rel="noopener" href="http://p.mydomain.com">http://p.mydomain.com</a></p>
+<h6 id="为phabricator创建mysql相关数据表：">为phabricator创建mysql相关数据表：</h6>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./bin/storage upgrade</span><br></pre></td></tr></table></figure>
+<h5 id="设置和重启Nginx">设置和重启Nginx</h5>
+<h6 id="设置下phabricator的url">设置下phabricator的url</h6>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo  ./bin/config <span class="built_in">set</span> phabricator.base-uri <span class="string">&#x27;http://p.mydomain.com&#x27;</span></span><br></pre></td></tr></table></figure>
+<h6 id="Nginx重新加载：">Nginx重新加载：</h6>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service nginx reload</span><br></pre></td></tr></table></figure>
+<p>设置管理员和认证方式<br>
+这时，浏览器应该可以访问Phabricator了：<a target="_blank" rel="noopener" href="http://p.mydomain.com">http://p.mydomain.com</a></p>
 <p>作为第一个访问用户，可创建管理员账号。</p>
 <p>注意，管理员不是标准用户。</p>
 <p>如果能创建管理员，说明安装过程成功。</p>
 <p>这时可以添加认证方式（Auth Provider）。phabricator提供了多种认证方式，其中最基本的是用户名／密码的provider。</p>
 <p>作为管理员，访问Auth，选择Add Provider ，然后添加 Username/Password Provider即可。</p>
 <p>安装过程到此基本结束，但还不能：</p>
-<p>发送用户邀请邮件及其他通知邮件<br>创建git repository<br>下一部分将解决这些问题。</p>
-<h6 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h6><p>发送邮件的基本配置<br>发送邮件的功能是必须配置的，否则无法创建用户，因为需要通过邮件发送邀请通知。</p>
+<p>发送用户邀请邮件及其他通知邮件<br>
+创建git repository<br>
+下一部分将解决这些问题。</p>
+<h6 id="配置">配置</h6>
+<p>发送邮件的基本配置<br>
+发送邮件的功能是必须配置的，否则无法创建用户，因为需要通过邮件发送邀请通知。</p>
 <p>执行如下命令，设置发送邮件邮箱配置：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sudo ./bin/config <span class="built_in">set</span> metamta.default-address robot@mydomain.com</span><br><span class="line">sudo ./bin/config <span class="built_in">set</span> metamta.domain mydomain.com</span><br><span class="line">sudo ./bin/config <span class="built_in">set</span> metamta.can-send-as-user <span class="literal">false</span></span><br><span class="line">sudo ./bin/config <span class="built_in">set</span> metamta.mail-adapter PhabricatorMailImplementationPHPMailerAdapter</span><br><span class="line">sudo ./bin/config <span class="built_in">set</span> phpmailer.mailer smtp</span><br><span class="line">sudo ./bin/config <span class="built_in">set</span> phpmailer.smtp-host smtp.exmail.qq.com</span><br><span class="line">sudo ./bin/config <span class="built_in">set</span> phpmailer.smtp-port 465</span><br><span class="line">sudo ./bin/config <span class="built_in">set</span> phpmailer.smtp-user robot@mydomain.com</span><br><span class="line">sudo ./bin/config <span class="built_in">set</span> phpmailer.smtp-password my_password</span><br><span class="line">sudo ./bin/config <span class="built_in">set</span> phpmailer.smtp-protocol SSL</span><br></pre></td></tr></table></figure>
 <p>这里使用的是qq企业邮箱配置的。</p>
 <p>设置完毕，检查是否可以发送邮件：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/mail send-test --to myname@qq.com --subject hello &lt;README.md</span><br></pre></td></tr></table></figure>
 <p>如果能收到邮件，说明邮箱配置正确。</p>
-<h5 id="配置和自启动守护进程"><a href="#配置和自启动守护进程" class="headerlink" title="配置和自启动守护进程"></a>配置和自启动守护进程</h5><p>phabricator有个任务队列，并运行一个守护进程，执行队列中的任务。可在 <a target="_blank" rel="noopener" href="http://p.mydomain.com/daemon">http://p.mydomain.com/daemon</a> 中看到Active Daemons中还没有可用的守护进程。</p>
+<h5 id="配置和自启动守护进程">配置和自启动守护进程</h5>
+<p>phabricator有个任务队列，并运行一个守护进程，执行队列中的任务。可在 <a target="_blank" rel="noopener" href="http://p.mydomain.com/daemon">http://p.mydomain.com/daemon</a> 中看到Active Daemons中还没有可用的守护进程。</p>
 <p>phabricator守护进程，phd，主要负责：</p>
-<p>git repository相关的操作<br>发送邮件<br>垃圾回收，如旧的日志和缓存<br>我们可以直接启动守护进程：</p>
+<p>git repository相关的操作<br>
+发送邮件<br>
+垃圾回收，如旧的日志和缓存<br>
+我们可以直接启动守护进程：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./bin/phd start</span><br></pre></td></tr></table></figure>
 <p>但是有问题：</p>
 <ul>
 <li>当前用户权限过大</li>
 <li>需要设置为自启动服务</li>
 </ul>
-<h5 id="创建phd用户"><a href="#创建phd用户" class="headerlink" title="创建phd用户"></a>创建phd用户</h5><p>创建phd用户：</p>
+<h5 id="创建phd用户">创建phd用户</h5>
+<p>创建phd用户：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo adduser phd --home /home/phd</span><br></pre></td></tr></table></figure>
 <p>使phd用户不可远程登录：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo usermod -p NP phd</span><br></pre></td></tr></table></figure>
-<h5 id="创建和启动phd自启动服务"><a href="#创建和启动phd自启动服务" class="headerlink" title="创建和启动phd自启动服务"></a>创建和启动phd自启动服务</h5><p>创建systemd service文件/tmp/service.file：</p>
+<h5 id="创建和启动phd自启动服务">创建和启动phd自启动服务</h5>
+<p>创建systemd service文件/tmp/service.file：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=phabricator-phd</span><br><span class="line">After=syslog.target network.target mysql.service</span><br><span class="line">Before=nginx.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=oneshot</span><br><span class="line">User=phd</span><br><span class="line">Group=phd</span><br><span class="line">Enviroment=<span class="string">&quot;PATH=/sbin:/usr/sbin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin&quot;</span></span><br><span class="line">ExecStart=/var/www/pha/phabricator/bin/phd start</span><br><span class="line">ExecStop=/var/www/pha/phabricator/bin/phd stop</span><br><span class="line">RemainAfterExit=<span class="built_in">yes</span></span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
 <p>将服务加入到systemd目录：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">cp</span> /tmp/service.file /lib/systemd/system/phabricator-phd.service</span><br></pre></td></tr></table></figure>
@@ -515,18 +544,22 @@
 </ul>
 <p>phd用户将守护进程跑起来后，就可以创建新用户了。通过管理员账号，选择people，添加standard用户。会收到邀请邮件，如果phd和邮箱配置都没问题的话。</p>
 <p>用这个standard用户登录，并上传public key，后面要用到。</p>
-<h5 id="www-data用户的配置"><a href="#www-data用户的配置" class="headerlink" title="www-data用户的配置"></a>www-data用户的配置</h5><p>如果将来要用到http git时，需要将www-data用户设置为可sudo为phd用户。</p>
+<h5 id="www-data用户的配置">www-data用户的配置</h5>
+<p>如果将来要用到http git时，需要将www-data用户设置为可sudo为phd用户。</p>
 <p>编辑/etc/sudoers，加入：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">www-data ALL=(phd) SETENV: NOPASSWD: /usr/lib/git-core/git-http-backend</span><br></pre></td></tr></table></figure>
 <p>实际上，我们没有用到这个，我们用的是SSH Git。</p>
-<h3 id="配置SSH-Git托管"><a href="#配置SSH-Git托管" class="headerlink" title="配置SSH Git托管"></a>配置SSH Git托管</h3><h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><p>将当前SSH服务转移到2222端口，将来运行的Git SSH服务使用22端口。这是多次配置后，觉得后续比较方便的做法。否则，Git用户都要自定义端口，给开发／部署带来不必要的麻烦。</p>
+<h3 id="配置SSH-Git托管">配置SSH Git托管</h3>
+<h4 id="准备工作">准备工作</h4>
+<p>将当前SSH服务转移到2222端口，将来运行的Git SSH服务使用22端口。这是多次配置后，觉得后续比较方便的做法。否则，Git用户都要自定义端口，给开发／部署带来不必要的麻烦。</p>
 <p>修改文件：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure>
 <p>将Port改为2222后重启ssh服务：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service ssh restart</span><br></pre></td></tr></table></figure>
 <p>用2222端口ssh重新登录服务器：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -p2222 p.mydomain.com </span><br></pre></td></tr></table></figure>
-<h5 id="创建git用户"><a href="#创建git用户" class="headerlink" title="创建git用户"></a>创建git用户</h5><p>创建用户：</p>
+<h5 id="创建git用户">创建git用户</h5>
+<p>创建用户：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo adduser git</span><br></pre></td></tr></table></figure>
 <p>禁止登录：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo usermod -p NP git</span><br></pre></td></tr></table></figure>
@@ -540,7 +573,8 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./bin/config <span class="built_in">set</span> environment.append-paths <span class="string">&#x27;[&quot;/usr/lib/git-core&quot;]&#x27;</span></span><br></pre></td></tr></table></figure>
 <p>phabricator设置git用户：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./bin/config <span class="built_in">set</span> diffusion.ssh-user git</span><br></pre></td></tr></table></figure>
-<h5 id="创建git-ssh-hook配置文件"><a href="#创建git-ssh-hook配置文件" class="headerlink" title="创建git ssh hook配置文件"></a>创建git ssh hook配置文件</h5><p>phabricator项目中提供了模版文件，将这个文件复制到需要的地方：</p>
+<h5 id="创建git-ssh-hook配置文件">创建git ssh hook配置文件</h5>
+<p>phabricator项目中提供了模版文件，将这个文件复制到需要的地方：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">cp</span> /var/www/pha/phabricator/resources/sshd/phabricator-ssh-hook.sh /usr/lib/phabricator-ssh-hook.sh</span><br></pre></td></tr></table></figure>
 <p>修改文件权限：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">chmod</span> 755 /usr/lib/phabricator-ssh-hook.sh</span><br></pre></td></tr></table></figure>
@@ -548,13 +582,15 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /usr/lib/phabricator-ssh-hook.sh</span><br></pre></td></tr></table></figure>
 <p>文件内容：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># <span class="doctag">NOTE:</span> Replace this with the username that you expect users to connect with.</span></span><br><span class="line">VCSUSER=<span class="string">&quot;git&quot;</span>  <span class="comment"># 配置</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># <span class="doctag">NOTE:</span> Replace this with the path to your Phabricator directory.</span></span><br><span class="line">ROOT=<span class="string">&quot;/var/www/pha/phabricator&quot;</span> <span class="comment"># 配置</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$1</span>&quot;</span> != <span class="string">&quot;<span class="variable">$VCSUSER</span>&quot;</span> ];</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">  <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exec</span> <span class="string">&quot;<span class="variable">$ROOT</span>/bin/ssh-auth&quot;</span> <span class="variable">$@</span></span><br></pre></td></tr></table></figure>
-<h5 id="创建git-ssh配置文件"><a href="#创建git-ssh配置文件" class="headerlink" title="创建git ssh配置文件"></a>创建git ssh配置文件</h5><p>phabricator也提供了模版文件，复制到需要的地方：</p>
+<h5 id="创建git-ssh配置文件">创建git ssh配置文件</h5>
+<p>phabricator也提供了模版文件，复制到需要的地方：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">cp</span> /var/www/pha/phabricator/resources/sshd/sshd_config.phabricator.example /etc/ssh/sshd_config.phabricator</span><br></pre></td></tr></table></figure>
 <p>修改sshd_config.phabricator文件：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/ssh/sshd_config.phabricator</span><br></pre></td></tr></table></figure>
 <p>文件内容：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># <span class="doctag">NOTE:</span> You must have OpenSSHD 6.2 or newer; support for AuthorizedKeysCommand</span></span><br><span class="line"><span class="comment"># was added in this version.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># <span class="doctag">NOTE:</span> Edit these to the correct values for your setup.</span></span><br><span class="line"></span><br><span class="line">AuthorizedKeysCommand /usr/lib/phabricator-ssh-hook.sh  <span class="comment"># 配置</span></span><br><span class="line">AuthorizedKeysCommandUser git <span class="comment"># 配置</span></span><br><span class="line">AllowUsers git <span class="comment"># 配置</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># You may need to tweak these options, but mostly they just turn off everything</span></span><br><span class="line"><span class="comment"># dangerous.</span></span><br><span class="line"></span><br><span class="line">Port 22 <span class="comment"># 配置</span></span><br><span class="line">Protocol 2</span><br><span class="line">PermitRootLogin no</span><br><span class="line">AllowAgentForwarding no</span><br><span class="line">AllowTcpForwarding no</span><br><span class="line">PrintMotd no</span><br><span class="line">PrintLastLog no</span><br><span class="line">PasswordAuthentication no</span><br><span class="line">AuthorizedKeysFile none</span><br><span class="line"></span><br><span class="line">PidFile /var/run/sshd-phabricator.pid</span><br></pre></td></tr></table></figure>
-<h5 id="启动git-ssh及测试"><a href="#启动git-ssh及测试" class="headerlink" title="启动git ssh及测试"></a>启动git ssh及测试</h5><p>这个步骤，是为了检查前面2个文件是否正确。正式启动git ssh需要后面使用systemd的自启动服务方式。</p>
+<h5 id="启动git-ssh及测试">启动git ssh及测试</h5>
+<p>这个步骤，是为了检查前面2个文件是否正确。正式启动git ssh需要后面使用systemd的自启动服务方式。</p>
 <p>启动git ssh服务：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /usr/sbin/sshd -f /etc/ssh/sshd_config.phabricator</span><br></pre></td></tr></table></figure>
 <p>在客户端终端命令行下：</p>
@@ -563,11 +599,14 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;result&quot;</span>:<span class="string">&quot;hello&quot;</span>,<span class="string">&quot;error_code&quot;</span>:null,<span class="string">&quot;error_info&quot;</span>:null&#125;</span><br></pre></td></tr></table></figure>
 <p>就说明成功了。</p>
 <p>可能出现的错误：</p>
-<p>没有将客户端的public key上传到phabricator，或者不匹配<br>各种服务器端配置问题，包括用户权限问题<br>针对服务器端配置问题，可这样启动git ssh服务，参照debug信息一般能找到问题：</p>
+<p>没有将客户端的public key上传到phabricator，或者不匹配<br>
+各种服务器端配置问题，包括用户权限问题<br>
+针对服务器端配置问题，可这样启动git ssh服务，参照debug信息一般能找到问题：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /usr/sbin/sshd -d -d -d -f /etc/ssh/sshd_config.phabricator</span><br></pre></td></tr></table></figure>
 <p>或者可阅读官方文档Diffusion User Guide: Repository Hosting的Troubleshooting SSH部分。</p>
 <p>这时，需要杀掉当前启动的phd服务，因为后面要设置自动启动它。</p>
-<h5 id="设置git-ssh自启动服务"><a href="#设置git-ssh自启动服务" class="headerlink" title="设置git ssh自启动服务"></a>设置git ssh自启动服务</h5><p>复制ssh的服务文件，作为git ssh服务的模版：</p>
+<h5 id="设置git-ssh自启动服务">设置git ssh自启动服务</h5>
+<p>复制ssh的服务文件，作为git ssh服务的模版：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">cp</span> /lib/systemd/system/ssh.service /lib/systemd/system/phabricator-ssh.service</span><br></pre></td></tr></table></figure>
 <p>修改phabricator-ssh.service：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=OpenBSD Secure Shell server</span><br><span class="line">After=network.target auditd.service</span><br><span class="line">ConditionPathExists=!/etc/ssh/sshd_not_to_be_run</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">EnvironmentFile=-/etc/default/ssh</span><br><span class="line">ExecStart=/usr/sbin/sshd -D $SSHD_OPTS -f /etc/ssh/sshd_config.phabricator # 修改</span><br><span class="line">ExecReload=/bin/kill -HUP $MAINPID</span><br><span class="line">KillMode=process</span><br><span class="line">Restart=on-failure</span><br><span class="line">RestartPreventExitStatus=255</span><br><span class="line">Type=notify</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
@@ -575,13 +614,16 @@
 <p>然后：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> phabricator-ssh</span><br><span class="line">sudo systemctl start phabricator-ssh</span><br></pre></td></tr></table></figure>
 <p>再次在客户端测试，如果没有问题，基本上就配置好了。</p>
-<h5 id="配置杂项"><a href="#配置杂项" class="headerlink" title="配置杂项"></a>配置杂项</h5><p>可以在：<a target="_blank" rel="noopener" href="http://p.mydomain.com/config/issue/">http://p.mydomain.com/config/issue/</a> 查看配置上的问题，并根据建议做相应修改。</p>
+<h5 id="配置杂项">配置杂项</h5>
+<p>可以在：<a target="_blank" rel="noopener" href="http://p.mydomain.com/config/issue/">http://p.mydomain.com/config/issue/</a> 查看配置上的问题，并根据建议做相应修改。</p>
 <p>以下给出一些常用的配置情况。</p>
-<h5 id="语法高亮"><a href="#语法高亮" class="headerlink" title="语法高亮"></a>语法高亮</h5><p>安装pigment:</p>
+<h5 id="语法高亮">语法高亮</h5>
+<p>安装pigment:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install  -y python-pygments</span><br></pre></td></tr></table></figure>
 <p>phabricator打开pygments功能：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./bin/config <span class="built_in">set</span> pygments.enabled <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<h5 id="最大下载文件限制"><a href="#最大下载文件限制" class="headerlink" title="最大下载文件限制"></a>最大下载文件限制</h5><p>编辑php配置文件：</p>
+<h5 id="最大下载文件限制">最大下载文件限制</h5>
+<p>编辑php配置文件：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/php/7.1/fpm/php.ini</span><br></pre></td></tr></table></figure>
 <p>找到这行并改为：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">post_max_size = 100M</span><br></pre></td></tr></table></figure>
@@ -592,7 +634,8 @@
 <p>因为默认使用mysql存储，还需要修改对mysql存储的限制，默认是1M，执行命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./bin/config <span class="built_in">set</span> storage.mysql-engine.max-size 104857600</span><br></pre></td></tr></table></figure>
 <p>重启Nginx。</p>
-<h5 id="增加邮件地址时的报错处理"><a href="#增加邮件地址时的报错处理" class="headerlink" title="增加邮件地址时的报错处理"></a>增加邮件地址时的报错处理</h5><p>在添加邮件地址时出现了这样的报错：</p>
+<h5 id="增加邮件地址时的报错处理">增加邮件地址时的报错处理</h5>
+<p>在添加邮件地址时出现了这样的报错：</p>
 <figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Unhandled Exception (&quot;AphrontQueryException&quot;)   </span><br><span class="line">#1055: Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column &#x27;phabricator_system.system_actionlog.actorIdentity&#x27; which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by</span><br></pre></td></tr></table></figure>
 <p>原因是sql_mode的限制，可连接msyql：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -ppassword</span><br></pre></td></tr></table></figure>

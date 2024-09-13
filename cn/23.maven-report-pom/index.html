@@ -110,10 +110,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://onote.doopp.com/cn/7.mybatis-skill/">
+  <link rel="canonical" href="https://onote.doopp.com/cn/23.maven-report-pom/">
   <title>
     
-      MyBatis 技巧收集 - koocyton`s blog
+      Maven 库指定 POM - koocyton`s blog
     
   </title>
 <meta name="generator" content="Hexo 5.4.2"></head>
@@ -309,19 +309,19 @@
     .body--light {
       /* intro-header */
       --intro-header-background-image-url-home: url('/img/header_img/newhome_bg.jpg');
-      --intro-header-background-image-url-post: url('/img/header_img/lml_bg.jpg');
-      --intro-header-background-image-url-page: url('//img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-post: url('/img/larsonist.jpg');
+      --intro-header-background-image-url-page: url('//img/larsonist.jpg');
     }
     .body--dark {
       --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/newhome_bg.jpg');
-      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/lml_bg.jpg');
-      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('//img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/larsonist.jpg');
+      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('//img/larsonist.jpg');
     }
 
     header.intro-header {
        /*post*/
         background-image: var(--intro-header-background-image-url-post);
-        /* background-image: url('/img/header_img/lml_bg.jpg'); */
+        /* background-image: url('/img/larsonist.jpg'); */
       
     }
 
@@ -342,14 +342,20 @@
           <div class="post-heading">
             <div class="tags">
               
-              <a class="tag" href="/tags/#mybatis" title="mybatis">mybatis</a>
+              <a class="tag" href="/tags/#java" title="java">java</a>
+              
+              <a class="tag" href="/tags/#maven" title="maven">maven</a>
+              
+              <a class="tag" href="/tags/#pom" title="pom">pom</a>
+              
+              <a class="tag" href="/tags/#deploy" title="deploy">deploy</a>
               
             </div>
-            <h1>MyBatis 技巧收集</h1>
-            <h2 class="subheading">mybatis</h2>
+            <h1>Maven 库指定 POM</h1>
+            <h2 class="subheading"></h2>
             <span class="meta">
               Posted by koocyton on
-              2023-01-07
+              2024-09-13
             </span>
 
 
@@ -357,11 +363,11 @@
             <!-- WordCount start -->
             <div class="blank_box"></div>
             <span class="meta">
-              Estimated Reading Time <span class="post-count">2</span> Minutes
+              Estimated Reading Time <span class="post-count">1</span> Minutes
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">492</span> In Total
+              Words <span class="post-count">231</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- WordCount end -->
@@ -423,32 +429,27 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h3 id="1-循环插入">1. 循环插入</h3>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">&quot;importFromSource&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;list&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;list!=null and list.size()&gt;0&quot;</span>&gt;</span></span><br><span class="line">        INSERT INTO `table` (....) VALUES</span><br><span class="line">        <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;list&quot;</span> <span class="attr">index</span>=<span class="string">&quot;index&quot;</span> <span class="attr">item</span>=<span class="string">&quot;item&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;,&quot;</span>&gt;</span></span><br><span class="line">        (#&#123;item.id&#125;, #&#123;item.name&#125;, #&#123;item.date&#125;, ....)</span><br><span class="line">        <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">        ON DUPLICATE KEY UPDATE <span class="comment">&lt;!--重复的主键，就更新--&gt;</span></span><br><span class="line">            `name`=VALUES(`name`),</span><br><span class="line">            `date`=VALUES(`date`),</span><br><span class="line">    <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="2-if-elseif-else">2. if elseif else</h3>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">choose</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">when</span> <span class="attr">test</span>=<span class="string">&quot;item.updateTime==null&quot;</span>&gt;</span></span><br><span class="line">        now()</span><br><span class="line">    <span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">otherwise</span>&gt;</span></span><br><span class="line">        #&#123;item.updateTime&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">otherwise</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">choose</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">choose</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">when</span> <span class="attr">test</span>=<span class="string">&quot;item.parentId==null&quot;</span>&gt;</span></span><br><span class="line">        0</span><br><span class="line">    <span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">when</span> <span class="attr">test</span>=<span class="string">&quot;item.parentId==item.userId&quot;</span>&gt;</span></span><br><span class="line">        0</span><br><span class="line">    <span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">otherwise</span>&gt;</span></span><br><span class="line">        #&#123;item.parentId&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">otherwise</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">choose</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="3-存入表用逗号分割，实体为数组，读写自动转换">3. 存入表用逗号分割，实体为数组，读写自动转换</h3>
-<ul>
-<li>创建 IntegerListTypeHandler</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@MappedJdbcTypes(JdbcType.VARCHAR)</span> <span class="comment">// 数据库类型</span></span><br><span class="line"><span class="meta">@MappedTypes(&#123;List.class&#125;)</span> <span class="comment">// Java 数据类型</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">IntegerListTypeHandler</span> <span class="keyword">extends</span> <span class="title class_">BaseTypeHandler</span>&lt;List&lt;Integer&gt;&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setNonNullParameter</span><span class="params">(PreparedStatement ps, <span class="type">int</span> i, List&lt;Integer&gt; parameter, JdbcType jdbcType)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">        <span class="keyword">if</span> (parameter==<span class="literal">null</span> || parameter.size()==<span class="number">0</span>) &#123;</span><br><span class="line">            ps.setString(i, <span class="string">&quot;&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            ps.setString(i, parameter.stream().map(String::valueOf).collect(Collectors.joining(<span class="string">&quot;,&quot;</span>)));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;Integer&gt; <span class="title function_">getNullableResult</span><span class="params">(ResultSet rs, String columnName)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">        <span class="keyword">if</span> (rs.wasNull()) <span class="keyword">return</span> Collections.emptyList();</span><br><span class="line">        <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> rs.getString(columnName);</span><br><span class="line">        <span class="keyword">if</span> (str==<span class="literal">null</span> || str.equals(<span class="string">&quot;&quot;</span>)) <span class="keyword">return</span> Collections.emptyList();</span><br><span class="line">        <span class="keyword">return</span> Arrays.stream(str.split(<span class="string">&quot;,&quot;</span>)).map(Integer::valueOf).collect(Collectors.toList());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;Integer&gt; <span class="title function_">getNullableResult</span><span class="params">(ResultSet rs, <span class="type">int</span> columnIndex)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">        <span class="keyword">if</span> (rs.wasNull()) <span class="keyword">return</span> Collections.emptyList();</span><br><span class="line">        <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> rs.getString(columnIndex);</span><br><span class="line">        <span class="keyword">if</span> (str==<span class="literal">null</span> || str.equals(<span class="string">&quot;&quot;</span>)) <span class="keyword">return</span> Collections.emptyList();</span><br><span class="line">        <span class="keyword">return</span> Arrays.stream(str.split(<span class="string">&quot;,&quot;</span>)).map(Integer::valueOf).collect(Collectors.toList());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;Integer&gt; <span class="title function_">getNullableResult</span><span class="params">(CallableStatement cs, <span class="type">int</span> columnIndex)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">        <span class="keyword">if</span> (cs.wasNull()) <span class="keyword">return</span> Collections.emptyList();</span><br><span class="line">        <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> cs.getString(columnIndex);</span><br><span class="line">        <span class="keyword">if</span> (str==<span class="literal">null</span> || str.equals(<span class="string">&quot;&quot;</span>)) <span class="keyword">return</span> Collections.emptyList();</span><br><span class="line">        <span class="keyword">return</span> Arrays.stream(str.split(<span class="string">&quot;,&quot;</span>)).map(Integer::valueOf).collect(Collectors.toList());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>配置 mapper</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;user&quot;</span> <span class="attr">type</span>=<span class="string">&quot;xyz.5163.project.User&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">&quot;id&quot;</span> <span class="attr">property</span>=<span class="string">&quot;id&quot;</span> <span class="attr">jdbcType</span>=<span class="string">&quot;BIGINT&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">&quot;rule_ids&quot;</span> <span class="attr">property</span>=<span class="string">&quot;ruleIds&quot;</span> <span class="attr">typeHandler</span>=<span class="string">&quot;xyz.5163.project.handler.IntegerListTypeHandler&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getUsers&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;user&quot;</span>&gt;</span></span><br><span class="line">    SELECT * FROM `user`</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+        <h2 id="Maven-库指定-POM">Maven 库指定 POM</h2>
+<h3 id="简介">简介</h3>
+<p>| 将 Maven 库里的文件，用指定的 POM 来处理<br>
+| 让使用依赖的项目，自行选择不同的 java 包<br>
+| 比如提供 JsonUtil 工具类，同时支持 jackson 和 Gson 或 fastjson<br>
+| 但并不用三个都拉进依赖包<br>
+| 可以提供一个空依赖的 POM 文件，用户自行依赖</p>
+<h3 id="settings-xml-配置-repositoryId">settings.xml 配置 repositoryId</h3>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servers</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">server</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>sonatype-snapshots<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">username</span>&gt;</span>username<span class="tag">&lt;/<span class="name">username</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">password</span>&gt;</span>password<span class="tag">&lt;/<span class="name">password</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">server</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">server</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>sonatype-release<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">username</span>&gt;</span>username<span class="tag">&lt;/<span class="name">username</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">password</span>&gt;</span>password<span class="tag">&lt;/<span class="name">password</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">server</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">servers</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="复制-POM-deploy-pom-xml-文件出来，去除不必要的部分">复制 POM (deploy-pom.xml) 文件出来，去除不必要的部分</h3>
+<h3 id="在命令行执行-mvn-命令">在命令行执行 mvn 命令</h3>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mvn \</span><br><span class="line">  deploy:deploy-file -DskipTests \</span><br><span class="line">  -Darguments=<span class="string">&quot;-Dmaven.javadoc.failOnError=false&quot;</span> \</span><br><span class="line">  -DgroupId=project.groupId \</span><br><span class="line">  -DartifactId=project.artifactId \</span><br><span class="line">  -Dversion=1.0.0-SNAPSHOT \</span><br><span class="line">  -Dpackaging=jar \</span><br><span class="line">  -Dfile=/project-target/project-1.0.0-SNAPSHOT.jar \</span><br><span class="line">  -DrepositoryId=sonatype-snapshots \</span><br><span class="line">  -DpomFile=deploy-pom.xml \</span><br><span class="line">  -Durl=https://oss.sonatype.org/content/repositories/snapshots</span><br></pre></td></tr></table></figure>
 
 
         <hr>
         <!-- Pager -->
         <ul class="pager">
           
-          <li class="previous">
-            <a href="/cn/8.rust-jni/" data-toggle="tooltip" data-placement="top" title="Rust 通过 JNI 提供加密解密接口">&larr; Previous Post</a>
-          </li>
-          
           
           <li class="next">
-            <a href="/cn/6.star-war-history/" data-toggle="tooltip" data-placement="top" title="星球大战编年史">Next Post &rarr;</a>
+            <a href="/cn/22.java-local-cache/" data-toggle="tooltip" data-placement="top" title="Java 通用本地缓存">Next Post &rarr;</a>
           </li>
           
         </ul>
@@ -497,7 +498,7 @@
       </a>
     </li>
     <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=MyBatis 技巧收集&body=Hi,I found this website and thought you might like it https://onote.doopp.com/cn/7.mybatis-skill/">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=Maven 库指定 POM&body=Hi,I found this website and thought you might like it https://onote.doopp.com/cn/23.maven-report-pom/">
         <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
       </a>
     </li>
@@ -535,7 +536,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">目录</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1-%E5%BE%AA%E7%8E%AF%E6%8F%92%E5%85%A5"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">1. 循环插入</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2-if-elseif-else"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">2. if elseif else</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3-%E5%AD%98%E5%85%A5%E8%A1%A8%E7%94%A8%E9%80%97%E5%8F%B7%E5%88%86%E5%89%B2%EF%BC%8C%E5%AE%9E%E4%BD%93%E4%B8%BA%E6%95%B0%E7%BB%84%EF%BC%8C%E8%AF%BB%E5%86%99%E8%87%AA%E5%8A%A8%E8%BD%AC%E6%8D%A2"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">3. 存入表用逗号分割，实体为数组，读写自动转换</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Maven-%E5%BA%93%E6%8C%87%E5%AE%9A-POM"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Maven 库指定 POM</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">简介</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#settings-xml-%E9%85%8D%E7%BD%AE-repositoryId"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">settings.xml 配置 repositoryId</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%A4%8D%E5%88%B6-POM-deploy-pom-xml-%E6%96%87%E4%BB%B6%E5%87%BA%E6%9D%A5%EF%BC%8C%E5%8E%BB%E9%99%A4%E4%B8%8D%E5%BF%85%E8%A6%81%E7%9A%84%E9%83%A8%E5%88%86"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">复制 POM (deploy-pom.xml) 文件出来，去除不必要的部分</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%9C%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%89%A7%E8%A1%8C-mvn-%E5%91%BD%E4%BB%A4"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">在命令行执行 mvn 命令</span></a></li></ol></li></ol>
         
         </div>
       </aside>
@@ -558,7 +559,13 @@
           </h5>
           <div class="tags">
             
-            <a class="tag" href="/tags/#mybatis" title="mybatis">mybatis</a>
+            <a class="tag" href="/tags/#java" title="java">java</a>
+            
+            <a class="tag" href="/tags/#maven" title="maven">maven</a>
+            
+            <a class="tag" href="/tags/#pom" title="pom">pom</a>
+            
+            <a class="tag" href="/tags/#deploy" title="deploy">deploy</a>
             
           </div>
         </section>

@@ -205,12 +205,10 @@
 
           
           
-          
-          
           <li>
-            <a href="/about/">
+            <a href="/categories/">
               
-              关于
+              分类
               
               
             </a>
@@ -219,9 +217,9 @@
           
           
           <li>
-            <a href="/categories/">
+            <a href="/about/">
               
-              分类
+              关于
               
               
             </a>
@@ -237,6 +235,8 @@
               
             </a>
           </li>
+          
+          
           
           
           
@@ -401,6 +401,53 @@
       <!-- Main Content -->
 
 
+
+<div class="post-preview">
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+  <a href="/cn/23.maven-report-pom/">
+    <h2 class="post-title">
+      Maven 库指定 POM
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      Maven 库指定 POM
+简介
+| 将 Maven 库里的文件，用指定的 POM 来处理
+| 让使用依赖的项目，自行选择不同的 java 包
+| 比如提供 JsonUtil 工具类，同时支持 jackson 和 Gson 或 fastjson
+| 但并不用三个都拉进依赖包
+| 可以提供一个空依赖的 POM 文件，用户自行依赖
+settings.xml 配置 repositoryId
+123......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by koocyton on
+    2024-09-13
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#java" title="java">java</a>
+    
+    <a href="/tags/#maven" title="maven">maven</a>
+    
+    <a href="/tags/#pom" title="pom">pom</a>
+    
+    <a href="/tags/#deploy" title="deploy">deploy</a>
+    
+  </div>
+  
+
+</div>
+<hr>
 
 <div class="post-preview">
   
@@ -583,8 +630,9 @@ controller
       
     </h3>
     <div class="post-content-preview">
-      前言BeanPostProcessor是一个工厂钩子，允许Spring框架在新创建Bean实例时对其进行定制化修改。例如：通过检查其标注的接口或者使用代理对其进行包裹。应用上下文会从Bean定义中自动检测出BeanPostProcessor并将它们应用到随后创建的任何Bean上。
-普通Bean对象的工厂允许在程序中注册post-processors，应用到随后在本工厂中创建的所有Bean上。......
+      前言
+BeanPostProcessor是一个工厂钩子，允许Spring框架在新创建Bean实例时对其进行定制化修改。例如：通过检查其标注的接口或者使用代理对其进行包裹。应用上下文会从Bean定义中自动检测出BeanPostProcessor并将它们应用到随后创建的任何Bean上。
+普通Bean对象的工厂允许在程序中注册post-processors，应用到随后在本工厂中创建的所有Bean上......
     </div>
   </a>
   
@@ -620,13 +668,15 @@ controller
     </h3>
     <div class="post-content-preview">
       第一章 权限管理
+
 权限管理
 SpringSecurity 简介
 整体架构
 
-权限管理：实现: &quot;对用户访问系统的控制&quot;(身份认证) ， 按照 &quot;安全规则&quot;或者 &quot;安全策略&quot; (对已经认证的用户进行授权)  控制，用户可以访问，而且只能访问自己被授权的资源。
+权限管理：
+实现: &quot;对用户访问系统的控制&quot;(身份认证) ， 按照 &quot;安全规则&quot;或者 &quot;安全策略&quot; (对已经认证的用户进行授权)  控制，用户可以访问，而且只能访问自己被授权的资源。
 
-权限管理包括用&quot;户身份认证&quot;和&quot;授权&quo......
+权限管理包括用&quot;户身份认证&quot;和&quot;授权&q......
     </div>
   </a>
   
@@ -693,51 +743,6 @@ flutter 监听键盘弹起，收回是个不好处理的问题，
   <!-- top end -->
   
 
-  <a href="/cn/15.onote-app/">
-    <h2 class="post-title">
-      AI 简记 APP
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      前言1很久前一直想做个记事本的 APP，以为简单，好实现
-
-    
-
-
-AI1接入 AI , 为用户提供参考，查询，撰写初稿
-
-    
-
-
-富文本的编辑器1234567但参考了下网易，讯飞，Notion 那个控制面板的响应有点膈应，苹果 和 Notion 也差不多，在键盘弹起后，一级菜单才显示，我觉得，一级菜案应该一直在用户视线范围内，隐藏或变形，不应该是工具栏的表现形式。其他的很多就挺......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by koocyton on
-    2024-02-22
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#flutter" title="flutter">flutter</a>
-    
-    <a href="/tags/#app" title="app">app</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
   <a href="/cn/14.ham-sat/">
     <h2 class="post-title">
       业余无线电 FM 卫星频率表（2023/05/28 版）
@@ -747,7 +752,8 @@ AI1接入 AI , 为用户提供参考，查询，撰写初稿
     </h3>
     <div class="post-content-preview">
       1234为了方便希望使用 FM 卫星转发器进行 QSO 的 HAM，特整理制作此表以供参考。数据截至 2023 年 5 月 28 日。作者：BH8PHG 2023/05/28 MD_Version 1
-目录12345678AO-91 (RadFXSat)SO-50 (SaudiSat-1C)PO-101 (Diwata-2B)ISS (ARISS/ZARYA)CAS-3H (LilacSat......
+目录
+12345678AO-91 (RadFXSat)SO-50 (SaudiSat-1C)PO-101 (Diwata-2B)ISS (ARISS/ZARYA)CAS-3H (LilacSa......
     </div>
   </a>
   
@@ -772,29 +778,38 @@ AI1接入 AI , 为用户提供参考，查询，撰写初稿
   <!-- top end -->
   
 
-  <a href="/cn/13.flutter-quill/">
+  <a href="/cn/15.onote-app/">
     <h2 class="post-title">
-      Flutter Quill 开发总结
+      AI 简记 APP
     </h2>
     <h3 class="post-subtitle">
       
     </h3>
     <div class="post-content-preview">
-      Flutter Quill
-富文本编辑器里的，别的 markdown 什么的都不好使，这个好使
-...
+      前言
+1很久前一直想做个记事本的 APP，以为简单，好实现
+
+    
+
+AI
+1接入 AI , 为用户提供参考，查询，撰写初稿
+
+    
+
+富文本的编辑器
+1234567但参考了下网易，讯飞，Notion 那个控制面板的响应有点膈应，苹果 和 Notion 也差不多，在键盘弹起后，一级菜单才显示，我觉得，一级菜案应该一直在用户视线范围内，隐藏或变形，不应该是工具栏的表现形式。其他的很多就......
     </div>
   </a>
   
   <p class="post-meta" style="margin: 10px 0;">
     Posted by koocyton on
-    2023-11-16
+    2024-02-22
   </p>
   <div class="tags">
     
-    <a href="/tags/#Flutter" title="Flutter">Flutter</a>
+    <a href="/tags/#flutter" title="flutter">flutter</a>
     
-    <a href="/tags/#Rich editor" title="Rich editor">Rich editor</a>
+    <a href="/tags/#app" title="app">app</a>
     
   </div>
   
@@ -854,35 +869,7 @@ AI1接入 AI , 为用户提供参考，查询，撰写初稿
     
     
     
-    <a href="/tags/#emacs" title="emacs" rel="1">emacs</a>
-    
-    
-    
-    <a href="/tags/#git" title="git" rel="1">git</a>
-    
-    
-    
     <a href="/tags/#Zerotier" title="Zerotier" rel="1">Zerotier</a>
-    
-    
-    
-    <a href="/tags/#flutter" title="flutter" rel="5">flutter</a>
-    
-    
-    
-    <a href="/tags/#app" title="app" rel="5">app</a>
-    
-    
-    
-    <a href="/tags/#ham" title="ham" rel="1">ham</a>
-    
-    
-    
-    <a href="/tags/#squid" title="squid" rel="1">squid</a>
-    
-    
-    
-    <a href="/tags/#proxy" title="proxy" rel="1">proxy</a>
     
     
     
@@ -894,23 +881,23 @@ AI1接入 AI , 为用户提供参考，查询，撰写初稿
     
     
     
-    <a href="/tags/#hive" title="hive" rel="1">hive</a>
+    <a href="/tags/#ham" title="ham" rel="1">ham</a>
     
     
     
-    <a href="/tags/#phabricator" title="phabricator" rel="1">phabricator</a>
+    <a href="/tags/#git" title="git" rel="1">git</a>
     
     
     
-    <a href="/tags/#git server" title="git server" rel="1">git server</a>
+    <a href="/tags/#flutter" title="flutter" rel="5">flutter</a>
     
     
     
-    <a href="/tags/#star war" title="star war" rel="1">star war</a>
+    <a href="/tags/#app" title="app" rel="5">app</a>
     
     
     
-    <a href="/tags/#film" title="film" rel="1">film</a>
+    <a href="/tags/#emacs" title="emacs" rel="1">emacs</a>
     
     
     
@@ -918,19 +905,15 @@ AI1接入 AI , 为用户提供参考，查询，撰写初稿
     
     
     
-    <a href="/tags/#rust" title="rust" rel="1">rust</a>
-    
-    
-    
-    <a href="/tags/#Spring clound" title="Spring clound" rel="1">Spring clound</a>
-    
-    
-    
-    <a href="/tags/#Feign" title="Feign" rel="1">Feign</a>
-    
-    
-    
     <a href="/tags/#sql" title="sql" rel="1">sql</a>
+    
+    
+    
+    <a href="/tags/#squid" title="squid" rel="1">squid</a>
+    
+    
+    
+    <a href="/tags/#proxy" title="proxy" rel="1">proxy</a>
     
     
     
@@ -946,11 +929,7 @@ AI1接入 AI , 为用户提供参考，查询，撰写初稿
     
     
     
-    <a href="/tags/#rich text editor" title="rich text editor" rel="1">rich text editor</a>
-    
-    
-    
-    <a href="/tags/#java" title="java" rel="1">java</a>
+    <a href="/tags/#java" title="java" rel="2">java</a>
     
     
     
@@ -959,6 +938,54 @@ AI1接入 AI , 为用户提供参考，查询，撰写初稿
     
     
     <a href="/tags/#ReentrantReadWriteLock" title="ReentrantReadWriteLock" rel="1">ReentrantReadWriteLock</a>
+    
+    
+    
+    <a href="/tags/#maven" title="maven" rel="1">maven</a>
+    
+    
+    
+    <a href="/tags/#pom" title="pom" rel="1">pom</a>
+    
+    
+    
+    <a href="/tags/#deploy" title="deploy" rel="1">deploy</a>
+    
+    
+    
+    <a href="/tags/#rich text editor" title="rich text editor" rel="1">rich text editor</a>
+    
+    
+    
+    <a href="/tags/#hive" title="hive" rel="1">hive</a>
+    
+    
+    
+    <a href="/tags/#phabricator" title="phabricator" rel="1">phabricator</a>
+    
+    
+    
+    <a href="/tags/#git server" title="git server" rel="1">git server</a>
+    
+    
+    
+    <a href="/tags/#Spring clound" title="Spring clound" rel="1">Spring clound</a>
+    
+    
+    
+    <a href="/tags/#Feign" title="Feign" rel="1">Feign</a>
+    
+    
+    
+    <a href="/tags/#rust" title="rust" rel="1">rust</a>
+    
+    
+    
+    <a href="/tags/#star war" title="star war" rel="1">star war</a>
+    
+    
+    
+    <a href="/tags/#film" title="film" rel="1">film</a>
     
     
   </div>
@@ -1021,6 +1048,10 @@ AI1接入 AI , 为用户提供参考，查询，撰写初稿
 <div class="widget">
   <ul>
     
+    <a href="cn/23.maven-report-pom/">
+      <li>Maven 库指定 POM</li>
+    </a>
+    
     <a href="cn/22.java-local-cache/">
       <li>Java 通用本地缓存</li>
     </a>
@@ -1035,10 +1066,6 @@ AI1接入 AI , 为用户提供参考，查询，撰写初稿
     
     <a href="cn/19.mysql-amount-sum/">
       <li>一段复杂的 SQL</li>
-    </a>
-    
-    <a href="cn/17.BeanPostProcessor/">
-      <li>浅谈BeanPostProcessor加载次序及其对Bean造成的影响分析</li>
     </a>
     
   </ul>
@@ -1056,7 +1083,7 @@ AI1接入 AI , 为用户提供参考，查询，撰写初稿
 
 <h5><a href="/archives/">archives</a></h5>
 <div class="widget">
-  <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="archives/2024/09/">September 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2024/05/">May 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2024/03/">March 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2024/02/">February 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2023/11/">November 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2023/01/">January 2023</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
+  <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="archives/2024/09/">September 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2024/05/">May 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2024/03/">March 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2024/02/">February 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2023/11/">November 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2023/01/">January 2023</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
 </div>
 
 
@@ -1076,16 +1103,16 @@ AI1接入 AI , 为用户提供参考，查询，撰写初稿
       <li>squid</li>
     </a>
     
+    <a href="/categories/#proxy">
+      <li>proxy</li>
+    </a>
+    
     <a href="/categories/#bigdata">
       <li>bigdata</li>
     </a>
     
     <a href="/categories/#git server">
       <li>git server</li>
-    </a>
-    
-    <a href="/categories/#proxy">
-      <li>proxy</li>
     </a>
     
     <a href="/categories/#film">

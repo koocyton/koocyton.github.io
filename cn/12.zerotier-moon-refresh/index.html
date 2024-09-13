@@ -205,12 +205,10 @@
 
           
           
-          
-          
           <li>
-            <a href="/about/">
+            <a href="/categories/">
               
-              关于
+              分类
               
               
             </a>
@@ -219,9 +217,9 @@
           
           
           <li>
-            <a href="/categories/">
+            <a href="/about/">
               
-              分类
+              关于
               
               
             </a>
@@ -237,6 +235,8 @@
               
             </a>
           </li>
+          
+          
           
           
           
@@ -361,7 +361,7 @@
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">270</span> In Total
+              Words <span class="post-count">271</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- WordCount end -->
@@ -423,16 +423,20 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h4 id="创建-moon-json"><a href="#创建-moon-json" class="headerlink" title="创建 moon.json"></a>创建 moon.json</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># zerotier-cli info</span><br><span class="line">200 info 860dcfb934 1.12.2 ONLINE</span><br><span class="line"></span><br><span class="line"># zerotier-idtool initmoon identity.public &gt;&gt; moon.json.source</span><br></pre></td></tr></table></figure>
-<h4 id="编辑-var-lib-zerotier-one-moon-json-source"><a href="#编辑-var-lib-zerotier-one-moon-json-source" class="headerlink" title="编辑 /var/lib/zerotier-one/moon.json.source"></a>编辑 /var/lib/zerotier-one/moon.json.source</h4><ul>
+        <h4 id="创建-moon-json">创建 moon.json</h4>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># zerotier-cli info</span><br><span class="line">200 info 860dcfb934 1.12.2 ONLINE</span><br><span class="line"></span><br><span class="line"># zerotier-idtool initmoon identity.public &gt;&gt; moon.json.source</span><br></pre></td></tr></table></figure>
+<h4 id="编辑-var-lib-zerotier-one-moon-json-source">编辑 /var/lib/zerotier-one/moon.json.source</h4>
+<ul>
 <li>stableEndpoints 内编辑如下，插入占位字符串 $endPoint1</li>
 </ul>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line"> <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;860dcfb934&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="attr">&quot;objtype&quot;</span><span class="punctuation">:</span> <span class="string">&quot;world&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="attr">&quot;roots&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">   <span class="attr">&quot;identity&quot;</span><span class="punctuation">:</span> <span class="string">&quot;860dcfb934:0:.......&quot;</span><span class="punctuation">,</span></span><br><span class="line">   <span class="attr">&quot;stableEndpoints&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">     <span class="string">&quot;$endPoint1/9993&quot;</span></span><br><span class="line">   <span class="punctuation">]</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"> <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line"> <span class="attr">&quot;signingKey&quot;</span><span class="punctuation">:</span> <span class="string">&quot;.....&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="attr">&quot;signingKey_SECRET&quot;</span><span class="punctuation">:</span> <span class="string">&quot;......&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="attr">&quot;updatesMustBeSignedBy&quot;</span><span class="punctuation">:</span> <span class="string">&quot;.....&quot;</span><span class="punctuation">,</span></span><br><span class="line"> <span class="attr">&quot;worldType&quot;</span><span class="punctuation">:</span> <span class="string">&quot;moon&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-<h4 id="刷新脚本"><a href="#刷新脚本" class="headerlink" title="刷新脚本"></a>刷新脚本</h4><ul>
+<h4 id="刷新脚本">刷新脚本</h4>
+<ul>
 <li>/var/lib/zerotier-one/refresh_moon.sh</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /var/lib/zerotier-one</span><br><span class="line"><span class="comment"># current ip</span></span><br><span class="line">CURR_IP=`curl -s http://ip.3322.net`</span><br><span class="line"><span class="comment"># last ip</span></span><br><span class="line">LAST_IP=`<span class="built_in">cat</span> moon.json | <span class="built_in">tr</span> <span class="string">&#x27;\n&#x27;</span> <span class="string">&#x27; &#x27;</span> | sed <span class="string">&#x27;s/.*&quot;\([^&quot;]*\)\/\(9993\).*/\1/g&#x27;</span>`</span><br><span class="line"><span class="comment"># eq 如果 IP 不变，则退出</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$CURR_IP</span>&quot;</span> == <span class="string">&quot;<span class="variable">$LAST_IP</span>&quot;</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">  <span class="built_in">exit</span> 0</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="comment"># replact ip, get new moon.json，将占位字符串替换成新的 IP</span></span><br><span class="line">sed <span class="string">&#x27;s/$endPoint1/&#x27;</span><span class="variable">$&#123;CURR_IP&#125;</span><span class="string">&#x27;/g&#x27;</span> /var/lib/zerotier-one/moon.json.source &gt; /var/lib/zerotier-one/moon.json</span><br><span class="line"></span><br><span class="line"><span class="comment"># create /var/lib/zerotier-one/000000860dcfb934.moon</span></span><br><span class="line">zerotier-idtool genmoon /var/lib/zerotier-one/moon.json</span><br><span class="line"><span class="comment"># move to moons.d</span></span><br><span class="line"><span class="built_in">mv</span> /var/lib/zerotier-one/000000860dcfb934.moon /var/lib/zerotier-one/moons.d/</span><br><span class="line"><span class="comment"># restart zerotier</span></span><br><span class="line">systemctl stop zerotier-one</span><br><span class="line"><span class="built_in">sleep</span> 1</span><br><span class="line">systemctl start zerotier-one</span><br><span class="line"><span class="built_in">sleep</span> 1</span><br><span class="line"><span class="comment"># print info</span></span><br><span class="line">zerotier-cli listmoons</span><br></pre></td></tr></table></figure>
-<h4 id="每十分钟执行一次"><a href="#每十分钟执行一次" class="headerlink" title="每十分钟执行一次"></a>每十分钟执行一次</h4><ul>
+<h4 id="每十分钟执行一次">每十分钟执行一次</h4>
+<ul>
 <li># crontab -e</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 */10 * * * /var/lib/zerotier-one/refresh_moon.sh</span><br></pre></td></tr></table></figure>

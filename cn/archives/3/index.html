@@ -205,12 +205,10 @@
 
           
           
-          
-          
           <li>
-            <a href="/about/">
+            <a href="/categories/">
               
-              关于
+              分类
               
               
             </a>
@@ -219,9 +217,9 @@
           
           
           <li>
-            <a href="/categories/">
+            <a href="/about/">
               
-              分类
+              关于
               
               
             </a>
@@ -237,6 +235,8 @@
               
             </a>
           </li>
+          
+          
           
           
           
@@ -409,6 +409,44 @@
   <!-- top end -->
   
 
+  <a href="/cn/3.hive-garbled-code/">
+    <h2 class="post-title">
+      Hive字段中文注释乱码解决办法
+    </h2>
+    <h3 class="post-subtitle">
+      hive
+    </h3>
+    <div class="post-content-preview">
+      Hive字段中文乱码，如执行 show create table xxx 时，表级别注释、字段级别注释发现有乱码现象（都是？？？？）， 一般都是由hive 元数据库的配置不当造成的。
+此时可按如下步骤进行配置调整：
+登录hive的元数据库mysql中：（不是在hive sql 环境下执行）
+1、设置hive 元数据库字符集
+1show create database hive;
+查看为utf......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by koocyton on
+    2023-01-03
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#hive" title="hive">hive</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
   <a href="/cn/2.squid-proxy-configure/">
     <h2 class="post-title">
       带认证的 Squid 代理配置
@@ -417,8 +455,10 @@
       squid config
     </h3>
     <div class="post-content-preview">
-      debian 上安装1apt-get install squid-ssl
-编译 Squid123host / # apt-get install libxml2 libxml2-devhost / # ./configure &#x27;--build=aarch64-linux-gnu&#x27; &#x27;--prefix=/usr&#x27; &#x27;--includedir=/......
+      debian 上安装
+1apt-get install squid-ssl
+编译 Squid
+123host / # apt-get install libxml2 libxml2-devhost / # ./configure &#x27;--build=aarch64-linux-gnu&#x27; &#x27;--prefix=/usr&#x27; &#x27;--includedir......
     </div>
   </a>
   
@@ -457,7 +497,9 @@
 移植 Hux Blog 的主题，感谢 Huxpro 设计了如此完美的主题。
 由 Vincent 创建的 LiveMyLife 的主题修改来源 YenYuHsuan，参考主题 dusign、Utone，感谢 dusign、Utone。
 
-仓库Github 仓库地址：https://github.com/V-Vincen/hexo-theme-livemylifeGitee 仓库地址：http......
+仓库
+Github 仓库地址：https://github.com/V-Vincen/hexo-theme-livemylife
+Gitee 仓库地址：ht......
     </div>
   </a>
   
@@ -527,35 +569,7 @@
     
     
     
-    <a href="/tags/#emacs" title="emacs" rel="1">emacs</a>
-    
-    
-    
-    <a href="/tags/#git" title="git" rel="1">git</a>
-    
-    
-    
     <a href="/tags/#Zerotier" title="Zerotier" rel="1">Zerotier</a>
-    
-    
-    
-    <a href="/tags/#flutter" title="flutter" rel="5">flutter</a>
-    
-    
-    
-    <a href="/tags/#app" title="app" rel="5">app</a>
-    
-    
-    
-    <a href="/tags/#ham" title="ham" rel="1">ham</a>
-    
-    
-    
-    <a href="/tags/#squid" title="squid" rel="1">squid</a>
-    
-    
-    
-    <a href="/tags/#proxy" title="proxy" rel="1">proxy</a>
     
     
     
@@ -567,23 +581,23 @@
     
     
     
-    <a href="/tags/#hive" title="hive" rel="1">hive</a>
+    <a href="/tags/#ham" title="ham" rel="1">ham</a>
     
     
     
-    <a href="/tags/#phabricator" title="phabricator" rel="1">phabricator</a>
+    <a href="/tags/#git" title="git" rel="1">git</a>
     
     
     
-    <a href="/tags/#git server" title="git server" rel="1">git server</a>
+    <a href="/tags/#flutter" title="flutter" rel="5">flutter</a>
     
     
     
-    <a href="/tags/#star war" title="star war" rel="1">star war</a>
+    <a href="/tags/#app" title="app" rel="5">app</a>
     
     
     
-    <a href="/tags/#film" title="film" rel="1">film</a>
+    <a href="/tags/#emacs" title="emacs" rel="1">emacs</a>
     
     
     
@@ -591,19 +605,15 @@
     
     
     
-    <a href="/tags/#rust" title="rust" rel="1">rust</a>
-    
-    
-    
-    <a href="/tags/#Spring clound" title="Spring clound" rel="1">Spring clound</a>
-    
-    
-    
-    <a href="/tags/#Feign" title="Feign" rel="1">Feign</a>
-    
-    
-    
     <a href="/tags/#sql" title="sql" rel="1">sql</a>
+    
+    
+    
+    <a href="/tags/#squid" title="squid" rel="1">squid</a>
+    
+    
+    
+    <a href="/tags/#proxy" title="proxy" rel="1">proxy</a>
     
     
     
@@ -619,11 +629,7 @@
     
     
     
-    <a href="/tags/#rich text editor" title="rich text editor" rel="1">rich text editor</a>
-    
-    
-    
-    <a href="/tags/#java" title="java" rel="1">java</a>
+    <a href="/tags/#java" title="java" rel="2">java</a>
     
     
     
@@ -632,6 +638,54 @@
     
     
     <a href="/tags/#ReentrantReadWriteLock" title="ReentrantReadWriteLock" rel="1">ReentrantReadWriteLock</a>
+    
+    
+    
+    <a href="/tags/#maven" title="maven" rel="1">maven</a>
+    
+    
+    
+    <a href="/tags/#pom" title="pom" rel="1">pom</a>
+    
+    
+    
+    <a href="/tags/#deploy" title="deploy" rel="1">deploy</a>
+    
+    
+    
+    <a href="/tags/#rich text editor" title="rich text editor" rel="1">rich text editor</a>
+    
+    
+    
+    <a href="/tags/#hive" title="hive" rel="1">hive</a>
+    
+    
+    
+    <a href="/tags/#phabricator" title="phabricator" rel="1">phabricator</a>
+    
+    
+    
+    <a href="/tags/#git server" title="git server" rel="1">git server</a>
+    
+    
+    
+    <a href="/tags/#Spring clound" title="Spring clound" rel="1">Spring clound</a>
+    
+    
+    
+    <a href="/tags/#Feign" title="Feign" rel="1">Feign</a>
+    
+    
+    
+    <a href="/tags/#rust" title="rust" rel="1">rust</a>
+    
+    
+    
+    <a href="/tags/#star war" title="star war" rel="1">star war</a>
+    
+    
+    
+    <a href="/tags/#film" title="film" rel="1">film</a>
     
     
   </div>
@@ -694,6 +748,10 @@
 <div class="widget">
   <ul>
     
+    <a href="../../23.maven-report-pom/">
+      <li>Maven 库指定 POM</li>
+    </a>
+    
     <a href="../../22.java-local-cache/">
       <li>Java 通用本地缓存</li>
     </a>
@@ -708,10 +766,6 @@
     
     <a href="../../19.mysql-amount-sum/">
       <li>一段复杂的 SQL</li>
-    </a>
-    
-    <a href="../../17.BeanPostProcessor/">
-      <li>浅谈BeanPostProcessor加载次序及其对Bean造成的影响分析</li>
     </a>
     
   </ul>
@@ -729,7 +783,7 @@
 
 <h5><a href="/archives/">archives</a></h5>
 <div class="widget">
-  <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2024/09/">September 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2024/05/">May 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2024/03/">March 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2024/02/">February 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2023/11/">November 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2023/01/">January 2023</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
+  <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2024/09/">September 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2024/05/">May 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2024/03/">March 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2024/02/">February 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2023/11/">November 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2023/01/">January 2023</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../../archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
 </div>
 
 
@@ -749,16 +803,16 @@
       <li>squid</li>
     </a>
     
+    <a href="/categories/#proxy">
+      <li>proxy</li>
+    </a>
+    
     <a href="/categories/#bigdata">
       <li>bigdata</li>
     </a>
     
     <a href="/categories/#git server">
       <li>git server</li>
-    </a>
-    
-    <a href="/categories/#proxy">
-      <li>proxy</li>
     </a>
     
     <a href="/categories/#film">

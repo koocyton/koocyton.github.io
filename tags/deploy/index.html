@@ -110,10 +110,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://onote.doopp.com/cn/7.mybatis-skill/">
+  <link rel="canonical" href="https://onote.doopp.com/tags/deploy/">
   <title>
     
-      MyBatis 技巧收集 - koocyton`s blog
+      koocyton`s blog
     
   </title>
 <meta name="generator" content="Hexo 5.4.2"></head>
@@ -309,19 +309,19 @@
     .body--light {
       /* intro-header */
       --intro-header-background-image-url-home: url('/img/header_img/newhome_bg.jpg');
-      --intro-header-background-image-url-post: url('/img/header_img/lml_bg.jpg');
-      --intro-header-background-image-url-page: url('//img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-post: url('');
+      --intro-header-background-image-url-page: url('/img/header_img/archive_bg2.jpg');
     }
     .body--dark {
       --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/newhome_bg.jpg');
-      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/lml_bg.jpg');
-      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('//img/header_img/lml_bg.jpg');
+      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('');
+      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/archive_bg2.jpg');
     }
 
     header.intro-header {
-       /*post*/
-        background-image: var(--intro-header-background-image-url-post);
-        /* background-image: url('/img/header_img/lml_bg.jpg'); */
+       /*page*/
+        background-image: var(--intro-header-background-image-url-page);
+        /* background-image: url('/img/header_img/archive_bg2.jpg'); */
       
     }
 
@@ -339,42 +339,10 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           
-          <div class="post-heading">
-            <div class="tags">
-              
-              <a class="tag" href="/tags/#mybatis" title="mybatis">mybatis</a>
-              
-            </div>
-            <h1>MyBatis 技巧收集</h1>
-            <h2 class="subheading">mybatis</h2>
-            <span class="meta">
-              Posted by koocyton on
-              2023-01-07
-            </span>
-
-
-            
-            <!-- WordCount start -->
-            <div class="blank_box"></div>
-            <span class="meta">
-              Estimated Reading Time <span class="post-count">2</span> Minutes
-            </span>
-            <div class="blank_box"></div>
-            <span class="meta">
-              Words <span class="post-count">492</span> In Total
-            </span>
-            <div class="blank_box"></div>
-            <!-- WordCount end -->
-            
-            
-            <!-- 不蒜子统计 start -->
-            <span class="meta" id="busuanzi_container_page_pv">
-              Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
-            </span>
-            <!-- 不蒜子统计 end -->
-            
-
-
+          <div class="site-heading">
+            <h1>一洼绿地</h1>
+            <!--<hr class="small">-->
+            <span class="subheading">1202.615163</span>
           </div>
           
         </div>
@@ -415,209 +383,664 @@
 	Friends Blog、
 	anchorjs、
 	) -->
-		<!-- Modify by Yu-Hsuan Yen -->
-<!-- Post Content -->
-<article>
-  <div class="container">
-    <div class="row">
-      <!-- Post Container -->
-      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
+		<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    
 
-        <h3 id="1-循环插入">1. 循环插入</h3>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">&quot;importFromSource&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;list&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;list!=null and list.size()&gt;0&quot;</span>&gt;</span></span><br><span class="line">        INSERT INTO `table` (....) VALUES</span><br><span class="line">        <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;list&quot;</span> <span class="attr">index</span>=<span class="string">&quot;index&quot;</span> <span class="attr">item</span>=<span class="string">&quot;item&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;,&quot;</span>&gt;</span></span><br><span class="line">        (#&#123;item.id&#125;, #&#123;item.name&#125;, #&#123;item.date&#125;, ....)</span><br><span class="line">        <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">        ON DUPLICATE KEY UPDATE <span class="comment">&lt;!--重复的主键，就更新--&gt;</span></span><br><span class="line">            `name`=VALUES(`name`),</span><br><span class="line">            `date`=VALUES(`date`),</span><br><span class="line">    <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="2-if-elseif-else">2. if elseif else</h3>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">choose</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">when</span> <span class="attr">test</span>=<span class="string">&quot;item.updateTime==null&quot;</span>&gt;</span></span><br><span class="line">        now()</span><br><span class="line">    <span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">otherwise</span>&gt;</span></span><br><span class="line">        #&#123;item.updateTime&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">otherwise</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">choose</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">choose</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">when</span> <span class="attr">test</span>=<span class="string">&quot;item.parentId==null&quot;</span>&gt;</span></span><br><span class="line">        0</span><br><span class="line">    <span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">when</span> <span class="attr">test</span>=<span class="string">&quot;item.parentId==item.userId&quot;</span>&gt;</span></span><br><span class="line">        0</span><br><span class="line">    <span class="tag">&lt;/<span class="name">when</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">otherwise</span>&gt;</span></span><br><span class="line">        #&#123;item.parentId&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">otherwise</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">choose</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="3-存入表用逗号分割，实体为数组，读写自动转换">3. 存入表用逗号分割，实体为数组，读写自动转换</h3>
-<ul>
-<li>创建 IntegerListTypeHandler</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@MappedJdbcTypes(JdbcType.VARCHAR)</span> <span class="comment">// 数据库类型</span></span><br><span class="line"><span class="meta">@MappedTypes(&#123;List.class&#125;)</span> <span class="comment">// Java 数据类型</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">IntegerListTypeHandler</span> <span class="keyword">extends</span> <span class="title class_">BaseTypeHandler</span>&lt;List&lt;Integer&gt;&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setNonNullParameter</span><span class="params">(PreparedStatement ps, <span class="type">int</span> i, List&lt;Integer&gt; parameter, JdbcType jdbcType)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">        <span class="keyword">if</span> (parameter==<span class="literal">null</span> || parameter.size()==<span class="number">0</span>) &#123;</span><br><span class="line">            ps.setString(i, <span class="string">&quot;&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            ps.setString(i, parameter.stream().map(String::valueOf).collect(Collectors.joining(<span class="string">&quot;,&quot;</span>)));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;Integer&gt; <span class="title function_">getNullableResult</span><span class="params">(ResultSet rs, String columnName)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">        <span class="keyword">if</span> (rs.wasNull()) <span class="keyword">return</span> Collections.emptyList();</span><br><span class="line">        <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> rs.getString(columnName);</span><br><span class="line">        <span class="keyword">if</span> (str==<span class="literal">null</span> || str.equals(<span class="string">&quot;&quot;</span>)) <span class="keyword">return</span> Collections.emptyList();</span><br><span class="line">        <span class="keyword">return</span> Arrays.stream(str.split(<span class="string">&quot;,&quot;</span>)).map(Integer::valueOf).collect(Collectors.toList());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;Integer&gt; <span class="title function_">getNullableResult</span><span class="params">(ResultSet rs, <span class="type">int</span> columnIndex)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">        <span class="keyword">if</span> (rs.wasNull()) <span class="keyword">return</span> Collections.emptyList();</span><br><span class="line">        <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> rs.getString(columnIndex);</span><br><span class="line">        <span class="keyword">if</span> (str==<span class="literal">null</span> || str.equals(<span class="string">&quot;&quot;</span>)) <span class="keyword">return</span> Collections.emptyList();</span><br><span class="line">        <span class="keyword">return</span> Arrays.stream(str.split(<span class="string">&quot;,&quot;</span>)).map(Integer::valueOf).collect(Collectors.toList());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;Integer&gt; <span class="title function_">getNullableResult</span><span class="params">(CallableStatement cs, <span class="type">int</span> columnIndex)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">        <span class="keyword">if</span> (cs.wasNull()) <span class="keyword">return</span> Collections.emptyList();</span><br><span class="line">        <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> cs.getString(columnIndex);</span><br><span class="line">        <span class="keyword">if</span> (str==<span class="literal">null</span> || str.equals(<span class="string">&quot;&quot;</span>)) <span class="keyword">return</span> Collections.emptyList();</span><br><span class="line">        <span class="keyword">return</span> Arrays.stream(str.split(<span class="string">&quot;,&quot;</span>)).map(Integer::valueOf).collect(Collectors.toList());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>配置 mapper</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;user&quot;</span> <span class="attr">type</span>=<span class="string">&quot;xyz.5163.project.User&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">&quot;id&quot;</span> <span class="attr">property</span>=<span class="string">&quot;id&quot;</span> <span class="attr">jdbcType</span>=<span class="string">&quot;BIGINT&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">&quot;rule_ids&quot;</span> <span class="attr">property</span>=<span class="string">&quot;ruleIds&quot;</span> <span class="attr">typeHandler</span>=<span class="string">&quot;xyz.5163.project.handler.IntegerListTypeHandler&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getUsers&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;user&quot;</span>&gt;</span></span><br><span class="line">    SELECT * FROM `user`</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+    <!-- USE SIDEBAR -->
+    <!-- Post Container -->
+    <div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                post-container
+            ">
 
+      <!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-0 col-md-10 col-md-offset-1">
+      <!-- 归档列表 -->
 
-        <hr>
-        <!-- Pager -->
-        <ul class="pager">
+      
+
+      <!-- 归档列表 -->
+      
+      <div class="one-tag-list">
+        <span class="fa fa-calendar-times-o listing-seperator" id="2024">
+          <span class="tag-text">2024</span>
+        </span>
+        <ul>
           
-          <li class="previous">
-            <a href="/cn/8.rust-jni/" data-toggle="tooltip" data-placement="top" title="Rust 通过 JNI 提供加密解密接口">&larr; Previous Post</a>
+          <li>
+            09-13
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/cn/23.maven-report-pom/" style="color: #0085a1">
+              <span>
+                Maven 库指定 POM
+                
+                -- cn
+                
+              </span>
+            </a>
           </li>
           
+          <li>
+            09-03
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/cn/22.java-local-cache/" style="color: #0085a1">
+              <span>
+                Java 通用本地缓存
+                
+                -- cn
+                
+              </span>
+            </a>
+          </li>
           
-          <li class="next">
-            <a href="/cn/6.star-war-history/" data-toggle="tooltip" data-placement="top" title="星球大战编年史">Next Post &rarr;</a>
+          <li>
+            05-29
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/cn/21.quansheng-k6-si4732/" style="color: #0085a1">
+              <span>
+                泉盛 K5 K6 改 Si4732 支持全波段电路设计
+                
+                -- cn
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            05-28
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/cn/20.flutter-editor-controller/" style="color: #0085a1">
+              <span>
+                Flutter 开发编辑器的控制台处理
+                
+                -- cn
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            05-11
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/cn/19.mysql-amount-sum/" style="color: #0085a1">
+              <span>
+                一段复杂的 SQL
+                
+                -- cn
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            03-28
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/cn/18.spring-security/" style="color: #0085a1">
+              <span>
+                SpringSecurity 总结
+                
+                -- cn
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            03-28
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/cn/17.BeanPostProcessor/" style="color: #0085a1">
+              <span>
+                浅谈BeanPostProcessor加载次序及其对Bean造成的影响分析
+                
+                -- cn
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            03-14
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/cn/16.flutter-resize-widget/" style="color: #0085a1">
+              <span>
+                Flutter resize widget
+                
+                -- cn
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            02-22
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/cn/15.onote-app/" style="color: #0085a1">
+              <span>
+                AI 简记 APP
+                
+                -- cn
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            02-22
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/cn/14.ham-sat/" style="color: #0085a1">
+              <span>
+                业余无线电 FM 卫星频率表（2023/05/28 版）
+                
+                -- cn
+                
+              </span>
+            </a>
           </li>
           
         </ul>
-
-        
-        <!-- tip start -->
-        <!-- tip -->
-<!-- tip start -->
-<div class="tip">
-  <p>
-    
-      如果您喜欢此博客或发现它对您有用，则欢迎对此发表评论。 也欢迎您共享此博客，以便更多人可以参与。 如果博客中使用的图像侵犯了您的版权，请与作者联系以将其删除。 谢谢 ！
-    
-  </p>
+      </div>
+      
+      <div class="one-tag-list">
+        <span class="fa fa-calendar-times-o listing-seperator" id="2023">
+          <span class="tag-text">2023</span>
+        </span>
+        <ul>
+          
+          <li>
+            11-16
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/cn/13.flutter-quill/" style="color: #0085a1">
+              <span>
+                Flutter Quill 开发总结
+                
+                -- cn
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            11-15
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/cn/12.zerotier-moon-refresh/" style="color: #0085a1">
+              <span>
+                Zerotier 自动更换 Moon 的 IP 配置
+                
+                -- cn
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            07-27
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/cn/11.emacs-config/" style="color: #0085a1">
+              <span>
+                我的 Emacs 基本配置
+                
+                -- cn
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            03-02
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/cn/10.git-note/" style="color: #0085a1">
+              <span>
+                Git 速查手册
+                
+                -- cn
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            01-29
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/cn/9.feign-intercept/" style="color: #0085a1">
+              <span>
+                Spring clound - Feign 错误的处理
+                
+                -- cn
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            01-08
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/cn/8.rust-jni/" style="color: #0085a1">
+              <span>
+                Rust 通过 JNI 提供加密解密接口
+                
+                -- cn
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            01-07
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/cn/7.mybatis-skill/" style="color: #0085a1">
+              <span>
+                MyBatis 技巧收集
+                
+                -- cn
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            01-06
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/cn/6.star-war-history/" style="color: #0085a1">
+              <span>
+                星球大战编年史
+                
+                -- cn
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            01-05
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/cn/5.a-star-find-path/" style="color: #0085a1">
+              <span>
+                A星算法详解(个人认为最详细,最通俗易懂的一个版本)
+                
+                -- cn
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            01-04
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/cn/4.phabricator-install-config/" style="color: #0085a1">
+              <span>
+                Phabricator安装和配置过程记录
+                
+                -- cn
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            01-03
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/cn/3.hive-garbled-code/" style="color: #0085a1">
+              <span>
+                Hive字段中文注释乱码解决办法
+                
+                -- cn
+                
+              </span>
+            </a>
+          </li>
+          
+          <li>
+            01-02
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/cn/2.squid-proxy-configure/" style="color: #0085a1">
+              <span>
+                带认证的 Squid 代理配置
+                
+                -- cn
+                
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+      
+      <div class="one-tag-list">
+        <span class="fa fa-calendar-times-o listing-seperator" id="2020">
+          <span class="tag-text">2020</span>
+        </span>
+        <ul>
+          
+          <li>
+            04-17
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a href="/cn/1.Hexo-Theme-LiveMyLife/" style="color: #0085a1">
+              <span>
+                Hexo-Theme-LiveMyLife
+                
+                -- cn
+                
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+      
+    </div>
+  </div>
 </div>
-<!-- tip end -->
 
-        <!-- tip end -->
-        
 
-        
-        <!-- Sharing Srtart -->
-        <!-- Social Social Share Post -->
-<!-- Docs:https://github.com/overtrue/share.js -->
+      <!-- 如果开启评论功能 -->
+      
+    </div>
 
-<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
-  <ul class="list-inline text-center social-share-ul">
-    <li class="social-share-li">
-      <a target="_blank" class="social-share-icon icon-twitter">
-        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li class="social-share-li">
-      <a class="social-share-icon icon-wechat">
-        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li class="social-share-li">
-      <a target="_blank" class="social-share-icon icon-weibo">
-        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li class="social-share-li">
-      <a target="_blank" class="social-share-icon icon-qq">
-        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
-    <li class="social-share-li">
-      <a target="_blank" class="social-share-icon" href="mailto:?subject=MyBatis 技巧收集&body=Hi,I found this website and thought you might like it https://onote.doopp.com/cn/7.mybatis-skill/">
-        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
-      </a>
-    </li>
+    <!-- Sidebar Container -->
+<div class="
+    col-lg-3 col-lg-offset-0
+    col-md-3 col-md-offset-0
+    col-sm-12
+    col-xs-12
+    sidebar-container
+">
+    
+        <!-- Visitors -->
+<h5><a href="/">来访者</a></h5>
+
+<div class="widget">
+  <span>
+    Viewed <b><i><span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span></i></b> Times
+  </span>
+  <br />
+  <span>
+    <b><i><span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span></i></b> Visitors In Total
+  </span>
+</div>
+
+
+        <hr>
+    
+        <!-- Featured Tags -->
+
+<section>
+  <h5><a href="/tags/">特色标签</a></h5>
+  <div class="tags">
+    
+    
+    <a href="/tags/#Hexo-Theme-LiveMyLife" title="Hexo-Theme-LiveMyLife" rel="1">Hexo-Theme-LiveMyLife</a>
+    
+    
+    
+    <a href="/tags/#Zerotier" title="Zerotier" rel="1">Zerotier</a>
+    
+    
+    
+    <a href="/tags/#Flutter" title="Flutter" rel="1">Flutter</a>
+    
+    
+    
+    <a href="/tags/#Rich editor" title="Rich editor" rel="1">Rich editor</a>
+    
+    
+    
+    <a href="/tags/#ham" title="ham" rel="1">ham</a>
+    
+    
+    
+    <a href="/tags/#git" title="git" rel="1">git</a>
+    
+    
+    
+    <a href="/tags/#flutter" title="flutter" rel="5">flutter</a>
+    
+    
+    
+    <a href="/tags/#app" title="app" rel="5">app</a>
+    
+    
+    
+    <a href="/tags/#emacs" title="emacs" rel="1">emacs</a>
+    
+    
+    
+    <a href="/tags/#mybatis" title="mybatis" rel="2">mybatis</a>
+    
+    
+    
+    <a href="/tags/#sql" title="sql" rel="1">sql</a>
+    
+    
+    
+    <a href="/tags/#squid" title="squid" rel="1">squid</a>
+    
+    
+    
+    <a href="/tags/#proxy" title="proxy" rel="1">proxy</a>
+    
+    
+    
+    <a href="/tags/#quansheng" title="quansheng" rel="1">quansheng</a>
+    
+    
+    
+    <a href="/tags/#k5 k6" title="k5 k6" rel="1">k5 k6</a>
+    
+    
+    
+    <a href="/tags/#si4732" title="si4732" rel="1">si4732</a>
+    
+    
+    
+    <a href="/tags/#java" title="java" rel="2">java</a>
+    
+    
+    
+    <a href="/tags/#map" title="map" rel="1">map</a>
+    
+    
+    
+    <a href="/tags/#ReentrantReadWriteLock" title="ReentrantReadWriteLock" rel="1">ReentrantReadWriteLock</a>
+    
+    
+    
+    <a href="/tags/#maven" title="maven" rel="1">maven</a>
+    
+    
+    
+    <a href="/tags/#pom" title="pom" rel="1">pom</a>
+    
+    
+    
+    <a href="/tags/#deploy" title="deploy" rel="1">deploy</a>
+    
+    
+    
+    <a href="/tags/#rich text editor" title="rich text editor" rel="1">rich text editor</a>
+    
+    
+    
+    <a href="/tags/#hive" title="hive" rel="1">hive</a>
+    
+    
+    
+    <a href="/tags/#phabricator" title="phabricator" rel="1">phabricator</a>
+    
+    
+    
+    <a href="/tags/#git server" title="git server" rel="1">git server</a>
+    
+    
+    
+    <a href="/tags/#Spring clound" title="Spring clound" rel="1">Spring clound</a>
+    
+    
+    
+    <a href="/tags/#Feign" title="Feign" rel="1">Feign</a>
+    
+    
+    
+    <a href="/tags/#rust" title="rust" rel="1">rust</a>
+    
+    
+    
+    <a href="/tags/#star war" title="star war" rel="1">star war</a>
+    
+    
+    
+    <a href="/tags/#film" title="film" rel="1">film</a>
+    
+    
+  </div>
+</section>
+
+
+        <hr>
+    
+        <!-- Short About -->
+<section class="visible-md visible-lg">
+  <h5><a href="/about/">关于自己</a></h5>
+  <div class="short-about">
+
+    
+    <img id="avatar_pic" src="/img/avatar/fatpeople.jpg" alt="avatar_pic" style="box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
+    -moz-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
+    -webkit-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);" />
+    
+
+    
+    <p>我不是肥仔</p>
+    
+
+    <!-- SNS Link -->
+    <ul class="list-inline">
+      
+
+      
+      <li>
+        <a target="_blank" href="https://github.com/koocyton">
+          <span class="fa-stack fa-lg">
+            <i class="fa fa-circle fa-stack-2x"></i>
+            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+          </span>
+        </a>
+      </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+    </ul>
+  </div>
+</section>
+
+        <hr>
+    
+        <!-- RECENT POSTS -->
+
+<h5><a href="/">最近博文</a></h5>
+<div class="widget">
+  <ul>
+    
+    <a href="../../cn/23.maven-report-pom/">
+      <li>Maven 库指定 POM</li>
+    </a>
+    
+    <a href="../../cn/22.java-local-cache/">
+      <li>Java 通用本地缓存</li>
+    </a>
+    
+    <a href="../../cn/21.quansheng-k6-si4732/">
+      <li>泉盛 K5 K6 改 Si4732 支持全波段电路设计</li>
+    </a>
+    
+    <a href="../../cn/20.flutter-editor-controller/">
+      <li>Flutter 开发编辑器的控制台处理</li>
+    </a>
+    
+    <a href="../../cn/19.mysql-amount-sum/">
+      <li>一段复杂的 SQL</li>
+    </a>
+    
   </ul>
 </div>
 
-<!-- css & js -->
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
-<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
 
-        <!-- Sharing End -->
-        
         <hr>
-
-        <!-- comments start -->
-        <!-- 1. gitalk comment -->
-
-
-<!-- 2. gitment comment -->
-
-
-<!-- 3. disqus comment -->
-
-
-        <!-- comments end -->
-        <hr>
-
-      </div>
-
-      <!-- Catalog: Tabe of Content -->
-      <!-- Table of Contents -->
-
     
-      <aside id="sidebar">
-        <div id="toc" class="toc-article">
-        <strong class="toc-title">目录</strong>
-        
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1-%E5%BE%AA%E7%8E%AF%E6%8F%92%E5%85%A5"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">1. 循环插入</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2-if-elseif-else"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">2. if elseif else</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#3-%E5%AD%98%E5%85%A5%E8%A1%A8%E7%94%A8%E9%80%97%E5%8F%B7%E5%88%86%E5%89%B2%EF%BC%8C%E5%AE%9E%E4%BD%93%E4%B8%BA%E6%95%B0%E7%BB%84%EF%BC%8C%E8%AF%BB%E5%86%99%E8%87%AA%E5%8A%A8%E8%BD%AC%E6%8D%A2"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">3. 存入表用逗号分割，实体为数组，读写自动转换</span></a></li></ol>
-        
-        </div>
-      </aside>
-    
-
-
-
-      <!-- Sidebar Container -->
-      <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-10 col-md-offset-1
-                sidebar-container">
-
-        <!-- Featured Tags -->
-        
-        <section>
-          <!-- no hr -->
-          <h5>
-            <a href="/tags/">特色标签</a>
-          </h5>
-          <div class="tags">
-            
-            <a class="tag" href="/tags/#mybatis" title="mybatis">mybatis</a>
-            
-          </div>
-        </section>
-        
-
         <!-- Friends Blog -->
-        
-      </div>
-    </div>
+
+
+        <hr>
+    
+        <!-- Archives -->
+
+<h5><a href="/archives/">archives</a></h5>
+<div class="widget">
+  <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/09/">September 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/05/">May 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/03/">March 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/02/">February 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/11/">November 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/01/">January 2023</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
+</div>
+
+
+        <hr>
+    
+        <!-- Categories -->
+
+<h5><a href="/categories/">categories</a></h5>
+<div class="widget">
+  <ul>
+    
+    <a href="/categories/#Hexo-Theme-LiveMyLife">
+      <li>Hexo-Theme-LiveMyLife</li>
+    </a>
+    
+    <a href="/categories/#squid">
+      <li>squid</li>
+    </a>
+    
+    <a href="/categories/#proxy">
+      <li>proxy</li>
+    </a>
+    
+    <a href="/categories/#bigdata">
+      <li>bigdata</li>
+    </a>
+    
+    <a href="/categories/#git server">
+      <li>git server</li>
+    </a>
+    
+    <a href="/categories/#film">
+      <li>film</li>
+    </a>
+    
+  </ul>
+</div>
+
+
+        <hr>
+    
+</div>
+
+
+    
   </div>
-</article>
-
-
-
-<!-- anchorjs start -->
-<!-- async load function -->
-<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
-<script type="text/javascript">
-  // async load function
-  function async (u, c) {
-    var d = document,
-      t = 'script',
-      o = d.createElement(t),
-      s = d.getElementsByTagName(t)[0];
-    o.src = u;
-    if (c) {
-      o.addEventListener('load', function(e) {
-        c(null, e);
-      }, false);
-    }
-    s.parentNode.insertBefore(o, s);
-  };
-</script>
-<script type="text/javascript">
-  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
-  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
-    anchors.options = {
-      visible: 'hover',
-      placement: 'left',
-      // icon: 'ℬ'
-      icon: '❡'
-    };
-    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
-  });
-</script>
-<style>
-  /* place left on bigger screen */
-  @media all and (min-width: 800px) {
-    .anchorjs-link {
-      position: absolute;
-      left: -0.75em;
-      font-size: 1.1em;
-      margin-top: -0.1em;
-    }
-  }
-</style>
-
-<!-- anchorjs end -->
-
+</div>
 
 
 		<!-- Footer (contains ThemeColor、viewer) -->

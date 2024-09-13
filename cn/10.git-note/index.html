@@ -205,12 +205,10 @@
 
           
           
-          
-          
           <li>
-            <a href="/about/">
+            <a href="/categories/">
               
-              关于
+              分类
               
               
             </a>
@@ -219,9 +217,9 @@
           
           
           <li>
-            <a href="/categories/">
+            <a href="/about/">
               
-              分类
+              关于
               
               
             </a>
@@ -237,6 +235,8 @@
               
             </a>
           </li>
+          
+          
           
           
           
@@ -361,7 +361,7 @@
             </span>
             <div class="blank_box"></div>
             <span class="meta">
-              Words <span class="post-count">308</span> In Total
+              Words <span class="post-count">309</span> In Total
             </span>
             <div class="blank_box"></div>
             <!-- WordCount end -->
@@ -423,12 +423,18 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h3 id="创建空分支"><a href="#创建空分支" class="headerlink" title="创建空分支"></a>创建空分支</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">checkout --orphan empty_branch</span><br><span class="line">git <span class="built_in">rm</span> -rf .</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;# new project&quot;</span> &gt; README.md</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m <span class="string">&quot;init files&quot;</span></span><br><span class="line">git push origin empty_branch</span><br></pre></td></tr></table></figure>
-<h3 id="删除本地分支和远程分支"><a href="#删除本地分支和远程分支" class="headerlink" title="删除本地分支和远程分支"></a>删除本地分支和远程分支</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch -d branch_name // 可选择 -D ，忽略错误</span><br><span class="line">git push origin -d branch_name</span><br></pre></td></tr></table></figure>
-<h3 id="把当前分支重命名为master"><a href="#把当前分支重命名为master" class="headerlink" title="把当前分支重命名为master"></a>把当前分支重命名为master</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -m master</span><br></pre></td></tr></table></figure>
-<h3 id="把代码推送到远程仓库"><a href="#把代码推送到远程仓库" class="headerlink" title="把代码推送到远程仓库"></a>把代码推送到远程仓库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -f origin master</span><br></pre></td></tr></table></figure>
-<h3 id="分支代码合并到-master-主分支"><a href="#分支代码合并到-master-主分支" class="headerlink" title="分支代码合并到 master 主分支"></a>分支代码合并到 master 主分支</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 切换到分支</span></span><br><span class="line">git checkout branch_name</span><br><span class="line"><span class="comment"># 使用git pull 把分支代码pull下来</span></span><br><span class="line">git pull</span><br><span class="line"><span class="comment"># 切换到主分支</span></span><br><span class="line">git checkout master</span><br><span class="line"><span class="comment"># 把分支的代码merge到主分支</span></span><br><span class="line">git merge branch_name</span><br><span class="line"><span class="comment"># git push推上去ok完成,现在 你自己分支的代码就合并到主分支上了</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
-<h3 id="查询配置信息-amp-初始化"><a href="#查询配置信息-amp-初始化" class="headerlink" title="查询配置信息 &amp; 初始化"></a>查询配置信息 &amp; 初始化</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 列出当前配置</span></span><br><span class="line">git config --list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出repository配置</span></span><br><span class="line">git config --<span class="built_in">local</span> --list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出全局配置</span></span><br><span class="line">git config --global --list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出系统配置</span></span><br><span class="line">git config --system --list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置用户名</span></span><br><span class="line">git config --global user.name <span class="string">&quot;your name&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置用户邮箱</span></span><br><span class="line">git config --global user.email <span class="string">&quot;youremail@github.com&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置解决冲突时使用哪种差异分析工具，比如要使用vimdiff</span></span><br><span class="line">git config --global merge.tool vimdiff</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置git命令输出为彩色的</span></span><br><span class="line">git config --global color.ui auto</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置git使用的文本编辑器</span></span><br><span class="line">git config --global core.editor vi</span><br></pre></td></tr></table></figure>
+        <h3 id="创建空分支">创建空分支</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">checkout --orphan empty_branch</span><br><span class="line">git <span class="built_in">rm</span> -rf .</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;# new project&quot;</span> &gt; README.md</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m <span class="string">&quot;init files&quot;</span></span><br><span class="line">git push origin empty_branch</span><br></pre></td></tr></table></figure>
+<h3 id="删除本地分支和远程分支">删除本地分支和远程分支</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git branch -d branch_name // 可选择 -D ，忽略错误</span><br><span class="line">git push origin -d branch_name</span><br></pre></td></tr></table></figure>
+<h3 id="把当前分支重命名为master">把当前分支重命名为master</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -m master</span><br></pre></td></tr></table></figure>
+<h3 id="把代码推送到远程仓库">把代码推送到远程仓库</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -f origin master</span><br></pre></td></tr></table></figure>
+<h3 id="分支代码合并到-master-主分支">分支代码合并到 master 主分支</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 切换到分支</span></span><br><span class="line">git checkout branch_name</span><br><span class="line"><span class="comment"># 使用git pull 把分支代码pull下来</span></span><br><span class="line">git pull</span><br><span class="line"><span class="comment"># 切换到主分支</span></span><br><span class="line">git checkout master</span><br><span class="line"><span class="comment"># 把分支的代码merge到主分支</span></span><br><span class="line">git merge branch_name</span><br><span class="line"><span class="comment"># git push推上去ok完成,现在 你自己分支的代码就合并到主分支上了</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+<h3 id="查询配置信息-初始化">查询配置信息 &amp; 初始化</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 列出当前配置</span></span><br><span class="line">git config --list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出repository配置</span></span><br><span class="line">git config --<span class="built_in">local</span> --list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出全局配置</span></span><br><span class="line">git config --global --list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出系统配置</span></span><br><span class="line">git config --system --list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置用户名</span></span><br><span class="line">git config --global user.name <span class="string">&quot;your name&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置用户邮箱</span></span><br><span class="line">git config --global user.email <span class="string">&quot;youremail@github.com&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置解决冲突时使用哪种差异分析工具，比如要使用vimdiff</span></span><br><span class="line">git config --global merge.tool vimdiff</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置git命令输出为彩色的</span></span><br><span class="line">git config --global color.ui auto</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置git使用的文本编辑器</span></span><br><span class="line">git config --global core.editor vi</span><br></pre></td></tr></table></figure>
 
 
         <hr>
@@ -528,7 +534,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">目录</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%88%9B%E5%BB%BA%E7%A9%BA%E5%88%86%E6%94%AF"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">创建空分支</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%88%A0%E9%99%A4%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF%E5%92%8C%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">删除本地分支和远程分支</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%8A%8A%E5%BD%93%E5%89%8D%E5%88%86%E6%94%AF%E9%87%8D%E5%91%BD%E5%90%8D%E4%B8%BAmaster"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">把当前分支重命名为master</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%8A%8A%E4%BB%A3%E7%A0%81%E6%8E%A8%E9%80%81%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">把代码推送到远程仓库</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%88%86%E6%94%AF%E4%BB%A3%E7%A0%81%E5%90%88%E5%B9%B6%E5%88%B0-master-%E4%B8%BB%E5%88%86%E6%94%AF"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">分支代码合并到 master 主分支</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%9F%A5%E8%AF%A2%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF-amp-%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">查询配置信息 &amp; 初始化</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%88%9B%E5%BB%BA%E7%A9%BA%E5%88%86%E6%94%AF"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">创建空分支</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%88%A0%E9%99%A4%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF%E5%92%8C%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">删除本地分支和远程分支</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%8A%8A%E5%BD%93%E5%89%8D%E5%88%86%E6%94%AF%E9%87%8D%E5%91%BD%E5%90%8D%E4%B8%BAmaster"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">把当前分支重命名为master</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%8A%8A%E4%BB%A3%E7%A0%81%E6%8E%A8%E9%80%81%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">把代码推送到远程仓库</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%88%86%E6%94%AF%E4%BB%A3%E7%A0%81%E5%90%88%E5%B9%B6%E5%88%B0-master-%E4%B8%BB%E5%88%86%E6%94%AF"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">分支代码合并到 master 主分支</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%9F%A5%E8%AF%A2%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF-%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">查询配置信息 &amp; 初始化</span></a></li></ol>
         
         </div>
       </aside>
