@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://onote.doopp.com/cn/28.2025-new-begin/</loc>
+    
+    <lastmod>2024-12-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://onote.doopp.com/cn/27.2025-new-year/</loc>
+    
+    <lastmod>2024-12-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://onote.doopp.com/cn/26.maven-settings/</loc>
     
     <lastmod>2024-11-29</lastmod>
@@ -515,6 +533,27 @@
   
   <url>
     <loc>https://onote.doopp.com/tags/Feign/</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://onote.doopp.com/tags/2025/</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://onote.doopp.com/tags/new-begin/</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://onote.doopp.com/tags/happy-new-year/</loc>
     <lastmod>2025-01-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
