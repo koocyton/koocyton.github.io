@@ -110,7 +110,7 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://onote.doopp.com/archives/2/">
+  <link rel="canonical" href="https://5163.xyz/archives/2/">
   <title>
     
       koocyton`s blog
@@ -342,7 +342,7 @@
           <div class="site-heading">
             <h1>一洼绿地</h1>
             <!--<hr class="small">-->
-            <span class="subheading">1202.615163</span>
+            <span class="subheading">那么 ... 好吧 ...</span>
           </div>
           
         </div>
@@ -401,6 +401,124 @@
       <!-- Main Content -->
 
 
+
+<div class="post-preview">
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+  <a href="/cn/19.mysql-amount-sum/">
+    <h2 class="post-title">
+      一段复杂的 SQL
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      按年月日分别统计成功的入账总计，外加一个待完成的总计
+当发生支付时
+12345678910111213141516171819202122232425262728293031INSERT INTO `amount_sum`    (`user_id`, `business_type`, `last_date`, `year_sum`, `month_sum`, `day_sum`, `pen......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by koocyton on
+    2024-05-11
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#mybatis" title="mybatis">mybatis</a>
+    
+    <a href="/tags/#sql" title="sql">sql</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+  <a href="/cn/17.BeanPostProcessor/">
+    <h2 class="post-title">
+      浅谈BeanPostProcessor加载次序及其对Bean造成的影响分析
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      前言
+BeanPostProcessor是一个工厂钩子，允许Spring框架在新创建Bean实例时对其进行定制化修改。例如：通过检查其标注的接口或者使用代理对其进行包裹。应用上下文会从Bean定义中自动检测出BeanPostProcessor并将它们应用到随后创建的任何Bean上。
+普通Bean对象的工厂允许在程序中注册post-processors，应用到随后在本工厂中创建的所有Bean上......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by koocyton on
+    2024-03-28
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#flutter" title="flutter">flutter</a>
+    
+    <a href="/tags/#app" title="app">app</a>
+    
+  </div>
+  
+
+</div>
+<hr>
+
+<div class="post-preview">
+  
+  <!-- top start (article top hot config) -->
+  
+  <!-- top end -->
+  
+
+  <a href="/cn/18.spring-security/">
+    <h2 class="post-title">
+      SpringSecurity 总结
+    </h2>
+    <h3 class="post-subtitle">
+      
+    </h3>
+    <div class="post-content-preview">
+      第一章 权限管理
+
+权限管理
+SpringSecurity 简介
+整体架构
+
+权限管理：
+实现: &quot;对用户访问系统的控制&quot;(身份认证) ， 按照 &quot;安全规则&quot;或者 &quot;安全策略&quot; (对已经认证的用户进行授权)  控制，用户可以访问，而且只能访问自己被授权的资源。
+
+权限管理包括用&quot;户身份认证&quot;和&quot;授权&q......
+    </div>
+  </a>
+  
+  <p class="post-meta" style="margin: 10px 0;">
+    Posted by koocyton on
+    2024-03-28
+  </p>
+  <div class="tags">
+    
+    <a href="/tags/#flutter" title="flutter">flutter</a>
+    
+    <a href="/tags/#app" title="app">app</a>
+    
+  </div>
+  
+
+</div>
+<hr>
 
 <div class="post-preview">
   
@@ -667,115 +785,6 @@ stableEndpoints ......
 </div>
 <hr>
 
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-  <a href="/cn/9.feign-intercept/">
-    <h2 class="post-title">
-      Spring clound - Feign 错误的处理
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      前言
-FeignClient 在调用服务时，目标端发生错误。
-返回:
-123456789101112131415&#123;  &quot;code&quot;:&quot;100005&quot;,  &quot;message&quot;:&quot;error message&quot;,  &quot;data&quot;:&quot;&quot;&#125;FeignClient ......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by koocyton on
-    2023-01-29
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#Spring clound" title="Spring clound">Spring clound</a>
-    
-    <a href="/tags/#Feign" title="Feign">Feign</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-  <a href="/cn/8.rust-jni/">
-    <h2 class="post-title">
-      Rust 通过 JNI 提供加密解密接口
-    </h2>
-    <h3 class="post-subtitle">
-      
-    </h3>
-    <div class="post-content-preview">
-      目标
-在配置 Java 项目时，配制参数通过 AES 来加密，但反编译 class，很容易拿到秘钥，
-Rust 开发 JNI 提供给 java 接口，是一个相对安全的方法(不是绝对安全)。
-配置 Cargo.toml
-123456789101112131415161718192021[package]name = &quot;jniutil&quot;version = &quot;0.2.......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by koocyton on
-    2023-01-08
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#rust" title="rust">rust</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
-<div class="post-preview">
-  
-  <!-- top start (article top hot config) -->
-  
-  <!-- top end -->
-  
-
-  <a href="/cn/7.mybatis-skill/">
-    <h2 class="post-title">
-      MyBatis 技巧收集
-    </h2>
-    <h3 class="post-subtitle">
-      mybatis
-    </h3>
-    <div class="post-content-preview">
-      1. 循环插入
-1234567891011&lt;insert id=&quot;importFromSource&quot; parameterType=&quot;list&quot;&gt;    &lt;if test=&quot;list!=null and list.size()&gt;0&quot;&gt;        INSERT INTO `table` (....) V......
-    </div>
-  </a>
-  
-  <p class="post-meta" style="margin: 10px 0;">
-    Posted by koocyton on
-    2023-01-07
-  </p>
-  <div class="tags">
-    
-    <a href="/tags/#mybatis" title="mybatis">mybatis</a>
-    
-  </div>
-  
-
-</div>
-<hr>
-
 
   <!-- Pager -->
   <ul class="pager">
@@ -856,7 +865,7 @@ Rust 开发 JNI 提供给 java 接口，是一个相对安全的方法(不是绝
     
     
     
-    <a href="/tags/#flutter" title="flutter" rel="7">flutter</a>
+    <a href="/tags/#flutter" title="flutter" rel="9">flutter</a>
     
     
     
@@ -959,6 +968,26 @@ Rust 开发 JNI 提供给 java 接口，是一个相对安全的方法(不是绝
     <a href="/tags/#settings.xml" title="settings.xml" rel="1">settings.xml</a>
     
     
+    
+    <a href="/tags/#2025" title="2025" rel="1">2025</a>
+    
+    
+    
+    <a href="/tags/#happy new year" title="happy new year" rel="1">happy new year</a>
+    
+    
+    
+    <a href="/tags/#supabase" title="supabase" rel="1">supabase</a>
+    
+    
+    
+    <a href="/tags/#quill" title="quill" rel="1">quill</a>
+    
+    
+    
+    <a href="/tags/#input" title="input" rel="1">input</a>
+    
+    
   </div>
 </section>
 
@@ -1019,24 +1048,24 @@ Rust 开发 JNI 提供给 java 接口，是一个相对安全的方法(不是绝
 <div class="widget">
   <ul>
     
+    <a href="../../cn/28.2025-supabase/">
+      <li>Supabase storage config</li>
+    </a>
+    
+    <a href="../../cn/29.2025-input-bar/">
+      <li>Flutter resize widget</li>
+    </a>
+    
+    <a href="../../cn/27.2025-new-year/">
+      <li>2025 happy new year</li>
+    </a>
+    
     <a href="../../cn/26.maven-settings/">
       <li>maven settings.xml</li>
     </a>
     
     <a href="../../cn/25.flutter-edit/">
       <li>Flutter 再论编辑器的键盘处理</li>
-    </a>
-    
-    <a href="../../cn/24.flutter-match/">
-      <li>Flutter 正则匹配助手</li>
-    </a>
-    
-    <a href="../../cn/23.maven-report-pom/">
-      <li>Maven 库指定 POM</li>
-    </a>
-    
-    <a href="../../cn/22.java-local-cache/">
-      <li>Java 通用本地缓存</li>
     </a>
     
   </ul>
@@ -1054,7 +1083,7 @@ Rust 开发 JNI 提供给 java 接口，是一个相对安全的方法(不是绝
 
 <h5><a href="/archives/">archives</a></h5>
 <div class="widget">
-  <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../2024/11/">November 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2024/09/">September 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2024/05/">May 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2024/03/">March 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2024/02/">February 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2023/11/">November 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2023/01/">January 2023</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/04/">April 2020</a><span class="archive-list-count">1</span></li></ul>
+  <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../2025/05/">May 2025</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2025/01/">January 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2024/11/">November 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2024/09/">September 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2024/05/">May 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2024/03/">March 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2024/02/">February 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2023/11/">November 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2023/01/">January 2023</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../2020/01/">January 2020</a><span class="archive-list-count">1</span></li></ul>
 </div>
 
 
@@ -1140,7 +1169,7 @@ Rust 开发 JNI 提供给 java 接口，是一个相对安全的方法(不是绝
         <p class="copyright text-muted">
           Copyright &copy;
           koocyton
-          2024
+          2025
           <br>
           Theme by
           <a target="_blank" rel="noopener" href="http://beantech.org">BeanTech</a>
@@ -1241,7 +1270,7 @@ https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
 <!-- <script> async ("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function () { hljs.initHighlightingOnLoad(); }) </script> <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet"> -->
 
 <!-- jquery.tagcloud.js -->
-<!-- <script> // only load tagcloud.js in tag.html if ($('#tag_cloud').length !== 0) { async ("https://onote.doopp.com/js/jquery.tagcloud.js", function () { $.fn.tagcloud.defaults = { // size: { start: 1, end: 1, unit: 'em' }, color: {
+<!-- <script> // only load tagcloud.js in tag.html if ($('#tag_cloud').length !== 0) { async ("https://5163.xyz/js/jquery.tagcloud.js", function () { $.fn.tagcloud.defaults = { // size: { start: 1, end: 1, unit: 'em' }, color: {
 start: '#bbbbee', end: '#0085a1' } }; $('#tag_cloud a').tagcloud(); }) } </script> -->
 
 
