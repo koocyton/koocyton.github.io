@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://5163.xyz/cn/31.flutter-stream/</loc>
+    <lastmod>2025-06-15</lastmod>
+  </url>
+  <url>
+    <loc>https://5163.xyz/cn/30.flutter-lazy-image/</loc>
+    <lastmod>2025-06-09</lastmod>
+  </url>
+  <url>
     <loc>https://5163.xyz/cn/28.2025-supabase/</loc>
     <lastmod>2025-05-20</lastmod>
   </url>
