@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://5163.xyz/cn/32.linux-wireguard/</loc>
+    <lastmod>2025-07-15</lastmod>
+  </url>
+  <url>
     <loc>https://5163.xyz/cn/31.flutter-stream/</loc>
     <lastmod>2025-06-15</lastmod>
   </url>

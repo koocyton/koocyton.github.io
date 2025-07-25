@@ -110,10 +110,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="https://5163.xyz/tags/emacs/">
+  <link rel="canonical" href="https://5163.xyz/cn/32.linux-wireguard/">
   <title>
     
-      koocyton`s blog
+      Linux 配置 Wireguard 服务 - koocyton`s blog
     
   </title>
 <meta name="generator" content="Hexo 5.4.2"></head>
@@ -309,19 +309,19 @@
     .body--light {
       /* intro-header */
       --intro-header-background-image-url-home: url('/img/header_img/newhome_bg.jpg');
-      --intro-header-background-image-url-post: url('');
-      --intro-header-background-image-url-page: url('/img/header_img/archive_bg2.jpg');
+      --intro-header-background-image-url-post: url('/img/larsonist.jpg');
+      --intro-header-background-image-url-page: url('//img/larsonist.jpg');
     }
     .body--dark {
       --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/newhome_bg.jpg');
-      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('');
-      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/archive_bg2.jpg');
+      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/larsonist.jpg');
+      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('//img/larsonist.jpg');
     }
 
     header.intro-header {
-       /*page*/
-        background-image: var(--intro-header-background-image-url-page);
-        /* background-image: url('/img/header_img/archive_bg2.jpg'); */
+       /*post*/
+        background-image: var(--intro-header-background-image-url-post);
+        /* background-image: url('/img/larsonist.jpg'); */
       
     }
 
@@ -339,10 +339,46 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           
-          <div class="site-heading">
-            <h1>一洼绿地</h1>
-            <!--<hr class="small">-->
-            <span class="subheading">那么 ... 好吧 ...</span>
+          <div class="post-heading">
+            <div class="tags">
+              
+              <a class="tag" href="/tags/#linux" title="linux">linux</a>
+              
+              <a class="tag" href="/tags/#Wireguard" title="Wireguard">Wireguard</a>
+              
+              <a class="tag" href="/tags/#vpn" title="vpn">vpn</a>
+              
+            </div>
+            <h1>Linux 配置 Wireguard 服务</h1>
+            <h2 class="subheading"></h2>
+            <span class="meta">
+              Posted by koocyton on
+              2025-07-16
+            </span>
+
+
+            
+            <!-- WordCount start -->
+            <div class="blank_box"></div>
+            <span class="meta">
+              Estimated Reading Time <span class="post-count">1</span> Minutes
+            </span>
+            <div class="blank_box"></div>
+            <span class="meta">
+              Words <span class="post-count">77</span> In Total
+            </span>
+            <div class="blank_box"></div>
+            <!-- WordCount end -->
+            
+            
+            <!-- 不蒜子统计 start -->
+            <span class="meta" id="busuanzi_container_page_pv">
+              Viewed <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span> Times
+            </span>
+            <!-- 不蒜子统计 end -->
+            
+
+
           </div>
           
         </div>
@@ -383,863 +419,197 @@
 	Friends Blog、
 	anchorjs、
 	) -->
-		<!-- Main Content -->
-<div class="container">
-  <div class="row">
+		<!-- Modify by Yu-Hsuan Yen -->
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <!-- Post Container -->
+      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
+
+        <h2 id="Linux-配置-Wireguard-服务"><a href="#Linux-配置-Wireguard-服务" class="headerlink" title="Linux 配置 Wireguard 服务"></a>Linux 配置 Wireguard 服务</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[Interface]</span><br><span class="line">Address = 10.14.0.2/24</span><br><span class="line">PrivateKey = &#123;Server PrivateKey&#125;</span><br><span class="line">ListenPort = 51821</span><br><span class="line">PostUp   = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE</span><br><span class="line">PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE</span><br><span class="line"></span><br><span class="line">[Peer]</span><br><span class="line">AllowedIPs = 10.14.0.0/24</span><br><span class="line">PublicKey = &#123;Peer PublicKey&#125;</span><br></pre></td></tr></table></figure>
+
+
+        <hr>
+        <!-- Pager -->
+        <ul class="pager">
+          
+          
+          <li class="next">
+            <a href="/cn/31.flutter-stream/" data-toggle="tooltip" data-placement="top" title="Flutter stream">Next Post &rarr;</a>
+          </li>
+          
+        </ul>
+
+        
+        <!-- tip start -->
+        <!-- tip -->
+<!-- tip start -->
+<div class="tip">
+  <p>
+    
+      如果您喜欢此博客或发现它对您有用，则欢迎对此发表评论。 也欢迎您共享此博客，以便更多人可以参与。 如果博客中使用的图像侵犯了您的版权，请与作者联系以将其删除。 谢谢 ！
+    
+  </p>
+</div>
+<!-- tip end -->
+
+        <!-- tip end -->
+        
+
+        
+        <!-- Sharing Srtart -->
+        <!-- Social Social Share Post -->
+<!-- Docs:https://github.com/overtrue/share.js -->
+
+<div class="social-share" data-initialized="true" data-disabled="tencent ,douban ,qzone ,linkedin ,facebook ,google ,diandian" data-wechat-qrcode-helper="" align="center">
+  <ul class="list-inline text-center social-share-ul">
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-twitter">
+        <i class="fa fa-twitter fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a class="social-share-icon icon-wechat">
+        <i class="fa fa-weixin fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-weibo">
+        <i class="fa fa-weibo fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon icon-qq">
+        <i class="fa fa-qq fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+    <li class="social-share-li">
+      <a target="_blank" class="social-share-icon" href="mailto:?subject=Linux 配置 Wireguard 服务&body=Hi,I found this website and thought you might like it https://5163.xyz/cn/32.linux-wireguard/">
+        <i class="fa fa-envelope fa-1x" aria-hidden="true"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!-- css & js -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css"> -->
+<script defer="defer" async="true" src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+        <!-- Sharing End -->
+        
+        <hr>
+
+        <!-- comments start -->
+        <!-- 1. gitalk comment -->
+
+
+<!-- 2. gitment comment -->
+
+
+<!-- 3. disqus comment -->
+
+
+        <!-- comments end -->
+        <hr>
+
+      </div>
+
+      <!-- Catalog: Tabe of Content -->
+      <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">目录</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Linux-%E9%85%8D%E7%BD%AE-Wireguard-%E6%9C%8D%E5%8A%A1"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Linux 配置 Wireguard 服务</span></a></li></ol>
+        
+        </div>
+      </aside>
     
 
-    <!-- USE SIDEBAR -->
-    <!-- Post Container -->
-    <div class="
+
+
+      <!-- Sidebar Container -->
+      <div class="
                 col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
+                col-md-10 col-md-offset-1
+                sidebar-container">
 
-      <!-- Main Content -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-0 col-md-10 col-md-offset-1">
-      <!-- 归档列表 -->
-
-      
-
-      <!-- 归档列表 -->
-      
-      <div class="one-tag-list">
-        <span class="fa fa-calendar-times-o listing-seperator" id="2025">
-          <span class="tag-text">2025</span>
-        </span>
-        <ul>
-          
-          <li>
-            07-16
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/32.linux-wireguard/" style="color: #0085a1">
-              <span>
-                Linux 配置 Wireguard 服务
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            06-16
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/31.flutter-stream/" style="color: #0085a1">
-              <span>
-                Flutter stream
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            06-10
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/30.flutter-lazy-image/" style="color: #0085a1">
-              <span>
-                Flutter lazy image
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            05-21
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/29.2025-input-bar/" style="color: #0085a1">
-              <span>
-                Flutter resize widget
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            05-21
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/28.2025-supabase/" style="color: #0085a1">
-              <span>
-                Supabase storage config
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            01-01
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/27.2025-new-year/" style="color: #0085a1">
-              <span>
-                2025 happy new year
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-        </ul>
-      </div>
-      
-      <div class="one-tag-list">
-        <span class="fa fa-calendar-times-o listing-seperator" id="2024">
-          <span class="tag-text">2024</span>
-        </span>
-        <ul>
-          
-          <li>
-            11-30
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/26.maven-settings/" style="color: #0085a1">
-              <span>
-                maven settings.xml
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            11-29
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/25.flutter-edit/" style="color: #0085a1">
-              <span>
-                Flutter 再论编辑器的键盘处理
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            11-10
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/24.flutter-match/" style="color: #0085a1">
-              <span>
-                Flutter 正则匹配助手
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            09-13
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/23.maven-report-pom/" style="color: #0085a1">
-              <span>
-                Maven 库指定 POM
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            09-03
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/22.java-local-cache/" style="color: #0085a1">
-              <span>
-                Java 通用本地缓存
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            05-29
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/21.quansheng-k6-si4732/" style="color: #0085a1">
-              <span>
-                泉盛 K5 K6 改 Si4732 支持全波段电路设计
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            05-28
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/20.flutter-editor-controller/" style="color: #0085a1">
-              <span>
-                Flutter 开发编辑器的控制台处理
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            05-11
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/19.mysql-amount-sum/" style="color: #0085a1">
-              <span>
-                一段复杂的 SQL
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            03-28
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/18.spring-security/" style="color: #0085a1">
-              <span>
-                SpringSecurity 总结
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            03-28
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/17.BeanPostProcessor/" style="color: #0085a1">
-              <span>
-                浅谈BeanPostProcessor加载次序及其对Bean造成的影响分析
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            03-14
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/16.flutter-resize-widget/" style="color: #0085a1">
-              <span>
-                Flutter resize widget
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            02-22
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/15.onote-app/" style="color: #0085a1">
-              <span>
-                AI 简记 APP
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            02-22
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/14.ham-sat/" style="color: #0085a1">
-              <span>
-                业余无线电 FM 卫星频率表（2023/05/28 版）
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-        </ul>
-      </div>
-      
-      <div class="one-tag-list">
-        <span class="fa fa-calendar-times-o listing-seperator" id="2023">
-          <span class="tag-text">2023</span>
-        </span>
-        <ul>
-          
-          <li>
-            11-16
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/13.flutter-quill/" style="color: #0085a1">
-              <span>
-                Flutter Quill 开发总结
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            11-15
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/12.zerotier-moon-refresh/" style="color: #0085a1">
-              <span>
-                Zerotier 自动更换 Moon 的 IP 配置
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            07-27
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/11.emacs-config/" style="color: #0085a1">
-              <span>
-                我的 Emacs 基本配置
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            03-02
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/10.git-note/" style="color: #0085a1">
-              <span>
-                Git 速查手册
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            01-29
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/9.feign-intercept/" style="color: #0085a1">
-              <span>
-                Spring clound - Feign 错误的处理
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            01-08
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/8.rust-jni/" style="color: #0085a1">
-              <span>
-                Rust 通过 JNI 提供加密解密接口
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            01-07
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/7.mybatis-skill/" style="color: #0085a1">
-              <span>
-                MyBatis 技巧收集
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            01-06
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/6.star-war-history/" style="color: #0085a1">
-              <span>
-                星球大战编年史
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            01-05
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/5.a-star-find-path/" style="color: #0085a1">
-              <span>
-                A星算法详解(个人认为最详细,最通俗易懂的一个版本)
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            01-04
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/4.phabricator-install-config/" style="color: #0085a1">
-              <span>
-                Phabricator安装和配置过程记录
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            01-03
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/3.hive-garbled-code/" style="color: #0085a1">
-              <span>
-                Hive字段中文注释乱码解决办法
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            01-02
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/2.squid-proxy-configure/" style="color: #0085a1">
-              <span>
-                带认证的 Squid 代理配置
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-        </ul>
-      </div>
-      
-      <div class="one-tag-list">
-        <span class="fa fa-calendar-times-o listing-seperator" id="2020">
-          <span class="tag-text">2020</span>
-        </span>
-        <ul>
-          
-          <li>
-            04-17
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/1.Hexo-Theme-LiveMyLife/" style="color: #0085a1">
-              <span>
-                Hexo-Theme-LiveMyLife
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            01-17
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/cn/0.api-doc/" style="color: #0085a1">
-              <span>
-                API DOC
-                
-                -- cn
-                
-              </span>
-            </a>
-          </li>
-          
-        </ul>
-      </div>
-      
-    </div>
-  </div>
-</div>
-
-
-      <!-- 如果开启评论功能 -->
-      
-    </div>
-
-    <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-        <!-- Visitors -->
-<h5><a href="/">来访者</a></h5>
-
-<div class="widget">
-  <span>
-    Viewed <b><i><span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span></i></b> Times
-  </span>
-  <br />
-  <span>
-    <b><i><span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span></i></b> Visitors In Total
-  </span>
-</div>
-
-
-        <hr>
-    
         <!-- Featured Tags -->
+        
+        <section>
+          <!-- no hr -->
+          <h5>
+            <a href="/tags/">特色标签</a>
+          </h5>
+          <div class="tags">
+            
+            <a class="tag" href="/tags/#linux" title="linux">linux</a>
+            
+            <a class="tag" href="/tags/#Wireguard" title="Wireguard">Wireguard</a>
+            
+            <a class="tag" href="/tags/#vpn" title="vpn">vpn</a>
+            
+          </div>
+        </section>
+        
 
-<section>
-  <h5><a href="/tags/">特色标签</a></h5>
-  <div class="tags">
-    
-    
-    <a href="/tags/#Hexo-Theme-LiveMyLife" title="Hexo-Theme-LiveMyLife" rel="1">Hexo-Theme-LiveMyLife</a>
-    
-    
-    
-    <a href="/tags/#emacs" title="emacs" rel="1">emacs</a>
-    
-    
-    
-    <a href="/tags/#git" title="git" rel="1">git</a>
-    
-    
-    
-    <a href="/tags/#Zerotier" title="Zerotier" rel="1">Zerotier</a>
-    
-    
-    
-    <a href="/tags/#ham" title="ham" rel="1">ham</a>
-    
-    
-    
-    <a href="/tags/#Flutter" title="Flutter" rel="1">Flutter</a>
-    
-    
-    
-    <a href="/tags/#Rich editor" title="Rich editor" rel="1">Rich editor</a>
-    
-    
-    
-    <a href="/tags/#flutter" title="flutter" rel="9">flutter</a>
-    
-    
-    
-    <a href="/tags/#app" title="app" rel="5">app</a>
-    
-    
-    
-    <a href="/tags/#mybatis" title="mybatis" rel="2">mybatis</a>
-    
-    
-    
-    <a href="/tags/#sql" title="sql" rel="1">sql</a>
-    
-    
-    
-    <a href="/tags/#squid" title="squid" rel="1">squid</a>
-    
-    
-    
-    <a href="/tags/#proxy" title="proxy" rel="1">proxy</a>
-    
-    
-    
-    <a href="/tags/#rich text editor" title="rich text editor" rel="1">rich text editor</a>
-    
-    
-    
-    <a href="/tags/#quansheng" title="quansheng" rel="1">quansheng</a>
-    
-    
-    
-    <a href="/tags/#k5 k6" title="k5 k6" rel="1">k5 k6</a>
-    
-    
-    
-    <a href="/tags/#si4732" title="si4732" rel="1">si4732</a>
-    
-    
-    
-    <a href="/tags/#java" title="java" rel="3">java</a>
-    
-    
-    
-    <a href="/tags/#map" title="map" rel="1">map</a>
-    
-    
-    
-    <a href="/tags/#ReentrantReadWriteLock" title="ReentrantReadWriteLock" rel="1">ReentrantReadWriteLock</a>
-    
-    
-    
-    <a href="/tags/#maven" title="maven" rel="2">maven</a>
-    
-    
-    
-    <a href="/tags/#pom" title="pom" rel="1">pom</a>
-    
-    
-    
-    <a href="/tags/#deploy" title="deploy" rel="1">deploy</a>
-    
-    
-    
-    <a href="/tags/#dart" title="dart" rel="2">dart</a>
-    
-    
-    
-    <a href="/tags/#settings.xml" title="settings.xml" rel="1">settings.xml</a>
-    
-    
-    
-    <a href="/tags/#2025" title="2025" rel="1">2025</a>
-    
-    
-    
-    <a href="/tags/#happy new year" title="happy new year" rel="1">happy new year</a>
-    
-    
-    
-    <a href="/tags/#supabase" title="supabase" rel="1">supabase</a>
-    
-    
-    
-    <a href="/tags/#quill" title="quill" rel="1">quill</a>
-    
-    
-    
-    <a href="/tags/#input" title="input" rel="2">input</a>
-    
-    
-    
-    <a href="/tags/#hive" title="hive" rel="1">hive</a>
-    
-    
-    
-    <a href="/tags/#stream" title="stream" rel="1">stream</a>
-    
-    
-    
-    <a href="/tags/#mcp" title="mcp" rel="1">mcp</a>
-    
-    
-    
-    <a href="/tags/#async" title="async" rel="1">async</a>
-    
-    
-    
-    <a href="/tags/#lazy" title="lazy" rel="1">lazy</a>
-    
-    
-    
-    <a href="/tags/#image" title="image" rel="1">image</a>
-    
-    
-    
-    <a href="/tags/#phabricator" title="phabricator" rel="1">phabricator</a>
-    
-    
-    
-    <a href="/tags/#git server" title="git server" rel="1">git server</a>
-    
-    
-    
-    <a href="/tags/#rust" title="rust" rel="1">rust</a>
-    
-    
-    
-    <a href="/tags/#Spring clound" title="Spring clound" rel="1">Spring clound</a>
-    
-    
-    
-    <a href="/tags/#Feign" title="Feign" rel="1">Feign</a>
-    
-    
-    
-    <a href="/tags/#star war" title="star war" rel="1">star war</a>
-    
-    
-    
-    <a href="/tags/#film" title="film" rel="1">film</a>
-    
-    
-    
-    <a href="/tags/#linux" title="linux" rel="1">linux</a>
-    
-    
-    
-    <a href="/tags/#Wireguard" title="Wireguard" rel="1">Wireguard</a>
-    
-    
-    
-    <a href="/tags/#vpn" title="vpn" rel="1">vpn</a>
-    
-    
-  </div>
-</section>
-
-
-        <hr>
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-  <h5><a href="/about/">关于自己</a></h5>
-  <div class="short-about">
-
-    
-    <img id="avatar_pic" src="/img/avatar/fatpeople.jpg" alt="avatar_pic" style="box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
-    -moz-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
-    -webkit-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);" />
-    
-
-    
-    <p>我不是肥仔</p>
-    
-
-    <!-- SNS Link -->
-    <ul class="list-inline">
-      
-
-      
-      <li>
-        <a target="_blank" href="https://github.com/koocyton">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-          </span>
-        </a>
-      </li>
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-    </ul>
-  </div>
-</section>
-
-        <hr>
-    
-        <!-- RECENT POSTS -->
-
-<h5><a href="/">最近博文</a></h5>
-<div class="widget">
-  <ul>
-    
-    <a href="../../cn/32.linux-wireguard/">
-      <li>Linux 配置 Wireguard 服务</li>
-    </a>
-    
-    <a href="../../cn/31.flutter-stream/">
-      <li>Flutter stream</li>
-    </a>
-    
-    <a href="../../cn/30.flutter-lazy-image/">
-      <li>Flutter lazy image</li>
-    </a>
-    
-    <a href="../../cn/28.2025-supabase/">
-      <li>Supabase storage config</li>
-    </a>
-    
-    <a href="../../cn/29.2025-input-bar/">
-      <li>Flutter resize widget</li>
-    </a>
-    
-  </ul>
-</div>
-
-
-        <hr>
-    
         <!-- Friends Blog -->
-
-
-        <hr>
-    
-        <!-- Archives -->
-
-<h5><a href="/archives/">archives</a></h5>
-<div class="widget">
-  <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/07/">July 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/06/">June 2025</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/05/">May 2025</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2025/01/">January 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/11/">November 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/09/">September 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/05/">May 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/03/">March 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/02/">February 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/11/">November 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/03/">March 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/01/">January 2023</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2020/01/">January 2020</a><span class="archive-list-count">1</span></li></ul>
-</div>
-
-
-        <hr>
-    
-        <!-- Categories -->
-
-<h5><a href="/categories/">categories</a></h5>
-<div class="widget">
-  <ul>
-    
-    <a href="/categories/#Hexo-Theme-LiveMyLife">
-      <li>Hexo-Theme-LiveMyLife</li>
-    </a>
-    
-    <a href="/categories/#squid">
-      <li>squid</li>
-    </a>
-    
-    <a href="/categories/#proxy">
-      <li>proxy</li>
-    </a>
-    
-    <a href="/categories/#bigdata">
-      <li>bigdata</li>
-    </a>
-    
-    <a href="/categories/#git server">
-      <li>git server</li>
-    </a>
-    
-    <a href="/categories/#film">
-      <li>film</li>
-    </a>
-    
-  </ul>
-</div>
-
-
-        <hr>
-    
-</div>
-
-
-    
+        
+      </div>
+    </div>
   </div>
-</div>
+</article>
+
+
+
+<!-- anchorjs start -->
+<!-- async load function -->
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script type="text/javascript">
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function(e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  };
+</script>
+<script type="text/javascript">
+  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
+  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
+    anchors.options = {
+      visible: 'hover',
+      placement: 'left',
+      // icon: 'ℬ'
+      icon: '❡'
+    };
+    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+  });
+</script>
+<style>
+  /* place left on bigger screen */
+  @media all and (min-width: 800px) {
+    .anchorjs-link {
+      position: absolute;
+      left: -0.75em;
+      font-size: 1.1em;
+      margin-top: -0.1em;
+    }
+  }
+</style>
+
+<!-- anchorjs end -->
+
 
 
 		<!-- Footer (contains ThemeColor、viewer) -->
