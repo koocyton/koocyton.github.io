@@ -1,0 +1,32 @@
+{
+  "name": "new-5163-web",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "latest",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "gray-matter": "latest",
+    "postcss": "latest",
+    "reading-time": "latest",
+    "rehype-highlight": "latest",
+    "rehype-stringify": "latest",
+    "remark": "latest",
+    "remark-gfm": "latest",
+    "remark-html": "latest",
+    "remark-rehype": "latest",
+    "tailwindcss": "latest",
+    "typescript": "latest"
+  }
+}
