@@ -2,7 +2,7 @@
 2:I[22016,["/_next/static/chunks/738cd64d740dcd1e.js"],""]
 6:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
 7:"$Sreact.suspense"
-3:T5c11e,<h2>第一章 权限管理</h2>
+3:T5c208,<h2>第一章 权限管理</h2>
 <ul>
 <li>权限管理</li>
 <li>SpringSecurity 简介</li>
@@ -21,7 +21,7 @@
 <p>整体架构:</p>
 <pre><code class="hljs language-scss">在SpringSecurity中认证(Authentication)和授权(Authorization)是分开的，无论使用什么样的认证方式都不会影响授权。
 </code></pre>
-<p><img src="001.png" alt="在这里插入图片描述"></p>
+<p><img src="/posts/18.spring-security/001.png" alt="在这里插入图片描述"></p>
 <h4>认证管理流程</h4>
 <pre><code class="hljs language-arduino">AuthenticationMagger 是一个接口，里面有一个Authenticate方法进行认证而这个接口的主要实现类为: <span class="hljs-string">"ProvideManager"</span>,而在ProvideManager当中管理了多：<span class="hljs-string">"Authenticationprovider"</span> 实例，一个这样的实力就是一套完整的认证流程。
 
@@ -84,11 +84,11 @@
 <p>​ 因此，在微服务时代，我们不需要纠结要不要学习 Spring Security，我们要考虑的是如何快速掌握Spring Security， 并且能够使用 Spring Security 实现我们微服务的安全管理。</p>
 <h3>整体架构</h3>
 <p>在的架构设计中，**<code>认证</code><strong>和</strong><code>授权</code>** 是分开的，无论使用什么样的认证方式。都不会影响授权，这是两个独立的存在，这种独立带来的好处之一，就是可以非常方便地整合一些外部的解决方案。</p>
-<p><img src="002.png" alt="在这里插入图片描述"></p>
+<p><img src="/posts/18.spring-security/002.png" alt="在这里插入图片描述"></p>
 <h4>认证</h4>
 <h5>AuthenticationManager</h5>
 <p>在Spring Security中认证是由<code>AuthenticationManager</code>接口来负责的，接口定义为：</p>
-<p><img src="003.png" alt="在这里插入图片描述"></p>
+<p><img src="/posts/18.spring-security/003.png" alt="在这里插入图片描述"></p>
 <pre><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">AuthenticationManager</span> { 
 	Authentication <span class="hljs-title function_">authenticate</span><span class="hljs-params">(Authentication authentication)</span> 
   														<span class="hljs-keyword">throws</span> AuthenticationException;
@@ -99,10 +99,10 @@
 <li>返回 AuthenticationException 异常，表示认证失败。</li>
 </ul>
 <p>AuthenticationManager 主要实现类为 ProviderManager，在 ProviderManager 中管理了众多 AuthenticationProvider 实例。在一次完整的认证流程中，Spring Security 允许存在多个 AuthenticationProvider ，用来实现多种认证方式，这些 AuthenticationProvider 都是由 ProviderManager 进行统一管理的。</p>
-<p><img src="004.png" alt="在这里插入图片描述"></p>
+<p><img src="/posts/18.spring-security/004.png" alt="在这里插入图片描述"></p>
 <h5>Authentication</h5>
 <p>认证以及认证成功的信息主要是由 Authentication 的实现类进行保存的，其接口定义为：</p>
-<p><img src="005.png" alt="在这里插入图片描述"></p>
+<p><img src="/posts/18.spring-security/005.png" alt="在这里插入图片描述"></p>
 <pre><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Authentication</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Principal</span>, Serializable {
 	Collection&#x3C;? <span class="hljs-keyword">extends</span> <span class="hljs-title class_">GrantedAuthority</span>> getAuthorities();
 	Object <span class="hljs-title function_">getCredentials</span><span class="hljs-params">()</span>;
@@ -127,18 +127,18 @@
 <blockquote>
 <p>AccessDecisionManager (访问决策管理器)，用来决定此次访问是否被允许。</p>
 </blockquote>
-<p><img src="006.png" alt="在这里插入图片描述"></p>
+<p><img src="/posts/18.spring-security/006.png" alt="在这里插入图片描述"></p>
 <h5>AccessDecisionVoter</h5>
 <blockquote>
 <p>AccessDecisionVoter (访问决定投票器)，投票器会检查用户是否具备应有的角色，进而投出赞成、反对或者弃权票。</p>
 </blockquote>
-<p><img src="007.png" alt="在这里插入图片描述"></p>
+<p><img src="/posts/18.spring-security/007.png" alt="在这里插入图片描述"></p>
 <p>AccesDecisionVoter 和 AccessDecisionManager 都有众多的实现类，在 AccessDecisionManager 中会换个遍历 AccessDecisionVoter，进而决定是否允许用户访问，因而 AaccesDecisionVoter 和 AccessDecisionManager 两者的关系类似于 AuthenticationProvider 和 ProviderManager 的关系。</p>
 <h5>ConfigAttribute</h5>
 <blockquote>
 <p>ConfigAttribute，用来保存授权时的角色信息</p>
 </blockquote>
-<p><img src="008.png" alt="在这里插入图片描述"></p>
+<p><img src="/posts/18.spring-security/008.png" alt="在这里插入图片描述"></p>
 <p>在 Spring Security 中，用户请求一个资源(通常是一个接口或者一个 Java 方法)需要的角色会被封装成一个 ConfigAttribute 对象，在 ConfigAttribute 中只有一个 getAttribute方法，该方法返回一个 String 字符串，就是角色的名称。一般来说，角色名称都带有一个 <code>ROLE_</code> 前缀，投票器 AccessDecisionVoter 所做的事情，其实就是比较用户所具各的角色和请求某个<br>
 资源所需的 ConfigAtuibute 之间的关系。</p>
 <h2>第二章 环境搭建</h2>
@@ -159,7 +159,7 @@
 <h4>创建项目</h4>
 <pre><code class="hljs language-bash"><span class="hljs-comment"># 1.创建 springboot 应用</span>
 </code></pre>
-<p><img src="009.png" alt="在这里插入图片描述"></p>
+<p><img src="/posts/18.spring-security/009.png" alt="在这里插入图片描述"></p>
 <pre><code class="hljs language-kotlin"># <span class="hljs-number">2.</span>创建 controller
 
 
@@ -4719,7 +4719,7 @@ INSERT INTO `oauth_client_details` VALUES ('client', NULL, '$<span class="hljs-n
 <p>启动测试,通过 jwt 令牌访问资源</p>
 <pre><code class="hljs language-bash">curl -H <span class="hljs-string">"Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjAzMzM4MjgsInVzZXJfbmFtZSI6InJvb3QiLCJhdXRob3JpdGllcyI6WyJST0xFX0FETUlOIl0sImp0aSI6ImJmZGVjMzg1LWQyYmYtNDc5Yi05YjhhLTgyZWE4YTRkNzgzMyIsImNsaWVudF9pZCI6ImNsaWVudCIsInNjb3BlIjpbImFwcDpyZWFkIl19.QlELW7LMLuD4OghbEFFzJpIxjW80hC3WHd3I0PiuI7Y"</span> http://localhost:8081/hello
 </code></pre>
-<p><img src="https://img-blog.csdnimg.cn/eb993c7eb6b140dca2a889882c474b20.png#pic_center" alt="在这里插入图片描述"></p>0:{"buildId":"ebbBpN4C8fJWIIp9HDXlV","rsc":["$","$1","c",{"children":[[["$","div",null,{"className":"relative w-full h-[50vh] min-h-[320px] flex items-center justify-center bg-cover bg-center","style":{"backgroundImage":"url(/img/larsonist.jpg)"},"children":[["$","div",null,{"className":"hero-overlay absolute inset-0"}],["$","div",null,{"className":"relative z-10 text-center px-6 animate-fade-in","children":[["$","h1",null,{"className":"text-3xl md:text-5xl font-bold text-white mb-3 tracking-tight","children":"SpringSecurity 总结"}],""]}]]}],["$","article",null,{"className":"max-w-3xl mx-auto px-6 py-12","children":[["$","div",null,{"className":"flex items-center gap-4 text-sm text-[var(--color-text-secondary)] mb-8 pb-6 border-b border-[var(--color-border)]","children":[["$","time",null,{"dateTime":"2024-03-28","children":"2024-03-28"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"152 min read"}],[["$","span",null,{"children":"·"}],["$","div",null,{"className":"flex flex-wrap gap-2","children":[["$","$L2","flutter",{"href":"/tags/flutter","className":"text-xs px-2.5 py-1 rounded-full bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors","children":"flutter"}],["$","$L2","app",{"href":"/tags/app","className":"text-xs px-2.5 py-1 rounded-full bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors","children":"app"}]]}]]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4"]}]],null,"$L5"]}],"loading":null,"isPartial":false}
+<p><img src="https://img-blog.csdnimg.cn/eb993c7eb6b140dca2a889882c474b20.png#pic_center" alt="在这里插入图片描述"></p>0:{"buildId":"YRPY42YAshItTtiIXPqsU","rsc":["$","$1","c",{"children":[[["$","div",null,{"className":"relative w-full h-[50vh] min-h-[320px] flex items-center justify-center bg-cover bg-center","style":{"backgroundImage":"url(/img/larsonist.jpg)"},"children":[["$","div",null,{"className":"hero-overlay absolute inset-0"}],["$","div",null,{"className":"relative z-10 text-center px-6 animate-fade-in","children":[["$","h1",null,{"className":"text-3xl md:text-5xl font-bold text-white mb-3 tracking-tight","children":"SpringSecurity 总结"}],""]}]]}],["$","article",null,{"className":"max-w-3xl mx-auto px-6 py-12","children":[["$","div",null,{"className":"flex items-center gap-4 text-sm text-[var(--color-text-secondary)] mb-8 pb-6 border-b border-[var(--color-border)]","children":[["$","time",null,{"dateTime":"2024-03-28","children":"2024-03-28"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"152 min read"}],[["$","span",null,{"children":"·"}],["$","div",null,{"className":"flex flex-wrap gap-2","children":[["$","$L2","flutter",{"href":"/tags/flutter","className":"text-xs px-2.5 py-1 rounded-full bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors","children":"flutter"}],["$","$L2","app",{"href":"/tags/app","className":"text-xs px-2.5 py-1 rounded-full bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors","children":"app"}]]}]]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4"]}]],null,"$L5"]}],"loading":null,"isPartial":false}
 4:["$","div",null,{"className":"mt-16 pt-6 border-t border-[var(--color-border)]","children":["$","$L2",null,{"href":"/","className":"text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors text-sm","children":"← 返回首页"}]}]
 5:["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]
 8:null

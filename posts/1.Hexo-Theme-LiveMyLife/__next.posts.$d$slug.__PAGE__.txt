@@ -2,7 +2,7 @@
 2:I[22016,["/_next/static/chunks/738cd64d740dcd1e.js"],""]
 6:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
 7:"$Sreact.suspense"
-3:T85a3,<blockquote>
+3:T86f8,<blockquote>
 <p>移植 <a href="https://github.com/Huxpro/huxpro.github.io">Hux Blog</a> 的主题，感谢 <a href="https://github.com/Huxpro">Huxpro</a> 设计了如此完美的主题。</p>
 <p>由 <a href="https://v-vincen.github.io/">Vincent</a> 创建的 LiveMyLife 的主题修改来源 <a href="https://github.com/YenYuHsuan/hexo-theme-beantech">YenYuHsuan</a>，参考主题 <a href="https://github.com/dusign/hexo-theme-snail">dusign</a>、<a href="https://github.com/shixiaohu2206/hexo-theme-huhu">Utone</a>，感谢 <a href="https://github.com/dusign/hexo-theme-snail">dusign</a>、<a href="https://github.com/shixiaohu2206/hexo-theme-huhu">Utone</a>。</p>
 </blockquote>
@@ -10,7 +10,7 @@
 <p>Github 仓库地址：<a href="https://github.com/V-Vincen/hexo-theme-livemylife">https://github.com/V-Vincen/hexo-theme-livemylife</a>
 Gitee 仓库地址：<a href="https://gitee.com/V_Vincen/hexo-theme-livemylife">https://gitee.com/V_Vincen/hexo-theme-livemylife</a></p>
 <h3><a href="https://v-vincen.github.io/">预览 LiveMyLife 博客 ➾</a></h3>
-<p><img src="livemylife-desktop.png" alt="LiveMyLife Desktop"></p>
+<p><img src="/posts/1.Hexo-Theme-LiveMyLife/livemylife-desktop.png" alt="LiveMyLife Desktop"></p>
 <h2>快速开始</h2>
 <p>为了方便起见，我发布了整个项目，因此您可以按照下面的说明进行操作，然后就可以轻松自定义您自己的博客！</p>
 <p>让我们开始!!!</p>
@@ -105,9 +105,9 @@ hexo server   # or hexo s
   <span class="hljs-attr">order_by:</span> <span class="hljs-string">-date</span>
 </code></pre>
 <p><em>English 预览：</em></p>
-<p><img src="langen.png" alt="en"></p>
+<p><img src="/posts/1.Hexo-Theme-LiveMyLife/langen.png" alt="en"></p>
 <p><em>Chinese 预览：</em></p>
-<p><img src="langcn.png" alt="cn"></p>
+<p><img src="/posts/1.Hexo-Theme-LiveMyLife/langcn.png" alt="cn"></p>
 <h3>CDN 配置</h3>
 <p>JsDelivr JsDelivr是一种免费，快速，可靠和自动化的CDN，可用于开源。如何使用 Jsdelivr？-> 文档：<a href="https://v-vincen.github.io/en/Github-%E5%8A%A0%E9%80%9F%E4%BC%98%E5%8C%96/#%E5%85%8D%E8%B4%B9-CDN-%E6%8F%90%E9%80%9F-Github-%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E8%AE%BF%E9%97%AE">免费 CDN 提速 Github 静态资源访问</a></p>
 <pre><code class="hljs language-yml"><span class="hljs-comment"># CDN Setting</span>
@@ -145,7 +145,7 @@ hexo server   # or hexo s
 <span class="hljs-attr">wave:</span> <span class="hljs-literal">true</span>
 </code></pre>
 <p><em>案例：</em></p>
-<p><img src="wave.png" alt="wave"></p>
+<p><img src="/posts/1.Hexo-Theme-LiveMyLife/wave.png" alt="wave"></p>
 <h3>社交网络服务设置</h3>
 <p>如果您不想显示它，则可以直接将其删除。</p>
 <pre><code class="hljs language-yml"><span class="hljs-comment"># SNS settings</span>
@@ -257,7 +257,7 @@ hexo server   # or hexo s
 <pre><code class="hljs language-yml"><span class="hljs-attr">home_posts_tag:</span> <span class="hljs-literal">true</span>
 </code></pre>
 <p><em>案例：</em></p>
-<p><img src="home_posts_tag-true.png" alt="home_posts_tag-true"></p>
+<p><img src="/posts/1.Hexo-Theme-LiveMyLife/home_posts_tag-true.png" alt="home_posts_tag-true"></p>
 <h3>Markdown 渲染器</h3>
 <p>我使用的 markdown 渲染引擎插件是 <a href="https://github.com/celsomiranda/hexo-renderer-markdown-it">hexo-renderer-markdown-it</a>。</p>
 <pre><code class="hljs language-yml"><span class="hljs-comment"># Markdown-it config</span>
@@ -294,7 +294,7 @@ hexo server   # or hexo s
 </code></pre>
 <p>Hexo-theme-livemylife 主题添加了文章顶部功能，只要在您的 markdown 笔记中添加属性<code>sticky: number</code> 配置，文章按此数字排序。
 <em>案例：</em></p>
-<p><img src="top.png" alt="top"></p>
+<p><img src="/posts/1.Hexo-Theme-LiveMyLife/top.png" alt="top"></p>
 <h3>文章字数统计设置</h3>
 <p>WordCount 是 Hexo 的文章字数统计插件. 有关详细的配置方法，请参见 <a href="https://github.com/willin/hexo-wordcount">WordCount</a> 文档。</p>
 <pre><code class="hljs language-yml"><span class="hljs-comment"># Dependencies: https://github.com/willin/hexo-wordcount</span>
@@ -333,9 +333,9 @@ hexo server   # or hexo s
   <span class="hljs-attr">mode:</span> <span class="hljs-string">dark</span> <span class="hljs-comment"># themecolor mode light or dark, default light</span>
 </code></pre>
 <p><em>明亮主题模式预览：</em></p>
-<p><img src="light.png" alt="light theme"></p>
+<p><img src="/posts/1.Hexo-Theme-LiveMyLife/light.png" alt="light theme"></p>
 <p><em>黑暗主题模式预览：</em></p>
-<p><img src="dark.png" alt="dark theme"></p>
+<p><img src="/posts/1.Hexo-Theme-LiveMyLife/dark.png" alt="dark theme"></p>
 <h3>鼠标点击效果设置</h3>
 <pre><code class="hljs language-yml"><span class="hljs-comment"># Mouseclick config</span>
 <span class="hljs-attr">mouseclick:</span>
@@ -362,17 +362,17 @@ hexo server   # or hexo s
     <span class="hljs-bullet">-</span> <span class="hljs-string">'#FF0033'</span>
 </code></pre>
 <p><em>鼠标点击效果预览：</em></p>
-<p><img src="mouseclick.png" alt="mouseclick"></p>
+<p><img src="/posts/1.Hexo-Theme-LiveMyLife/mouseclick.png" alt="mouseclick"></p>
 <h3>背景绸带效果设置</h3>
 <pre><code class="hljs language-yml"><span class="hljs-attr">ribbonDynamic:</span> <span class="hljs-literal">true</span>
 </code></pre>
 <p><em>背景绸带效果预览：</em></p>
-<p><img src="ribbon.png" alt="ribbon"></p>
+<p><img src="/posts/1.Hexo-Theme-LiveMyLife/ribbon.png" alt="ribbon"></p>
 <h3>背景线画布效果设置</h3>
 <pre><code class="hljs language-yml"><span class="hljs-attr">bglinecanvas:</span> <span class="hljs-literal">true</span>  <span class="hljs-comment"># The special effects will take up a lot of cpu resorces, please open it carefully.</span>
 </code></pre>
 <p><em>背景线画布效果预览：</em></p>
-<p><img src="bglinecanvas.png" alt="bglinecanvas"></p>
+<p><img src="/posts/1.Hexo-Theme-LiveMyLife/bglinecanvas.png" alt="bglinecanvas"></p>
 <h3>搜索设置</h3>
 <pre><code class="hljs language-yml"><span class="hljs-comment"># Dependencies: https://github.com/V-Vincen/hexo-generator-zip-search</span>
 <span class="hljs-attr">search:</span>
@@ -408,7 +408,7 @@ hexo server   <span class="hljs-comment"># run hexo in local environment</span>
 hexo deploy   <span class="hljs-comment"># hexo will push the static files automatically into the specific branch(gh-pages) of your repo!</span>
 </code></pre>
 <h2>有一个好的体验 ^_^</h2>
-<p>如果你喜欢该主题，请 <a href="https://github.com/V-Vincen/hexo-theme-livemylife">Star</a>！不胜感激你的 <a href="https://github.com/V-Vincen">Follow</a>！比心！</p>0:{"buildId":"ebbBpN4C8fJWIIp9HDXlV","rsc":["$","$1","c",{"children":[[["$","div",null,{"className":"relative w-full h-[50vh] min-h-[320px] flex items-center justify-center bg-cover bg-center","style":{"backgroundImage":"url(/img/header_img/lml_bg.jpg)"},"children":[["$","div",null,{"className":"hero-overlay absolute inset-0"}],["$","div",null,{"className":"relative z-10 text-center px-6 animate-fade-in","children":[["$","h1",null,{"className":"text-3xl md:text-5xl font-bold text-white mb-3 tracking-tight","children":"Hexo-Theme-LiveMyLife"}],["$","p",null,{"className":"text-lg md:text-xl text-white/80 max-w-2xl mx-auto","children":"A succinct hexo theme..."}]]}]]}],["$","article",null,{"className":"max-w-3xl mx-auto px-6 py-12","children":[["$","div",null,{"className":"flex items-center gap-4 text-sm text-[var(--color-text-secondary)] mb-8 pb-6 border-b border-[var(--color-border)]","children":[["$","time",null,{"dateTime":"2020-04-17","children":"2020-04-17"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"13 min read"}],[["$","span",null,{"children":"·"}],["$","div",null,{"className":"flex flex-wrap gap-2","children":[["$","$L2","Hexo-Theme-LiveMyLife",{"href":"/tags/Hexo-Theme-LiveMyLife","className":"text-xs px-2.5 py-1 rounded-full bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors","children":"Hexo-Theme-LiveMyLife"}]]}]]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4"]}]],null,"$L5"]}],"loading":null,"isPartial":false}
+<p>如果你喜欢该主题，请 <a href="https://github.com/V-Vincen/hexo-theme-livemylife">Star</a>！不胜感激你的 <a href="https://github.com/V-Vincen">Follow</a>！比心！</p>0:{"buildId":"YRPY42YAshItTtiIXPqsU","rsc":["$","$1","c",{"children":[[["$","div",null,{"className":"relative w-full h-[50vh] min-h-[320px] flex items-center justify-center bg-cover bg-center","style":{"backgroundImage":"url(/img/header_img/lml_bg.jpg)"},"children":[["$","div",null,{"className":"hero-overlay absolute inset-0"}],["$","div",null,{"className":"relative z-10 text-center px-6 animate-fade-in","children":[["$","h1",null,{"className":"text-3xl md:text-5xl font-bold text-white mb-3 tracking-tight","children":"Hexo-Theme-LiveMyLife"}],["$","p",null,{"className":"text-lg md:text-xl text-white/80 max-w-2xl mx-auto","children":"A succinct hexo theme..."}]]}]]}],["$","article",null,{"className":"max-w-3xl mx-auto px-6 py-12","children":[["$","div",null,{"className":"flex items-center gap-4 text-sm text-[var(--color-text-secondary)] mb-8 pb-6 border-b border-[var(--color-border)]","children":[["$","time",null,{"dateTime":"2020-04-17","children":"2020-04-17"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"13 min read"}],[["$","span",null,{"children":"·"}],["$","div",null,{"className":"flex flex-wrap gap-2","children":[["$","$L2","Hexo-Theme-LiveMyLife",{"href":"/tags/Hexo-Theme-LiveMyLife","className":"text-xs px-2.5 py-1 rounded-full bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors","children":"Hexo-Theme-LiveMyLife"}]]}]]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4"]}]],null,"$L5"]}],"loading":null,"isPartial":false}
 4:["$","div",null,{"className":"mt-16 pt-6 border-t border-[var(--color-border)]","children":["$","$L2",null,{"href":"/","className":"text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors text-sm","children":"← 返回首页"}]}]
 5:["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]
 8:null

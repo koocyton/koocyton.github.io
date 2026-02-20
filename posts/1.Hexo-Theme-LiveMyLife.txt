@@ -5,7 +5,7 @@
 5:I[22016,["/_next/static/chunks/738cd64d740dcd1e.js"],""]
 a:I[68027,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"default"]
 :HL["/_next/static/chunks/8bace9f2ee97c740.css","style"]
-0:{"P":null,"b":"ebbBpN4C8fJWIIp9HDXlV","c":["","posts","1.Hexo-Theme-LiveMyLife"],"q":"","i":false,"f":[[["",{"children":["posts",{"children":[["slug","1.Hexo-Theme-LiveMyLife","d"],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/8bace9f2ee97c740.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/738cd64d740dcd1e.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"zh-CN","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"dangerouslySetInnerHTML":{"__html":"\n              try {\n                if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {\n                  document.documentElement.classList.add('dark');\n                }\n              } catch (_) {}\n            "}}]}],["$","body",null,{"className":"min-h-screen flex flex-col antialiased","children":[["$","$L2",null,{}],["$","main",null,{"className":"flex-1","children":["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"min-h-screen flex items-center justify-center","children":["$","div",null,{"className":"text-center","children":[["$","h1",null,{"className":"text-6xl font-bold text-[var(--color-text)] mb-4","children":"404"}],["$","p",null,{"className":"text-xl text-[var(--color-text-secondary)] mb-8","children":"页面不存在"}],["$","$L5",null,{"href":"/","className":"px-6 py-3 rounded-lg bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)] transition-colors","children":"返回首页"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","footer",null,{"className":"border-t border-[var(--color-border)] bg-[var(--color-bg-secondary)]","children":["$","div",null,{"className":"max-w-5xl mx-auto px-6 py-10","children":["$","div",null,{"className":"flex flex-col md:flex-row justify-between items-center gap-4","children":[["$","div",null,{"className":"text-center md:text-left","children":[["$","p",null,{"className":"text-sm text-[var(--color-text-secondary)]","children":["© ",2026," 一洼绿地 · koocyton"]}],["$","p",null,{"className":"text-xs text-[var(--color-text-secondary)] mt-1","children":"Built with Next.js & Tailwind CSS"}]]}],["$","div",null,{"className":"flex items-center gap-6","children":[["$","$L5",null,{"href":"https://github.com/koocyton","target":"_blank","rel":"noopener noreferrer","className":"text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors","children":["$","svg",null,{"className":"w-5 h-5","fill":"currentColor","viewBox":"0 0 24 24","children":["$","path",null,{"d":"M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"}]}]}],["$","$L5",null,{"href":"mailto:koocyton@gmail.com","className":"text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors","children":["$","svg",null,{"className":"w-5 h-5","fill":"none","viewBox":"0 0 24 24","stroke":"currentColor","children":["$","path",null,{"strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":2,"d":"M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"}]}]}]]}]]}]}]}]]}]]}]]}],{"children":[["$","$1","c",{"children":[null,"$L6"]}],{"children":["$L7",{"children":["$L8",{},null,false,false]},null,false,false]},null,false,false]},null,false,false],"$L9",false]],"m":"$undefined","G":["$a",[]],"S":true}
+0:{"P":null,"b":"YRPY42YAshItTtiIXPqsU","c":["","posts","1.Hexo-Theme-LiveMyLife"],"q":"","i":false,"f":[[["",{"children":["posts",{"children":[["slug","1.Hexo-Theme-LiveMyLife","d"],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/8bace9f2ee97c740.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/738cd64d740dcd1e.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"zh-CN","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"dangerouslySetInnerHTML":{"__html":"\n              try {\n                if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {\n                  document.documentElement.classList.add('dark');\n                }\n              } catch (_) {}\n            "}}]}],["$","body",null,{"className":"min-h-screen flex flex-col antialiased","children":[["$","$L2",null,{}],["$","main",null,{"className":"flex-1","children":["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"min-h-screen flex items-center justify-center","children":["$","div",null,{"className":"text-center","children":[["$","h1",null,{"className":"text-6xl font-bold text-[var(--color-text)] mb-4","children":"404"}],["$","p",null,{"className":"text-xl text-[var(--color-text-secondary)] mb-8","children":"页面不存在"}],["$","$L5",null,{"href":"/","className":"px-6 py-3 rounded-lg bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)] transition-colors","children":"返回首页"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","footer",null,{"className":"border-t border-[var(--color-border)] bg-[var(--color-bg-secondary)]","children":["$","div",null,{"className":"max-w-5xl mx-auto px-6 py-10","children":["$","div",null,{"className":"flex flex-col md:flex-row justify-between items-center gap-4","children":[["$","div",null,{"className":"text-center md:text-left","children":[["$","p",null,{"className":"text-sm text-[var(--color-text-secondary)]","children":["© ",2026," 一洼绿地 · koocyton"]}],["$","p",null,{"className":"text-xs text-[var(--color-text-secondary)] mt-1","children":"Built with Next.js & Tailwind CSS"}]]}],["$","div",null,{"className":"flex items-center gap-6","children":[["$","$L5",null,{"href":"https://github.com/koocyton","target":"_blank","rel":"noopener noreferrer","className":"text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors","children":["$","svg",null,{"className":"w-5 h-5","fill":"currentColor","viewBox":"0 0 24 24","children":["$","path",null,{"d":"M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"}]}]}],["$","$L5",null,{"href":"mailto:koocyton@gmail.com","className":"text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors","children":["$","svg",null,{"className":"w-5 h-5","fill":"none","viewBox":"0 0 24 24","stroke":"currentColor","children":["$","path",null,{"strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":2,"d":"M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"}]}]}]]}]]}]}]}]]}]]}]]}],{"children":[["$","$1","c",{"children":[null,"$L6"]}],{"children":["$L7",{"children":["$L8",{},null,false,false]},null,false,false]},null,false,false]},null,false,false],"$L9",false]],"m":"$undefined","G":["$a",[]],"S":true}
 c:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
 d:"$Sreact.suspense"
 f:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"ViewportBoundary"]
@@ -14,7 +14,7 @@ f:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be
 7:["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
 8:["$","$1","c",{"children":["$Lb",null,["$","$Lc",null,{"children":["$","$d",null,{"name":"Next.MetadataOutlet","children":"$@e"}]}]]}]
 9:["$","$1","h",{"children":[null,["$","$Lf",null,{"children":"$L10"}],["$","div",null,{"hidden":true,"children":["$","$L11",null,{"children":["$","$d",null,{"name":"Next.Metadata","children":"$L12"}]}]}],null]}]
-13:T85a3,<blockquote>
+13:T86f8,<blockquote>
 <p>移植 <a href="https://github.com/Huxpro/huxpro.github.io">Hux Blog</a> 的主题，感谢 <a href="https://github.com/Huxpro">Huxpro</a> 设计了如此完美的主题。</p>
 <p>由 <a href="https://v-vincen.github.io/">Vincent</a> 创建的 LiveMyLife 的主题修改来源 <a href="https://github.com/YenYuHsuan/hexo-theme-beantech">YenYuHsuan</a>，参考主题 <a href="https://github.com/dusign/hexo-theme-snail">dusign</a>、<a href="https://github.com/shixiaohu2206/hexo-theme-huhu">Utone</a>，感谢 <a href="https://github.com/dusign/hexo-theme-snail">dusign</a>、<a href="https://github.com/shixiaohu2206/hexo-theme-huhu">Utone</a>。</p>
 </blockquote>
@@ -22,7 +22,7 @@ f:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be
 <p>Github 仓库地址：<a href="https://github.com/V-Vincen/hexo-theme-livemylife">https://github.com/V-Vincen/hexo-theme-livemylife</a>
 Gitee 仓库地址：<a href="https://gitee.com/V_Vincen/hexo-theme-livemylife">https://gitee.com/V_Vincen/hexo-theme-livemylife</a></p>
 <h3><a href="https://v-vincen.github.io/">预览 LiveMyLife 博客 ➾</a></h3>
-<p><img src="livemylife-desktop.png" alt="LiveMyLife Desktop"></p>
+<p><img src="/posts/1.Hexo-Theme-LiveMyLife/livemylife-desktop.png" alt="LiveMyLife Desktop"></p>
 <h2>快速开始</h2>
 <p>为了方便起见，我发布了整个项目，因此您可以按照下面的说明进行操作，然后就可以轻松自定义您自己的博客！</p>
 <p>让我们开始!!!</p>
@@ -117,9 +117,9 @@ hexo server   # or hexo s
   <span class="hljs-attr">order_by:</span> <span class="hljs-string">-date</span>
 </code></pre>
 <p><em>English 预览：</em></p>
-<p><img src="langen.png" alt="en"></p>
+<p><img src="/posts/1.Hexo-Theme-LiveMyLife/langen.png" alt="en"></p>
 <p><em>Chinese 预览：</em></p>
-<p><img src="langcn.png" alt="cn"></p>
+<p><img src="/posts/1.Hexo-Theme-LiveMyLife/langcn.png" alt="cn"></p>
 <h3>CDN 配置</h3>
 <p>JsDelivr JsDelivr是一种免费，快速，可靠和自动化的CDN，可用于开源。如何使用 Jsdelivr？-> 文档：<a href="https://v-vincen.github.io/en/Github-%E5%8A%A0%E9%80%9F%E4%BC%98%E5%8C%96/#%E5%85%8D%E8%B4%B9-CDN-%E6%8F%90%E9%80%9F-Github-%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E8%AE%BF%E9%97%AE">免费 CDN 提速 Github 静态资源访问</a></p>
 <pre><code class="hljs language-yml"><span class="hljs-comment"># CDN Setting</span>
@@ -157,7 +157,7 @@ hexo server   # or hexo s
 <span class="hljs-attr">wave:</span> <span class="hljs-literal">true</span>
 </code></pre>
 <p><em>案例：</em></p>
-<p><img src="wave.png" alt="wave"></p>
+<p><img src="/posts/1.Hexo-Theme-LiveMyLife/wave.png" alt="wave"></p>
 <h3>社交网络服务设置</h3>
 <p>如果您不想显示它，则可以直接将其删除。</p>
 <pre><code class="hljs language-yml"><span class="hljs-comment"># SNS settings</span>
@@ -269,7 +269,7 @@ hexo server   # or hexo s
 <pre><code class="hljs language-yml"><span class="hljs-attr">home_posts_tag:</span> <span class="hljs-literal">true</span>
 </code></pre>
 <p><em>案例：</em></p>
-<p><img src="home_posts_tag-true.png" alt="home_posts_tag-true"></p>
+<p><img src="/posts/1.Hexo-Theme-LiveMyLife/home_posts_tag-true.png" alt="home_posts_tag-true"></p>
 <h3>Markdown 渲染器</h3>
 <p>我使用的 markdown 渲染引擎插件是 <a href="https://github.com/celsomiranda/hexo-renderer-markdown-it">hexo-renderer-markdown-it</a>。</p>
 <pre><code class="hljs language-yml"><span class="hljs-comment"># Markdown-it config</span>
@@ -306,7 +306,7 @@ hexo server   # or hexo s
 </code></pre>
 <p>Hexo-theme-livemylife 主题添加了文章顶部功能，只要在您的 markdown 笔记中添加属性<code>sticky: number</code> 配置，文章按此数字排序。
 <em>案例：</em></p>
-<p><img src="top.png" alt="top"></p>
+<p><img src="/posts/1.Hexo-Theme-LiveMyLife/top.png" alt="top"></p>
 <h3>文章字数统计设置</h3>
 <p>WordCount 是 Hexo 的文章字数统计插件. 有关详细的配置方法，请参见 <a href="https://github.com/willin/hexo-wordcount">WordCount</a> 文档。</p>
 <pre><code class="hljs language-yml"><span class="hljs-comment"># Dependencies: https://github.com/willin/hexo-wordcount</span>
@@ -345,9 +345,9 @@ hexo server   # or hexo s
   <span class="hljs-attr">mode:</span> <span class="hljs-string">dark</span> <span class="hljs-comment"># themecolor mode light or dark, default light</span>
 </code></pre>
 <p><em>明亮主题模式预览：</em></p>
-<p><img src="light.png" alt="light theme"></p>
+<p><img src="/posts/1.Hexo-Theme-LiveMyLife/light.png" alt="light theme"></p>
 <p><em>黑暗主题模式预览：</em></p>
-<p><img src="dark.png" alt="dark theme"></p>
+<p><img src="/posts/1.Hexo-Theme-LiveMyLife/dark.png" alt="dark theme"></p>
 <h3>鼠标点击效果设置</h3>
 <pre><code class="hljs language-yml"><span class="hljs-comment"># Mouseclick config</span>
 <span class="hljs-attr">mouseclick:</span>
@@ -374,17 +374,17 @@ hexo server   # or hexo s
     <span class="hljs-bullet">-</span> <span class="hljs-string">'#FF0033'</span>
 </code></pre>
 <p><em>鼠标点击效果预览：</em></p>
-<p><img src="mouseclick.png" alt="mouseclick"></p>
+<p><img src="/posts/1.Hexo-Theme-LiveMyLife/mouseclick.png" alt="mouseclick"></p>
 <h3>背景绸带效果设置</h3>
 <pre><code class="hljs language-yml"><span class="hljs-attr">ribbonDynamic:</span> <span class="hljs-literal">true</span>
 </code></pre>
 <p><em>背景绸带效果预览：</em></p>
-<p><img src="ribbon.png" alt="ribbon"></p>
+<p><img src="/posts/1.Hexo-Theme-LiveMyLife/ribbon.png" alt="ribbon"></p>
 <h3>背景线画布效果设置</h3>
 <pre><code class="hljs language-yml"><span class="hljs-attr">bglinecanvas:</span> <span class="hljs-literal">true</span>  <span class="hljs-comment"># The special effects will take up a lot of cpu resorces, please open it carefully.</span>
 </code></pre>
 <p><em>背景线画布效果预览：</em></p>
-<p><img src="bglinecanvas.png" alt="bglinecanvas"></p>
+<p><img src="/posts/1.Hexo-Theme-LiveMyLife/bglinecanvas.png" alt="bglinecanvas"></p>
 <h3>搜索设置</h3>
 <pre><code class="hljs language-yml"><span class="hljs-comment"># Dependencies: https://github.com/V-Vincen/hexo-generator-zip-search</span>
 <span class="hljs-attr">search:</span>
