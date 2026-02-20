@@ -1,5 +1,6 @@
 import { getAllPosts, getPostBySlug } from "@/lib/posts";
 import Link from "next/link";
+import Comments from "@/components/Comments";
 
 export async function generateStaticParams() {
   return getAllPosts().map((post) => ({ slug: post.slug }));
@@ -47,7 +48,8 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         className="prose"
         dangerouslySetInnerHTML={{ __html: post.contentHtml }}
       />
-      <footer className="mt-12 pt-4 border-t border-[var(--color-border)]">
+      <Comments />
+      <footer className="mt-8 pt-4 border-t border-[var(--color-border)]">
         <Link
           href="/"
           className="text-sm text-[var(--color-link)] hover:underline"
