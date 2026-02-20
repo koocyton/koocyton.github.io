@@ -1,18 +1,13 @@
 import { getAllTags, getPostsByTag } from "@/lib/posts";
-import HeroBanner from "@/components/HeroBanner";
-import PostCard from "@/components/PostCard";
+import Link from "next/link";
 
 export async function generateStaticParams() {
-  const tags = getAllTags();
-  return tags.map(({ tag }) => ({ tag: encodeURIComponent(tag) }));
+  return getAllTags().map(({ tag }) => ({ tag: encodeURIComponent(tag) }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ tag: string }> }) {
   const { tag } = await params;
-  const decodedTag = decodeURIComponent(tag);
-  return {
-    title: `${decodedTag} - 标签 - 一洼绿地`,
-  };
+  return { title: `#${decodeURIComponent(tag)} - 一洼绿地` };
 }
 
 export default async function TagPage({ params }: { params: Promise<{ tag: string }> }) {
@@ -21,17 +16,24 @@ export default async function TagPage({ params }: { params: Promise<{ tag: strin
   const posts = getPostsByTag(decodedTag);
 
   return (
-    <>
-      <HeroBanner
-        title={`# ${decodedTag}`}
-        subtitle={`共 ${posts.length} 篇文章`}
-        backgroundImage="/img/header_img/tag_bg.jpg"
-      />
-      <div className="max-w-3xl mx-auto px-6 py-12">
+    <div className="max-w-2xl mx-auto px-5 py-10">
+      <h1 className="font-mono text-lg font-semibold text-[var(--color-text)] mb-1">#{decodedTag}</h1>
+      <p className="text-xs text-[var(--color-text-tertiary)] mb-8">共 {posts.length} 篇</p>
+      <ul className="space-y-3">
         {posts.map((post) => (
-          <PostCard key={post.slug} post={post} />
+          <li key={post.slug} className="flex items-baseline gap-3">
+            <time className="text-xs text-[var(--color-text-tertiary)] font-mono shrink-0 tabular-nums">
+              {post.date}
+            </time>
+            <Link
+              href={`/posts/${post.slug}`}
+              className="text-sm text-[var(--color-text)] hover:text-[var(--color-link)] transition-colors"
+            >
+              {post.title}
+            </Link>
+          </li>
         ))}
-      </div>
-    </>
+      </ul>
+    </div>
   );
 }

@@ -1,39 +1,30 @@
 import { getAllPosts } from "@/lib/posts";
-import HeroBanner from "@/components/HeroBanner";
-import PostCard from "@/components/PostCard";
 import Link from "next/link";
 
-const POSTS_PER_PAGE = 10;
-
 export default function HomePage() {
-  const allPosts = getAllPosts();
-  const posts = allPosts.slice(0, POSTS_PER_PAGE);
-  const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
+  const posts = getAllPosts();
 
   return (
-    <>
-      <HeroBanner
-        title="一洼绿地"
-        subtitle="那么 ... 好吧 ..."
-        backgroundImage="/img/header_img/newhome_bg.jpg"
-      />
-      <div className="max-w-3xl mx-auto px-6 py-12">
-        <div className="space-y-0">
-          {posts.map((post) => (
-            <PostCard key={post.slug} post={post} />
-          ))}
-        </div>
-        {totalPages > 1 && (
-          <div className="flex justify-center mt-12">
-            <Link
-              href="/archives"
-              className="px-6 py-3 text-sm font-medium rounded-lg border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:bg-[var(--color-bg-secondary)] transition-colors"
-            >
-              查看全部文章 ({allPosts.length})
-            </Link>
-          </div>
-        )}
+    <div className="max-w-2xl mx-auto px-5 py-10">
+      <div className="mb-8">
+        <h1 className="font-mono text-lg font-semibold text-[var(--color-text)]">一洼绿地</h1>
+        <p className="text-sm text-[var(--color-text-tertiary)] mt-1">那么 ... 好吧 ...</p>
       </div>
-    </>
+      <ul className="space-y-3">
+        {posts.map((post) => (
+          <li key={post.slug} className="flex items-baseline gap-3">
+            <time className="text-xs text-[var(--color-text-tertiary)] font-mono shrink-0 tabular-nums">
+              {post.date}
+            </time>
+            <Link
+              href={`/posts/${post.slug}`}
+              className="text-sm text-[var(--color-text)] hover:text-[var(--color-link)] transition-colors truncate"
+            >
+              {post.title}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

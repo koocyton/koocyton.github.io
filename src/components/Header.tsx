@@ -1,124 +1,42 @@
-"use client";
-
 import Link from "next/link";
-import { useState, useEffect } from "react";
+
+const navLinks = [
+  { href: "/", label: "文章" },
+  { href: "/archives", label: "归档" },
+  { href: "/tags", label: "标签" },
+  { href: "/about", label: "关于" },
+];
 
 export default function Header() {
-  const [dark, setDark] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const saved = localStorage.getItem("theme");
-    if (saved === "dark" || (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-      setDark(true);
-      document.documentElement.classList.add("dark");
-    }
-  }, []);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const toggleDark = () => {
-    setDark(!dark);
-    document.documentElement.classList.toggle("dark");
-    localStorage.setItem("theme", !dark ? "dark" : "light");
-  };
-
-  const navLinks = [
-    { href: "/", label: "首页" },
-    { href: "/archives", label: "归档" },
-    { href: "/tags", label: "标签" },
-    { href: "/about", label: "关于" },
-  ];
-
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[var(--color-bg)]/95 backdrop-blur-md shadow-sm border-b border-[var(--color-border)]"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+    <header className="border-b border-[var(--color-border)]">
+      <div className="max-w-2xl mx-auto px-5 h-12 flex items-center justify-between">
         <Link
           href="/"
-          className={`text-xl font-bold tracking-tight transition-colors ${
-            scrolled ? "text-[var(--color-text)]" : "text-white"
-          }`}
+          className="font-mono text-sm font-semibold text-[var(--color-text)] hover:text-[var(--color-link)] transition-colors"
         >
           一洼绿地
         </Link>
-
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="flex items-center gap-5">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm font-medium transition-colors hover:text-[var(--color-accent)] ${
-                scrolled ? "text-[var(--color-text-secondary)]" : "text-white/90"
-              }`}
+              className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors"
             >
               {link.label}
             </Link>
           ))}
-          <button
-            onClick={toggleDark}
-            className={`p-2 rounded-full transition-colors ${
-              scrolled
-                ? "hover:bg-[var(--color-bg-secondary)]"
-                : "hover:bg-white/10"
-            }`}
-            aria-label="Toggle dark mode"
+          <a
+            href="https://github.com/koocyton"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[var(--color-text-tertiary)] hover:text-[var(--color-text)] transition-colors"
           >
-            {dark ? (
-              <svg className={`w-5 h-5 ${scrolled ? "text-[var(--color-text)]" : "text-white"}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
-            ) : (
-              <svg className={`w-5 h-5 ${scrolled ? "text-[var(--color-text)]" : "text-white"}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
-            )}
-          </button>
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          </a>
         </nav>
-
-        <button
-          className="md:hidden p-2"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          <svg className={`w-6 h-6 ${scrolled ? "text-[var(--color-text)]" : "text-white"}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            {menuOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
-        </button>
       </div>
-
-      {menuOpen && (
-        <div className="md:hidden bg-[var(--color-bg)] border-b border-[var(--color-border)] animate-fade-in">
-          <div className="px-6 py-4 flex flex-col gap-3">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors py-1"
-              >
-                {link.label}
-              </Link>
-            ))}
-            <button
-              onClick={toggleDark}
-              className="text-left text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors py-1"
-            >
-              {dark ? "☀️ 浅色模式" : "🌙 深色模式"}
-            </button>
-          </div>
-        </div>
-      )}
     </header>
   );
 }
