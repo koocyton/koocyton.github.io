@@ -1,0 +1,82 @@
+1:"$Sreact.fragment"
+2:I[22016,["/_next/static/chunks/738cd64d740dcd1e.js"],""]
+6:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
+7:"$Sreact.suspense"
+3:T12fe,<h5>前言</h5>
+<p>FeignClient 在调用服务时，目标端发生错误。
+返回:</p>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"100005"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"message"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"error message"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"data"</span><span class="hljs-punctuation">:</span><span class="hljs-string">""</span>
+<span class="hljs-punctuation">}</span>
+
+FeignClient 接口定义为<span class="hljs-punctuation">:</span>
+
+```java
+@FeignClient(name = <span class="hljs-string">"feignLogin"</span><span class="hljs-string">")
+public interface LoginFeign {
+
+    @GetMapping(value = "</span>/api/feignUser<span class="hljs-string">")
+    Result&#x3C;User> feignUser();
+}
+</span></code></pre>
+<p>这是 Feign 在序列化 <code>Result&#x3C;User></code> 时，会发生错误，
+因为 "" 反序列化 User ，jackson 抛出异常。</p>
+<p>经过反复测试，可以在拦截器上做统一的错误处理。</p>
+<h5>解决</h5>
+<ul>
+<li>FeignClient config 配置</li>
+</ul>
+<pre><code class="hljs language-java"><span class="hljs-meta">@Slf4j</span>
+<span class="hljs-meta">@Configuration</span>
+<span class="hljs-meta">@ConditionalOnClass(Feign.class)</span>
+<span class="hljs-meta">@AutoConfigureBefore(FeignAutoConfiguration.class)</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">FeignConfig</span> {
+
+    <span class="hljs-meta">@Bean</span>
+    <span class="hljs-meta">@ConditionalOnMissingBean({Client.class})</span>
+    <span class="hljs-keyword">public</span> Client <span class="hljs-title function_">feignClient</span><span class="hljs-params">(okhttp3.OkHttpClient client)</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">feign</span>.okhttp.OkHttpClient(client);
+    }
+
+    <span class="hljs-meta">@Bean</span>
+    <span class="hljs-keyword">public</span> okhttp3.OkHttpClient <span class="hljs-title function_">okHttpClient</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">okhttp3</span>.OkHttpClient.Builder()
+                .connectTimeout(<span class="hljs-number">30</span>, TimeUnit.SECONDS)
+                .readTimeout(<span class="hljs-number">30</span>, TimeUnit.SECONDS)
+                .writeTimeout(<span class="hljs-number">30</span>, TimeUnit.SECONDS)
+                .retryOnConnectionFailure(<span class="hljs-literal">true</span>)
+                <span class="hljs-comment">// 拦截器</span>
+                .addInterceptor(
+                  <span class="hljs-keyword">new</span> <span class="hljs-title class_">FeignInterceptor</span>()
+                )
+                .connectionPool(
+                  <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConnectionPool</span>(<span class="hljs-number">10</span>, <span class="hljs-number">5L</span>, TimeUnit.MINUTES)
+                )
+                .build();
+    }
+</code></pre>
+<ul>
+<li>FeignClient Interceptor 配置</li>
+</ul>
+<pre><code class="hljs language-java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">FeignInterceptor</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Interceptor</span> {
+
+  <span class="hljs-meta">@NotNull</span>
+  <span class="hljs-meta">@Override</span>
+  <span class="hljs-keyword">public</span> Response <span class="hljs-title function_">intercept</span><span class="hljs-params">(<span class="hljs-meta">@NotNull</span> Chain chain)</span> <span class="hljs-keyword">throws</span> IOException {
+    <span class="hljs-type">Response</span> <span class="hljs-variable">response</span> <span class="hljs-operator">=</span> chain.proceed(request);
+    <span class="hljs-type">String</span> <span class="hljs-variable">responseBody</span> <span class="hljs-operator">=</span> getResponseBody(response);
+    Result&#x3C;?> result = JsonUtil.toObject(responseBody, Result.class);
+    <span class="hljs-comment">// 在此处加入判断，抛出异常</span>
+    <span class="hljs-comment">// 不会进入到 feign 解析 json 流程去</span>
+    <span class="hljs-keyword">if</span> (!Result.SUCCESSED.getCode().equals(result.getCode())) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BusinessException</span>(result.getCode(), result.getMessage());
+    }
+    <span class="hljs-keyword">return</span> response;
+  };
+}
+</code></pre>0:{"buildId":"ebbBpN4C8fJWIIp9HDXlV","rsc":["$","$1","c",{"children":[[["$","div",null,{"className":"relative w-full h-[50vh] min-h-[320px] flex items-center justify-center bg-cover bg-center","style":{"backgroundImage":"url(/img/header_img/lml_bg.jpg)"},"children":[["$","div",null,{"className":"hero-overlay absolute inset-0"}],["$","div",null,{"className":"relative z-10 text-center px-6 animate-fade-in","children":[["$","h1",null,{"className":"text-3xl md:text-5xl font-bold text-white mb-3 tracking-tight","children":"Spring clound - Feign 错误的处理"}],""]}]]}],["$","article",null,{"className":"max-w-3xl mx-auto px-6 py-12","children":[["$","div",null,{"className":"flex items-center gap-4 text-sm text-[var(--color-text-secondary)] mb-8 pb-6 border-b border-[var(--color-border)]","children":[["$","time",null,{"dateTime":"2023-01-29","children":"2023-01-29"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"2 min read"}],[["$","span",null,{"children":"·"}],["$","div",null,{"className":"flex flex-wrap gap-2","children":[["$","$L2","Spring clound",{"href":"/tags/Spring%20clound","className":"text-xs px-2.5 py-1 rounded-full bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors","children":"Spring clound"}],["$","$L2","Feign",{"href":"/tags/Feign","className":"text-xs px-2.5 py-1 rounded-full bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors","children":"Feign"}]]}]]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4"]}]],null,"$L5"]}],"loading":null,"isPartial":false}
+4:["$","div",null,{"className":"mt-16 pt-6 border-t border-[var(--color-border)]","children":["$","$L2",null,{"href":"/","className":"text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors text-sm","children":"← 返回首页"}]}]
+5:["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]
+8:null

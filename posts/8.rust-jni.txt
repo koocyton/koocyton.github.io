@@ -1,0 +1,236 @@
+1:"$Sreact.fragment"
+2:I[2971,["/_next/static/chunks/738cd64d740dcd1e.js"],"default"]
+3:I[39756,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"default"]
+4:I[37457,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"default"]
+5:I[22016,["/_next/static/chunks/738cd64d740dcd1e.js"],""]
+a:I[68027,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"default"]
+:HL["/_next/static/chunks/8bace9f2ee97c740.css","style"]
+0:{"P":null,"b":"ebbBpN4C8fJWIIp9HDXlV","c":["","posts","8.rust-jni"],"q":"","i":false,"f":[[["",{"children":["posts",{"children":[["slug","8.rust-jni","d"],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/8bace9f2ee97c740.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/738cd64d740dcd1e.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"zh-CN","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"dangerouslySetInnerHTML":{"__html":"\n              try {\n                if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {\n                  document.documentElement.classList.add('dark');\n                }\n              } catch (_) {}\n            "}}]}],["$","body",null,{"className":"min-h-screen flex flex-col antialiased","children":[["$","$L2",null,{}],["$","main",null,{"className":"flex-1","children":["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"min-h-screen flex items-center justify-center","children":["$","div",null,{"className":"text-center","children":[["$","h1",null,{"className":"text-6xl font-bold text-[var(--color-text)] mb-4","children":"404"}],["$","p",null,{"className":"text-xl text-[var(--color-text-secondary)] mb-8","children":"页面不存在"}],["$","$L5",null,{"href":"/","className":"px-6 py-3 rounded-lg bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)] transition-colors","children":"返回首页"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","footer",null,{"className":"border-t border-[var(--color-border)] bg-[var(--color-bg-secondary)]","children":["$","div",null,{"className":"max-w-5xl mx-auto px-6 py-10","children":["$","div",null,{"className":"flex flex-col md:flex-row justify-between items-center gap-4","children":[["$","div",null,{"className":"text-center md:text-left","children":[["$","p",null,{"className":"text-sm text-[var(--color-text-secondary)]","children":["© ",2026," 一洼绿地 · koocyton"]}],["$","p",null,{"className":"text-xs text-[var(--color-text-secondary)] mt-1","children":"Built with Next.js & Tailwind CSS"}]]}],["$","div",null,{"className":"flex items-center gap-6","children":[["$","$L5",null,{"href":"https://github.com/koocyton","target":"_blank","rel":"noopener noreferrer","className":"text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors","children":["$","svg",null,{"className":"w-5 h-5","fill":"currentColor","viewBox":"0 0 24 24","children":["$","path",null,{"d":"M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"}]}]}],["$","$L5",null,{"href":"mailto:koocyton@gmail.com","className":"text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors","children":["$","svg",null,{"className":"w-5 h-5","fill":"none","viewBox":"0 0 24 24","stroke":"currentColor","children":["$","path",null,{"strokeLinecap":"round","strokeLinejoin":"round","strokeWidth":2,"d":"M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"}]}]}]]}]]}]}]}]]}]]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":"$L6","templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["$L7",{"children":["$L8",{},null,false,false]},null,false,false]},null,false,false]},null,false,false],"$L9",false]],"m":"$undefined","G":["$a",[]],"S":true}
+c:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
+d:"$Sreact.suspense"
+f:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"ViewportBoundary"]
+11:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"MetadataBoundary"]
+6:["$","$L4",null,{}]
+7:["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+8:["$","$1","c",{"children":["$Lb",null,["$","$Lc",null,{"children":["$","$d",null,{"name":"Next.MetadataOutlet","children":"$@e"}]}]]}]
+9:["$","$1","h",{"children":[null,["$","$Lf",null,{"children":"$L10"}],["$","div",null,{"hidden":true,"children":["$","$L11",null,{"children":["$","$d",null,{"name":"Next.Metadata","children":"$L12"}]}]}],null]}]
+13:T42b8,<h3>目标</h3>
+<p>在配置 Java 项目时，配制参数通过 AES 来加密，但反编译 class，很容易拿到秘钥，
+Rust 开发 JNI 提供给 java 接口，是一个相对安全的方法(不是绝对安全)。</p>
+<h3>配置 Cargo.toml</h3>
+<pre><code class="hljs language-bash">[package]
+name = <span class="hljs-string">"jniutil"</span>
+version = <span class="hljs-string">"0.2.1"</span>
+authors = [<span class="hljs-string">"koocyton &#x3C;koocyton@gmail.com>"</span>]
+edition = <span class="hljs-string">"2021"</span>
+
+<span class="hljs-comment"># See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html</span>
+
+[dependencies]
+jni = <span class="hljs-string">"0.19.0"</span>
+rust-crypto = <span class="hljs-string">"0.2"</span>
+clap = <span class="hljs-string">"2.33"</span>
+hex = <span class="hljs-string">"0.4"</span>
+<span class="hljs-built_in">base64</span> = <span class="hljs-string">"0.13.0"</span>
+<span class="hljs-comment"># reqwest = { version = "0.11", features = ["json"] }</span>
+<span class="hljs-comment"># tokio = { version = "1.0", features = ["full"] }</span>
+<span class="hljs-comment"># futures = { version = "0.3.*" }</span>
+<span class="hljs-comment"># async-std = { version = "1", features = ["attributes", "tokio1"] }</span>
+
+[lib]
+crate_type = [<span class="hljs-string">"cdylib"</span>]
+</code></pre>
+<h3>代码 /src/lib.rs</h3>
+<pre><code class="hljs language-rust"><span class="hljs-comment">// This is the interface to the JVM that we'll</span>
+<span class="hljs-comment">// call the majority of our methods on.</span>
+<span class="hljs-keyword">use</span> jni::JNIEnv;
+
+<span class="hljs-comment">// These objects are what you should use as arguments to your native function.</span>
+<span class="hljs-comment">// They carry extra lifetime information to prevent them escaping this context</span>
+<span class="hljs-comment">// and getting used after being GC'd.</span>
+<span class="hljs-keyword">use</span> jni::objects::{JClass, JString};
+
+<span class="hljs-comment">// This is just a pointer. We'll be returning it from our function.</span>
+<span class="hljs-comment">// We can't return one of the objects with lifetime information because the</span>
+<span class="hljs-comment">// lifetime checker won't let us.</span>
+<span class="hljs-keyword">use</span> jni::sys::jstring;
+
+<span class="hljs-keyword">use</span> std::error::Error;
+<span class="hljs-keyword">use</span> crypto::aes::KeySize::KeySize128;
+<span class="hljs-keyword">use</span> crypto::blockmodes::PkcsPadding;
+<span class="hljs-keyword">use</span> crypto::buffer::{RefReadBuffer, RefWriteBuffer};
+
+<span class="hljs-keyword">const</span> DP_CBC_KEY: &#x26;<span class="hljs-type">str</span>    = <span class="hljs-string">"1111111111111111"</span>;
+<span class="hljs-keyword">const</span> DP_CBC_OFFSET: &#x26;<span class="hljs-type">str</span> = <span class="hljs-string">"1111111111111111"</span>;
+
+<span class="hljs-comment">// 注意包名 com_doopp_common_util_JniUtil</span>
+<span class="hljs-meta">#[no_mangle]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-keyword">extern</span> <span class="hljs-string">"system"</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">Java_com_doopp_common_util_JniUtil_dpEnc</span>(
+    env: JNIEnv,
+    <span class="hljs-comment">// this is the class that owns our</span>
+    <span class="hljs-comment">// static method. Not going to be</span>
+    <span class="hljs-comment">// used, but still needs to have</span>
+    <span class="hljs-comment">// an argument slot</span>
+    _class: JClass,
+    input: JString,
+) <span class="hljs-punctuation">-></span> jstring {
+    <span class="hljs-comment">// First, we have to get the string out of java. Check out the `strings`</span>
+    <span class="hljs-comment">// module for more info on how this works.</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">input</span>: <span class="hljs-type">String</span> = env
+        .<span class="hljs-title function_ invoke__">get_string</span>(input)
+        .<span class="hljs-title function_ invoke__">expect</span>(<span class="hljs-string">"Couldn't get java string!"</span>)
+        .<span class="hljs-title function_ invoke__">into</span>();
+    <span class="hljs-comment">// Then we have to create a new java string to return. Again, more info</span>
+    <span class="hljs-comment">// in the `strings` module.</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">enc_str</span>: <span class="hljs-type">String</span> = <span class="hljs-title function_ invoke__">encrypt</span>(DP_CBC_KEY, DP_CBC_OFFSET, input.<span class="hljs-title function_ invoke__">as_str</span>()).<span class="hljs-title function_ invoke__">unwrap</span>();
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">output</span> = env
+        .<span class="hljs-title function_ invoke__">new_string</span>(enc_str)
+        .<span class="hljs-title function_ invoke__">expect</span>(<span class="hljs-string">"Couldn't get encrypt string!"</span>);
+    <span class="hljs-comment">// Finally, extract the raw pointer to return.</span>
+    output.<span class="hljs-title function_ invoke__">into_inner</span>()
+}
+
+<span class="hljs-comment">// 注意包名 com_doopp_common_util_JniUtil</span>
+<span class="hljs-meta">#[no_mangle]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-keyword">extern</span> <span class="hljs-string">"system"</span> <span class="hljs-keyword">fn</span> <span class="hljs-title function_">Java_com_doopp_common_util_JniUtil_dpDec</span>(
+    env: JNIEnv,
+    <span class="hljs-comment">// this is the class that owns our</span>
+    <span class="hljs-comment">// static method. Not going to be</span>
+    <span class="hljs-comment">// used, but still needs to have</span>
+    <span class="hljs-comment">// an argument slot</span>
+    _class: JClass,
+    input: JString,
+) <span class="hljs-punctuation">-></span> jstring {
+    <span class="hljs-comment">// First, we have to get the string out of java. Check out the `strings`</span>
+    <span class="hljs-comment">// module for more info on how this works.</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">input</span>: <span class="hljs-type">String</span> = env
+        .<span class="hljs-title function_ invoke__">get_string</span>(input)
+        .<span class="hljs-title function_ invoke__">expect</span>(<span class="hljs-string">"Couldn't get java string!"</span>)
+        .<span class="hljs-title function_ invoke__">into</span>();
+    <span class="hljs-comment">// Then we have to create a new java string to return. Again, more info</span>
+    <span class="hljs-comment">// in the `strings` module.</span>
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">dec_str</span>: <span class="hljs-type">String</span> = <span class="hljs-title function_ invoke__">decrypt</span>(DP_CBC_KEY, DP_CBC_OFFSET, input.<span class="hljs-title function_ invoke__">as_str</span>()).<span class="hljs-title function_ invoke__">unwrap</span>();
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">output</span> = env
+        .<span class="hljs-title function_ invoke__">new_string</span>(dec_str)
+        .<span class="hljs-title function_ invoke__">expect</span>(<span class="hljs-string">"Couldn't get decrypt string!"</span>);
+    <span class="hljs-comment">// Finally, extract the raw pointer to return.</span>
+    output.<span class="hljs-title function_ invoke__">into_inner</span>()
+}
+
+<span class="hljs-comment">/// 加密</span>
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">encrypt</span>(key: &#x26;<span class="hljs-type">str</span>, iv: &#x26;<span class="hljs-type">str</span>, text: &#x26;<span class="hljs-type">str</span>) <span class="hljs-punctuation">-></span> <span class="hljs-type">Result</span>&#x3C;<span class="hljs-type">String</span>, <span class="hljs-type">Box</span>&#x3C;<span class="hljs-keyword">dyn</span> Error>> {
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">encrypt</span> = crypto::aes::<span class="hljs-title function_ invoke__">cbc_encryptor</span>(
+        KeySize128,
+        key.<span class="hljs-title function_ invoke__">as_bytes</span>(),
+        iv.<span class="hljs-title function_ invoke__">as_bytes</span>(),
+        PkcsPadding
+    );
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">read_buffer</span> = RefReadBuffer::<span class="hljs-title function_ invoke__">new</span>(text.<span class="hljs-title function_ invoke__">as_bytes</span>());
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">result</span> = <span class="hljs-built_in">vec!</span>[<span class="hljs-number">0</span>; <span class="hljs-number">4096</span>];
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">write_buffer</span> = RefWriteBuffer::<span class="hljs-title function_ invoke__">new</span>(&#x26;<span class="hljs-keyword">mut</span> result);
+    encrypt.<span class="hljs-title function_ invoke__">encrypt</span>(&#x26;<span class="hljs-keyword">mut</span> read_buffer, &#x26;<span class="hljs-keyword">mut</span> write_buffer, <span class="hljs-literal">true</span>).<span class="hljs-title function_ invoke__">unwrap</span>();
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">enc_str</span> = base64::<span class="hljs-title function_ invoke__">encode_config</span>(<span class="hljs-title function_ invoke__">trim</span>(&#x26;result)?, base64::STANDARD);
+    <span class="hljs-title function_ invoke__">Ok</span>(enc_str)
+}
+
+<span class="hljs-comment">/// 解密</span>
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">decrypt</span>(key: &#x26;<span class="hljs-type">str</span>, iv: &#x26;<span class="hljs-type">str</span>, input: &#x26;<span class="hljs-type">str</span>) <span class="hljs-punctuation">-></span> <span class="hljs-type">Result</span>&#x3C;<span class="hljs-type">String</span>, <span class="hljs-type">Box</span>&#x3C;<span class="hljs-keyword">dyn</span> Error>> {
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">decrypt</span> = crypto::aes::<span class="hljs-title function_ invoke__">cbc_decryptor</span>(
+        KeySize128,
+        key.<span class="hljs-title function_ invoke__">as_bytes</span>(),
+        iv.<span class="hljs-title function_ invoke__">as_bytes</span>(),
+        PkcsPadding
+    );
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">base_text</span> = base64::<span class="hljs-title function_ invoke__">decode_config</span>(input, base64::STANDARD)?;
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">read_buffer</span> = RefReadBuffer::<span class="hljs-title function_ invoke__">new</span>(&#x26;base_text);
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">result</span> = <span class="hljs-built_in">vec!</span>[<span class="hljs-number">0</span>; input.<span class="hljs-title function_ invoke__">len</span>()];
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">write_buffer</span> = RefWriteBuffer::<span class="hljs-title function_ invoke__">new</span>(&#x26;<span class="hljs-keyword">mut</span> result);
+    decrypt.<span class="hljs-title function_ invoke__">decrypt</span>(&#x26;<span class="hljs-keyword">mut</span> read_buffer, &#x26;<span class="hljs-keyword">mut</span> write_buffer, <span class="hljs-literal">true</span>).<span class="hljs-title function_ invoke__">unwrap</span>();
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">dec_str</span> = <span class="hljs-type">String</span>::<span class="hljs-title function_ invoke__">from_utf8</span>(<span class="hljs-title function_ invoke__">trim</span>(&#x26;result)?)?;
+    <span class="hljs-title function_ invoke__">Ok</span>(dec_str)
+}
+
+<span class="hljs-keyword">fn</span> <span class="hljs-title function_">trim</span>(input: &#x26;<span class="hljs-type">Vec</span>&#x3C;<span class="hljs-type">u8</span>>)  <span class="hljs-punctuation">-></span> <span class="hljs-type">Result</span>&#x3C;<span class="hljs-type">Vec</span>&#x3C;<span class="hljs-type">u8</span>>, <span class="hljs-type">Box</span>&#x3C;<span class="hljs-keyword">dyn</span> Error>> {
+    <span class="hljs-keyword">let</span> <span class="hljs-variable">zero</span> : <span class="hljs-type">u8</span> = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut </span><span class="hljs-variable">fz_idx</span> = input.<span class="hljs-title function_ invoke__">len</span>();
+    <span class="hljs-keyword">for</span> (idx, val) <span class="hljs-keyword">in</span> input.<span class="hljs-title function_ invoke__">iter</span>().<span class="hljs-title function_ invoke__">rev</span>().<span class="hljs-title function_ invoke__">enumerate</span>() {
+        <span class="hljs-keyword">if</span> &#x26;zero!=val
+        {
+            fz_idx = fz_idx - idx;
+            <span class="hljs-keyword">break</span>;
+        }
+    }
+    <span class="hljs-title function_ invoke__">Ok</span>(input[<span class="hljs-number">0</span>..fz_idx].<span class="hljs-title function_ invoke__">to_vec</span>())
+}
+
+<span class="hljs-meta">#[cfg(test)]</span>
+<span class="hljs-keyword">mod</span> tests {
+    <span class="hljs-meta">#[test]</span>
+    <span class="hljs-keyword">fn</span> <span class="hljs-title function_">it_works</span>() {}
+}
+</code></pre>
+<h3>Java 调用接口，注意包名和 lib.rs 的一致</h3>
+<pre><code class="hljs language-java"><span class="hljs-keyword">package</span> com.doopp.common.util; <span class="hljs-comment">// 注意包名</span>
+
+<span class="hljs-keyword">import</span> java.io.IOException;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">JniUtil</span> {
+
+    <span class="hljs-keyword">static</span> {
+        <span class="hljs-type">String</span> <span class="hljs-variable">osName</span> <span class="hljs-operator">=</span> System.getProperties().getProperty(<span class="hljs-string">"os.name"</span>);
+        <span class="hljs-comment">// other linux</span>
+        <span class="hljs-type">String</span> <span class="hljs-variable">nativeLibrary</span> <span class="hljs-operator">=</span> <span class="hljs-string">"/jni_lib/libjniutil.so"</span>;
+        <span class="hljs-comment">// win</span>
+        <span class="hljs-keyword">if</span> (osName.contains(<span class="hljs-string">"Win"</span>)) {
+            nativeLibrary = <span class="hljs-string">"/jni_lib/jniutil.dll"</span>;
+        }
+        <span class="hljs-comment">// mac</span>
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (osName.contains(<span class="hljs-string">"Mac"</span>)) {
+            nativeLibrary = <span class="hljs-string">"/jni_lib/libjniutil.dylib"</span>;
+        }
+        <span class="hljs-keyword">try</span> {
+            NativeUtil.loadLibraryFromJar(nativeLibrary);
+        }
+        <span class="hljs-keyword">catch</span> (IOException e) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(e);
+        }
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">native</span> String <span class="hljs-title function_">dpDec</span><span class="hljs-params">(String encText)</span>;
+}
+</code></pre>
+<h3>编译 libjniutil.dylib 并拷贝在 /resources/jni_lib 目录下</h3>
+<pre><code class="hljs language-bash">$ cargo build
+   Compiling libc v0.2.126
+   Compiling memchr v2.5.0
+   Compiling unicode-width v0.1.9
+   Compiling bytes v1.2.0
+   Compiling cfg-if v1.0.0
+   Compiling cesu8 v1.1.0
+   Compiling ansi_term v0.12.1
+   Compiling thiserror v1.0.31
+   Compiling <span class="hljs-built_in">log</span> v0.4.17
+   Compiling textwrap v0.11.0
+   Compiling jni-sys v0.3.0
+   Compiling rustc-serialize v0.3.24
+   Compiling bitflags v1.3.2
+   Compiling vec_map v0.8.2
+   Compiling strsim v0.8.0
+   Compiling <span class="hljs-built_in">base64</span> v0.13.0
+   Compiling hex v0.4.3
+   Compiling rand v0.4.6
+   Compiling atty v0.2.14
+   Compiling <span class="hljs-keyword">time</span> v0.1.44
+   Compiling clap v2.34.0
+   Compiling combine v4.6.4
+   Compiling rand v0.3.23
+   Compiling rust-crypto v0.2.36
+   Compiling jni v0.19.0
+   Compiling jniutil v0.2.1 (/Users/develop/Project/rust-jni-lib)
+   Finished dev [unoptimized + debuginfo] target(s) <span class="hljs-keyword">in</span> 17.05s
+</code></pre>b:[["$","div",null,{"className":"relative w-full h-[50vh] min-h-[320px] flex items-center justify-center bg-cover bg-center","style":{"backgroundImage":"url(/img/header_img/lml_bg.jpg)"},"children":[["$","div",null,{"className":"hero-overlay absolute inset-0"}],["$","div",null,{"className":"relative z-10 text-center px-6 animate-fade-in","children":[["$","h1",null,{"className":"text-3xl md:text-5xl font-bold text-white mb-3 tracking-tight","children":"Rust 通过 JNI 提供加密解密接口"}],""]}]]}],["$","article",null,{"className":"max-w-3xl mx-auto px-6 py-12","children":[["$","div",null,{"className":"flex items-center gap-4 text-sm text-[var(--color-text-secondary)] mb-8 pb-6 border-b border-[var(--color-border)]","children":[["$","time",null,{"dateTime":"2023-01-08","children":"2023-01-08"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"5 min read"}],[["$","span",null,{"children":"·"}],["$","div",null,{"className":"flex flex-wrap gap-2","children":[["$","$L5","rust",{"href":"/tags/rust","className":"text-xs px-2.5 py-1 rounded-full bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors","children":"rust"}]]}]]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$13"}}],"$L14"]}]]
+14:["$","div",null,{"className":"mt-16 pt-6 border-t border-[var(--color-border)]","children":["$","$L5",null,{"href":"/","className":"text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors text-sm","children":"← 返回首页"}]}]
+10:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+15:I[27201,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"IconMark"]
+e:null
+12:[["$","title","0",{"children":"Rust 通过 JNI 提供加密解密接口 - 一洼绿地"}],["$","meta","1",{"name":"description","content":"Rust 通过 JNI 提供加密解密接口"}],["$","meta","2",{"name":"keywords","content":"javascript java php emacs spring linux flutter"}],["$","link","3",{"rel":"icon","href":"/img/avatar/favicon.png"}],["$","$L15","4",{}]]

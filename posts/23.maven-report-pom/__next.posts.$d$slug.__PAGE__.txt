@@ -1,0 +1,58 @@
+1:"$Sreact.fragment"
+2:I[22016,["/_next/static/chunks/738cd64d740dcd1e.js"],""]
+6:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
+7:"$Sreact.suspense"
+3:Tca1,<h2>Maven 库指定 POM</h2>
+<h3>简介</h3>
+<p>| 将 Maven 库里的文件，用指定的 POM 来处理
+| 让使用依赖的项目，自行选择不同的 java 包
+| 比如提供 JsonUtil 工具类，同时支持 jackson 和 Gson 或 fastjson
+| 但并不用三个都拉进依赖包
+| 可以提供一个空依赖的 POM 文件，用户自行依赖</p>
+<h3>settings.xml 配置 repositoryId</h3>
+<pre><code class="hljs language-xml"><span class="hljs-tag">&#x3C;<span class="hljs-name">servers</span>></span>
+
+    <span class="hljs-tag">&#x3C;<span class="hljs-name">server</span>></span>
+      <span class="hljs-tag">&#x3C;<span class="hljs-name">id</span>></span>sonatype-snapshots<span class="hljs-tag">&#x3C;/<span class="hljs-name">id</span>></span>
+      <span class="hljs-tag">&#x3C;<span class="hljs-name">username</span>></span>username<span class="hljs-tag">&#x3C;/<span class="hljs-name">username</span>></span>
+      <span class="hljs-tag">&#x3C;<span class="hljs-name">password</span>></span>password<span class="hljs-tag">&#x3C;/<span class="hljs-name">password</span>></span>
+    <span class="hljs-tag">&#x3C;/<span class="hljs-name">server</span>></span>
+
+    <span class="hljs-tag">&#x3C;<span class="hljs-name">server</span>></span>
+      <span class="hljs-tag">&#x3C;<span class="hljs-name">id</span>></span>sonatype-release<span class="hljs-tag">&#x3C;/<span class="hljs-name">id</span>></span>
+      <span class="hljs-tag">&#x3C;<span class="hljs-name">username</span>></span>username<span class="hljs-tag">&#x3C;/<span class="hljs-name">username</span>></span>
+      <span class="hljs-tag">&#x3C;<span class="hljs-name">password</span>></span>password<span class="hljs-tag">&#x3C;/<span class="hljs-name">password</span>></span>
+    <span class="hljs-tag">&#x3C;/<span class="hljs-name">server</span>></span>
+
+    ...
+<span class="hljs-tag">&#x3C;/<span class="hljs-name">servers</span>></span>
+</code></pre>
+<h3>复制 POM (deploy-pom.xml) 文件出来，去除不必要的部分</h3>
+<h3>在命令行执行 mvn 命令</h3>
+<pre><code class="hljs language-sh">mvn \
+  deploy:deploy-file -DskipTests \
+  -Darguments=<span class="hljs-string">"-Dmaven.javadoc.failOnError=false"</span> \
+  -DgroupId=project.groupId \
+  -DartifactId=project.artifactId \
+  -Dversion=1.0.0-SNAPSHOT \
+  -Dpackaging=jar \
+  -Dfile=/project-target/project-1.0.0-SNAPSHOT.jar \
+  -DrepositoryId=sonatype-snapshots \
+  -DpomFile=deploy-pom.xml \
+  -Durl=https://oss.sonatype.org/content/repositories/snapshots
+</code></pre>
+<h3>发布到正式库</h3>
+<blockquote>
+<p>先签名发布，然后到 oss.sonatype 上选  close</p>
+</blockquote>
+<pre><code class="hljs language-sh">mvn gpg:sign-and-deploy-file
+  -Durl=<span class="hljs-string">"https://oss.sonatype.org/service/local/staging/deploy/maven2/"</span>
+  -DrepositoryId=<span class="hljs-string">"sonatype-release"</span>
+  -Dfile=<span class="hljs-string">"target/boot3-web-core-1.0.2.RELEASE.jar"</span>
+  -Dsources=<span class="hljs-string">"target/boot3-web-core-1.0.2.RELEASE-sources.jar"</span>
+  -Djavadoc=<span class="hljs-string">"target/boot3-web-core-1.0.2.RELEASE-javadoc.jar"</span>
+  -DpomFile=<span class="hljs-string">"target/pom-deploy.xml"</span>
+</code></pre>0:{"buildId":"ebbBpN4C8fJWIIp9HDXlV","rsc":["$","$1","c",{"children":[[["$","div",null,{"className":"relative w-full h-[50vh] min-h-[320px] flex items-center justify-center bg-cover bg-center","style":{"backgroundImage":"url(/img/larsonist.jpg)"},"children":[["$","div",null,{"className":"hero-overlay absolute inset-0"}],["$","div",null,{"className":"relative z-10 text-center px-6 animate-fade-in","children":[["$","h1",null,{"className":"text-3xl md:text-5xl font-bold text-white mb-3 tracking-tight","children":"Maven 库指定 POM"}],""]}]]}],["$","article",null,{"className":"max-w-3xl mx-auto px-6 py-12","children":[["$","div",null,{"className":"flex items-center gap-4 text-sm text-[var(--color-text-secondary)] mb-8 pb-6 border-b border-[var(--color-border)]","children":[["$","time",null,{"dateTime":"2024-09-13","children":"2024-09-13"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"1 min read"}],[["$","span",null,{"children":"·"}],["$","div",null,{"className":"flex flex-wrap gap-2","children":[["$","$L2","java",{"href":"/tags/java","className":"text-xs px-2.5 py-1 rounded-full bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors","children":"java"}],["$","$L2","maven",{"href":"/tags/maven","className":"text-xs px-2.5 py-1 rounded-full bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors","children":"maven"}],["$","$L2","pom",{"href":"/tags/pom","className":"text-xs px-2.5 py-1 rounded-full bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors","children":"pom"}],["$","$L2","deploy",{"href":"/tags/deploy","className":"text-xs px-2.5 py-1 rounded-full bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors","children":"deploy"}]]}]]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4"]}]],null,"$L5"]}],"loading":null,"isPartial":false}
+4:["$","div",null,{"className":"mt-16 pt-6 border-t border-[var(--color-border)]","children":["$","$L2",null,{"href":"/","className":"text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors text-sm","children":"← 返回首页"}]}]
+5:["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]
+8:null

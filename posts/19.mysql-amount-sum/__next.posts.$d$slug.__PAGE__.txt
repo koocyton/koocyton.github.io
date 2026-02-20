@@ -1,0 +1,110 @@
+1:"$Sreact.fragment"
+2:I[22016,["/_next/static/chunks/738cd64d740dcd1e.js"],""]
+6:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
+7:"$Sreact.suspense"
+3:T1c7e,<h2>按年月日分别统计成功的入账总计，外加一个待完成的总计</h2>
+<h3>当发生支付时</h3>
+<pre><code class="hljs language-SQL"><span class="hljs-keyword">INSERT INTO</span> `amount_sum`
+    (`user_id`, `business_type`, `last_date`, `year_sum`, `month_sum`, `day_sum`, `pending_sum`)
+    <span class="hljs-keyword">VALUES</span>
+        (#{userId}, #{businessType}, <span class="hljs-type">DATE</span>(#{<span class="hljs-type">date</span>}), <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-built_in">ABS</span>(${amount}))
+    <span class="hljs-keyword">ON</span> DUPLICATE KEY <span class="hljs-keyword">UPDATE</span>
+        # 输入年小于等于(不变)，输入年份大(<span class="hljs-number">0</span>)
+        `year_sum` <span class="hljs-operator">=</span> IF(
+                <span class="hljs-keyword">YEAR</span>(#{<span class="hljs-type">date</span>}) <span class="hljs-operator">&#x26;</span>lt;<span class="hljs-operator">=</span> <span class="hljs-keyword">YEAR</span>(`last_date`),
+                `year_sum`,
+                <span class="hljs-number">0</span>
+            ),
+        # 输入月小于等于(不变)，输入月大(<span class="hljs-number">0</span>)
+        `month_sum` <span class="hljs-operator">=</span> IF(
+                LAST_DAY(#{<span class="hljs-type">date</span>}) <span class="hljs-operator">&#x26;</span>lt;<span class="hljs-operator">=</span> LAST_DAY(`last_date`),
+                `month_sum`,
+                <span class="hljs-number">0</span>
+            ),
+        # 输入日小于等于(不变)，输入日大(<span class="hljs-number">0</span>)
+        `day_sum` <span class="hljs-operator">=</span> IF(
+                <span class="hljs-type">DATE</span>(#{<span class="hljs-type">date</span>}) <span class="hljs-operator">&#x26;</span>lt;<span class="hljs-operator">=</span> <span class="hljs-type">DATE</span>(`last_date`),
+                `day_sum`,
+                <span class="hljs-number">0</span>
+            ),
+        # <span class="hljs-operator">+</span> pending amount
+        `pending_sum` <span class="hljs-operator">=</span> `pending_sum` <span class="hljs-operator">+</span> ${amount},
+        # <span class="hljs-keyword">last</span> <span class="hljs-type">date</span> 只能增加
+        `last_date` <span class="hljs-operator">=</span> IF(
+                <span class="hljs-type">DATE</span>(#{<span class="hljs-type">date</span>}) <span class="hljs-operator">&#x26;</span>lt; <span class="hljs-type">DATE</span>(`last_date`),
+                `last_date`,
+                <span class="hljs-type">DATE</span>(#{<span class="hljs-type">date</span>})
+            );
+</code></pre>
+<h3>当最终支付成功后</h3>
+<pre><code class="hljs language-SQL"><span class="hljs-keyword">UPDATE</span>
+    `amount_sum`
+<span class="hljs-keyword">SET</span>
+    `last_date`<span class="hljs-operator">=</span>IF(
+            <span class="hljs-type">DATE</span>(#{<span class="hljs-type">date</span>}) <span class="hljs-operator">&#x26;</span>lt; <span class="hljs-type">DATE</span>(`last_date`),
+            `last_date`,
+            <span class="hljs-type">DATE</span>(#{<span class="hljs-type">date</span>})
+        ),
+    `year_sum`<span class="hljs-operator">=</span>IF(
+            <span class="hljs-keyword">YEAR</span>(`last_date`) <span class="hljs-operator">=</span> <span class="hljs-keyword">YEAR</span>(#{<span class="hljs-type">date</span>}),
+            `year_sum` <span class="hljs-operator">+</span> ${amount},
+            IF(<span class="hljs-keyword">YEAR</span>(#{<span class="hljs-type">date</span>}) <span class="hljs-operator">&#x26;</span>lt; <span class="hljs-keyword">YEAR</span>(`last_date`), `year_sum`, ${amount})
+        ),
+    `month_sum`<span class="hljs-operator">=</span>IF(
+            LAST_DAY(`last_date`) <span class="hljs-operator">=</span> LAST_DAY(#{<span class="hljs-type">date</span>}),
+            `month_sum` <span class="hljs-operator">+</span> ${amount},
+            IF(LAST_DAY(#{<span class="hljs-type">date</span>}) <span class="hljs-operator">&#x26;</span>lt; LAST_DAY(`last_date`), `month_sum`, ${amount})
+        ),
+    `day_sum`<span class="hljs-operator">=</span>IF(
+            <span class="hljs-type">DATE</span>(`last_date`) <span class="hljs-operator">=</span> <span class="hljs-type">DATE</span>(#{<span class="hljs-type">date</span>}),
+            `day_sum` <span class="hljs-operator">+</span> ${amount},
+            IF(<span class="hljs-type">DATE</span>(#{<span class="hljs-type">date</span>}) <span class="hljs-operator">&#x26;</span>lt; <span class="hljs-type">DATE</span>(`last_date`), `day_sum`, ${amount})
+        ),
+    `pending_sum`<span class="hljs-operator">=</span>IF(
+            `pending_sum` <span class="hljs-operator">&#x26;</span>gt; ${amount},
+            `pending_sum` <span class="hljs-operator">-</span> ${amount},
+            <span class="hljs-number">0</span>
+        )
+<span class="hljs-keyword">WHERE</span>
+    `user_id`<span class="hljs-operator">=</span>#{userId}
+    <span class="hljs-keyword">AND</span>
+    `business_type`<span class="hljs-operator">=</span>#{businessType};
+
+</code></pre>
+<h3>当最终支付失败后</h3>
+<pre><code class="hljs language-SQL"><span class="hljs-keyword">UPDATE</span>
+    `amount_sum`
+<span class="hljs-keyword">SET</span>
+    `last_date`<span class="hljs-operator">=</span>IF(
+            <span class="hljs-type">DATE</span>(#{<span class="hljs-type">date</span>}) <span class="hljs-operator">&#x26;</span>lt; <span class="hljs-type">DATE</span>(`last_date`),
+            `last_date`,
+            <span class="hljs-type">DATE</span>(#{<span class="hljs-type">date</span>})
+        ),
+    `year_sum`<span class="hljs-operator">=</span>IF(
+            <span class="hljs-keyword">YEAR</span>(#{<span class="hljs-type">date</span>}) <span class="hljs-operator">&#x26;</span>lt;<span class="hljs-operator">=</span> <span class="hljs-keyword">YEAR</span>(`last_date`),
+            `year_sum`,
+            <span class="hljs-number">0</span>
+        ),
+    `month_sum`<span class="hljs-operator">=</span>IF(
+            LAST_DAY(#{<span class="hljs-type">date</span>}) <span class="hljs-operator">&#x26;</span>lt;<span class="hljs-operator">=</span> LAST_DAY(`last_date`),
+            `month_sum`,
+            <span class="hljs-number">0</span>
+        ),
+    `day_sum`<span class="hljs-operator">=</span>IF(
+            <span class="hljs-type">DATE</span>(#{<span class="hljs-type">date</span>}) <span class="hljs-operator">&#x26;</span>lt;<span class="hljs-operator">=</span> <span class="hljs-type">DATE</span>(`last_date`),
+            `day_sum`,
+            <span class="hljs-number">0</span>
+        ),
+    `pending_sum`<span class="hljs-operator">=</span>IF(
+            `pending_sum` <span class="hljs-operator">&#x26;</span>gt; ${amount},
+            `pending_sum` <span class="hljs-operator">-</span> ${amount},
+            <span class="hljs-number">0</span>
+        )
+<span class="hljs-keyword">WHERE</span>
+    `user_id`<span class="hljs-operator">=</span>#{userId}
+    <span class="hljs-keyword">AND</span>
+    `business_type`<span class="hljs-operator">=</span>#{businessType};
+</code></pre>0:{"buildId":"ebbBpN4C8fJWIIp9HDXlV","rsc":["$","$1","c",{"children":[[["$","div",null,{"className":"relative w-full h-[50vh] min-h-[320px] flex items-center justify-center bg-cover bg-center","style":{"backgroundImage":"url(/img/larsonist.jpg)"},"children":[["$","div",null,{"className":"hero-overlay absolute inset-0"}],["$","div",null,{"className":"relative z-10 text-center px-6 animate-fade-in","children":[["$","h1",null,{"className":"text-3xl md:text-5xl font-bold text-white mb-3 tracking-tight","children":"一段复杂的 SQL"}],""]}]]}],["$","article",null,{"className":"max-w-3xl mx-auto px-6 py-12","children":[["$","div",null,{"className":"flex items-center gap-4 text-sm text-[var(--color-text-secondary)] mb-8 pb-6 border-b border-[var(--color-border)]","children":[["$","time",null,{"dateTime":"2024-05-11","children":"2024-05-11"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"2 min read"}],[["$","span",null,{"children":"·"}],["$","div",null,{"className":"flex flex-wrap gap-2","children":[["$","$L2","mybatis",{"href":"/tags/mybatis","className":"text-xs px-2.5 py-1 rounded-full bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors","children":"mybatis"}],["$","$L2","sql",{"href":"/tags/sql","className":"text-xs px-2.5 py-1 rounded-full bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors","children":"sql"}]]}]]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4"]}]],null,"$L5"]}],"loading":null,"isPartial":false}
+4:["$","div",null,{"className":"mt-16 pt-6 border-t border-[var(--color-border)]","children":["$","$L2",null,{"href":"/","className":"text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors text-sm","children":"← 返回首页"}]}]
+5:["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]
+8:null

@@ -1,0 +1,107 @@
+1:"$Sreact.fragment"
+2:I[22016,["/_next/static/chunks/738cd64d740dcd1e.js"],""]
+6:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
+7:"$Sreact.suspense"
+3:T1d6d,<h2>Java 通用本地缓存</h2>
+<h3>简介</h3>
+<p>| 主要还是利用好 ReentrantReadWriteLock 对读写进行锁操作</p>
+<h3>代码例子</h3>
+<pre><code class="hljs language-java">
+<span class="hljs-keyword">import</span> org.junit.Test;
+
+<span class="hljs-keyword">import</span> java.util.ArrayList;
+<span class="hljs-keyword">import</span> java.util.Collection;
+<span class="hljs-keyword">import</span> java.util.HashMap;
+<span class="hljs-keyword">import</span> java.util.Map;
+<span class="hljs-keyword">import</span> java.util.concurrent.locks.Lock;
+<span class="hljs-keyword">import</span> java.util.concurrent.locks.ReentrantReadWriteLock;
+<span class="hljs-keyword">import</span> java.util.function.Supplier;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CacheLockTest</span> {
+
+    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Map&#x3C;String, Integer> expireTimeMap = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&#x3C;>();
+    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Map&#x3C;String, ReentrantReadWriteLock> readWriteLockMap = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&#x3C;>();
+    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Map&#x3C;String, Object> readWriteCacheMap = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&#x3C;>();
+
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">fetchCachedTest</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception {
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> ii=<span class="hljs-number">0</span>; ii&#x3C;<span class="hljs-number">20</span>; ii++) {
+            Thread.sleep(<span class="hljs-number">1000</span>);
+            System.out.println(<span class="hljs-string">">>>"</span> + ii);
+            fetchCached(<span class="hljs-string">"abc"</span>, <span class="hljs-number">0</span>,  ()->{<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&#x3C;String>(){{add(<span class="hljs-string">"aa"</span>); add(<span class="hljs-string">"bb"</span>);}};});
+            fetchCached(<span class="hljs-string">"abcd"</span>, <span class="hljs-number">10</span>,  ()->{<span class="hljs-keyword">return</span> <span class="hljs-number">111</span>;});
+            fetchCached(<span class="hljs-string">"abcde"</span>, <span class="hljs-number">10</span>,  ()->{<span class="hljs-keyword">return</span> <span class="hljs-string">"abc"</span>;});
+        }
+    }
+
+    <span class="hljs-keyword">public</span> Object <span class="hljs-title function_">fetchCached</span><span class="hljs-params">(String key, Integer expireSecond, Supplier&#x3C;Object> supplier)</span> {
+        <span class="hljs-keyword">if</span> (readWriteLockMap.get(key) == <span class="hljs-literal">null</span>) {
+            readWriteLockMap.put(key, <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReentrantReadWriteLock</span>());
+        }
+        <span class="hljs-keyword">return</span> fetchCached(key, expireSecond, readWriteLockMap.get(key).readLock(), readWriteLockMap.get(key).writeLock(), supplier);
+    }
+
+    <span class="hljs-keyword">public</span> Object <span class="hljs-title function_">fetchCached</span><span class="hljs-params">(String key, Integer expireSecond, Lock readLock, Lock writeLock, Supplier&#x3C;Object> supplier)</span> {
+
+        <span class="hljs-comment">// 当前时间</span>
+        <span class="hljs-type">int</span> <span class="hljs-variable">nowTime</span> <span class="hljs-operator">=</span> (<span class="hljs-type">int</span>)(System.currentTimeMillis()/<span class="hljs-number">1000</span>);
+        <span class="hljs-comment">// 上次时间</span>
+        <span class="hljs-type">Integer</span> <span class="hljs-variable">lastTime</span> <span class="hljs-operator">=</span> expireTimeMap.get(key);
+
+        readLock.lock();
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-comment">// System.out.printf("%s , %s, %s, %s%n", key, nowTime, lastTime, expireSecond);</span>
+            <span class="hljs-keyword">if</span> (readWriteCacheMap.get(key)!=<span class="hljs-literal">null</span> &#x26;&#x26; lastTime!=<span class="hljs-literal">null</span> &#x26;&#x26; (expireSecond==<span class="hljs-number">0</span> || nowTime&#x3C;expireSecond+lastTime)) {
+                <span class="hljs-keyword">return</span> readWriteCacheMap.get(key);
+            }
+        }
+        <span class="hljs-keyword">finally</span> {
+            readLock.unlock();
+        }
+
+        writeLock.lock();
+        <span class="hljs-keyword">try</span> {
+            lastTime = expireTimeMap.get(key);
+            <span class="hljs-keyword">if</span> (readWriteCacheMap.get(key)!=<span class="hljs-literal">null</span> &#x26;&#x26; lastTime!=<span class="hljs-literal">null</span> &#x26;&#x26; (expireSecond==<span class="hljs-number">0</span> || nowTime&#x3C;expireSecond+lastTime)) {
+                <span class="hljs-keyword">return</span> readWriteCacheMap.get(key);
+            }
+            <span class="hljs-type">Object</span> <span class="hljs-variable">cacheValue</span> <span class="hljs-operator">=</span> supplier.get();
+            <span class="hljs-type">Object</span> <span class="hljs-variable">oldCacheValue</span> <span class="hljs-operator">=</span> readWriteCacheMap.get(key);
+            <span class="hljs-keyword">if</span> (oldCacheValue <span class="hljs-keyword">instanceof</span> Map) {
+                ((Map&#x3C;?, ?>) oldCacheValue).clear();
+                <span class="hljs-keyword">if</span> (cacheValue <span class="hljs-keyword">instanceof</span> Map) {
+                    ((Map&#x3C;?, ?>) oldCacheValue).putAll((Map) cacheValue);
+                }
+                <span class="hljs-keyword">else</span> {
+                    readWriteCacheMap.put(key, cacheValue);
+                }
+            }
+            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (oldCacheValue <span class="hljs-keyword">instanceof</span> Collection) {
+                ((Collection&#x3C;?>) oldCacheValue).clear();
+                <span class="hljs-keyword">if</span> (cacheValue <span class="hljs-keyword">instanceof</span> Collection) {
+                    System.out.println(<span class="hljs-string">"cacheValue > "</span> + cacheValue);
+                    ((Collection&#x3C;?>) oldCacheValue).addAll((Collection) cacheValue);
+                }
+                <span class="hljs-keyword">else</span> {
+                    readWriteCacheMap.put(key, cacheValue);
+                }
+            }
+            <span class="hljs-keyword">else</span> {
+                readWriteCacheMap.put(key, cacheValue);
+            }
+            <span class="hljs-comment">// System.out.println(readWriteCacheMap.get(key));</span>
+            expireTimeMap.put(key, nowTime);
+            <span class="hljs-comment">// return key</span>
+            <span class="hljs-keyword">return</span> cacheValue;
+        }
+        <span class="hljs-keyword">finally</span> {
+            writeLock.unlock();
+        }
+    }
+}
+
+
+</code></pre>0:{"buildId":"ebbBpN4C8fJWIIp9HDXlV","rsc":["$","$1","c",{"children":[[["$","div",null,{"className":"relative w-full h-[50vh] min-h-[320px] flex items-center justify-center bg-cover bg-center","style":{"backgroundImage":"url(/img/larsonist.jpg)"},"children":[["$","div",null,{"className":"hero-overlay absolute inset-0"}],["$","div",null,{"className":"relative z-10 text-center px-6 animate-fade-in","children":[["$","h1",null,{"className":"text-3xl md:text-5xl font-bold text-white mb-3 tracking-tight","children":"Java 通用本地缓存"}],""]}]]}],["$","article",null,{"className":"max-w-3xl mx-auto px-6 py-12","children":[["$","div",null,{"className":"flex items-center gap-4 text-sm text-[var(--color-text-secondary)] mb-8 pb-6 border-b border-[var(--color-border)]","children":[["$","time",null,{"dateTime":"2024-09-03","children":"2024-09-03"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"2 min read"}],[["$","span",null,{"children":"·"}],["$","div",null,{"className":"flex flex-wrap gap-2","children":[["$","$L2","java",{"href":"/tags/java","className":"text-xs px-2.5 py-1 rounded-full bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors","children":"java"}],["$","$L2","map",{"href":"/tags/map","className":"text-xs px-2.5 py-1 rounded-full bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors","children":"map"}],["$","$L2","ReentrantReadWriteLock",{"href":"/tags/ReentrantReadWriteLock","className":"text-xs px-2.5 py-1 rounded-full bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors","children":"ReentrantReadWriteLock"}]]}]]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4"]}]],null,"$L5"]}],"loading":null,"isPartial":false}
+4:["$","div",null,{"className":"mt-16 pt-6 border-t border-[var(--color-border)]","children":["$","$L2",null,{"href":"/","className":"text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors text-sm","children":"← 返回首页"}]}]
+5:["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]
+8:null

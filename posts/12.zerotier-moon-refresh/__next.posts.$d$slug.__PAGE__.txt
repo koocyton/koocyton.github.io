@@ -1,0 +1,71 @@
+1:"$Sreact.fragment"
+2:I[22016,["/_next/static/chunks/738cd64d740dcd1e.js"],""]
+6:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
+7:"$Sreact.suspense"
+3:T1050,<h4>创建 moon.json</h4>
+<pre><code class="hljs language-text"># zerotier-cli info
+200 info 860dcfb934 1.12.2 ONLINE
+
+# zerotier-idtool initmoon identity.public >> moon.json.source
+</code></pre>
+<h4>编辑 /var/lib/zerotier-one/moon.json.source</h4>
+<ul>
+<li>stableEndpoints 内编辑如下，插入占位字符串 $endPoint1</li>
+</ul>
+<pre><code class="hljs language-JSON"><span class="hljs-punctuation">{</span>
+ <span class="hljs-attr">"id"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"860dcfb934"</span><span class="hljs-punctuation">,</span>
+ <span class="hljs-attr">"objtype"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"world"</span><span class="hljs-punctuation">,</span>
+ <span class="hljs-attr">"roots"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+  <span class="hljs-punctuation">{</span>
+   <span class="hljs-attr">"identity"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"860dcfb934:0:......."</span><span class="hljs-punctuation">,</span>
+   <span class="hljs-attr">"stableEndpoints"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+     <span class="hljs-string">"$endPoint1/9993"</span>
+   <span class="hljs-punctuation">]</span>
+  <span class="hljs-punctuation">}</span>
+ <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+ <span class="hljs-attr">"signingKey"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"....."</span><span class="hljs-punctuation">,</span>
+ <span class="hljs-attr">"signingKey_SECRET"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"......"</span><span class="hljs-punctuation">,</span>
+ <span class="hljs-attr">"updatesMustBeSignedBy"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"....."</span><span class="hljs-punctuation">,</span>
+ <span class="hljs-attr">"worldType"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"moon"</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<h4>刷新脚本</h4>
+<ul>
+<li>/var/lib/zerotier-one/refresh_moon.sh</li>
+</ul>
+<pre><code class="hljs language-bash"><span class="hljs-meta">#!/bin/bash</span>
+
+<span class="hljs-built_in">cd</span> /var/lib/zerotier-one
+<span class="hljs-comment"># current ip</span>
+CURR_IP=`curl -s http://ip.3322.net`
+<span class="hljs-comment"># last ip</span>
+LAST_IP=`<span class="hljs-built_in">cat</span> moon.json | <span class="hljs-built_in">tr</span> <span class="hljs-string">'\n'</span> <span class="hljs-string">' '</span> | sed <span class="hljs-string">'s/.*"\([^"]*\)\/\(9993\).*/\1/g'</span>`
+<span class="hljs-comment"># eq 如果 IP 不变，则退出</span>
+<span class="hljs-keyword">if</span> [ <span class="hljs-string">"<span class="hljs-variable">$CURR_IP</span>"</span> == <span class="hljs-string">"<span class="hljs-variable">$LAST_IP</span>"</span> ]
+<span class="hljs-keyword">then</span>
+  <span class="hljs-built_in">exit</span> 0
+<span class="hljs-keyword">fi</span>
+<span class="hljs-comment"># replact ip, get new moon.json，将占位字符串替换成新的 IP</span>
+sed <span class="hljs-string">'s/$endPoint1/'</span><span class="hljs-variable">${CURR_IP}</span><span class="hljs-string">'/g'</span> /var/lib/zerotier-one/moon.json.source > /var/lib/zerotier-one/moon.json
+
+<span class="hljs-comment"># create /var/lib/zerotier-one/000000860dcfb934.moon</span>
+zerotier-idtool genmoon /var/lib/zerotier-one/moon.json
+<span class="hljs-comment"># move to moons.d</span>
+<span class="hljs-built_in">mv</span> /var/lib/zerotier-one/000000860dcfb934.moon /var/lib/zerotier-one/moons.d/
+<span class="hljs-comment"># restart zerotier</span>
+systemctl stop zerotier-one
+<span class="hljs-built_in">sleep</span> 1
+systemctl start zerotier-one
+<span class="hljs-built_in">sleep</span> 1
+<span class="hljs-comment"># print info</span>
+zerotier-cli listmoons
+</code></pre>
+<h4>每十分钟执行一次</h4>
+<ul>
+<li># crontab -e</li>
+</ul>
+<pre><code class="hljs language-bash">0 */10 * * * /var/lib/zerotier-one/refresh_moon.sh
+</code></pre>0:{"buildId":"ebbBpN4C8fJWIIp9HDXlV","rsc":["$","$1","c",{"children":[[["$","div",null,{"className":"relative w-full h-[50vh] min-h-[320px] flex items-center justify-center bg-cover bg-center","style":{"backgroundImage":"url(/img/header_img/lml_bg.jpg)"},"children":[["$","div",null,{"className":"hero-overlay absolute inset-0"}],["$","div",null,{"className":"relative z-10 text-center px-6 animate-fade-in","children":[["$","h1",null,{"className":"text-3xl md:text-5xl font-bold text-white mb-3 tracking-tight","children":"Zerotier 自动更换 Moon 的 IP 配置"}],""]}]]}],["$","article",null,{"className":"max-w-3xl mx-auto px-6 py-12","children":[["$","div",null,{"className":"flex items-center gap-4 text-sm text-[var(--color-text-secondary)] mb-8 pb-6 border-b border-[var(--color-border)]","children":[["$","time",null,{"dateTime":"2023-11-15","children":"2023-11-15"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"1 min read"}],[["$","span",null,{"children":"·"}],["$","div",null,{"className":"flex flex-wrap gap-2","children":[["$","$L2","Zerotier",{"href":"/tags/Zerotier","className":"text-xs px-2.5 py-1 rounded-full bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors","children":"Zerotier"}]]}]]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4"]}]],null,"$L5"]}],"loading":null,"isPartial":false}
+4:["$","div",null,{"className":"mt-16 pt-6 border-t border-[var(--color-border)]","children":["$","$L2",null,{"href":"/","className":"text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors text-sm","children":"← 返回首页"}]}]
+5:["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]
+8:null

@@ -1,0 +1,50 @@
+1:"$Sreact.fragment"
+2:I[22016,["/_next/static/chunks/738cd64d740dcd1e.js"],""]
+4:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
+5:"$Sreact.suspense"
+3:T680,<h2>说个漫画类 APP 加载</h2>
+<p>flutter listview 因为要释放屏幕外的图片，</p>
+<p>那么会状态刷新时，前面的图片高度会变成 0</p>
+<p>使得滚动乱跳。那么可以用 Sizedbox 将图片框起来</p>
+<p>当图片加载后，计算图片的高度，将这个高度赋值给 sizedbox</p>
+<p>这样 List 里的 每个元素高度就被固定了，滚动起来不会乱跳</p>
+<p>用 customscroll 应该更合适些，因为每个元素的高度不一致</p>
+<h2>代码</h2>
+<pre><code class="hljs language-dart">ListView.builder(
+  itemCount: controller.chapterImagesRx.length,
+  padding: EdgeInsets.all(0),
+  controller: controller.scrollController,
+  itemBuilder: (c, o){
+    String imageUrl = controller.chapterImagesRx[o];
+    imageUrl = imageUrl.startsWith("//") ? "https:$imageUrl" : imageUrl;
+
+    // image
+    final Image image = Image.network(
+      imageUrl,
+      fit: BoxFit.contain
+    );
+
+    // stream
+    final ImageStream stream = image.image.resolve(ImageConfiguration.empty);
+
+    // listener
+    stream.addListener(
+      // 加载完图片，拿到图片的高度，赋值给图片的容器
+      ImageStreamListener((ImageInfo info, bool _) {
+        final uii.Image image = info.image;
+        final imageWidth = image.width.toDouble();
+        final imageHeight = image.height.toDouble();
+        // 注意在这里设置高度
+        controller.chapterImagesHeightRx[o] = ui.windowWidth * (imageHeight/imageWidth);
+      }),
+    );
+    // 图片的容器
+    return SizedBox(
+      // 在这里使用高度
+      height: controller.chapterImagesHeightRx[o],
+      child: image,
+    );
+  }
+);
+</code></pre>0:{"buildId":"ebbBpN4C8fJWIIp9HDXlV","rsc":["$","$1","c",{"children":[[["$","div",null,{"className":"relative w-full h-[50vh] min-h-[320px] flex items-center justify-center bg-cover bg-center","style":{"backgroundImage":"url(/img/larsonist.jpg)"},"children":[["$","div",null,{"className":"hero-overlay absolute inset-0"}],["$","div",null,{"className":"relative z-10 text-center px-6 animate-fade-in","children":[["$","h1",null,{"className":"text-3xl md:text-5xl font-bold text-white mb-3 tracking-tight","children":"Flutter lazy image"}],""]}]]}],["$","article",null,{"className":"max-w-3xl mx-auto px-6 py-12","children":[["$","div",null,{"className":"flex items-center gap-4 text-sm text-[var(--color-text-secondary)] mb-8 pb-6 border-b border-[var(--color-border)]","children":[["$","time",null,{"dateTime":"2025-06-10","children":"2025-06-10"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"2 min read"}],[["$","span",null,{"children":"·"}],["$","div",null,{"className":"flex flex-wrap gap-2","children":[["$","$L2","lazy",{"href":"/tags/lazy","className":"text-xs px-2.5 py-1 rounded-full bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors","children":"lazy"}],["$","$L2","image",{"href":"/tags/image","className":"text-xs px-2.5 py-1 rounded-full bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors","children":"image"}],["$","$L2","input",{"href":"/tags/input","className":"text-xs px-2.5 py-1 rounded-full bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors","children":"input"}]]}]]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$3"}}],["$","div",null,{"className":"mt-16 pt-6 border-t border-[var(--color-border)]","children":["$","$L2",null,{"href":"/","className":"text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors text-sm","children":"← 返回首页"}]}]]}]],null,["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"loading":null,"isPartial":false}
+6:null

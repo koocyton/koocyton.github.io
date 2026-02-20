@@ -1,0 +1,107 @@
+1:"$Sreact.fragment"
+2:I[22016,["/_next/static/chunks/738cd64d740dcd1e.js"],""]
+6:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
+7:"$Sreact.suspense"
+3:Td9e,<h3>新年快乐</h3>
+<h3>Happy New Year</h3>
+<h3>Feliz Año Nuevo</h3>
+<h3>नया साल मुबारक हो</h3>
+<h3>سنة جديدة سعيدة</h3>
+<h3>শুভ নববর্ষ</h3>
+<h3>Feliz Ano Novo</h3>
+<h3>С Новым Годом</h3>
+<h3>新年おめでとうございます</h3>
+<h3>Frohes Neues Jahr</h3>
+<h3>Bonne Année</h3>
+<h3>새해 복 많이 받으세요</h3>
+<h3>Buon Anno</h3>
+<h3>Mutlu Yıllar</h3>
+<h3>สวัสดีปีใหม่</h3>
+<h3>Chúc Mừng Năm Mới</h3>
+<h3>Selamat Tahun Baru</h3>
+<h3>Szczęśliwego Nowego Roku</h3>
+<h3>نیا سال مبارک ہو</h3>
+<h3>Gelukkig Nieuwjaar</h3>
+<h3>Gott Nytt År</h3>
+<h3>Godt Nytt År</h3>
+<h3>Godt Nytår</h3>
+<h3>Καλή Χρονιά</h3>
+<h3>Boldog Új Évet</h3>
+<h3>Šťastný Nový Rok</h3>
+<h3>La Mulți Ani</h3>
+<h3>Šťastný Nový Rok</h3>
+<h3>Срећна Нова Година</h3>
+<h3>Sretna Nova Godina</h3>
+<h3>Честита Нова Година</h3>
+<h3>Selamat Tahun Baru</h3>
+<h3>Manigong Bagong Taon</h3>
+<h3>שנה טובה</h3>
+<h3>Hyvää Uutta Vuotta</h3>
+<h3>Athbhliain faoi Mhaise Daoibh</h3>
+<h3>Blwyddyn Newydd Dda</h3>
+<h3>Bliadhna Mhath Ùr</h3>
+<h3>З Новим Роком</h3>
+<h3>Жаңа жыл құтты болсын</h3>
+<h3>Laimingų Naujųjų Metų</h3>
+<h3>Laimīgu Jauno Gadu</h3>
+<h3>Head Uut Aastat</h3>
+<h3>Srečno Novo Leto</h3>
+<h3>Urte Berri On</h3>
+<h3>Feliç Any Nou</h3>
+<h3>Feliz Aninovo</h3>
+<h3>Gleðilegt Nýtt Ár</h3>
+<h3>Նոր Տարի Շնորհավոր</h3>
+<h3>გილოცავთ ახალ წელს</h3>
+<h3>Täze ýyl bilen!</h3>
+<h3>Yeni İliniz Mübarək</h3>
+<h3>Шинэ жилийн мэнд хүргэе</h3>
+<h3>سال نو مبارک</h3>
+<h3>نوی کال مو مبارک</h3>
+<h3>Newroz Pîroz Be</h3>
+<h3>Heri ya Mwaka Mpya</h3>
+<h3>Barka da Sabuwar Shekara</h3>
+<h3>Eku Odun Tuntun</h3>
+<h3>Afọ Ọhụrụ Kwụọ Ọma</h3>
+<h3>አዲስ አመት ደስታ</h3>
+<h3>Sanad Cusub oo Wanaagsan</h3>
+<h3>Unyaka Omusha Omuhle</h3>
+<h3>Unyaka Omtsha Omhle</h3>
+<h3>Felix Annus Novus</h3>
+<h3>Bon Ano Novo</h3>
+<h3>Gëzuar Vitin e Ri</h3>
+<h3>Яңы йыл менән!</h3>
+<h3>Соли Нави Бахтиёр</h3>
+<h3>Yangi Yilingiz Muborak Bo‘lsin</h3>
+<h3>Яңа ел белән!</h3>
+<h3>نو سال مبارک</h3>
+<h3>Tratry ny Taombaovao</h3>
+<h3>ಹೋಸ ವರ್ಷ ಶುಭಾಶಯಗಳು</h3>
+<h3>പുതുവത്സരാശംസകൾ</h3>
+<h3>புதிய ஆண்டு வாழ்த்துகள்</h3>
+<h3>కొత్త సంవత్సరం శుభాకాంక్షలు</h3>
+<h3>નવું વર્ષ મુબારક</h3>
+<h3>नवीन वर्षाच्या शुभेच्छा</h3>
+<h3>ਨਵਾਂ ਸਾਲ ਮੁਬਾਰਕ ਹੋਵੇ</h3>
+<h3>نئون سال مبارڪ</h3>
+<h3>নতুন বছৰৰ শুভেচ্ছা</h3>
+<h3>नयाँ वर्षको शुभकामना</h3>
+<h3>Malipayong Bag-ong Tuig</h3>
+<h3>Maugmang Bagong Taon</h3>
+<h3>Bòn Ane</h3>
+<h3>Hari Tau Hou</h3>
+<h3>Manuia le Tausaga Fou</h3>
+<h3>Iaorana i te Matahiti Api</h3>
+<h3>Hapi Niu Yia</h3>
+<h3>Aseggas Ameggaz</h3>
+<h3>Selamat Tahun Baru</h3>
+<h3>ဟမ် မီးယ့်‌နယ်ကွာ</h3>
+<h3>Umnyaka Omusha Omuhle</h3>
+<h3>Lokkich Nijjier</h3>
+<h3>Bun Onn Nov</h3>
+<h3>Bagong Taon Masaya</h3>
+<h3>Bag-ong Tuig</h3>
+<h3>Rahajeng Warsa Anyar</h3>
+<h3>Шэнэ жэлэй амар мэндэ</h3>0:{"buildId":"ebbBpN4C8fJWIIp9HDXlV","rsc":["$","$1","c",{"children":[[["$","div",null,{"className":"relative w-full h-[50vh] min-h-[320px] flex items-center justify-center bg-cover bg-center","style":{"backgroundImage":"url(/img/larsonist.jpg)"},"children":[["$","div",null,{"className":"hero-overlay absolute inset-0"}],["$","div",null,{"className":"relative z-10 text-center px-6 animate-fade-in","children":[["$","h1",null,{"className":"text-3xl md:text-5xl font-bold text-white mb-3 tracking-tight","children":"2025 happy new year"}],""]}]]}],["$","article",null,{"className":"max-w-3xl mx-auto px-6 py-12","children":[["$","div",null,{"className":"flex items-center gap-4 text-sm text-[var(--color-text-secondary)] mb-8 pb-6 border-b border-[var(--color-border)]","children":[["$","time",null,{"dateTime":"2025-01-01","children":"2025-01-01"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"3 min read"}],[["$","span",null,{"children":"·"}],["$","div",null,{"className":"flex flex-wrap gap-2","children":[["$","$L2","2025",{"href":"/tags/2025","className":"text-xs px-2.5 py-1 rounded-full bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors","children":2025}],["$","$L2","happy new year",{"href":"/tags/happy%20new%20year","className":"text-xs px-2.5 py-1 rounded-full bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors","children":"happy new year"}]]}]]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4"]}]],null,"$L5"]}],"loading":null,"isPartial":false}
+4:["$","div",null,{"className":"mt-16 pt-6 border-t border-[var(--color-border)]","children":["$","$L2",null,{"href":"/","className":"text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors text-sm","children":"← 返回首页"}]}]
+5:["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]
+8:null

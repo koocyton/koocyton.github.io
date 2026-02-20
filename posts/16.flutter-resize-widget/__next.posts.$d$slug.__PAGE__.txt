@@ -1,0 +1,188 @@
+1:"$Sreact.fragment"
+2:I[22016,["/_next/static/chunks/738cd64d740dcd1e.js"],""]
+6:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
+7:"$Sreact.suspense"
+3:T127f,<h2>前言</h2>
+<blockquote>
+<p>flutter 监听键盘弹起，收回是个不好处理的问题，
+下面的代码也许能帮到你</p>
+</blockquote>
+<pre><code class="hljs language-dart">
+
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+class KeyboardEventWidget extends StatefulWidget {
+
+  final Widget Function(double bottomMargin)? childBuild;
+
+  final Widget? child;
+
+  final Function(double bottomMargin)? onKbShowBegin;
+
+  final Function(double bottomMargin)? onKbShowEnd;
+
+  final Function(double bottomMargin)? onKbShowing;
+
+  final Function(double bottomMargin)? onKbHideBegin;
+
+  final Function(double bottomMargin)? onKbHideEnd;
+
+  final Function(double bottomMargin)? onKbHiding;
+
+  final Function(double bottomMargin)? onKbSliding;
+
+  const KeyboardEventWidget({
+    // build child
+    this.childBuild,
+    this.child,
+    // show
+    this.onKbShowBegin,
+    this.onKbShowing,
+    this.onKbShowEnd,
+    // hide
+    this.onKbHideBegin,
+    this.onKbHiding,
+    this.onKbHideEnd,
+    // sliding
+    this.onKbSliding,
+    super.key
+  });
+
+  @override
+  State&#x3C;KeyboardEventWidget> createState() => KeyboardEventWidgetState();
+}
+
+class KeyboardEventWidgetState extends State&#x3C;KeyboardEventWidget> with WidgetsBindingObserver {
+
+  double bottomMargin = 0;
+
+  bool isKbHiding = false;
+
+  bool isKbShowing = false;
+
+  bool isKbShowEnd = false;
+
+  final Duration checkEndDelay = const Duration(milliseconds: 200);
+
+  @override
+  Widget build(BuildContext context) {
+    if (widget.child!=null) {
+      return widget.child!;
+    }
+    else if (widget.childBuild!=null) {
+      return widget.childBuild!(bottomMargin);
+    }
+    return const SizedBox();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    SystemChannels.textInput.invokeMethod('TextInput.hide');
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  // 监听
+  @override
+  void didChangeMetrics() {
+    super.didChangeMetrics();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      double newBottomMargin = MediaQuery.of(context).viewInsets.bottom;
+      // show begin
+      if (newBottomMargin > 0 &#x26;&#x26; bottomMargin == 0) {
+        showBegin(newBottomMargin);
+      }
+      // show end &#x26;&#x26; bottomMargin>200
+      else if (newBottomMargin == bottomMargin &#x26;&#x26; isKbShowing &#x26;&#x26; isKbShowEnd) {
+        showEnd(newBottomMargin);
+      }
+      // hide begin // bottomMargin>270
+      else if (newBottomMargin &#x3C; bottomMargin &#x26;&#x26; !isKbHiding) {
+        hideBegin(newBottomMargin);
+      }
+      // hide end
+      else if (newBottomMargin == 0 &#x26;&#x26; bottomMargin > 0) {
+        hideEnd(newBottomMargin);
+      }
+      // moving
+      if (isKbHiding &#x26;&#x26; bottomMargin > newBottomMargin) {
+        if (widget.onKbSliding!=null) {
+          widget.onKbSliding!(newBottomMargin>20 ? newBottomMargin-20 : 0);
+        }
+        if (widget.onKbHiding!=null) {
+          widget.onKbHiding!(newBottomMargin>20 ? newBottomMargin-20 : 0);
+        }
+      }
+      else if (isKbShowing &#x26;&#x26; bottomMargin &#x3C; newBottomMargin) {
+        if (widget.onKbShowing!=null) {
+          widget.onKbShowing!(newBottomMargin);
+        }
+        if (widget.onKbSliding!=null) {
+          widget.onKbSliding!(newBottomMargin);
+        }
+      }
+      bottomMargin = newBottomMargin;
+    });
+  }
+
+  void showBegin(double newBottomMargin) {
+    isKbShowing = true;
+    if (widget.onKbShowBegin!=null) {
+      widget.onKbShowBegin!(0);
+    }
+    Future.delayed(checkEndDelay, (){
+        isKbShowEnd = true;
+        Future.delayed(const Duration(milliseconds: 100), (){
+          if (newBottomMargin == bottomMargin &#x26;&#x26; isKbShowing &#x26;&#x26; isKbShowEnd) {
+            showEnd(newBottomMargin);
+          }
+        });
+    });
+  }
+
+  void showEnd(double newBottomMargin) {
+    isKbShowing = false;
+    isKbShowEnd = false;
+    if (widget.onKbShowing!=null) {
+      widget.onKbShowing!(newBottomMargin);
+    }
+    if (widget.onKbSliding!=null) {
+      widget.onKbSliding!(newBottomMargin);
+    }
+    if (widget.onKbShowEnd!=null) {
+      widget.onKbShowEnd!(newBottomMargin);
+    }
+  }
+
+  void hideBegin(double newBottomMargin) {
+    isKbHiding = true;
+    if (widget.onKbHideBegin!=null) {
+      widget.onKbHideBegin!(newBottomMargin);
+    }
+  }
+
+  void hideEnd(double newBottomMargin) {
+    isKbHiding = false;
+    if (widget.onKbSliding!=null) {
+      widget.onKbSliding!(0);
+    }
+    if (widget.onKbHiding!=null) {
+      widget.onKbHiding!(0);
+    }
+    if (widget.onKbHideEnd!=null) {
+      widget.onKbHideEnd!(0);
+    }
+  }
+}
+
+</code></pre>0:{"buildId":"ebbBpN4C8fJWIIp9HDXlV","rsc":["$","$1","c",{"children":[[["$","div",null,{"className":"relative w-full h-[50vh] min-h-[320px] flex items-center justify-center bg-cover bg-center","style":{"backgroundImage":"url(/img/larsonist.jpg)"},"children":[["$","div",null,{"className":"hero-overlay absolute inset-0"}],["$","div",null,{"className":"relative z-10 text-center px-6 animate-fade-in","children":[["$","h1",null,{"className":"text-3xl md:text-5xl font-bold text-white mb-3 tracking-tight","children":"Flutter resize widget"}],""]}]]}],["$","article",null,{"className":"max-w-3xl mx-auto px-6 py-12","children":[["$","div",null,{"className":"flex items-center gap-4 text-sm text-[var(--color-text-secondary)] mb-8 pb-6 border-b border-[var(--color-border)]","children":[["$","time",null,{"dateTime":"2024-03-14","children":"2024-03-14"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"2 min read"}],[["$","span",null,{"children":"·"}],["$","div",null,{"className":"flex flex-wrap gap-2","children":[["$","$L2","flutter",{"href":"/tags/flutter","className":"text-xs px-2.5 py-1 rounded-full bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors","children":"flutter"}],["$","$L2","app",{"href":"/tags/app","className":"text-xs px-2.5 py-1 rounded-full bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors","children":"app"}]]}]]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4"]}]],null,"$L5"]}],"loading":null,"isPartial":false}
+4:["$","div",null,{"className":"mt-16 pt-6 border-t border-[var(--color-border)]","children":["$","$L2",null,{"href":"/","className":"text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors text-sm","children":"← 返回首页"}]}]
+5:["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]
+8:null

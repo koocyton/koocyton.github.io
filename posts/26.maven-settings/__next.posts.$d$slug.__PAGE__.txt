@@ -1,0 +1,132 @@
+1:"$Sreact.fragment"
+2:I[22016,["/_next/static/chunks/738cd64d740dcd1e.js"],""]
+6:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
+7:"$Sreact.suspense"
+3:T3402,<h2>Maven settings.xml 配置</h2>
+<h3>简介</h3>
+<p>| 无</p>
+<h3>主要逻辑</h3>
+<pre><code class="hljs language-xml">
+<span class="hljs-meta">&#x3C;?xml version=<span class="hljs-string">"1.0"</span> encoding=<span class="hljs-string">"UTF-8"</span>?></span>
+<span class="hljs-tag">&#x3C;<span class="hljs-name">settings</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://maven.apache.org/SETTINGS/1.0.0"</span>
+          <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
+          <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://maven.apache.org/SETTINGS/1.0.0
+                              http://maven.apache.org/xsd/settings-1.0.0.xsd"</span>></span>
+ 
+    <span class="hljs-tag">&#x3C;<span class="hljs-name">localRepository</span>></span>/Users/henry/.m2/repository<span class="hljs-tag">&#x3C;/<span class="hljs-name">localRepository</span>></span>
+    <span class="hljs-tag">&#x3C;<span class="hljs-name">interactiveMode</span>></span>false<span class="hljs-tag">&#x3C;/<span class="hljs-name">interactiveMode</span>></span>
+
+    <span class="hljs-tag">&#x3C;<span class="hljs-name">server</span>></span>
+      <span class="hljs-tag">&#x3C;<span class="hljs-name">id</span>></span>sonatype-snapshots<span class="hljs-tag">&#x3C;/<span class="hljs-name">id</span>></span>
+      <span class="hljs-tag">&#x3C;<span class="hljs-name">username</span>></span>xxx<span class="hljs-tag">&#x3C;/<span class="hljs-name">username</span>></span>
+      <span class="hljs-tag">&#x3C;<span class="hljs-name">password</span>></span>xxxxxxxxx<span class="hljs-tag">&#x3C;/<span class="hljs-name">password</span>></span>
+    <span class="hljs-tag">&#x3C;/<span class="hljs-name">server</span>></span>
+
+    <span class="hljs-tag">&#x3C;<span class="hljs-name">server</span>></span>
+      <span class="hljs-tag">&#x3C;<span class="hljs-name">id</span>></span>sonatype-release<span class="hljs-tag">&#x3C;/<span class="hljs-name">id</span>></span>
+      <span class="hljs-tag">&#x3C;<span class="hljs-name">username</span>></span>xxx<span class="hljs-tag">&#x3C;/<span class="hljs-name">username</span>></span>
+      <span class="hljs-tag">&#x3C;<span class="hljs-name">password</span>></span>xxxxxxx<span class="hljs-tag">&#x3C;/<span class="hljs-name">password</span>></span>
+    <span class="hljs-tag">&#x3C;/<span class="hljs-name">server</span>></span>
+
+    <span class="hljs-tag">&#x3C;<span class="hljs-name">mirrors</span>></span>
+        <span class="hljs-tag">&#x3C;<span class="hljs-name">mirror</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">id</span>></span>central<span class="hljs-tag">&#x3C;/<span class="hljs-name">id</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">url</span>></span>https://repo.maven.apache.org/maven2<span class="hljs-tag">&#x3C;/<span class="hljs-name">url</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">mirrorOf</span>></span>central<span class="hljs-tag">&#x3C;/<span class="hljs-name">mirrorOf</span>></span>
+        <span class="hljs-tag">&#x3C;/<span class="hljs-name">mirror</span>></span>
+ 
+        <span class="hljs-comment">&#x3C;!-- 阿里云镜像仓库 --></span>
+        <span class="hljs-tag">&#x3C;<span class="hljs-name">mirror</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">id</span>></span>aliyun<span class="hljs-tag">&#x3C;/<span class="hljs-name">id</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">url</span>></span>https://maven.aliyun.com/repository/public<span class="hljs-tag">&#x3C;/<span class="hljs-name">url</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">mirrorOf</span>></span>central<span class="hljs-tag">&#x3C;/<span class="hljs-name">mirrorOf</span>></span>
+        <span class="hljs-tag">&#x3C;/<span class="hljs-name">mirror</span>></span>
+ 
+        <span class="hljs-comment">&#x3C;!-- 华为云镜像仓库 --></span>
+        <span class="hljs-tag">&#x3C;<span class="hljs-name">mirror</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">id</span>></span>huaweicloud<span class="hljs-tag">&#x3C;/<span class="hljs-name">id</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">url</span>></span>https://mirrors.huaweicloud.com/repository/maven/<span class="hljs-tag">&#x3C;/<span class="hljs-name">url</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">mirrorOf</span>></span>central<span class="hljs-tag">&#x3C;/<span class="hljs-name">mirrorOf</span>></span>
+        <span class="hljs-tag">&#x3C;/<span class="hljs-name">mirror</span>></span>
+ 
+        <span class="hljs-comment">&#x3C;!-- 网易云镜像仓库 --></span>
+        <span class="hljs-tag">&#x3C;<span class="hljs-name">mirror</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">id</span>></span>netease<span class="hljs-tag">&#x3C;/<span class="hljs-name">id</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">url</span>></span>https://maven.163.com/repository/maven-public/<span class="hljs-tag">&#x3C;/<span class="hljs-name">url</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">mirrorOf</span>></span>central<span class="hljs-tag">&#x3C;/<span class="hljs-name">mirrorOf</span>></span>
+        <span class="hljs-tag">&#x3C;/<span class="hljs-name">mirror</span>></span>
+ 
+        <span class="hljs-comment">&#x3C;!-- 清华大学镜像仓库 --></span>
+        <span class="hljs-tag">&#x3C;<span class="hljs-name">mirror</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">id</span>></span>tsinghua<span class="hljs-tag">&#x3C;/<span class="hljs-name">id</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">url</span>></span>https://mirrors.tuna.tsinghua.edu.cn/maven/<span class="hljs-tag">&#x3C;/<span class="hljs-name">url</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">mirrorOf</span>></span>central<span class="hljs-tag">&#x3C;/<span class="hljs-name">mirrorOf</span>></span>
+        <span class="hljs-tag">&#x3C;/<span class="hljs-name">mirror</span>></span>
+ 
+        <span class="hljs-comment">&#x3C;!-- 华中科技大学镜像仓库 --></span>
+        <span class="hljs-tag">&#x3C;<span class="hljs-name">mirror</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">id</span>></span>huazhi<span class="hljs-tag">&#x3C;/<span class="hljs-name">id</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">url</span>></span>https://mirrors.huaweicloud.com/repository/maven-public/<span class="hljs-tag">&#x3C;/<span class="hljs-name">url</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">mirrorOf</span>></span>central<span class="hljs-tag">&#x3C;/<span class="hljs-name">mirrorOf</span>></span>
+        <span class="hljs-tag">&#x3C;/<span class="hljs-name">mirror</span>></span>
+ 
+        <span class="hljs-comment">&#x3C;!-- 中国科学技术大学镜像仓库 --></span>
+        <span class="hljs-tag">&#x3C;<span class="hljs-name">mirror</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">id</span>></span>ustc<span class="hljs-tag">&#x3C;/<span class="hljs-name">id</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">url</span>></span>http://mirrors.ustc.edu.cn/maven/maven2/<span class="hljs-tag">&#x3C;/<span class="hljs-name">url</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">mirrorOf</span>></span>central<span class="hljs-tag">&#x3C;/<span class="hljs-name">mirrorOf</span>></span>
+        <span class="hljs-tag">&#x3C;/<span class="hljs-name">mirror</span>></span>
+ 
+        <span class="hljs-comment">&#x3C;!-- 百度镜像仓库 --></span>
+        <span class="hljs-tag">&#x3C;<span class="hljs-name">mirror</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">id</span>></span>baidu<span class="hljs-tag">&#x3C;/<span class="hljs-name">id</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">url</span>></span>https://maven-bd-local-1.services.baidu.com/repository/maven-public/<span class="hljs-tag">&#x3C;/<span class="hljs-name">url</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">mirrorOf</span>></span>central<span class="hljs-tag">&#x3C;/<span class="hljs-name">mirrorOf</span>></span>
+        <span class="hljs-tag">&#x3C;/<span class="hljs-name">mirror</span>></span>
+
+    <span class="hljs-tag">&#x3C;/<span class="hljs-name">mirrors</span>></span>
+
+    <span class="hljs-tag">&#x3C;<span class="hljs-name">pluginRepositories</span>></span>
+        <span class="hljs-tag">&#x3C;<span class="hljs-name">pluginRepository</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">id</span>></span>aliyun<span class="hljs-tag">&#x3C;/<span class="hljs-name">id</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">name</span>></span>Plugin Repositories<span class="hljs-tag">&#x3C;/<span class="hljs-name">name</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">url</span>></span>https://maven.aliyun.com/repository/public<span class="hljs-tag">&#x3C;/<span class="hljs-name">url</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">releases</span>></span>
+                <span class="hljs-tag">&#x3C;<span class="hljs-name">enabled</span>></span>true<span class="hljs-tag">&#x3C;/<span class="hljs-name">enabled</span>></span>
+            <span class="hljs-tag">&#x3C;/<span class="hljs-name">releases</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">snapshots</span>></span>
+                <span class="hljs-tag">&#x3C;<span class="hljs-name">enabled</span>></span>true<span class="hljs-tag">&#x3C;/<span class="hljs-name">enabled</span>></span>
+                <span class="hljs-tag">&#x3C;<span class="hljs-name">updatePolicy</span>></span>always<span class="hljs-tag">&#x3C;/<span class="hljs-name">updatePolicy</span>></span>
+            <span class="hljs-tag">&#x3C;/<span class="hljs-name">snapshots</span>></span>
+        <span class="hljs-tag">&#x3C;/<span class="hljs-name">pluginRepository</span>></span>
+    <span class="hljs-tag">&#x3C;/<span class="hljs-name">pluginRepositories</span>></span>
+ 
+    <span class="hljs-tag">&#x3C;<span class="hljs-name">profiles</span>></span>
+ 
+        <span class="hljs-tag">&#x3C;<span class="hljs-name">profile</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">id</span>></span>default-jdk<span class="hljs-tag">&#x3C;/<span class="hljs-name">id</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">activation</span>></span>
+                <span class="hljs-tag">&#x3C;<span class="hljs-name">activeByDefault</span>></span>true<span class="hljs-tag">&#x3C;/<span class="hljs-name">activeByDefault</span>></span>
+            <span class="hljs-tag">&#x3C;/<span class="hljs-name">activation</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">properties</span>></span>
+                <span class="hljs-tag">&#x3C;<span class="hljs-name">maven.compiler.source</span>></span>1.8<span class="hljs-tag">&#x3C;/<span class="hljs-name">maven.compiler.source</span>></span>
+                <span class="hljs-tag">&#x3C;<span class="hljs-name">maven.compiler.target</span>></span>1.8<span class="hljs-tag">&#x3C;/<span class="hljs-name">maven.compiler.target</span>></span>
+                <span class="hljs-tag">&#x3C;<span class="hljs-name">maven.compiler.compilerVersion</span>></span>1.8<span class="hljs-tag">&#x3C;/<span class="hljs-name">maven.compiler.compilerVersion</span>></span>
+            <span class="hljs-tag">&#x3C;/<span class="hljs-name">properties</span>></span>
+        <span class="hljs-tag">&#x3C;/<span class="hljs-name">profile</span>></span>
+
+        <span class="hljs-tag">&#x3C;<span class="hljs-name">profile</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">id</span>></span>gpg<span class="hljs-tag">&#x3C;/<span class="hljs-name">id</span>></span>
+            <span class="hljs-tag">&#x3C;<span class="hljs-name">properties</span>></span>
+                <span class="hljs-tag">&#x3C;<span class="hljs-name">gpg.executable</span>></span>gpg2<span class="hljs-tag">&#x3C;/<span class="hljs-name">gpg.executable</span>></span>
+                <span class="hljs-tag">&#x3C;<span class="hljs-name">gpg.passphrase</span>></span>xxxxxxxx<span class="hljs-tag">&#x3C;/<span class="hljs-name">gpg.passphrase</span>></span>
+            <span class="hljs-tag">&#x3C;/<span class="hljs-name">properties</span>></span>
+        <span class="hljs-tag">&#x3C;/<span class="hljs-name">profile</span>></span>
+        
+    <span class="hljs-tag">&#x3C;/<span class="hljs-name">profiles</span>></span>
+<span class="hljs-tag">&#x3C;/<span class="hljs-name">settings</span>></span>
+
+</code></pre>0:{"buildId":"ebbBpN4C8fJWIIp9HDXlV","rsc":["$","$1","c",{"children":[[["$","div",null,{"className":"relative w-full h-[50vh] min-h-[320px] flex items-center justify-center bg-cover bg-center","style":{"backgroundImage":"url(/img/larsonist.jpg)"},"children":[["$","div",null,{"className":"hero-overlay absolute inset-0"}],["$","div",null,{"className":"relative z-10 text-center px-6 animate-fade-in","children":[["$","h1",null,{"className":"text-3xl md:text-5xl font-bold text-white mb-3 tracking-tight","children":"maven settings.xml"}],""]}]]}],["$","article",null,{"className":"max-w-3xl mx-auto px-6 py-12","children":[["$","div",null,{"className":"flex items-center gap-4 text-sm text-[var(--color-text-secondary)] mb-8 pb-6 border-b border-[var(--color-border)]","children":[["$","time",null,{"dateTime":"2024-11-30","children":"2024-11-30"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"1 min read"}],[["$","span",null,{"children":"·"}],["$","div",null,{"className":"flex flex-wrap gap-2","children":[["$","$L2","maven",{"href":"/tags/maven","className":"text-xs px-2.5 py-1 rounded-full bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors","children":"maven"}],["$","$L2","settings.xml",{"href":"/tags/settings.xml","className":"text-xs px-2.5 py-1 rounded-full bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors","children":"settings.xml"}],["$","$L2","java",{"href":"/tags/java","className":"text-xs px-2.5 py-1 rounded-full bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors","children":"java"}]]}]]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4"]}]],null,"$L5"]}],"loading":null,"isPartial":false}
+4:["$","div",null,{"className":"mt-16 pt-6 border-t border-[var(--color-border)]","children":["$","$L2",null,{"href":"/","className":"text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors text-sm","children":"← 返回首页"}]}]
+5:["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]
+8:null

@@ -1,0 +1,112 @@
+1:"$Sreact.fragment"
+5:I[22016,["/_next/static/chunks/738cd64d740dcd1e.js"],""]
+6:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
+7:"$Sreact.suspense"
+2:T2698,<h2>1. 获取公钥</h2>
+<pre><code class="hljs language-JSON">GET /api/v1/ad/protocol/secureTokens
+
+返回 
+<span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"0"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"message"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"success"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"data"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"公钥1 key"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"公钥1"</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"公钥2 key"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"公钥2"</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<h2>2. 上传密钥</h2>
+<pre><code class="hljs language-JSON">POST /api/v1/ad/protocol/encryptKey
+
+请求 
+xx...<span class="hljs-punctuation">:</span>xxx...
+
+返回 
+xxxxx....
+</code></pre>
+<h2>3. 基本配置</h2>
+<pre><code class="hljs language-JSON">POST /api/v1/ad/config
+
+请求
+<span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"adPlatform"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"Vivo"</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 平台 Oppo Xiaomi Huawei..</span>
+    <span class="hljs-attr">"businessCode"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"Tiantian"</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// Tiantian  Huanman</span>
+    <span class="hljs-attr">"deviceId"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"xxxxxx"</span>  <span class="hljs-comment">// 唯一 机器ID</span>
+<span class="hljs-punctuation">}</span>
+
+返回 
+<span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"0"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"message"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"success"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"data"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"uncloseRate"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">80</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 不能关闭的百分比</span>
+    <span class="hljs-attr">"adQuota"</span><span class="hljs-punctuation">:</span> <span class="hljs-number">19</span><span class="hljs-punctuation">,</span>     <span class="hljs-comment">// 剩余显示多少次广告</span>
+    <span class="hljs-attr">"region"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"1"</span><span class="hljs-punctuation">,</span>     <span class="hljs-comment">// （废弃） </span>
+    <span class="hljs-attr">"rapps"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+      <span class="hljs-punctuation">[</span>
+        <span class="hljs-string">"org.hapjs.debugger"</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 包名</span>
+        <span class="hljs-string">"more package name..."</span>
+      <span class="hljs-punctuation">]</span>
+    <span class="hljs-punctuation">]</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<h2>4. 壁纸</h2>
+<pre><code class="hljs language-JSON">POST /api/v1/ad/wallpapers
+
+请求
+<span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"adPlatform"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"Vivo"</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 平台 Oppo Xiaomi Huawei..</span>
+    <span class="hljs-attr">"businessCode"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"Tiantian"</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// Tiantian  Huanman</span>
+    <span class="hljs-attr">"deviceId"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"xxxxxx"</span>  <span class="hljs-comment">// 唯一 机器ID</span>
+<span class="hljs-punctuation">}</span>
+
+返回 
+<span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"0"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"message"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"success"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"data"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"beauty"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>  <span class="hljs-comment">// 分类 KEY</span>
+      <span class="hljs-attr">"categoryName"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"女孩"</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 分类名</span>
+      <span class="hljs-attr">"categoryCode"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"beauty"</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 分类 KEY</span>
+      <span class="hljs-attr">"resourceList"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+        <span class="hljs-string">"https://...."</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 图片 1</span>
+        <span class="hljs-string">"https://...."</span>  <span class="hljs-comment">// 图片 ...</span>
+      <span class="hljs-punctuation">]</span>
+    <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">"cat"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>  <span class="hljs-comment">// 分类 KEY</span>
+      <span class="hljs-attr">"categoryName"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"小猫"</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 分类名</span>
+      <span class="hljs-attr">"categoryCode"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"cat"</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 分类 KEY</span>
+      <span class="hljs-attr">"resourceList"</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+        <span class="hljs-string">"https://...."</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 图片 1</span>
+        <span class="hljs-string">"https://...."</span>  <span class="hljs-comment">// 图片 ...</span>
+      <span class="hljs-punctuation">]</span>
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>
+<h2>5. 行为上报</h2>
+<pre><code class="hljs language-JSON">POST /api/v1/action/report
+
+请求
+<span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">"adPlatform"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"Vivo"</span><span class="hljs-punctuation">,</span>       <span class="hljs-comment">// 平台 Oppo Xiaomi Huawei..</span>
+    <span class="hljs-attr">"businessCode"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"Tiantian"</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// Tiantian  Huanman</span>
+    <span class="hljs-attr">"adAction"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"AdFinish"</span><span class="hljs-punctuation">,</span>     <span class="hljs-comment">// 行为 AppEnter AppExit AdShow AdClick AdFinish</span>
+    <span class="hljs-attr">"deviceId"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"xxxxxxx"</span><span class="hljs-punctuation">,</span>      <span class="hljs-comment">// 唯一 机器ID</span>
+    <span class="hljs-attr">"vivoRequestId"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">""</span><span class="hljs-punctuation">,</span>       <span class="hljs-comment">// 回传点击数据时,透传给广告主的 RequestID</span>
+    <span class="hljs-attr">"vivoCreativeId"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">""</span><span class="hljs-punctuation">,</span>      <span class="hljs-comment">// 回传点击数据时,透传给广告主的 creativeId</span>
+    <span class="hljs-attr">"userId"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"123"</span><span class="hljs-punctuation">,</span>            <span class="hljs-comment">// 用户 id...(可同机器 ID)</span>
+    <span class="hljs-attr">"count"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"1"</span>                <span class="hljs-comment">// 固定 1</span>
+<span class="hljs-punctuation">}</span>
+
+返回
+<span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">"code"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"0"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"message"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"success"</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">"data"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">""</span>
+<span class="hljs-punctuation">}</span>
+</code></pre>0:{"buildId":"ebbBpN4C8fJWIIp9HDXlV","rsc":["$","$1","c",{"children":[[["$","div",null,{"className":"relative w-full h-[50vh] min-h-[320px] flex items-center justify-center bg-cover bg-center","style":{"backgroundImage":"url(/img/header_img/lml_bg.jpg)"},"children":[["$","div",null,{"className":"hero-overlay absolute inset-0"}],["$","div",null,{"className":"relative z-10 text-center px-6 animate-fade-in","children":[["$","h1",null,{"className":"text-3xl md:text-5xl font-bold text-white mb-3 tracking-tight","children":"API DOC"}],["$","p",null,{"className":"text-lg md:text-xl text-white/80 max-w-2xl mx-auto","children":"A succinct hexo theme..."}]]}]]}],["$","article",null,{"className":"max-w-3xl mx-auto px-6 py-12","children":[["$","div",null,{"className":"flex items-center gap-4 text-sm text-[var(--color-text-secondary)] mb-8 pb-6 border-b border-[var(--color-border)]","children":[["$","time",null,{"dateTime":"2020-01-17","children":"2020-01-17"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"2 min read"}],false]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3"]}]],null,"$L4"]}],"loading":null,"isPartial":false}
+3:["$","div",null,{"className":"mt-16 pt-6 border-t border-[var(--color-border)]","children":["$","$L5",null,{"href":"/","className":"text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors text-sm","children":"← 返回首页"}]}]
+4:["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]
+8:null

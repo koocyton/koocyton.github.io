@@ -1,0 +1,119 @@
+1:"$Sreact.fragment"
+2:I[22016,["/_next/static/chunks/738cd64d740dcd1e.js"],""]
+6:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
+7:"$Sreact.suspense"
+3:T1bfa,<h3>debian 上安装</h3>
+<pre><code class="hljs language-bash">apt-get install squid-ssl
+</code></pre>
+<h3>编译 Squid</h3>
+<pre><code class="hljs language-bash">host / <span class="hljs-comment"># apt-get install libxml2 libxml2-dev</span>
+
+host / <span class="hljs-comment"># ./configure '--build=aarch64-linux-gnu' '--prefix=/usr' '--includedir=/include' '--mandir=/share/man' '--infodir=/share/info' '--sysconfdir=/etc' '--localstatedir=/var' '--libexecdir=/lib/squid' '--srcdir=.' '--disable-maintainer-mode' '--disable-dependency-tracking' '--disable-silent-rules' '--with-build-environment=default' '--enable-build-info=Debian linux' '--datadir=/usr/share/squid' '--sysconfdir=/etc/squid' '--libexecdir=/usr/lib/squid' '--mandir=/usr/share/man' '--enable-inline' '--disable-arch-native' '--enable-async-io=8' '--enable-storeio=ufs,aufs,diskd,rock' '--enable-removal-policies=lru,heap' '--enable-delay-pools' '--enable-icap-client' '--enable-follow-x-forwarded-for' '--enable-auth-basic=DB,fake,getpwnam,LDAP,NCSA,NIS,PAM,POP3,RADIUS,SASL,SMB' '--enable-auth-digest=file,LDAP' '--enable-auth-negotiate=kerberos,wrapper' '--enable-auth-ntlm=fake,SMB_LM' '--enable-external-acl-helpers=file_userip,kerberos_ldap_group,LDAP_group,session,SQL_session,time_quota,unix_group,wbinfo_group' '--enable-security-cert-validators=fake' '--enable-storeid-rewrite-helpers=file' '--enable-url-rewrite-helpers=fake' '--enable-eui' '--enable-esi' '--enable-zph-qos' '--enable-ecap' '--disable-translation' '--with-swapdir=/var/spool/squid' '--with-logdir=/var/log/squid' '--with-pidfile=/var/run/squid.pid' '--with-filedescriptors=65536' '--with-large-files' '--with-default-user=proxy' '--with-gnutls' '--enable-linux-netfilter' '--enable-ssl' '--enable-ssl-crtd' '--with-openssl=/etc/ssl' 'build_alias=aarch64-linux-gnu' 'BUILDCXXFLAGS=-g -O2 -fdebug-prefix-map=/build/squid-v3o4nw/squid-4.6=. -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -Wl,-z,relro -Wl,-z,now -Wl,--as-needed -latomic'</span>
+</code></pre>
+<h3>生成账号密码</h3>
+<pre><code class="hljs language-bash"><span class="hljs-built_in">printf</span> “user_name:$(openssl passwd -crypt ‘password’)\n” | <span class="hljs-built_in">sudo</span> <span class="hljs-built_in">tee</span> -a /etc/squid/htpasswd
+</code></pre>
+<h3>squid.conf</h3>
+<pre><code class="hljs language-bash">acl SSL_ports port 443
+acl Safe_ports port 1-65535     <span class="hljs-comment"># unregistered ports</span>
+acl CONNECT method CONNECT
+acl HEAD method HEAD
+
+http_access deny !Safe_ports
+<span class="hljs-comment">#http_access deny CONNECT !SSL_ports</span>
+<span class="hljs-comment">#http_access allow localhost manager</span>
+http_access deny manager
+<span class="hljs-comment">#http_access allow localhost</span>
+<span class="hljs-comment"># http_access allow all</span>
+
+auth_param basic program /usr/lib/squid/basic_ncsa_auth /etc/squid/htpasswd
+auth_param basic realm proxy
+acl authenticated proxy_auth REQUIRED
+
+<span class="hljs-comment"># http_access allow localnet</span>
+http_access allow localhost
+http_access allow authenticated
+<span class="hljs-comment"># And finally deny all other access to this proxy</span>
+http_access deny all
+
+http_port 0.0.0.0:3128
+https_port 0.0.0.0:3129 cert=/etc/squid/ssl_cert/doopp_com.pem key=/etc/squid/ssl_cert/doopp_com.key
+
+coredump_dir /var/spool/squid3
+
+<span class="hljs-comment"># based on http://code.google.com/p/ghebhes/downloads/detail?name=tunning.conf&#x26;can=2&#x26;q=</span>
+
+<span class="hljs-comment">#All File</span>
+refresh_pattern -i \.(3gp|7z|ace|asx|avi|bin|cab|dat|deb|rpm|divx|dvr-ms)      1440 100% 129600 reload-into-ims
+refresh_pattern -i \.(rar|jar|gz|tgz|tar|bz2|iso|m1v|m2(v|p)|mo(d|v)|(x-|)flv) 1440 100% 129600 reload-into-ims
+refresh_pattern -i \.(jp(e?g|e|2)|gif|pn[pg]|bm?|tiff?|ico|swf|css|js)         1440 100% 129600 reload-into-ims
+refresh_pattern -i \.(mp(e?g|a|e|1|2|3|4)|mk(a|v)|ms(i|u|p))                   1440 100% 129600 reload-into-ims
+refresh_pattern -i \.(og(x|v|a|g)|rar|<span class="hljs-built_in">rm</span>|r(a|p)m|snd|vob|wav)                  1440 100% 129600 reload-into-ims
+refresh_pattern -i \.(pp(s|t)|wax|wm(a|v)|wmx|wpl|zip|cb(r|z|t))               1440 100% 129600 reload-into-ims
+
+refresh_pattern -i \.(doc|pdf)$           1440   50% 43200 reload-into-ims
+refresh_pattern -i \.(html|htm)$          1440   50% 40320 reload-into-ims
+
+refresh_pattern ^ftp:           1440    20%     10080
+refresh_pattern ^gopher:        1440    0%      1440
+refresh_pattern -i (/cgi-bin/|\?) 0     0%      0
+refresh_pattern (Release|Packages(.gz)*)$      0       20%     2880
+refresh_pattern .               0       20%     4320
+
+<span class="hljs-comment"># http options</span>
+via off
+
+<span class="hljs-comment"># memory cache options</span>
+cache_mem 512 MB
+maximum_object_size_in_memory 256 KB
+
+<span class="hljs-comment"># disk cache</span>
+<span class="hljs-comment">#cache_dir diskd /var/spool/squid3 10240 16 256</span>
+<span class="hljs-comment">#maximum_object_size 20480 KB</span>
+
+<span class="hljs-comment"># timeouts</span>
+<span class="hljs-comment"># forward_timeout 10 seconds</span>
+<span class="hljs-comment"># connect_timeout 10 seconds</span>
+<span class="hljs-comment"># read_timeout 10 seconds</span>
+<span class="hljs-comment"># write_timeout 10 seconds</span>
+<span class="hljs-comment"># client_lifetime 59 minutes</span>
+<span class="hljs-comment"># request_timeout 30 seconds</span>
+half_closed_clients off
+
+<span class="hljs-comment">#</span>
+forwarded_for delete
+dns_v4_first on
+ipcache_size 4096
+dns_nameservers 223.5.5.5, 114.114.114.114
+
+<span class="hljs-comment"># error page</span>
+cache_mgr admin@example.com
+visible_hostname example.com
+email_err_data off
+err_page_stylesheet none
+</code></pre>
+<h3>使用 SwitchyOmega 的话，可以配置如下</h3>
+<pre><code class="hljs language-js"><span class="hljs-keyword">var</span> outDomains = [
+    <span class="hljs-string">"example.com"</span>,
+    ... more domain
+];
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">isOutDomain</span>(<span class="hljs-params">host</span>) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &#x3C; outDomains.<span class="hljs-property">length</span>; i++) {
+        <span class="hljs-keyword">if</span> (<span class="hljs-title function_">dnsDomainIs</span>(host, outDomains[i])) {
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">FindProxyForURL</span>(<span class="hljs-params">url, host</span>) {
+    <span class="hljs-keyword">if</span> (<span class="hljs-title function_">isOutDomain</span>(host)) {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"DIRECT"</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"HTTPS xxx.xxx.xxx.xxx:3129"</span>;
+}
+</code></pre>0:{"buildId":"ebbBpN4C8fJWIIp9HDXlV","rsc":["$","$1","c",{"children":[[["$","div",null,{"className":"relative w-full h-[50vh] min-h-[320px] flex items-center justify-center bg-cover bg-center","style":{"backgroundImage":"url(/img/header_img/lml_bg.jpg)"},"children":[["$","div",null,{"className":"hero-overlay absolute inset-0"}],["$","div",null,{"className":"relative z-10 text-center px-6 animate-fade-in","children":[["$","h1",null,{"className":"text-3xl md:text-5xl font-bold text-white mb-3 tracking-tight","children":"带认证的 Squid 代理配置"}],["$","p",null,{"className":"text-lg md:text-xl text-white/80 max-w-2xl mx-auto","children":"squid config"}]]}]]}],["$","article",null,{"className":"max-w-3xl mx-auto px-6 py-12","children":[["$","div",null,{"className":"flex items-center gap-4 text-sm text-[var(--color-text-secondary)] mb-8 pb-6 border-b border-[var(--color-border)]","children":[["$","time",null,{"dateTime":"2023-01-02","children":"2023-01-02"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"3 min read"}],[["$","span",null,{"children":"·"}],["$","div",null,{"className":"flex flex-wrap gap-2","children":[["$","$L2","squid",{"href":"/tags/squid","className":"text-xs px-2.5 py-1 rounded-full bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors","children":"squid"}],["$","$L2","proxy",{"href":"/tags/proxy","className":"text-xs px-2.5 py-1 rounded-full bg-[var(--color-bg-secondary)] border border-[var(--color-border)] hover:text-[var(--color-accent)] transition-colors","children":"proxy"}]]}]]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4"]}]],null,"$L5"]}],"loading":null,"isPartial":false}
+4:["$","div",null,{"className":"mt-16 pt-6 border-t border-[var(--color-border)]","children":["$","$L2",null,{"href":"/","className":"text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] transition-colors text-sm","children":"← 返回首页"}]}]
+5:["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]
+8:null
