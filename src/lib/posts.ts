@@ -7,6 +7,8 @@ import remarkRehype from "remark-rehype";
 import rehypeHighlight from "rehype-highlight";
 import rehypeStringify from "rehype-stringify";
 import readingTime from "reading-time";
+import type { Root, Image } from "mdast";
+import { visit } from "unist-util-visit";
 
 const postsDirectory = path.join(process.cwd(), "content/posts");
 
@@ -66,8 +68,20 @@ export async function getPostBySlug(slug: string): Promise<Post> {
   const { data, content } = matter(fileContents);
   const stats = readingTime(content);
 
+  function remarkRewriteImagePaths() {
+    return (tree: Root) => {
+      visit(tree, "image", (node: Image) => {
+        const url = node.url;
+        if (url && !url.startsWith("http") && !url.startsWith("/")) {
+          node.url = `/posts/${slug}/${url}`;
+        }
+      });
+    };
+  }
+
   const processedContent = await remark()
     .use(remarkGfm)
+    .use(remarkRewriteImagePaths)
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeHighlight, { detect: true })
     .use(rehypeStringify, { allowDangerousHtml: true })
