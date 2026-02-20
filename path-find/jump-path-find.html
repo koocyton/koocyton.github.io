@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jump Point Search 路径查找可视化</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --border: #334155;
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --start: #22c55e;
+  --end: #ef4444;
+  --wall: #475569;
+  --open: rgba(59,130,246,0.35);
+  --closed: rgba(99,102,241,0.25);
+  --jump-point: #f59e0b;
+  --path: #22d3ee;
+  --backtrack: #a855f7;
+}
+
+body {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  background: linear-gradient(135deg, #3b82f6, #22d3ee);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; }
+
+.toolbar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.toolbar button, .toolbar select {
+  padding: 8px 18px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all .15s;
+}
+.toolbar button:hover { background: var(--accent); border-color: var(--accent); }
+.toolbar button.active { background: var(--accent); border-color: var(--accent); }
+.toolbar button:disabled { opacity: .4; cursor: not-allowed; }
+.toolbar button:disabled:hover { background: var(--surface); }
+
+.toolbar select { appearance: none; padding-right: 30px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2394a3b8'%3E%3Cpath d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; }
+
+.legend {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 16px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.legend-item { display: flex; align-items: center; gap: 5px; }
+.legend-swatch {
+  width: 14px; height: 14px; border-radius: 3px; border: 1px solid rgba(255,255,255,.1);
+}
+
+.canvas-wrap {
+  position: relative;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: 0 8px 32px rgba(0,0,0,.4);
+}
+
+canvas { display: block; cursor: crosshair; }
+
+.info-bar {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.info-bar span { display: flex; align-items: center; gap: 6px; }
+.info-bar .val { color: var(--text); font-weight: 600; font-variant-numeric: tabular-nums; }
+
+.status-msg {
+  margin-top: 12px;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 13px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  min-height: 36px;
+  text-align: center;
+  transition: all .2s;
+}
+
+.speed-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.speed-control input[type=range] {
+  width: 100px;
+  accent-color: var(--accent);
+}
+
+footer {
+  margin-top: 24px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+</style>
+</head>
+<body>
+
+<h1>Jump Point Search 路径查找</h1>
+<p class="subtitle">在网格上绘制障碍物，选择起点和终点，观察 JPS 算法的搜索与回溯过程</p>
+
+<div class="toolbar">
+  <button id="btnWall" class="active" title="左键拖拽绘制/擦除障碍物">🧱 绘制障碍</button>
+  <button id="btnStart" title="点击设置起点">🟢 设置起点</button>
+  <button id="btnEnd" title="点击设置终点">🔴 设置终点</button>
+  <span style="width:1px;background:var(--border);margin:0 4px"></span>
+  <button id="btnRun" disabled>▶ 开始搜索</button>
+  <button id="btnStep" disabled>⏭ 单步执行</button>
+  <button id="btnClear">🗑 清空地图</button>
+  <button id="btnPreset">📐 预设地图</button>
+  <div class="speed-control">
+    <label for="speedRange">速度</label>
+    <input type="range" id="speedRange" min="1" max="100" value="50">
+  </div>
+  <select id="gridSize">
+    <option value="20">20×20</option>
+    <option value="30" selected>30×30</option>
+    <option value="40">40×40</option>
+    <option value="50">50×50</option>
+  </select>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-swatch" style="background:var(--start)"></div>起点</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:var(--end)"></div>终点</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:var(--wall)"></div>障碍物</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:var(--open)"></div>Open 列表</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:var(--closed)"></div>Closed 列表</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:var(--jump-point)"></div>跳跃点</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:var(--path)"></div>最终路径</div>
+  <div class="legend-item"><div class="legend-swatch" style="background:var(--backtrack)"></div>回溯过程</div>
+</div>
+
+<div class="canvas-wrap">
+  <canvas id="grid"></canvas>
+</div>
+
+<div class="info-bar">
+  <span>已探索: <b class="val" id="statExplored">0</b></span>
+  <span>跳跃点: <b class="val" id="statJumps">0</b></span>
+  <span>路径长度: <b class="val" id="statPath">-</b></span>
+  <span>耗时: <b class="val" id="statTime">-</b></span>
+</div>
+
+<div class="status-msg" id="statusMsg">点击「绘制障碍」后在网格上拖拽绘制障碍物，然后设置起点和终点</div>
+
+<footer>Jump Point Search (JPS) — 一种针对均匀代价网格的优化 A* 算法</footer>
+
+<script>
+(() => {
+"use strict";
+
+const canvas = document.getElementById("grid");
+const ctx = canvas.getContext("2d");
+
+const EMPTY = 0, WALL = 1, START = 2, END = 3;
+const VIS_NONE = 0, VIS_OPEN = 1, VIS_CLOSED = 2, VIS_JUMP = 3, VIS_PATH = 4, VIS_BACKTRACK = 5;
+
+let cols = 30, rows = 30, cellSize = 22;
+let grid = [];
+let visGrid = [];
+let startPos = null, endPos = null;
+let mode = "wall"; // wall | start | end
+let isDrawing = false, drawValue = WALL;
+let animating = false, stepMode = false, stepResolve = null;
+let animFrames = [];
+let currentPreset = 0;
+
+const btnWall = document.getElementById("btnWall");
+const btnStart = document.getElementById("btnStart");
+const btnEnd = document.getElementById("btnEnd");
+const btnRun = document.getElementById("btnRun");
+const btnStep = document.getElementById("btnStep");
+const btnClear = document.getElementById("btnClear");
+const btnPreset = document.getElementById("btnPreset");
+const speedRange = document.getElementById("speedRange");
+const gridSizeSelect = document.getElementById("gridSize");
+const statusMsg = document.getElementById("statusMsg");
+
+function initGrid() {
+  grid = Array.from({ length: rows }, () => new Int8Array(cols));
+  visGrid = Array.from({ length: rows }, () => new Int8Array(cols));
+  startPos = null;
+  endPos = null;
+  updateRunButton();
+  updateStats(0, 0, "-", "-");
+  setStatus("点击「绘制障碍」后在网格上拖拽绘制障碍物，然后设置起点和终点");
+  draw();
+}
+
+function resizeCanvas() {
+  const maxW = Math.min(window.innerWidth - 60, 900);
+  cellSize = Math.max(12, Math.min(28, Math.floor(maxW / cols)));
+  canvas.width = cols * cellSize;
+  canvas.height = rows * cellSize;
+  draw();
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const x = c * cellSize, y = r * cellSize;
+      const v = visGrid[r][c];
+      const g = grid[r][c];
+
+      // background
+      if (g === WALL) {
+        ctx.fillStyle = "#475569";
+      } else if (v === VIS_PATH) {
+        ctx.fillStyle = "rgba(34,211,238,0.6)";
+      } else if (v === VIS_BACKTRACK) {
+        ctx.fillStyle = "rgba(168,85,247,0.5)";
+      } else if (v === VIS_JUMP) {
+        ctx.fillStyle = "rgba(245,158,11,0.5)";
+      } else if (v === VIS_OPEN) {
+        ctx.fillStyle = "rgba(59,130,246,0.25)";
+      } else if (v === VIS_CLOSED) {
+        ctx.fillStyle = "rgba(99,102,241,0.2)";
+      } else {
+        ctx.fillStyle = "#1e293b";
+      }
+      ctx.fillRect(x, y, cellSize, cellSize);
+
+      // grid lines
+      ctx.strokeStyle = "rgba(51,65,85,0.5)";
+      ctx.lineWidth = 0.5;
+      ctx.strokeRect(x, y, cellSize, cellSize);
+
+      // start / end markers
+      if (g === START) {
+        ctx.fillStyle = "#22c55e";
+        ctx.beginPath();
+        ctx.arc(x + cellSize / 2, y + cellSize / 2, cellSize * 0.35, 0, Math.PI * 2);
+        ctx.fill();
+      } else if (g === END) {
+        ctx.fillStyle = "#ef4444";
+        ctx.beginPath();
+        ctx.arc(x + cellSize / 2, y + cellSize / 2, cellSize * 0.35, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // jump point diamond
+      if (v === VIS_JUMP && g !== START && g !== END) {
+        ctx.fillStyle = "#f59e0b";
+        const cx = x + cellSize / 2, cy = y + cellSize / 2, s = cellSize * 0.25;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy - s);
+        ctx.lineTo(cx + s, cy);
+        ctx.lineTo(cx, cy + s);
+        ctx.lineTo(cx - s, cy);
+        ctx.closePath();
+        ctx.fill();
+      }
+    }
+  }
+}
+
+// --- Interaction ---
+
+function getCellFromEvent(e) {
+  const rect = canvas.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  const c = Math.floor(x / cellSize);
+  const r = Math.floor(y / cellSize);
+  if (r < 0 || r >= rows || c < 0 || c >= cols) return null;
+  return { r, c };
+}
+
+canvas.addEventListener("mousedown", (e) => {
+  if (animating) return;
+  const cell = getCellFromEvent(e);
+  if (!cell) return;
+  const { r, c } = cell;
+
+  if (mode === "wall") {
+    isDrawing = true;
+    if (grid[r][c] === WALL) {
+      drawValue = EMPTY;
+      grid[r][c] = EMPTY;
+    } else if (grid[r][c] === EMPTY) {
+      drawValue = WALL;
+      grid[r][c] = WALL;
+    }
+    clearVis();
+    draw();
+  } else if (mode === "start") {
+    if (grid[r][c] === WALL || grid[r][c] === END) return;
+    if (startPos) grid[startPos.r][startPos.c] = EMPTY;
+    startPos = { r, c };
+    grid[r][c] = START;
+    clearVis();
+    draw();
+    updateRunButton();
+  } else if (mode === "end") {
+    if (grid[r][c] === WALL || grid[r][c] === START) return;
+    if (endPos) grid[endPos.r][endPos.c] = EMPTY;
+    endPos = { r, c };
+    grid[r][c] = END;
+    clearVis();
+    draw();
+    updateRunButton();
+  }
+});
+
+canvas.addEventListener("mousemove", (e) => {
+  if (!isDrawing || mode !== "wall" || animating) return;
+  const cell = getCellFromEvent(e);
+  if (!cell) return;
+  const { r, c } = cell;
+  if (grid[r][c] === START || grid[r][c] === END) return;
+  grid[r][c] = drawValue;
+  draw();
+});
+
+canvas.addEventListener("mouseup", () => { isDrawing = false; });
+canvas.addEventListener("mouseleave", () => { isDrawing = false; });
+
+function setMode(m) {
+  mode = m;
+  btnWall.classList.toggle("active", m === "wall");
+  btnStart.classList.toggle("active", m === "start");
+  btnEnd.classList.toggle("active", m === "end");
+}
+
+btnWall.addEventListener("click", () => setMode("wall"));
+btnStart.addEventListener("click", () => setMode("start"));
+btnEnd.addEventListener("click", () => setMode("end"));
+
+btnClear.addEventListener("click", () => {
+  if (animating) stopAnimation();
+  initGrid();
+});
+
+btnPreset.addEventListener("click", () => {
+  if (animating) stopAnimation();
+  loadPreset();
+});
+
+gridSizeSelect.addEventListener("change", () => {
+  if (animating) stopAnimation();
+  cols = rows = parseInt(gridSizeSelect.value);
+  resizeCanvas();
+  initGrid();
+});
+
+function updateRunButton() {
+  const ok = startPos && endPos && !animating;
+  btnRun.disabled = !ok;
+  btnStep.disabled = !ok;
+}
+
+function clearVis() {
+  for (let r = 0; r < rows; r++)
+    for (let c = 0; c < cols; c++)
+      visGrid[r][c] = VIS_NONE;
+}
+
+function setStatus(msg) { statusMsg.textContent = msg; }
+
+function updateStats(explored, jumps, pathLen, time) {
+  document.getElementById("statExplored").textContent = explored;
+  document.getElementById("statJumps").textContent = jumps;
+  document.getElementById("statPath").textContent = pathLen;
+  document.getElementById("statTime").textContent = time;
+}
+
+// --- Presets ---
+
+const presets = [
+  function maze1() {
+    initGrid();
+    for (let r = 0; r < rows; r++)
+      for (let c = 0; c < cols; c++) {
+        if (r % 4 === 2 && c > 2 && c < cols - 3 && c !== Math.floor(cols / 2) + (r % 8 === 2 ? 3 : -3))
+          grid[r][c] = WALL;
+      }
+    startPos = { r: 1, c: 1 }; grid[1][1] = START;
+    endPos = { r: rows - 2, c: cols - 2 }; grid[rows - 2][cols - 2] = END;
+    updateRunButton();
+    draw();
+    setStatus("已加载预设地图 1 —— 水平墙迷宫");
+  },
+  function maze2() {
+    initGrid();
+    const mid = Math.floor(cols / 2);
+    for (let r = 2; r < rows - 2; r++) grid[r][mid] = WALL;
+    grid[Math.floor(rows / 4)][mid] = EMPTY;
+    grid[Math.floor(rows * 3 / 4)][mid] = EMPTY;
+    for (let c = 4; c < mid - 1; c++) grid[Math.floor(rows / 2)][c] = WALL;
+    for (let c = mid + 2; c < cols - 4; c++) grid[Math.floor(rows / 2)][c] = WALL;
+    startPos = { r: 1, c: 1 }; grid[1][1] = START;
+    endPos = { r: rows - 2, c: cols - 2 }; grid[rows - 2][cols - 2] = END;
+    updateRunButton();
+    draw();
+    setStatus("已加载预设地图 2 —— 十字障碍");
+  },
+  function maze3() {
+    initGrid();
+    for (let r = 0; r < rows; r++)
+      for (let c = 0; c < cols; c++)
+        if (Math.random() < 0.3) grid[r][c] = WALL;
+    grid[1][1] = EMPTY; grid[1][2] = EMPTY; grid[2][1] = EMPTY;
+    grid[rows-2][cols-2] = EMPTY; grid[rows-2][cols-3] = EMPTY; grid[rows-3][cols-2] = EMPTY;
+    startPos = { r: 1, c: 1 }; grid[1][1] = START;
+    endPos = { r: rows - 2, c: cols - 2 }; grid[rows - 2][cols - 2] = END;
+    updateRunButton();
+    draw();
+    setStatus("已加载预设地图 3 —— 随机障碍 (30%)");
+  },
+  function maze4() {
+    initGrid();
+    function box(r1, c1, r2, c2, gapR, gapC) {
+      for (let r = r1; r <= r2; r++) { grid[r][c1] = WALL; grid[r][c2] = WALL; }
+      for (let c = c1; c <= c2; c++) { grid[r1][c] = WALL; grid[r2][c] = WALL; }
+      if (gapR !== undefined) grid[gapR][gapC] = EMPTY;
+    }
+    const m = Math.floor(rows / 2);
+    box(3, 3, rows - 4, cols - 4, 3, m);
+    box(6, 6, rows - 7, cols - 7, rows - 7, m);
+    box(9, 9, rows - 10, cols - 10, 9, m);
+    startPos = { r: 1, c: 1 }; grid[1][1] = START;
+    endPos = { r: m, c: m }; grid[m][m] = END;
+    updateRunButton();
+    draw();
+    setStatus("已加载预设地图 4 —— 嵌套方框");
+  }
+];
+
+function loadPreset() {
+  presets[currentPreset % presets.length]();
+  currentPreset++;
+}
+
+// --- JPS Algorithm ---
+
+class MinHeap {
+  constructor() { this.data = []; }
+  push(item) {
+    this.data.push(item);
+    this._up(this.data.length - 1);
+  }
+  pop() {
+    const top = this.data[0];
+    const last = this.data.pop();
+    if (this.data.length > 0) { this.data[0] = last; this._down(0); }
+    return top;
+  }
+  get size() { return this.data.length; }
+  _up(i) {
+    while (i > 0) {
+      const p = (i - 1) >> 1;
+      if (this.data[p].f <= this.data[i].f) break;
+      [this.data[p], this.data[i]] = [this.data[i], this.data[p]];
+      i = p;
+    }
+  }
+  _down(i) {
+    const n = this.data.length;
+    while (true) {
+      let s = i, l = 2 * i + 1, r = 2 * i + 2;
+      if (l < n && this.data[l].f < this.data[s].f) s = l;
+      if (r < n && this.data[r].f < this.data[s].f) s = r;
+      if (s === i) break;
+      [this.data[s], this.data[i]] = [this.data[i], this.data[s]];
+      i = s;
+    }
+  }
+}
+
+function heuristic(r1, c1, r2, c2) {
+  const dr = Math.abs(r1 - r2), dc = Math.abs(c1 - c2);
+  return Math.SQRT2 * Math.min(dr, dc) + Math.abs(dr - dc);
+}
+
+function walkable(r, c) {
+  return r >= 0 && r < rows && c >= 0 && c < cols && grid[r][c] !== WALL;
+}
+
+function* jpsSearch(sr, sc, er, ec) {
+  const gScore = Array.from({ length: rows }, () => new Float64Array(cols).fill(Infinity));
+  const parent = Array.from({ length: rows }, () => Array.from({ length: cols }, () => null));
+  const inOpen = Array.from({ length: rows }, () => new Uint8Array(cols));
+  const closed = Array.from({ length: rows }, () => new Uint8Array(cols));
+
+  const open = new MinHeap();
+  gScore[sr][sc] = 0;
+  open.push({ r: sr, c: sc, f: heuristic(sr, sc, er, ec) });
+  inOpen[sr][sc] = 1;
+
+  let explored = 0, jumpCount = 0;
+
+  function getNeighbors(r, c) {
+    const p = parent[r][c];
+    const neighbors = [];
+
+    if (!p) {
+      // start node: all walkable neighbors
+      for (let dr = -1; dr <= 1; dr++)
+        for (let dc = -1; dc <= 1; dc++) {
+          if (dr === 0 && dc === 0) continue;
+          if (walkable(r + dr, c + dc)) {
+            if (dr !== 0 && dc !== 0) {
+              if (walkable(r + dr, c) || walkable(r, c + dc))
+                neighbors.push([dr, dc]);
+            } else {
+              neighbors.push([dr, dc]);
+            }
+          }
+        }
+      return neighbors;
+    }
+
+    const dr = Math.sign(r - p.r);
+    const dc = Math.sign(c - p.c);
+
+    if (dr !== 0 && dc !== 0) {
+      // diagonal
+      if (walkable(r + dr, c)) neighbors.push([dr, 0]);
+      if (walkable(r, c + dc)) neighbors.push([0, dc]);
+      if (walkable(r + dr, c + dc) && (walkable(r + dr, c) || walkable(r, c + dc)))
+        neighbors.push([dr, dc]);
+      // forced neighbors
+      if (!walkable(r - dr, c) && walkable(r - dr, c + dc) && walkable(r, c + dc))
+        neighbors.push([-dr, dc]);
+      if (!walkable(r, c - dc) && walkable(r + dr, c - dc) && walkable(r + dr, c))
+        neighbors.push([dr, -dc]);
+    } else if (dr !== 0) {
+      // vertical
+      if (walkable(r + dr, c)) neighbors.push([dr, 0]);
+      if (!walkable(r, c - 1) && walkable(r + dr, c - 1)) neighbors.push([dr, -1]);
+      if (!walkable(r, c + 1) && walkable(r + dr, c + 1)) neighbors.push([dr, 1]);
+    } else {
+      // horizontal
+      if (walkable(r, c + dc)) neighbors.push([0, dc]);
+      if (!walkable(r - 1, c) && walkable(r - 1, c + dc)) neighbors.push([-1, dc]);
+      if (!walkable(r + 1, c) && walkable(r + 1, c + dc)) neighbors.push([1, dc]);
+    }
+
+    return neighbors;
+  }
+
+  function jump(r, c, dr, dc) {
+    let nr = r + dr, nc = c + dc;
+    if (!walkable(nr, nc)) return null;
+    if (dr !== 0 && dc !== 0 && !walkable(r + dr, c) && !walkable(r, c + dc)) return null;
+
+    if (nr === er && nc === ec) return { r: nr, c: nc };
+
+    if (dr !== 0 && dc !== 0) {
+      // diagonal: check forced neighbors
+      if ((!walkable(nr - dr, nc) && walkable(nr - dr, nc + dc) && walkable(nr, nc + dc)) ||
+          (!walkable(nr, nc - dc) && walkable(nr + dr, nc - dc) && walkable(nr + dr, nc)))
+        return { r: nr, c: nc };
+      // recurse cardinal
+      if (jump(nr, nc, dr, 0) || jump(nr, nc, 0, dc))
+        return { r: nr, c: nc };
+    } else {
+      if (dr !== 0) {
+        if ((!walkable(nr, nc - 1) && walkable(nr + dr, nc - 1)) ||
+            (!walkable(nr, nc + 1) && walkable(nr + dr, nc + 1)))
+          return { r: nr, c: nc };
+      } else {
+        if ((!walkable(nr - 1, nc) && walkable(nr - 1, nc + dc)) ||
+            (!walkable(nr + 1, nc) && walkable(nr + 1, nc + dc)))
+          return { r: nr, c: nc };
+      }
+    }
+
+    return jump(nr, nc, dr, dc);
+  }
+
+  while (open.size > 0) {
+    const cur = open.pop();
+    const { r, c } = cur;
+
+    if (closed[r][c]) continue;
+    closed[r][c] = 1;
+    explored++;
+
+    if (visGrid[r][c] !== VIS_JUMP) visGrid[r][c] = VIS_CLOSED;
+    yield { type: "explore", r, c, explored, jumpCount };
+
+    if (r === er && c === ec) {
+      // reconstruct path
+      const path = [];
+      let cur = { r: er, c: ec };
+      while (cur) {
+        path.unshift(cur);
+        cur = parent[cur.r][cur.c];
+      }
+
+      // backtrack animation
+      for (let i = path.length - 1; i >= 0; i--) {
+        visGrid[path[i].r][path[i].c] = VIS_BACKTRACK;
+        yield { type: "backtrack", r: path[i].r, c: path[i].c, explored, jumpCount };
+      }
+
+      // interpolate full path between jump points
+      const fullPath = [];
+      for (let i = 0; i < path.length - 1; i++) {
+        const from = path[i], to = path[i + 1];
+        let cr = from.r, cc = from.c;
+        while (cr !== to.r || cc !== to.c) {
+          fullPath.push({ r: cr, c: cc });
+          const dr = Math.sign(to.r - cr), dc = Math.sign(to.c - cc);
+          cr += dr; cc += dc;
+        }
+      }
+      fullPath.push(path[path.length - 1]);
+
+      for (const p of fullPath) {
+        visGrid[p.r][p.c] = VIS_PATH;
+        yield { type: "path", r: p.r, c: p.c, explored, jumpCount, pathLen: fullPath.length };
+      }
+
+      return;
+    }
+
+    const neighbors = getNeighbors(r, c);
+    for (const [dr, dc] of neighbors) {
+      const jp = jump(r, c, dr, dc);
+      if (!jp) continue;
+      if (closed[jp.r][jp.c]) continue;
+
+      const dist = heuristic(r, c, jp.r, jp.c);
+      const ng = gScore[r][c] + dist;
+
+      if (ng < gScore[jp.r][jp.c]) {
+        gScore[jp.r][jp.c] = ng;
+        parent[jp.r][jp.c] = { r, c };
+        const f = ng + heuristic(jp.r, jp.c, er, ec);
+        open.push({ r: jp.r, c: jp.c, f });
+        inOpen[jp.r][jp.c] = 1;
+        jumpCount++;
+        visGrid[jp.r][jp.c] = VIS_JUMP;
+        yield { type: "jump", r: jp.r, c: jp.c, explored, jumpCount };
+
+        // mark scan line between current and jump point
+        let cr = r, cc = c;
+        while (cr !== jp.r || cc !== jp.c) {
+          const sdr = Math.sign(jp.r - cr), sdc = Math.sign(jp.c - cc);
+          cr += sdr; cc += sdc;
+          if ((cr !== jp.r || cc !== jp.c) && visGrid[cr][cc] === VIS_NONE) {
+            visGrid[cr][cc] = VIS_OPEN;
+          }
+        }
+      }
+    }
+  }
+
+  yield { type: "fail", explored, jumpCount };
+}
+
+// --- Animation ---
+
+let animGen = null;
+let animTimer = null;
+let abortAnim = false;
+
+function getDelay() {
+  const v = parseInt(speedRange.value);
+  return Math.max(1, Math.floor(200 - v * 1.9));
+}
+
+async function runAnimation(stepping) {
+  if (!startPos || !endPos) return;
+  if (animating) stopAnimation();
+
+  animating = true;
+  stepMode = stepping;
+  abortAnim = false;
+  clearVis();
+  draw();
+
+  btnRun.disabled = true;
+  btnStep.disabled = !stepping;
+  btnWall.disabled = true;
+  btnStart.disabled = true;
+  btnEnd.disabled = true;
+
+  const t0 = performance.now();
+  animGen = jpsSearch(startPos.r, startPos.c, endPos.r, endPos.c);
+
+  setStatus("搜索中...");
+
+  for (const frame of animGen) {
+    if (abortAnim) break;
+
+    if (frame.type === "explore") {
+      updateStats(frame.explored, frame.jumpCount, "-", "-");
+    } else if (frame.type === "jump") {
+      updateStats(frame.explored, frame.jumpCount, "-", "-");
+      setStatus(`发现跳跃点 (${frame.r}, ${frame.c})`);
+    } else if (frame.type === "backtrack") {
+      setStatus(`回溯路径中... (${frame.r}, ${frame.c})`);
+    } else if (frame.type === "path") {
+      const elapsed = ((performance.now() - t0) / 1000).toFixed(2) + "s";
+      updateStats(frame.explored, frame.jumpCount, frame.pathLen, elapsed);
+      setStatus("绘制最终路径...");
+    } else if (frame.type === "fail") {
+      updateStats(frame.explored, frame.jumpCount, "无路径", ((performance.now() - t0) / 1000).toFixed(2) + "s");
+      setStatus("❌ 未找到路径！起点与终点之间不可达");
+    }
+
+    draw();
+
+    if (stepMode) {
+      await new Promise(res => { stepResolve = res; });
+    } else {
+      await new Promise(res => setTimeout(res, getDelay()));
+    }
+  }
+
+  if (!abortAnim && animGen) {
+    const elapsed = ((performance.now() - t0) / 1000).toFixed(2) + "s";
+    if (statusMsg.textContent.startsWith("绘制")) {
+      setStatus(`✅ 搜索完成！路径已找到 (${elapsed})`);
+    }
+  }
+
+  finishAnimation();
+}
+
+function finishAnimation() {
+  animating = false;
+  animGen = null;
+  btnWall.disabled = false;
+  btnStart.disabled = false;
+  btnEnd.disabled = false;
+  updateRunButton();
+}
+
+function stopAnimation() {
+  abortAnim = true;
+  if (stepResolve) { stepResolve(); stepResolve = null; }
+  finishAnimation();
+  setStatus("搜索已停止");
+}
+
+btnRun.addEventListener("click", () => runAnimation(false));
+btnStep.addEventListener("click", () => {
+  if (!animating) {
+    runAnimation(true);
+  } else if (stepResolve) {
+    stepResolve();
+    stepResolve = null;
+  }
+});
+
+// --- Init ---
+
+window.addEventListener("resize", resizeCanvas);
+resizeCanvas();
+initGrid();
+
+})();
+</script>
+</body>
+</html>
