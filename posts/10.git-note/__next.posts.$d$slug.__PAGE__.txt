@@ -1,7 +1,8 @@
 1:"$Sreact.fragment"
-2:I[22016,["/_next/static/chunks/7c92e96509cd355e.js"],""]
-4:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
-5:"$Sreact.suspense"
+2:I[22016,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/eb3523e826d36cf6.js"],""]
+4:I[31175,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/eb3523e826d36cf6.js"],"default"]
+5:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
+6:"$Sreact.suspense"
 3:T98a,<h3>创建空分支</h3>
 <pre><code class="hljs language-bash"> checkout --orphan empty_branch
  git <span class="hljs-built_in">rm</span> -rf .
@@ -59,5 +60,5 @@ git config --global color.ui auto
 
 <span class="hljs-comment"># 配置git使用的文本编辑器</span>
 git config --global core.editor vi
-</code></pre>0:{"buildId":"fG1fvox83s3ZZ-mXTX5iM","rsc":["$","$1","c",{"children":[["$","article",null,{"className":"max-w-2xl mx-auto px-5 py-10","children":[["$","header",null,{"className":"mb-8","children":[["$","h1",null,{"className":"font-mono text-xl font-semibold text-[var(--color-text)] leading-tight","children":"Git 速查手册"}],["$","div",null,{"className":"flex items-center gap-3 mt-2 text-xs text-[var(--color-text-tertiary)] font-mono","children":[["$","time",null,{"dateTime":"2023-03-02","children":"2023-03-02"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"2 min read"}]]}],["$","div",null,{"className":"flex flex-wrap gap-1.5 mt-3","children":[["$","$L2","git",{"href":"/tags/git","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","git"]}]]}]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$3"}}],["$","footer",null,{"className":"mt-12 pt-4 border-t border-[var(--color-border)]","children":["$","$L2",null,{"href":"/","className":"text-sm text-[var(--color-link)] hover:underline","children":"← 返回"}]}]]}],null,["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"loading":null,"isPartial":false}
-6:null
+</code></pre>0:{"buildId":"xzX2-1_SXXW-pE78bnzy_","rsc":["$","$1","c",{"children":[["$","article",null,{"className":"max-w-2xl mx-auto px-5 py-10","children":[["$","header",null,{"className":"mb-8","children":[["$","h1",null,{"className":"font-mono text-xl font-semibold text-[var(--color-text)] leading-tight","children":"Git 速查手册"}],["$","div",null,{"className":"flex items-center gap-3 mt-2 text-xs text-[var(--color-text-tertiary)] font-mono","children":[["$","time",null,{"dateTime":"2023-03-02","children":"2023-03-02"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"2 min read"}]]}],["$","div",null,{"className":"flex flex-wrap gap-1.5 mt-3","children":[["$","$L2","git",{"href":"/tags/git","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","git"]}]]}]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$3"}}],["$","$L4",null,{}],["$","footer",null,{"className":"mt-8 pt-4 border-t border-[var(--color-border)]","children":["$","$L2",null,{"href":"/","className":"text-sm text-[var(--color-link)] hover:underline","children":"← 返回"}]}]]}],[["$","script","script-0",{"src":"/_next/static/chunks/eb3523e826d36cf6.js","async":true}]],["$","$L5",null,{"children":["$","$6",null,{"name":"Next.MetadataOutlet","children":"$@7"}]}]]}],"loading":null,"isPartial":false}
+7:null

@@ -1,7 +1,8 @@
 1:"$Sreact.fragment"
-2:I[22016,["/_next/static/chunks/7c92e96509cd355e.js"],""]
-6:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
-7:"$Sreact.suspense"
+2:I[22016,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/eb3523e826d36cf6.js"],""]
+8:I[31175,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/eb3523e826d36cf6.js"],"default"]
+9:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
+a:"$Sreact.suspense"
 3:T1d6d,<h2>Java 通用本地缓存</h2>
 <h3>简介</h3>
 <p>| 主要还是利用好 ReentrantReadWriteLock 对读写进行锁操作</p>
@@ -101,7 +102,9 @@
 }
 
 
-</code></pre>0:{"buildId":"fG1fvox83s3ZZ-mXTX5iM","rsc":["$","$1","c",{"children":[["$","article",null,{"className":"max-w-2xl mx-auto px-5 py-10","children":[["$","header",null,{"className":"mb-8","children":[["$","h1",null,{"className":"font-mono text-xl font-semibold text-[var(--color-text)] leading-tight","children":"Java 通用本地缓存"}],["$","div",null,{"className":"flex items-center gap-3 mt-2 text-xs text-[var(--color-text-tertiary)] font-mono","children":[["$","time",null,{"dateTime":"2024-09-03","children":"2024-09-03"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"2 min read"}]]}],["$","div",null,{"className":"flex flex-wrap gap-1.5 mt-3","children":[["$","$L2","java",{"href":"/tags/java","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","java"]}],["$","$L2","map",{"href":"/tags/map","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","map"]}],["$","$L2","ReentrantReadWriteLock",{"href":"/tags/ReentrantReadWriteLock","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","ReentrantReadWriteLock"]}]]}]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4"]}],null,"$L5"]}],"loading":null,"isPartial":false}
-4:["$","footer",null,{"className":"mt-12 pt-4 border-t border-[var(--color-border)]","children":["$","$L2",null,{"href":"/","className":"text-sm text-[var(--color-link)] hover:underline","children":"← 返回"}]}]
-5:["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]
-8:null
+</code></pre>0:{"buildId":"xzX2-1_SXXW-pE78bnzy_","rsc":["$","$1","c",{"children":[["$","article",null,{"className":"max-w-2xl mx-auto px-5 py-10","children":[["$","header",null,{"className":"mb-8","children":[["$","h1",null,{"className":"font-mono text-xl font-semibold text-[var(--color-text)] leading-tight","children":"Java 通用本地缓存"}],["$","div",null,{"className":"flex items-center gap-3 mt-2 text-xs text-[var(--color-text-tertiary)] font-mono","children":[["$","time",null,{"dateTime":"2024-09-03","children":"2024-09-03"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"2 min read"}]]}],["$","div",null,{"className":"flex flex-wrap gap-1.5 mt-3","children":[["$","$L2","java",{"href":"/tags/java","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","java"]}],["$","$L2","map",{"href":"/tags/map","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","map"]}],["$","$L2","ReentrantReadWriteLock",{"href":"/tags/ReentrantReadWriteLock","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","ReentrantReadWriteLock"]}]]}]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4","$L5"]}],["$L6"],"$L7"]}],"loading":null,"isPartial":false}
+4:["$","$L8",null,{}]
+5:["$","footer",null,{"className":"mt-8 pt-4 border-t border-[var(--color-border)]","children":["$","$L2",null,{"href":"/","className":"text-sm text-[var(--color-link)] hover:underline","children":"← 返回"}]}]
+6:["$","script","script-0",{"src":"/_next/static/chunks/eb3523e826d36cf6.js","async":true}]
+7:["$","$L9",null,{"children":["$","$a",null,{"name":"Next.MetadataOutlet","children":"$@b"}]}]
+b:null

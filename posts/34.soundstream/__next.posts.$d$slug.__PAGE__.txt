@@ -1,7 +1,8 @@
 1:"$Sreact.fragment"
-5:I[22016,["/_next/static/chunks/7c92e96509cd355e.js"],""]
-6:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
-7:"$Sreact.suspense"
+7:I[31175,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/eb3523e826d36cf6.js"],"default"]
+8:I[22016,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/eb3523e826d36cf6.js"],""]
+9:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
+a:"$Sreact.suspense"
 2:T168b,<h1>SoundStream for macOS</h1>
 <p><img src="/posts/34.soundstream/soundstreamlogo.jpg" alt="SoundStream Logo"></p>
 <p>A replica of the classic <strong>SoundStream</strong> screensaver for modern macOS, built with Objective-C and OpenGL.</p>
@@ -93,7 +94,9 @@
 </table>
 <hr>
 <h2>License / 许可</h2>
-<p>Copyright © 2026 Henry. All rights reserved.</p>0:{"buildId":"fG1fvox83s3ZZ-mXTX5iM","rsc":["$","$1","c",{"children":[["$","article",null,{"className":"max-w-2xl mx-auto px-5 py-10","children":[["$","header",null,{"className":"mb-8","children":[["$","h1",null,{"className":"font-mono text-xl font-semibold text-[var(--color-text)] leading-tight","children":"SoundStream for macOS"}],["$","div",null,{"className":"flex items-center gap-3 mt-2 text-xs text-[var(--color-text-tertiary)] font-mono","children":[["$","time",null,{"dateTime":"2026-02-19","children":"2026-02-19"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"4 min read"}]]}],false]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3"]}],null,"$L4"]}],"loading":null,"isPartial":false}
-3:["$","footer",null,{"className":"mt-12 pt-4 border-t border-[var(--color-border)]","children":["$","$L5",null,{"href":"/","className":"text-sm text-[var(--color-link)] hover:underline","children":"← 返回"}]}]
-4:["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]
-8:null
+<p>Copyright © 2026 Henry. All rights reserved.</p>0:{"buildId":"xzX2-1_SXXW-pE78bnzy_","rsc":["$","$1","c",{"children":[["$","article",null,{"className":"max-w-2xl mx-auto px-5 py-10","children":[["$","header",null,{"className":"mb-8","children":[["$","h1",null,{"className":"font-mono text-xl font-semibold text-[var(--color-text)] leading-tight","children":"SoundStream for macOS"}],["$","div",null,{"className":"flex items-center gap-3 mt-2 text-xs text-[var(--color-text-tertiary)] font-mono","children":[["$","time",null,{"dateTime":"2026-02-19","children":"2026-02-19"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"4 min read"}]]}],false]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}],["$L5"],"$L6"]}],"loading":null,"isPartial":false}
+3:["$","$L7",null,{}]
+4:["$","footer",null,{"className":"mt-8 pt-4 border-t border-[var(--color-border)]","children":["$","$L8",null,{"href":"/","className":"text-sm text-[var(--color-link)] hover:underline","children":"← 返回"}]}]
+5:["$","script","script-0",{"src":"/_next/static/chunks/eb3523e826d36cf6.js","async":true}]
+6:["$","$L9",null,{"children":["$","$a",null,{"name":"Next.MetadataOutlet","children":"$@b"}]}]
+b:null

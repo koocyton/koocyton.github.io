@@ -1,7 +1,8 @@
 1:"$Sreact.fragment"
-2:I[22016,["/_next/static/chunks/7c92e96509cd355e.js"],""]
-6:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
-7:"$Sreact.suspense"
+2:I[22016,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/eb3523e826d36cf6.js"],""]
+8:I[31175,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/eb3523e826d36cf6.js"],"default"]
+9:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
+a:"$Sreact.suspense"
 3:T6c2f,<p><img src="/posts/4.phabricator-install-config/phabricator.jpg" alt="phabricator"></p>
 <p><a href="https://www.jianshu.com/p/d7630e1fe4f9">Phabricator安装和配置过程记录 - 吴关山</a></p>
 <h2>Quick Start</h2>
@@ -438,7 +439,9 @@ WantedBy=multi-user.target
   <span class="hljs-attr">"mysql.host"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"localhost"</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">"pygments.enabled"</span><span class="hljs-punctuation">:</span> <span class="hljs-string">"true"</span>
 <span class="hljs-punctuation">}</span>
-</code></pre>0:{"buildId":"fG1fvox83s3ZZ-mXTX5iM","rsc":["$","$1","c",{"children":[["$","article",null,{"className":"max-w-2xl mx-auto px-5 py-10","children":[["$","header",null,{"className":"mb-8","children":[["$","h1",null,{"className":"font-mono text-xl font-semibold text-[var(--color-text)] leading-tight","children":"Phabricator安装和配置过程记录"}],["$","div",null,{"className":"flex items-center gap-3 mt-2 text-xs text-[var(--color-text-tertiary)] font-mono","children":[["$","time",null,{"dateTime":"2023-01-04","children":"2023-01-04"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"14 min read"}]]}],["$","div",null,{"className":"flex flex-wrap gap-1.5 mt-3","children":[["$","$L2","phabricator",{"href":"/tags/phabricator","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","phabricator"]}],["$","$L2","git server",{"href":"/tags/git%20server","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","git server"]}]]}]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4"]}],null,"$L5"]}],"loading":null,"isPartial":false}
-4:["$","footer",null,{"className":"mt-12 pt-4 border-t border-[var(--color-border)]","children":["$","$L2",null,{"href":"/","className":"text-sm text-[var(--color-link)] hover:underline","children":"← 返回"}]}]
-5:["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]
-8:null
+</code></pre>0:{"buildId":"xzX2-1_SXXW-pE78bnzy_","rsc":["$","$1","c",{"children":[["$","article",null,{"className":"max-w-2xl mx-auto px-5 py-10","children":[["$","header",null,{"className":"mb-8","children":[["$","h1",null,{"className":"font-mono text-xl font-semibold text-[var(--color-text)] leading-tight","children":"Phabricator安装和配置过程记录"}],["$","div",null,{"className":"flex items-center gap-3 mt-2 text-xs text-[var(--color-text-tertiary)] font-mono","children":[["$","time",null,{"dateTime":"2023-01-04","children":"2023-01-04"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"14 min read"}]]}],["$","div",null,{"className":"flex flex-wrap gap-1.5 mt-3","children":[["$","$L2","phabricator",{"href":"/tags/phabricator","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","phabricator"]}],["$","$L2","git server",{"href":"/tags/git%20server","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","git server"]}]]}]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4","$L5"]}],["$L6"],"$L7"]}],"loading":null,"isPartial":false}
+4:["$","$L8",null,{}]
+5:["$","footer",null,{"className":"mt-8 pt-4 border-t border-[var(--color-border)]","children":["$","$L2",null,{"href":"/","className":"text-sm text-[var(--color-link)] hover:underline","children":"← 返回"}]}]
+6:["$","script","script-0",{"src":"/_next/static/chunks/eb3523e826d36cf6.js","async":true}]
+7:["$","$L9",null,{"children":["$","$a",null,{"name":"Next.MetadataOutlet","children":"$@b"}]}]
+b:null
