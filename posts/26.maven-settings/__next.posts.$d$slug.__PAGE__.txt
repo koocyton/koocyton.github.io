@@ -1,6 +1,6 @@
 1:"$Sreact.fragment"
-2:I[22016,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/011498a708c7513f.js"],""]
-8:I[31175,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/011498a708c7513f.js"],"default"]
+2:I[22016,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/1646c1a58c1f3568.js"],""]
+8:I[31175,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/1646c1a58c1f3568.js"],"default"]
 9:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
 a:"$Sreact.suspense"
 3:T3402,<h2>Maven settings.xml 配置</h2>
@@ -127,9 +127,9 @@ a:"$Sreact.suspense"
     <span class="hljs-tag">&#x3C;/<span class="hljs-name">profiles</span>></span>
 <span class="hljs-tag">&#x3C;/<span class="hljs-name">settings</span>></span>
 
-</code></pre>0:{"buildId":"DUxWz1rplFhpM1MzTebx5","rsc":["$","$1","c",{"children":[["$","article",null,{"className":"max-w-2xl mx-auto px-5 py-10","children":[["$","header",null,{"className":"mb-8","children":[["$","h1",null,{"className":"font-mono text-xl font-semibold text-[var(--color-text)] leading-tight","children":"maven settings.xml"}],["$","div",null,{"className":"flex items-center gap-3 mt-2 text-xs text-[var(--color-text-tertiary)] font-mono","children":[["$","time",null,{"dateTime":"2024-11-30","children":"2024-11-30"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"1 min read"}]]}],["$","div",null,{"className":"flex flex-wrap gap-1.5 mt-3","children":[["$","$L2","maven",{"href":"/tags/maven","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","maven"]}],["$","$L2","settings.xml",{"href":"/tags/settings.xml","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","settings.xml"]}],["$","$L2","java",{"href":"/tags/java","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","java"]}]]}]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4","$L5"]}],["$L6"],"$L7"]}],"loading":null,"isPartial":false}
+</code></pre>0:{"buildId":"HRnb_4p2TwhuIknzaSodg","rsc":["$","$1","c",{"children":[["$","article",null,{"className":"max-w-2xl mx-auto px-5 py-10","children":[["$","header",null,{"className":"mb-8","children":[["$","h1",null,{"className":"font-mono text-xl font-semibold text-[var(--color-text)] leading-tight","children":"maven settings.xml"}],["$","div",null,{"className":"flex items-center gap-3 mt-2 text-xs text-[var(--color-text-tertiary)] font-mono","children":[["$","time",null,{"dateTime":"2024-11-30","children":"2024-11-30"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"1 min read"}]]}],["$","div",null,{"className":"flex flex-wrap gap-1.5 mt-3","children":[["$","$L2","maven",{"href":"/tags/maven","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","maven"]}],["$","$L2","settings.xml",{"href":"/tags/settings.xml","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","settings.xml"]}],["$","$L2","java",{"href":"/tags/java","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","java"]}]]}]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4","$L5"]}],["$L6"],"$L7"]}],"loading":null,"isPartial":false}
 4:["$","$L8",null,{}]
 5:["$","footer",null,{"className":"mt-8 pt-4 border-t border-[var(--color-border)]","children":["$","$L2",null,{"href":"/","className":"text-sm text-[var(--color-link)] hover:underline","children":"← 返回"}]}]
-6:["$","script","script-0",{"src":"/_next/static/chunks/011498a708c7513f.js","async":true}]
+6:["$","script","script-0",{"src":"/_next/static/chunks/1646c1a58c1f3568.js","async":true}]
 7:["$","$L9",null,{"children":["$","$a",null,{"name":"Next.MetadataOutlet","children":"$@b"}]}]
 b:null
