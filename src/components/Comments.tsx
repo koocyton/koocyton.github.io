@@ -15,7 +15,7 @@ export default function Comments() {
     script.src = "https://giscus.app/client.js";
     script.setAttribute("data-repo", "koocyton/koocyton.github.io");
     script.setAttribute("data-repo-id", "MDEwOlJlcG9zaXRvcnkxNDY5NTUzMzQ=");
-    script.setAttribute("data-category", "General");
+    script.setAttribute("data-category", "Announcements");
     script.setAttribute("data-category-id", "DIC_kwDOCMJcRs4C225y");
     script.setAttribute("data-mapping", "url");
     script.setAttribute("data-strict", "0");
