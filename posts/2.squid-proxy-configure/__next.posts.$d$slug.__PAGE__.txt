@@ -1,6 +1,6 @@
 1:"$Sreact.fragment"
-2:I[22016,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/eb3523e826d36cf6.js"],""]
-8:I[31175,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/eb3523e826d36cf6.js"],"default"]
+2:I[22016,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/011498a708c7513f.js"],""]
+8:I[31175,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/011498a708c7513f.js"],"default"]
 9:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
 a:"$Sreact.suspense"
 3:T1bfa,<h3>debian 上安装</h3>
@@ -114,9 +114,9 @@ err_page_stylesheet none
     }
     <span class="hljs-keyword">return</span> <span class="hljs-string">"HTTPS xxx.xxx.xxx.xxx:3129"</span>;
 }
-</code></pre>0:{"buildId":"xzX2-1_SXXW-pE78bnzy_","rsc":["$","$1","c",{"children":[["$","article",null,{"className":"max-w-2xl mx-auto px-5 py-10","children":[["$","header",null,{"className":"mb-8","children":[["$","h1",null,{"className":"font-mono text-xl font-semibold text-[var(--color-text)] leading-tight","children":"带认证的 Squid 代理配置"}],["$","div",null,{"className":"flex items-center gap-3 mt-2 text-xs text-[var(--color-text-tertiary)] font-mono","children":[["$","time",null,{"dateTime":"2023-01-02","children":"2023-01-02"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"3 min read"}]]}],["$","div",null,{"className":"flex flex-wrap gap-1.5 mt-3","children":[["$","$L2","squid",{"href":"/tags/squid","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","squid"]}],["$","$L2","proxy",{"href":"/tags/proxy","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","proxy"]}]]}]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4","$L5"]}],["$L6"],"$L7"]}],"loading":null,"isPartial":false}
+</code></pre>0:{"buildId":"EVtZz7NMWEkTZ7ALHwGzd","rsc":["$","$1","c",{"children":[["$","article",null,{"className":"max-w-2xl mx-auto px-5 py-10","children":[["$","header",null,{"className":"mb-8","children":[["$","h1",null,{"className":"font-mono text-xl font-semibold text-[var(--color-text)] leading-tight","children":"带认证的 Squid 代理配置"}],["$","div",null,{"className":"flex items-center gap-3 mt-2 text-xs text-[var(--color-text-tertiary)] font-mono","children":[["$","time",null,{"dateTime":"2023-01-02","children":"2023-01-02"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"3 min read"}]]}],["$","div",null,{"className":"flex flex-wrap gap-1.5 mt-3","children":[["$","$L2","squid",{"href":"/tags/squid","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","squid"]}],["$","$L2","proxy",{"href":"/tags/proxy","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","proxy"]}]]}]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4","$L5"]}],["$L6"],"$L7"]}],"loading":null,"isPartial":false}
 4:["$","$L8",null,{}]
 5:["$","footer",null,{"className":"mt-8 pt-4 border-t border-[var(--color-border)]","children":["$","$L2",null,{"href":"/","className":"text-sm text-[var(--color-link)] hover:underline","children":"← 返回"}]}]
-6:["$","script","script-0",{"src":"/_next/static/chunks/eb3523e826d36cf6.js","async":true}]
+6:["$","script","script-0",{"src":"/_next/static/chunks/011498a708c7513f.js","async":true}]
 7:["$","$L9",null,{"children":["$","$a",null,{"name":"Next.MetadataOutlet","children":"$@b"}]}]
 b:null
