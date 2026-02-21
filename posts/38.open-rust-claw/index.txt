@@ -1,0 +1,195 @@
+1:"$Sreact.fragment"
+2:I[22016,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/bbef3146f2d34722.js"],""]
+3:I[39756,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"default"]
+4:I[37457,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"default"]
+8:I[68027,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"default"]
+:HL["/_next/static/chunks/9988c12a819fa1cb.css","style"]
+0:{"P":null,"b":"lAKO24rzs4aKqgei6f8Jl","c":["","posts","38.open-rust-claw",""],"q":"","i":false,"f":[[["",{"children":["posts",{"children":[["slug","38.open-rust-claw","d"],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/9988c12a819fa1cb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/7c92e96509cd355e.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"zh-CN","children":["$","body",null,{"className":"min-h-screen flex flex-col antialiased","children":[["$","header",null,{"className":"border-b border-[var(--color-border)]","children":["$","div",null,{"className":"max-w-2xl mx-auto px-5 h-12 flex items-center justify-between","children":[["$","$L2",null,{"href":"/","className":"font-mono text-sm font-semibold text-[var(--color-text)] hover:text-[var(--color-link)] transition-colors","children":"一洼绿地"}],["$","nav",null,{"className":"flex items-center gap-5","children":[[["$","$L2","/",{"href":"/","className":"text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors","children":"文章"}],["$","$L2","/archives",{"href":"/archives","className":"text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors","children":"归档"}],["$","$L2","/tags",{"href":"/tags","className":"text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors","children":"标签"}],["$","$L2","/about",{"href":"/about","className":"text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors","children":"关于"}]],["$","a",null,{"href":"https://github.com/koocyton","target":"_blank","rel":"noopener noreferrer","className":"text-[var(--color-text-tertiary)] hover:text-[var(--color-text)] transition-colors","children":["$","svg",null,{"className":"w-4 h-4","fill":"currentColor","viewBox":"0 0 24 24","children":["$","path",null,{"d":"M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"}]}]}]]}]]}]}],["$","main",null,{"className":"flex-1","children":["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"max-w-2xl mx-auto px-5 py-20 text-center","children":[["$","h1",null,{"className":"font-mono text-4xl font-semibold text-[var(--color-text)] mb-2","children":"404"}],["$","p",null,{"className":"text-sm text-[var(--color-text-tertiary)] mb-6","children":"页面不存在"}],["$","$L2",null,{"href":"/","className":"text-sm text-[var(--color-link)] hover:underline","children":"← 返回首页"}]]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","footer",null,{"className":"border-t border-[var(--color-border)] py-6","children":["$","div",null,{"className":"max-w-2xl mx-auto px-5 text-xs text-[var(--color-text-tertiary)]","children":["© ",2026," koocyton"]}]}]]}]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":["$L5",[["$","script","script-0",{"src":"/_next/static/chunks/bbef3146f2d34722.js","async":true,"nonce":"$undefined"}]],"$L6"]}],{},null,false,false]},null,false,false]},null,false,false]},null,false,false],"$L7",false]],"m":"$undefined","G":["$8",[]],"S":true}
+9:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
+a:"$Sreact.suspense"
+c:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"ViewportBoundary"]
+e:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"MetadataBoundary"]
+6:["$","$L9",null,{"children":["$","$a",null,{"name":"Next.MetadataOutlet","children":"$@b"}]}]
+7:["$","$1","h",{"children":[null,["$","$Lc",null,{"children":"$Ld"}],["$","div",null,{"hidden":true,"children":["$","$Le",null,{"children":["$","$a",null,{"name":"Next.Metadata","children":"$Lf"}]}]}],null]}]
+10:T1ba9,<h1>rust-bot</h1>
+<p><a href="https://github.com/koocyton/open-rust-claw">基于 rust 的 telegrame LLM 一个消息意图分类器 </a></p>
+<p>一个 Rust 编写的 Telegram Bot 常驻进程，监听 Telegram 频道/群组/私聊消息，通过 LLM（大语言模型）智能判断用户意图：对于提问直接回答，对于操作指令自动转化为 shell 命令并执行，支持返回图片。</p>
+<h2>架构</h2>
+<pre><code class="hljs language-scss">Telegram 频道/群组消息
+       │
+       ▼
+  ┌──────────┐
+  │ rust-bot │  (常驻进程，Long Polling)
+  └──────────┘
+       │
+       ▼
+  ┌──────────────────┐
+  │ LLM API 意图分类  │  (OpenAI 兼容接口)
+  └──────────────────┘
+       │
+       ├── 问题 → 直接回答，编辑消息返回
+       │
+       └── 操作 → 解析命令列表
+                    │
+                    ▼
+              ┌──────────┐
+              │ Shell 执行 │
+              └──────────┘
+                    │
+                    ▼
+              结果回传 Telegram（文本 + 图片）
+</code></pre>
+<h2>功能特性</h2>
+<ul>
+<li><strong>智能意图识别</strong> — LLM 自动判断消息是提问还是操作指令</li>
+<li><strong>问答模式</strong> — 提问类消息直接由 LLM 回答</li>
+<li><strong>命令执行</strong> — 操作类消息自动生成 shell 命令并执行</li>
+<li><strong>图片支持</strong> — 命令输出中包含图片路径时自动发送图片（如截图）</li>
+<li><strong>消息编辑</strong> — 「正在分析...」状态消息会被结果直接覆盖，不刷屏</li>
+<li><strong>并发处理</strong> — 多条消息同时处理，不排队阻塞</li>
+<li><strong>频道支持</strong> — 同时支持私聊、群组和频道消息</li>
+<li><strong>详细日志</strong> — 每步操作带时间戳和耗时统计，方便排查问题</li>
+</ul>
+<h2>工作流程</h2>
+<ol>
+<li><strong>启动</strong> — 读取 <code>config.toml</code>，清理 Webhook，启动 Long Polling</li>
+<li><strong>监听</strong> — 通过 Telegram Bot API 长轮询接收消息（支持频道/群组/私聊）</li>
+<li><strong>分析</strong> — 发送「🔄 正在分析...」，调用 LLM 判断意图</li>
+<li><strong>处理</strong>
+<ul>
+<li>提问 → LLM 直接回答，编辑覆盖状态消息</li>
+<li>操作 → 解析命令列表 → 显示执行计划 → 逐条执行 → 回传结果</li>
+</ul>
+</li>
+<li><strong>图片</strong> — 如果命令输出中包含图片文件路径，自动发送到频道</li>
+</ol>
+<h2>快速开始</h2>
+<h3>前置条件</h3>
+<ul>
+<li>Rust 1.70+</li>
+<li>一个 Telegram Bot Token（从 <a href="https://t.me/BotFather">@BotFather</a> 获取）</li>
+<li>一个 OpenAI 兼容的 LLM API（如 <a href="https://openrouter.ai">OpenRouter</a>）</li>
+</ul>
+<h3>构建</h3>
+<pre><code class="hljs language-bash">cargo build --release
+</code></pre>
+<h3>配置</h3>
+<pre><code class="hljs language-bash"><span class="hljs-built_in">cp</span> config.example.toml config.toml
+<span class="hljs-comment"># 编辑 config.toml，填入你的 Bot Token 和 LLM API 配置</span>
+</code></pre>
+<h3>运行</h3>
+<pre><code class="hljs language-bash"><span class="hljs-comment"># 使用默认配置文件 config.toml</span>
+./target/release/rust-bot
+
+<span class="hljs-comment"># 指定配置文件路径</span>
+./target/release/rust-bot /path/to/config.toml
+
+<span class="hljs-comment"># 开启 debug 日志</span>
+RUST_LOG=debug ./target/release/rust-bot
+</code></pre>
+<h3>Telegram Bot 设置</h3>
+<ol>
+<li>在 <a href="https://t.me/BotFather">@BotFather</a> 创建 Bot，获取 Token</li>
+<li>如果用于<strong>频道</strong>：将 Bot 添加为频道管理员</li>
+<li>如果用于<strong>群组</strong>：将 Bot 加入群组</li>
+<li>启动程序，发送一条消息，从日志中获取 <code>chat_id</code></li>
+<li>将 <code>chat_id</code> 填入 <code>config.toml</code> 的 <code>allowed_chat_ids</code></li>
+</ol>
+<h2>配置说明</h2>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>说明</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>telegram.bot_token</code></td>
+<td>Telegram Bot API Token</td>
+<td>必填</td>
+</tr>
+<tr>
+<td><code>telegram.allowed_chat_ids</code></td>
+<td>允许的聊天 ID 白名单，空数组表示不限制</td>
+<td><code>[]</code></td>
+</tr>
+<tr>
+<td><code>llm.base_url</code></td>
+<td>OpenAI 兼容 API 的 Base URL</td>
+<td>必填</td>
+</tr>
+<tr>
+<td><code>llm.api_key</code></td>
+<td>LLM API Key</td>
+<td>必填</td>
+</tr>
+<tr>
+<td><code>llm.model</code></td>
+<td>模型名称</td>
+<td>必填</td>
+</tr>
+<tr>
+<td><code>llm.max_tokens</code></td>
+<td>最大生成 Token 数</td>
+<td><code>2048</code></td>
+</tr>
+<tr>
+<td><code>llm.system_prompt</code></td>
+<td>自定义系统提示词（覆盖内置默认值）</td>
+<td>内置</td>
+</tr>
+<tr>
+<td><code>executor.working_dir</code></td>
+<td>命令执行的工作目录</td>
+<td>当前目录</td>
+</tr>
+<tr>
+<td><code>executor.timeout_secs</code></td>
+<td>单条命令超时时间（秒）</td>
+<td><code>120</code></td>
+</tr>
+<tr>
+<td><code>executor.echo_result</code></td>
+<td>是否回传执行结果到 Telegram</td>
+<td><code>true</code></td>
+</tr>
+</tbody>
+</table>
+<h2>LLM 接口</h2>
+<p>本程序通过 OpenAI 兼容的 Chat Completions API（<code>/v1/chat/completions</code>）与 LLM 交互，不使用 MCP 协议。</p>
+<p>支持的 LLM 服务：</p>
+<ul>
+<li><a href="https://openrouter.ai">OpenRouter</a> — 聚合多家模型</li>
+<li><a href="https://platform.openai.com">OpenAI</a></li>
+<li>任何兼容 OpenAI API 格式的服务（如 Ollama、vLLM、LocalAI 等）</li>
+</ul>
+<p>LLM 负责将用户消息分类为两种意图：</p>
+<ul>
+<li><strong>问题</strong> — 返回回答内容</li>
+<li><strong>命令</strong> — 返回要执行的 shell 命令列表</li>
+</ul>
+<h2>项目结构</h2>
+<pre><code class="hljs language-bash">src/
+├── main.rs        <span class="hljs-comment"># 入口，配置加载</span>
+├── bot.rs         <span class="hljs-comment"># Telegram Bot 消息处理、并发调度</span>
+├── llm_client.rs  <span class="hljs-comment"># LLM API 调用、意图分类</span>
+├── executor.rs    <span class="hljs-comment"># Shell 命令执行</span>
+├── config.rs      <span class="hljs-comment"># 配置文件解析</span>
+└── log.rs         <span class="hljs-comment"># 带时间戳的日志宏</span>
+</code></pre>
+<h2>安全注意事项</h2>
+<ul>
+<li><strong>务必配置 <code>allowed_chat_ids</code></strong>，限制只有授权的频道/用户才能触发命令执行</li>
+<li>该程序会在服务器上执行任意 shell 命令，请确保运行环境安全</li>
+<li>建议使用受限用户运行，避免使用 root</li>
+<li><code>config.toml</code> 包含敏感信息（Token、API Key），请勿提交到公开仓库</li>
+</ul>5:["$","article",null,{"className":"max-w-2xl mx-auto px-5 py-10","children":[["$","header",null,{"className":"mb-8","children":[["$","h1",null,{"className":"font-mono text-xl font-semibold text-[var(--color-text)] leading-tight","children":"RUST 机器人"}],["$","div",null,{"className":"flex items-center gap-3 mt-2 text-xs text-[var(--color-text-tertiary)] font-mono","children":[["$","time",null,{"dateTime":"2026-02-21","children":"2026-02-21"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"6 min read"}]]}],["$","div",null,{"className":"flex flex-wrap gap-1.5 mt-3","children":[["$","$L2","RUST",{"href":"/tags/RUST","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","RUST"]}],["$","$L2","CLAW",{"href":"/tags/CLAW","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","CLAW"]}],["$","$L2","TELEGRAME",{"href":"/tags/TELEGRAME","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","TELEGRAME"]}]]}]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$10"}}],"$L11","$L12"]}]
+13:I[31175,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/bbef3146f2d34722.js"],"default"]
+11:["$","$L13",null,{}]
+12:["$","footer",null,{"className":"mt-8 pt-4 border-t border-[var(--color-border)]","children":["$","$L2",null,{"href":"/","className":"text-sm text-[var(--color-link)] hover:underline","children":"← 返回"}]}]
+d:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+14:I[27201,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"IconMark"]
+b:null
+f:[["$","title","0",{"children":"RUST 机器人 - 一洼绿地"}],["$","meta","1",{"name":"description","content":"RUST 机器人"}],["$","meta","2",{"name":"keywords","content":"javascript java php emacs spring linux flutter"}],["$","link","3",{"rel":"icon","href":"/img/avatar/favicon.png"}],["$","$L14","4",{}]]
