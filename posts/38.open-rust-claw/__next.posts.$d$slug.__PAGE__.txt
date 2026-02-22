@@ -3,7 +3,9 @@
 8:I[31175,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/bbef3146f2d34722.js"],"default"]
 9:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
 a:"$Sreact.suspense"
-3:T1b97,<p><a href="https://github.com/koocyton/open-rust-claw">基于 rust 的 telegrame LLM 一个消息意图分类器 </a></p>
+3:T2e33,<p><a href="https://github.com/koocyton/open-rust-claw">基于 rust 的 telegrame LLM 一个消息意图分类器 </a></p>
+<p><a href="https://github.com/koocyton/rust-openclaw/releases/download/latest/intel-mac-rust-bot">download rust-openclaw for intel mac </a></p>
+<p><a href="https://github.com/koocyton/rust-openclaw/releases/download/latest/arm64-rust-bot">download rust-openclaw for arm64 linux </a></p>
 <p>一个 Rust 编写的 Telegram Bot 常驻进程，监听 Telegram 频道/群组/私聊消息，通过 LLM（大语言模型）智能判断用户意图：对于提问直接回答，对于操作指令自动转化为 shell 命令并执行，支持返回图片。</p>
 <h2>架构</h2>
 <pre><code class="hljs language-scss">Telegram 频道/群组消息
@@ -49,10 +51,10 @@ a:"$Sreact.suspense"
 <li><strong>处理</strong>
 <ul>
 <li>提问 → LLM 直接回答，编辑覆盖状态消息</li>
-<li>操作 → 解析命令列表 → 显示执行计划 → 逐条执行 → 回传结果</li>
+<li>操作 → 解析命令列表 → 显示执行计划 → 逐条执行（失败时可自动修正重试）→ 回传结果</li>
 </ul>
 </li>
-<li><strong>图片</strong> — 如果命令输出中包含图片文件路径，自动发送到频道</li>
+<li><strong>图片/视频</strong> — 如果命令输出中包含图片或视频文件路径，自动发送到频道</li>
 </ol>
 <h2>快速开始</h2>
 <h3>前置条件</h3>
@@ -63,6 +65,26 @@ a:"$Sreact.suspense"
 </ul>
 <h3>构建</h3>
 <pre><code class="hljs language-bash">cargo build --release
+</code></pre>
+<h3>OpenWrt ARM64 交叉编译（MTK FILOGIC 820 / MT7981B 等）</h3>
+<p>目标为 <strong>aarch64-unknown-linux-musl</strong>，与 OpenWrt 常见 musl 环境兼容。</p>
+<p><strong>方式一：使用 <a href="https://github.com/cross-rs/cross">cross</a>（推荐，无需本机装 ARM 工具链）</strong></p>
+<p>需先安装并启动 Docker。然后：</p>
+<pre><code class="hljs language-bash">cargo install cross
+rustup target add aarch64-unknown-linux-musl
+./scripts/build-openwrt.sh
+<span class="hljs-comment"># 或直接：</span>
+cross build --target aarch64-unknown-linux-musl --release
+</code></pre>
+<p>产物在 <code>target/aarch64-unknown-linux-musl/release/rust-bot</code>，脚本会复制到 <code>./openwrt-out/rust-bot</code>。若不用 cross 而直接用 <code>cargo build --target ...</code>，需本机具备 aarch64-linux-musl 的 C 工具链（如 musl-cross 或 OpenWrt SDK），否则 <code>ring</code> 等 C 依赖会编译失败。</p>
+<p><strong>方式二：使用 OpenWrt SDK 工具链</strong></p>
+<p>在 <code>.cargo/config.toml</code> 中为 <code>[target.aarch64-unknown-linux-musl]</code> 设置 <code>linker</code> 为 SDK 中的 <code>aarch64-openwrt-linux-musl-gcc</code> 的路径，然后：</p>
+<pre><code class="hljs language-bash">rustup target add aarch64-unknown-linux-musl
+cargo build --target aarch64-unknown-linux-musl --release
+</code></pre>
+<p><strong>上传与运行</strong></p>
+<p>将 <code>rust-bot</code> 和 <code>config.toml</code> 拷到设备（如 <code>/opt/rust-bot/</code>），在 OpenWrt 上需有 libc（musl 已静态链接进 musl 目标的可执行文件，一般无需额外库）。直接运行：</p>
+<pre><code class="hljs language-bash">./rust-bot /path/to/config.toml
 </code></pre>
 <h3>配置</h3>
 <pre><code class="hljs language-bash"><span class="hljs-built_in">cp</span> config.example.toml config.toml
@@ -146,8 +168,38 @@ RUST_LOG=debug ./target/release/rust-bot
 <td>是否回传执行结果到 Telegram</td>
 <td><code>true</code></td>
 </tr>
+<tr>
+<td><code>executor.activate_venv</code></td>
+<td>执行前激活的 Python venv 路径（如 <code>.venv</code>）</td>
+<td>无</td>
+</tr>
+<tr>
+<td><code>executor.max_fix_retries</code></td>
+<td>命令失败时向 LLM 询问修正并自动重试的最大次数，0 表示不重试仅展示建议</td>
+<td><code>10</code></td>
+</tr>
+<tr>
+<td><code>skills_dir</code></td>
+<td>Skills 扩展技能目录路径，留空则默认使用项目下的 <code>skills</code> 目录</td>
+<td>无</td>
+</tr>
 </tbody>
 </table>
+<h2>Skills（扩展技能）</h2>
+<p>通过 <strong>skills</strong> 可以扩展 bot 能处理的问题类型，而不改主程序代码。每个 skill 是一个子目录，内含 <code>skill.toml</code>，定义名称、描述、给 LLM 的提示片段和安装说明。</p>
+<ul>
+<li><strong>启用</strong>：在项目根下建 <code>skills</code> 目录，按 <code>skills/README.md</code> 添加 <code>skill.toml</code>，可选在 <code>config.toml</code> 中设置 <code>skills_dir = "skills"</code>。</li>
+<li><strong>列出技能</strong>：在 Telegram 中发送「有哪些技能」。</li>
+<li><strong>安装方式</strong>：发送「怎么安装 截图」等，可查看对应技能的安装说明。</li>
+</ul>
+<p>详见 <a href="skills/README.md">skills/README.md</a>。</p>
+<h2>错误修复与自动重试</h2>
+<p>当某条命令执行失败时，程序会向 LLM 询问修正方式，并可从回复中解析出建议的命令自动重试：</p>
+<ul>
+<li><strong>配置项</strong> <code>executor.max_fix_retries</code>：单条命令失败后，最多请求 LLM 修正并重试的次数，默认 <strong>10</strong>。设为 <strong>0</strong> 时不做自动重试，仅把「解决建议」附在报告里给用户参考。</li>
+<li><strong>流程</strong>：命令失败 → 将命令、退出码、stderr 发给 LLM（并注入相关 skill 上下文）→ 从回复中解析出修正命令（如代码块或反引号内的内容）→ 执行该命令；若仍失败则重复，直到成功或达到 <code>max_fix_retries</code>。全部重试后仍失败时，会在报告末尾再附一次「解决建议」。</li>
+<li>这样在环境或参数可被 LLM 修正的情况下，有机会自动执行成功，而无需用户手动改命令再发一次。</li>
+</ul>
 <h2>LLM 接口</h2>
 <p>本程序通过 OpenAI 兼容的 Chat Completions API（<code>/v1/chat/completions</code>）与 LLM 交互，不使用 MCP 协议。</p>
 <p>支持的 LLM 服务：</p>
@@ -168,7 +220,14 @@ RUST_LOG=debug ./target/release/rust-bot
 ├── llm_client.rs  <span class="hljs-comment"># LLM API 调用、意图分类</span>
 ├── executor.rs    <span class="hljs-comment"># Shell 命令执行</span>
 ├── config.rs      <span class="hljs-comment"># 配置文件解析</span>
+├── skills.rs      <span class="hljs-comment"># Skills 加载与提示注入</span>
 └── log.rs         <span class="hljs-comment"># 带时间戳的日志宏</span>
+skills/            <span class="hljs-comment"># 扩展技能目录（见 skills/README.md）</span>
+├── README.md      <span class="hljs-comment"># Skills 使用与安装说明</span>
+├── screenshot/
+│   └── skill.toml
+└── screen_record/
+    └── skill.toml
 </code></pre>
 <h2>安全注意事项</h2>
 <ul>
@@ -176,7 +235,7 @@ RUST_LOG=debug ./target/release/rust-bot
 <li>该程序会在服务器上执行任意 shell 命令，请确保运行环境安全</li>
 <li>建议使用受限用户运行，避免使用 root</li>
 <li><code>config.toml</code> 包含敏感信息（Token、API Key），请勿提交到公开仓库</li>
-</ul>0:{"buildId":"iNoZv9Au9ApLHAG0TSEf6","rsc":["$","$1","c",{"children":[["$","article",null,{"className":"max-w-2xl mx-auto px-5 py-10","children":[["$","header",null,{"className":"mb-8","children":[["$","h1",null,{"className":"font-mono text-xl font-semibold text-[var(--color-text)] leading-tight","children":"基于 rust 的 telegrame LLM 一个消息意图分类器 ( rust openclaw )"}],["$","div",null,{"className":"flex items-center gap-3 mt-2 text-xs text-[var(--color-text-tertiary)] font-mono","children":[["$","time",null,{"dateTime":"2026-02-21","children":"2026-02-21"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"6 min read"}]]}],["$","div",null,{"className":"flex flex-wrap gap-1.5 mt-3","children":[["$","$L2","RUST",{"href":"/tags/RUST","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","RUST"]}],["$","$L2","CLAW",{"href":"/tags/CLAW","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","CLAW"]}],["$","$L2","TELEGRAME",{"href":"/tags/TELEGRAME","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","TELEGRAME"]}]]}]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4","$L5"]}],["$L6"],"$L7"]}],"loading":null,"isPartial":false}
+</ul>0:{"buildId":"rHx3HdtUZQR9_MrV0Ma63","rsc":["$","$1","c",{"children":[["$","article",null,{"className":"max-w-2xl mx-auto px-5 py-10","children":[["$","header",null,{"className":"mb-8","children":[["$","h1",null,{"className":"font-mono text-xl font-semibold text-[var(--color-text)] leading-tight","children":"基于 rust 的 telegrame LLM 一个消息意图分类器 ( rust openclaw )"}],["$","div",null,{"className":"flex items-center gap-3 mt-2 text-xs text-[var(--color-text-tertiary)] font-mono","children":[["$","time",null,{"dateTime":"2026-02-21","children":"2026-02-21"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"9 min read"}]]}],["$","div",null,{"className":"flex flex-wrap gap-1.5 mt-3","children":[["$","$L2","RUST",{"href":"/tags/RUST","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","RUST"]}],["$","$L2","CLAW",{"href":"/tags/CLAW","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","CLAW"]}],["$","$L2","TELEGRAME",{"href":"/tags/TELEGRAME","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","TELEGRAME"]}]]}]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4","$L5"]}],["$L6"],"$L7"]}],"loading":null,"isPartial":false}
 4:["$","$L8",null,{}]
 5:["$","footer",null,{"className":"mt-8 pt-4 border-t border-[var(--color-border)]","children":["$","$L2",null,{"href":"/","className":"text-sm text-[var(--color-link)] hover:underline","children":"← 返回"}]}]
 6:["$","script","script-0",{"src":"/_next/static/chunks/bbef3146f2d34722.js","async":true}]
