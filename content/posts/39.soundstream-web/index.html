@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Soundstream</title>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 100%; height: 100%;
+    overflow: hidden;
+    background: #000;
+    -webkit-text-size-adjust: 100%;
+  }
+  canvas {
+    display: block;
+    width: 100dvw;
+    height: 100dvh;
+    position: fixed;
+    top: 0; left: 0;
+    z-index: 0;
+  }
+  #fullscreen-btn {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  #fullscreen-btn::after {
+    content: '⛶';
+    position: fixed;
+    bottom: 24px;
+    right: 28px;
+    font-size: 28px;
+    color: rgba(255,255,255,0.25);
+    pointer-events: none;
+    transition: opacity 0.4s;
+  }
+  #fullscreen-btn:hover::after { color: rgba(255,255,255,0.6); }
+  body.is-fullscreen #fullscreen-btn::after { opacity: 0; }
+</style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<button id="fullscreen-btn" aria-label="全屏"></button>
+
+<script>
+const PI = Math.PI;
+const TWO_PI = PI * 2;
+const MAX_PARTICLES = 1500;
+const TAIL_EMIT = 14;
+const HEAD_EMIT = 6;
+const CRUISE = 600;
+const BRAKE_DUR = 2.0;
+
+// --- Particle pool ---
+const px = new Float64Array(MAX_PARTICLES);
+const py = new Float64Array(MAX_PARTICLES);
+const pvx = new Float64Array(MAX_PARTICLES);
+const pvy = new Float64Array(MAX_PARTICLES);
+const plife = new Float64Array(MAX_PARTICLES);
+const pmaxlife = new Float64Array(MAX_PARTICLES);
+const psize = new Float64Array(MAX_PARTICLES);
+const popacity = new Float64Array(MAX_PARTICLES);
+const pishead = new Uint8Array(MAX_PARTICLES);
+
+// --- Comet state ---
+let W, H;
+const comet = {
+  x: 0, y: 0, vx: 0, vy: 0,
+  speed: 0, angle: 0,
+  // leg: one straight-line flight from current pos to edge
+  targetX: 0, targetY: 0,
+  totalDist: 0, traveled: 0,
+  dirX: 0, dirY: 0,
+  // 3 phases: 'accel' → 'cruise' → 'brake'
+  phase: 'accel',
+  brakeTimer: 0,
+  brakeStartSpeed: CRUISE,
+};
+let time = 0;
+let hue = Math.random() * 360;
+
+// --- Init ---
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const dpr = window.devicePixelRatio || 1;
+
+function resize() {
+  W = document.documentElement.clientWidth || window.innerWidth;
+  H = document.documentElement.clientHeight || window.innerHeight;
+  canvas.width = W * dpr;
+  canvas.height = H * dpr;
+  canvas.style.width = W + 'px';
+  canvas.style.height = H + 'px';
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+resize();
+window.addEventListener('resize', resize);
+
+// --- Microphone audio analysis ---
+let audioLevel = 0;       // 0..1 smoothed volume
+let audioLevelRaw = 0;
+let audioActive = false;
+let audioCtx = null;
+let analyser = null;
+let analyserData = null;
+let audioInited = false;
+
+async function initAudio() {
+  if (audioInited && audioActive && audioCtx) {
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    return;
+  }
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    if (audioCtx) audioCtx.close().catch(() => {});
+    audioCtx = new AudioContext();
+    const src = audioCtx.createMediaStreamSource(stream);
+    analyser = audioCtx.createAnalyser();
+    analyser.fftSize = 512;
+    analyser.smoothingTimeConstant = 0.3;
+    analyser.minDecibels = -80;
+    analyser.maxDecibels = -10;
+    src.connect(analyser);
+    analyserData = new Uint8Array(analyser.frequencyBinCount);
+    audioActive = true;
+    audioInited = true;
+  } catch (e) {
+    audioActive = false;
+    audioInited = false;
+  }
+}
+
+function updateAudio() {
+  if (!audioActive || !analyser || !audioCtx) return;
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume();
+    return;
+  }
+  if (audioCtx.state !== 'running') return;
+  analyser.getByteFrequencyData(analyserData);
+  let sum = 0;
+  for (let i = 0; i < analyserData.length; i++) sum += analyserData[i];
+  audioLevelRaw = sum / (analyserData.length * 255);
+  audioLevel += (audioLevelRaw - audioLevel) * 0.15;
+}
+
+// try init immediately, retry on user gesture if browser blocks it
+initAudio();
+document.addEventListener('click', () => initAudio(), { once: false });
+document.addEventListener('touchstart', () => initAudio(), { once: false });
+
+// find where ray (ox,oy) + t*(dx,dy) hits screen boundary [0,W]×[0,H]
+function edgeHit(ox, oy, dx, dy, w, h) {
+  let tMin = 1e9;
+  if (dx > 0.0001) tMin = Math.min(tMin, (w - ox) / dx);
+  else if (dx < -0.0001) tMin = Math.min(tMin, -ox / dx);
+  if (dy > 0.0001) tMin = Math.min(tMin, (h - oy) / dy);
+  else if (dy < -0.0001) tMin = Math.min(tMin, -oy / dy);
+  if (tMin < 0) tMin = 0;
+  return { x: ox + dx * tMin, y: oy + dy * tMin };
+}
+
+// start a new leg: read current W/H, pick target on edge
+function startLeg(angle) {
+  const w = W, h = H;
+  comet.angle = angle;
+  comet.dirX = Math.cos(angle);
+  comet.dirY = Math.sin(angle);
+  const hit = edgeHit(comet.x, comet.y, comet.dirX, comet.dirY, w, h);
+  comet.targetX = hit.x;
+  comet.targetY = hit.y;
+  comet.totalDist = Math.hypot(hit.x - comet.x, hit.y - comet.y) * 0.95;
+  comet.traveled = 0;
+  comet.phase = 'accel';
+  comet.speed = 60;
+  comet.vx = comet.dirX * comet.speed;
+  comet.vy = comet.dirY * comet.speed;
+}
+
+// initial leg
+comet.x = W * 0.5;
+comet.y = H * 0.5;
+startLeg(Math.random() * TWO_PI);
+
+ctx.fillStyle = '#000';
+ctx.fillRect(0, 0, W, H);
+
+// brake stopping distance: integral of v0*(1-t/T)^3 dt from 0 to T = v0*T/4
+const BRAKE_DIST = () => CRUISE * BRAKE_DUR / 4;
+
+function updateComet(dt) {
+  const remaining = comet.totalDist - comet.traveled;
+
+  if (comet.phase === 'accel') {
+    comet.speed = Math.min(comet.speed + 800 * dt, CRUISE);
+    if (comet.speed >= CRUISE) comet.phase = 'cruise';
+    // if short leg, might need to brake already
+    if (remaining <= BRAKE_DIST() && comet.traveled > 0) {
+      comet.phase = 'brake';
+      comet.brakeTimer = 0;
+      comet.brakeStartSpeed = comet.speed;
+    }
+  } else if (comet.phase === 'cruise') {
+    comet.speed = CRUISE;
+    if (remaining <= BRAKE_DIST()) {
+      comet.phase = 'brake';
+      comet.brakeTimer = 0;
+      comet.brakeStartSpeed = comet.speed;
+    }
+  } else {
+    // brake: 2s cubic deceleration
+    comet.brakeTimer += dt;
+    const t = Math.min(comet.brakeTimer / BRAKE_DUR, 1);
+    comet.speed = comet.brakeStartSpeed * (1 - t) ** 3;
+  }
+
+  // move along the leg direction
+  const step = comet.speed * dt;
+  comet.traveled += step;
+  comet.x += comet.dirX * step;
+  comet.y += comet.dirY * step;
+  comet.vx = comet.dirX * comet.speed;
+  comet.vy = comet.dirY * comet.speed;
+
+  // arrived near edge (95%) → turn around
+  if (comet.traveled >= comet.totalDist || comet.speed < 0.5) {
+    comet.speed = 0;
+    comet.vx = 0;
+    comet.vy = 0;
+
+    // new angle: toward center + offset 300°~360° (≡ -60°~0°)
+    const cx = W / 2, cy = H / 2;
+    const toCenter = Math.atan2(cy - comet.y, cx - comet.x);
+    const offDeg = 330 + Math.random() * 60;
+    const offRad = (offDeg - 360) * PI / 180;
+    startLeg(toCenter + offRad);
+  }
+}
+
+// --- Emit particles ---
+function emitParticles() {
+  const tailAngle = Math.atan2(comet.vy, comet.vx) + PI;
+  let emitted = 0;
+
+  for (let i = 0; i < MAX_PARTICLES; i++) {
+    if (emitted >= TAIL_EMIT) break;
+    if (plife[i] > 0) continue;
+    const fan = (Math.random() - 0.5) * 2.4;
+    const da = tailAngle + fan;
+    const ds = 4 + Math.random() * 16;
+    px[i] = comet.x + (Math.random() - 0.5) * 16;
+    py[i] = comet.y + (Math.random() - 0.5) * 16;
+    pvx[i] = Math.cos(da) * ds;
+    pvy[i] = Math.sin(da) * ds;
+    pmaxlife[i] = 2 + Math.random() * 3;
+    plife[i] = pmaxlife[i];
+    psize[i] = 0.375 + Math.random() * 0.75;
+    popacity[i] = 0.6 + Math.random() * 0.3;
+    pishead[i] = 0;
+    emitted++;
+  }
+
+  let he = 0;
+  const vol = audioLevel * 100;
+  const headCount = HEAD_EMIT + Math.floor(vol);
+  for (let i = 0; i < MAX_PARTICLES; i++) {
+    if (he >= headCount) break;
+    if (plife[i] > 0) continue;
+    const a = Math.random() * TWO_PI;
+    const r = Math.random() * 8;
+    px[i] = comet.x + Math.cos(a) * r;
+    py[i] = comet.y + Math.sin(a) * r;
+
+    // burst outward velocity proportional to audio volume
+    const burstSpeed = vol * 12;
+    const burstAngle = Math.random() * TWO_PI;
+    pvx[i] = comet.vx * 0.2 + Math.cos(burstAngle) * burstSpeed;
+    pvy[i] = comet.vy * 0.2 + Math.sin(burstAngle) * burstSpeed;
+
+    pmaxlife[i] = 0.2 + Math.random() * 0.4 + vol * 0.03;
+    plife[i] = pmaxlife[i];
+    psize[i] = 0.25 + Math.random() * 0.5 + vol * 0.01;
+    popacity[i] = 0.8 + Math.random() * 0.2;
+    pishead[i] = 1;
+    he++;
+  }
+}
+
+// --- Update particles ---
+function updateParticles(dt) {
+  const vol = audioLevel * 100;
+
+  for (let i = 0; i < MAX_PARTICLES; i++) {
+    if (plife[i] <= 0) continue;
+
+    if (pishead[i] === 0) {
+      pvx[i] *= 0.96;
+      pvy[i] *= 0.96;
+      const ta = Math.random() * TWO_PI;
+      const ts = 16 + Math.random() * 24;
+      pvx[i] += Math.cos(ta) * ts * dt;
+      pvy[i] += Math.sin(ta) * ts * dt;
+
+      // audio: push tail particles away from head (direct velocity kick, no *dt)
+      if (vol > 1) {
+        const dx = px[i] - comet.x;
+        const dy = py[i] - comet.y;
+        const dist = Math.hypot(dx, dy) + 0.1;
+        const kick = vol * 0.8;
+        pvx[i] += (dx / dist) * kick;
+        pvy[i] += (dy / dist) * kick;
+      }
+      // quiet: gently pull back
+      if (vol < 5) {
+        const dx = comet.x - px[i];
+        const dy = comet.y - py[i];
+        const dist = Math.hypot(dx, dy) + 0.1;
+        if (dist > 15) {
+          pvx[i] += (dx / dist) * 0.5;
+          pvy[i] += (dy / dist) * 0.5;
+        }
+      }
+    } else {
+      pvx[i] *= 0.99;
+      pvy[i] *= 0.99;
+      // head particles: strong outward kick (direct velocity, no *dt)
+      if (vol > 1) {
+        const dx = px[i] - comet.x;
+        const dy = py[i] - comet.y;
+        const dist = Math.hypot(dx, dy) + 0.1;
+        const kick = vol * 1.2;
+        pvx[i] += (dx / dist) * kick;
+        pvy[i] += (dy / dist) * kick;
+      }
+    }
+
+    px[i] += pvx[i] * dt;
+    py[i] += pvy[i] * dt;
+    plife[i] -= dt;
+  }
+}
+
+// --- Render ---
+function render() {
+  ctx.globalCompositeOperation = 'source-over';
+  ctx.fillStyle = 'rgba(0,0,0,0.15)';
+  ctx.fillRect(0, 0, W, H);
+
+  ctx.globalCompositeOperation = 'lighter';
+
+  for (let i = 0; i < MAX_PARTICLES; i++) {
+    if (plife[i] <= 0) continue;
+    const ageR = 1 - plife[i] / pmaxlife[i];
+    const fadeIn = Math.min(1 - ageR, 1, (pmaxlife[i] - plife[i]) * 10);
+    const fadeOut = Math.min(plife[i] * 3, 1);
+    const alpha = popacity[i] * fadeIn * fadeOut;
+    if (alpha < 0.005) continue;
+
+    const isH = pishead[i];
+    const size = isH
+      ? psize[i] * (1 + ageR * 0.5)
+      : psize[i] * (1 + ageR * 3);
+    const h = isH ? hue : (hue + ageR * 30) % 360;
+    const s = isH ? 40 : 70;
+    const l = isH ? 85 + (1 - ageR) * 15 : 55 + (1 - ageR) * 25;
+
+    // glow
+    ctx.fillStyle = `hsla(${h|0},${s}%,${l|0}%,${(alpha * 0.08).toFixed(3)})`;
+    ctx.beginPath();
+    ctx.arc(px[i], py[i], Math.max(size * 3, 0.25), 0, TWO_PI);
+    ctx.fill();
+
+    // core
+    ctx.fillStyle = `hsla(${h|0},${s}%,${l|0}%,${(alpha * 0.45).toFixed(3)})`;
+    ctx.beginPath();
+    ctx.arc(px[i], py[i], Math.max(size, 0.15), 0, TWO_PI);
+    ctx.fill();
+
+    // white highlight for head
+    if (isH) {
+      ctx.fillStyle = `rgba(255,255,255,${(alpha * 0.7).toFixed(3)})`;
+      ctx.beginPath();
+      ctx.arc(px[i], py[i], Math.max(size * 0.4, 0.1), 0, TWO_PI);
+      ctx.fill();
+    }
+  }
+
+  // comet head glow
+  const h = hue;
+  const layers = [
+    [32, `hsla(${h|0},60%,70%,0.06)`],
+    [18, `hsla(${h|0},50%,80%,0.15)`],
+    [10, `hsla(${h|0},35%,90%,0.35)`],
+    [ 4, 'rgba(255,255,255,0.7)'],
+  ];
+  for (const [r, c] of layers) {
+    ctx.fillStyle = c;
+    ctx.beginPath();
+    ctx.arc(comet.x, comet.y, r, 0, TWO_PI);
+    ctx.fill();
+  }
+
+  // volume indicator bottom-left
+  ctx.globalCompositeOperation = 'source-over';
+  ctx.font = '13px monospace';
+  ctx.fillStyle = 'rgba(255,255,255,0.35)';
+  const v100 = (audioLevel * 100).toFixed(0);
+  const volText = audioActive
+    ? `mic ${v100}`
+    : 'mic off (click)';
+  ctx.fillText(volText, 16, H - 16);
+}
+
+// --- Main loop ---
+let last = performance.now();
+function loop(now) {
+  const dt = Math.min((now - last) / 1000, 0.05);
+  last = now;
+  time += dt;
+  hue = (time * 15) % 360;
+
+  updateAudio();
+  updateComet(dt);
+  emitParticles();
+  updateParticles(dt);
+  render();
+  requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+
+// --- Fullscreen ---
+const btn = document.getElementById('fullscreen-btn');
+btn.addEventListener('click', () => {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch(() => {});
+  } else {
+    document.exitFullscreen().catch(() => {});
+  }
+});
+document.addEventListener('fullscreenchange', () => {
+  document.body.classList.toggle('is-fullscreen', !!document.fullscreenElement);
+});
+</script>
+</body>
+</html>
