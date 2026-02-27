@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[22016,["/_next/static/chunks/7c92e96509cd355e.js"],""]
+3:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"buildId":"PvqcheFblgRfPZQJhK42x","rsc":["$","$1","c",{"children":[["$","div",null,{"className":"max-w-2xl mx-auto px-5 py-10","children":[["$","h1",null,{"className":"font-mono text-lg font-semibold text-[var(--color-text)] mb-1","children":["#","Soundstream"]}],["$","p",null,{"className":"text-xs text-[var(--color-text-tertiary)] mb-8","children":["共 ",1," 篇"]}],["$","ul",null,{"className":"space-y-3","children":[["$","li","39.soundstream-web",{"className":"flex items-baseline gap-3","children":[["$","time",null,{"className":"text-xs text-[var(--color-text-tertiary)] font-mono shrink-0 tabular-nums","children":"2026-02-27"}],["$","$L2",null,{"href":"/posts/39.soundstream-web","className":"text-sm text-[var(--color-text)] hover:text-[var(--color-link)] transition-colors","children":"Soundstream on web"}]]}]]}]]}],null,["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
+5:null
