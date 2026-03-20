@@ -1,0 +1,32 @@
+1:"$Sreact.fragment"
+2:I[22016,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/bbef3146f2d34722.js"],""]
+4:I[31175,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/bbef3146f2d34722.js"],"default"]
+5:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
+6:"$Sreact.suspense"
+3:T631,<p>从弱电箱拉一根线到路由器，从路由器 lan3 连线给 iptv 机顶盒</p>
+<p>每次启动执行下面脚本</p>
+<p>lan3  和 vlanid 45 看你的环境，长沙电信应该是 45</p>
+<pre><code class="hljs language-bash"><span class="hljs-meta">#!/bin/sh</span>
+
+<span class="hljs-comment"># 1. 创建 IPTV VLAN</span>
+ip <span class="hljs-built_in">link</span> add <span class="hljs-built_in">link</span> wan name wan.45 <span class="hljs-built_in">type</span> vlan <span class="hljs-built_in">id</span> 45
+ip <span class="hljs-built_in">link</span> <span class="hljs-built_in">set</span> wan.45 up
+
+<span class="hljs-comment"># 2. 创建 bridge</span>
+ip <span class="hljs-built_in">link</span> add name br-iptv <span class="hljs-built_in">type</span> bridge
+ip <span class="hljs-built_in">link</span> <span class="hljs-built_in">set</span> br-iptv up
+
+<span class="hljs-comment"># 3. 加入 VLAN</span>
+ip <span class="hljs-built_in">link</span> <span class="hljs-built_in">set</span> wan.45 master br-iptv
+
+<span class="hljs-comment"># 4. 从 LAN 剥离 lan3</span>
+ip <span class="hljs-built_in">link</span> <span class="hljs-built_in">set</span> lan3 nomaster
+
+<span class="hljs-comment"># 5. 加入 IPTV</span>
+ip <span class="hljs-built_in">link</span> <span class="hljs-built_in">set</span> lan3 master br-iptv
+
+<span class="hljs-comment"># 6. 开启组播</span>
+<span class="hljs-built_in">echo</span> 1 > /sys/class/net/br-iptv/bridge/multicast_snooping
+<span class="hljs-built_in">echo</span> 2 > /sys/class/net/br-iptv/bridge/multicast_querier
+</code></pre>0:{"buildId":"hAGocLQjAQ0nApy7zPgZk","rsc":["$","$1","c",{"children":[["$","article",null,{"className":"max-w-2xl mx-auto px-5 py-10","children":[["$","header",null,{"className":"mb-8","children":[["$","h1",null,{"className":"font-mono text-xl font-semibold text-[var(--color-text)] leading-tight","children":"长沙电信宽带+iptv 单路复用 openwrt 设置"}],["$","div",null,{"className":"flex items-center gap-3 mt-2 text-xs text-[var(--color-text-tertiary)] font-mono","children":[["$","time",null,{"dateTime":"2026-03-20","children":"2026-03-20"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"1 min read"}]]}],["$","div",null,{"className":"flex flex-wrap gap-1.5 mt-3","children":[["$","$L2","iptv",{"href":"/tags/iptv","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","iptv"]}],["$","$L2","vlan",{"href":"/tags/vlan","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","vlan"]}],["$","$L2","openwrt",{"href":"/tags/openwrt","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","openwrt"]}]]}]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$3"}}],["$","$L4",null,{}],["$","footer",null,{"className":"mt-8 pt-4 border-t border-[var(--color-border)]","children":["$","$L2",null,{"href":"/","className":"text-sm text-[var(--color-link)] hover:underline","children":"← 返回"}]}]]}],[["$","script","script-0",{"src":"/_next/static/chunks/bbef3146f2d34722.js","async":true}]],["$","$L5",null,{"children":["$","$6",null,{"name":"Next.MetadataOutlet","children":"$@7"}]}]]}],"loading":null,"isPartial":false}
+7:null
