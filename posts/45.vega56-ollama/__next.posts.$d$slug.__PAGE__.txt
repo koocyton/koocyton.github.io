@@ -1,0 +1,54 @@
+1:"$Sreact.fragment"
+7:I[31175,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/bbef3146f2d34722.js"],"default"]
+8:I[22016,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/bbef3146f2d34722.js"],""]
+9:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
+a:"$Sreact.suspense"
+2:Tcae,<h3>ubuntu 24.04.2 ( 测试中 )</h3>
+<blockquote>
+<p>24.04.4 肯定不行</p>
+</blockquote>
+<h3>安装AMD的驱动</h3>
+<h6>方法</h6>
+<pre><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> apt update
+<span class="hljs-built_in">sudo</span> apt install <span class="hljs-string">"linux-headers-<span class="hljs-subst">$(uname -r)</span>"</span> <span class="hljs-string">"linux-modules-extra-<span class="hljs-subst">$(uname -r)</span>"</span>
+<span class="hljs-built_in">sudo</span> apt install python3-setuptools python3-wheel
+<span class="hljs-built_in">sudo</span> usermod -a -G render,video <span class="hljs-variable">$LOGNAME</span> <span class="hljs-comment"># Add the current user to the render and video groups</span>
+wget https://repo.radeon.com/amdgpu-install/6.3.3/ubuntu/noble/amdgpu-install_6.3.60303-1_all.deb
+<span class="hljs-built_in">sudo</span> apt install ./amdgpu-install_6.3.60303-1_all.deb
+<span class="hljs-built_in">sudo</span> apt update
+<span class="hljs-built_in">sudo</span> apt install amdgpu-dkms rocm
+</code></pre>
+<h6>地址：</h6>
+<p>Linux® Drivers for AMD Radeon™ and Radeon PRO™ Graphics</p>
+<p>下载amdgpu-install_6.3.60304-1_all.deb</p>
+<p>安装</p>
+<pre><code class="hljs language-shell"><span class="hljs-meta prompt_">~$ </span><span class="bash"><span class="hljs-built_in">sudo</span> amdgpu-install --no-dkms</span>
+<span class="hljs-meta prompt_">~$ </span><span class="bash"><span class="hljs-built_in">sudo</span> apt install rocm-dev</span>
+<span class="hljs-meta prompt_">~$ </span><span class="bash"><span class="hljs-built_in">sudo</span> reboot</span>
+</code></pre>
+<h1>等待重启</h1>
+<p>然后运行</p>
+<pre><code class="hljs language-shell"><span class="hljs-meta prompt_">~$ </span><span class="bash">/opt/rocm/bin/rocminfo</span>
+</code></pre>
+<p>可以查看显卡状态。</p>
+<p>二、安装ollama</p>
+<p>首先安装ollama</p>
+<p>可以从ubuntu自带的应用中心安装，</p>
+<p>安装完成后一定要到github安装amd版本的ollama相关库</p>
+<pre><code class="hljs language-sql">GitHub <span class="hljs-operator">-</span> ollama<span class="hljs-operator">/</span>ollama: <span class="hljs-keyword">Get</span> up <span class="hljs-keyword">and</span> <span class="hljs-keyword">running</span> <span class="hljs-keyword">with</span> Llama <span class="hljs-number">3.3</span>, DeepSeek<span class="hljs-operator">-</span>R1, Phi<span class="hljs-number">-4</span>, Gemma <span class="hljs-number">3</span>, <span class="hljs-keyword">and</span> other <span class="hljs-keyword">large</span> <span class="hljs-keyword">language</span> models.
+
+ollama<span class="hljs-operator">/</span>docs<span class="hljs-operator">/</span>linux.md <span class="hljs-keyword">at</span> main · ollama<span class="hljs-operator">/</span>ollama · GitHub
+</code></pre>
+<p>找到</p>
+<pre><code class="hljs language-bash">AMD GPU install
+If you have an AMD GPU, also download and extract the additional ROCm package:
+
+curl -L https://ollama.com/download/ollama-linux-amd64-rocm.tgz -o ollama-linux-amd64-rocm.tgz
+<span class="hljs-built_in">sudo</span> tar -C /usr -xzf ollama-linux-amd64-rocm.tgz
+</code></pre>
+<p>按照方法下载，下载较慢</p>0:{"buildId":"q3q0OFxo2o_Iv9KYUrbG-","rsc":["$","$1","c",{"children":[["$","article",null,{"className":"max-w-2xl mx-auto px-5 py-10","children":[["$","header",null,{"className":"mb-8","children":[["$","h1",null,{"className":"font-mono text-xl font-semibold text-[var(--color-text)] leading-tight","children":"AMD Vega 56 ubuntu 24.04.2 安装大模型"}],["$","div",null,{"className":"flex items-center gap-3 mt-2 text-xs text-[var(--color-text-tertiary)] font-mono","children":[["$","time",null,{"dateTime":"2026-04-02","children":"2026-04-02"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"2 min read"}]]}],false]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}],["$L5"],"$L6"]}],"loading":null,"isPartial":false}
+3:["$","$L7",null,{}]
+4:["$","footer",null,{"className":"mt-8 pt-4 border-t border-[var(--color-border)]","children":["$","$L8",null,{"href":"/","className":"text-sm text-[var(--color-link)] hover:underline","children":"← 返回"}]}]
+5:["$","script","script-0",{"src":"/_next/static/chunks/bbef3146f2d34722.js","async":true}]
+6:["$","$L9",null,{"children":["$","$a",null,{"name":"Next.MetadataOutlet","children":"$@b"}]}]
+b:null
