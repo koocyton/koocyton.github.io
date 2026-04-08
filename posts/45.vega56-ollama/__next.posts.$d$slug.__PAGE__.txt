@@ -3,23 +3,23 @@
 8:I[22016,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/bbef3146f2d34722.js"],""]
 9:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
 a:"$Sreact.suspense"
-2:T188d,<h3>1. 安装 Ubuntu 24.04.2</h3>
+2:Tea9,<h3>1. 安装 Ubuntu 24.04.2</h3>
 <ul>
 <li>不要使用 24.04.4 不支持</li>
 <li><a href="https://mirrors.sohu.com/ubuntu-releases/24.04.2/">https://mirrors.sohu.com/ubuntu-releases/24.04.2/</a></li>
 </ul>
 <h3>2. 安装 AMD 的驱动</h3>
-<pre><code class="hljs language-shell"><span class="hljs-meta prompt_">~$ </span><span class="bash"><span class="hljs-built_in">sudo</span> apt update</span>
-<span class="hljs-meta prompt_">~$ </span><span class="bash"><span class="hljs-built_in">sudo</span> apt install <span class="hljs-string">"linux-headers-<span class="hljs-subst">$(uname -r)</span>"</span> <span class="hljs-string">"linux-modules-extra-<span class="hljs-subst">$(uname -r)</span>"</span></span>
-<span class="hljs-meta prompt_">~$ </span><span class="bash"><span class="hljs-built_in">sudo</span> apt install python3-setuptools python3-wheel</span>
-<span class="hljs-meta prompt_">~$ </span><span class="bash"><span class="hljs-built_in">sudo</span> usermod -a -G render,video <span class="hljs-variable">$LOGNAME</span></span>
-<span class="hljs-meta prompt_">~$ </span><span class="bash">wget https://repo.radeon.com/amdgpu-install/6.3.3/ubuntu/noble/amdgpu-install_6.3.60303-1_all.deb</span>
-<span class="hljs-meta prompt_">~$ </span><span class="bash"><span class="hljs-built_in">sudo</span> apt install ./amdgpu-install_6.3.60303-1_all.deb</span>
-<span class="hljs-meta prompt_">~$ </span><span class="bash"><span class="hljs-built_in">sudo</span> apt update</span>
-<span class="hljs-meta prompt_">~$ </span><span class="bash"><span class="hljs-built_in">sudo</span> apt install amdgpu-dkms rocm</span>
-<span class="hljs-meta prompt_">~$ </span><span class="bash"><span class="hljs-built_in">sudo</span> amdgpu-install --no-dkms</span>
-<span class="hljs-meta prompt_">~$ </span><span class="bash"><span class="hljs-built_in">sudo</span> apt install rocm-dev</span>
-<span class="hljs-meta prompt_">~$ </span><span class="bash"><span class="hljs-built_in">sudo</span> reboot</span>
+<pre><code class="hljs language-bash">~$ <span class="hljs-built_in">sudo</span> apt update
+~$ <span class="hljs-built_in">sudo</span> apt install <span class="hljs-string">"linux-headers-<span class="hljs-subst">$(uname -r)</span>"</span> <span class="hljs-string">"linux-modules-extra-<span class="hljs-subst">$(uname -r)</span>"</span>
+~$ <span class="hljs-built_in">sudo</span> apt install python3-setuptools python3-wheel
+~$ <span class="hljs-built_in">sudo</span> usermod -a -G render,video <span class="hljs-variable">$LOGNAME</span>
+~$ wget https://repo.radeon.com/amdgpu-install/6.3.3/ubuntu/noble/amdgpu-install_6.3.60303-1_all.deb
+~$ <span class="hljs-built_in">sudo</span> apt install ./amdgpu-install_6.3.60303-1_all.deb
+~$ <span class="hljs-built_in">sudo</span> apt update
+~$ <span class="hljs-built_in">sudo</span> apt install amdgpu-dkms rocm
+~$ <span class="hljs-built_in">sudo</span> amdgpu-install --no-dkms
+~$ <span class="hljs-built_in">sudo</span> apt install rocm-dev
+~$ <span class="hljs-built_in">sudo</span> reboot
 </code></pre>
 <h3>3. 看看安装是否成功</h3>
 <pre><code class="hljs language-bash">~$ <span class="hljs-built_in">export</span> PATH=/opt/rocm/bin:<span class="hljs-variable">$PATH</span>
@@ -34,37 +34,37 @@ a:"$Sreact.suspense"
   Configuration file: /opt/rocm-6.3.3/lib/llvm/bin/clang++.cfg
 </code></pre>
 <h3>4. 编译安装 llama.cpp (ollama 难整)</h3>
-<pre><code class="hljs language-ini">~$ git clone <span class="hljs-attr">--depth</span>=<span class="hljs-number">1</span> https://github.com/ggerganov/llama.cpp
+<pre><code class="hljs language-bash">~$ git <span class="hljs-built_in">clone</span> --depth=1 https://github.com/ggerganov/llama.cpp
 ~$ cmake -B build \
- <span class="hljs-attr">-DGGML_USE_HIP</span>=<span class="hljs-literal">ON</span> \
- <span class="hljs-attr">-DGGML_HIPBLAS</span>=<span class="hljs-literal">ON</span> \
- <span class="hljs-attr">-DAMDGPU_TARGETS</span>=gfx900 \
- <span class="hljs-attr">-DCMAKE_PREFIX_PATH</span>=/opt/rocm \
- <span class="hljs-attr">-DCMAKE_BUILD_TYPE</span>=Release
+ -DGGML_USE_HIP=ON \
+ -DGGML_HIPBLAS=ON \
+ -DAMDGPU_TARGETS=gfx900 \
+ -DCMAKE_PREFIX_PATH=/opt/rocm \
+ -DCMAKE_BUILD_TYPE=Release
 
 <span class="hljs-comment"># 编译</span>
-~$ cmake --build build -j$(nproc)
+~$ cmake --build build -j$(<span class="hljs-built_in">nproc</span>)
 
 <span class="hljs-comment"># 编译一会如果报错了，我单独编译下面两个</span>
-~$ cmake --build build -j$(nproc) --target llama-cli
-~$ cmake --build build -j$(nproc) --target llama-server
+~$ cmake --build build -j$(<span class="hljs-built_in">nproc</span>) --target llama-cli
+~$ cmake --build build -j$(<span class="hljs-built_in">nproc</span>) --target llama-server
 </code></pre>
 <h3>5. 下载模型 gemma-4-E4B-it-Q5_K_M.gguf</h3>
-<pre><code class="hljs language-shell"><span class="hljs-meta prompt_">~$ </span><span class="bash"><span class="hljs-built_in">sudo</span> apt install aria2c</span>
-<span class="hljs-meta prompt_">~$ </span><span class="bash">aria2c -x 16 -s 16 <span class="hljs-string">"https://cdn-lfs-cn-1.modelscope.cn/prod/lfs-objects/44/e9/292ff1b243a0923e8c46ed58111e46a6c300be74797b6dd54ae0e66b5bba?filename=gemma-4-E4B-it-Q5_K_M.gguf&#x26;namespace=unsloth&#x26;repository=gemma-4-E4B-it-GGUF&#x26;revision=master&#x26;tag=model&#x26;auth_key=1775583418-ee4c008381624c4ca11096720b246e79-0-0a5874921a93f20fc7ca3094678b8e7a"</span></span>
+<pre><code class="hljs language-bash">~$ <span class="hljs-built_in">sudo</span> apt install aria2c
+~$ aria2c -x 16 -s 16 <span class="hljs-string">"https://cdn-lfs-cn-1.modelscope.cn/prod/lfs-objects/44/e9/292ff1b243a0923e8c46ed58111e46a6c300be74797b6dd54ae0e66b5bba?filename=gemma-4-E4B-it-Q5_K_M.gguf&#x26;namespace=unsloth&#x26;repository=gemma-4-E4B-it-GGUF&#x26;revision=master&#x26;tag=model&#x26;auth_key=1775583418-ee4c008381624c4ca11096720b246e79-0-0a5874921a93f20fc7ca3094678b8e7a"</span>
 </code></pre>
 <h3>6. 运行 llama.cpp</h3>
-<pre><code class="hljs language-yaml"><span class="hljs-string">~$</span> <span class="hljs-string">llama-cli</span> <span class="hljs-string">--version</span>
-  <span class="hljs-attr">ggml_cuda_init: found 1 ROCm devices (Total VRAM: 8176 MiB):</span>
-  <span class="hljs-attr">Device 0:</span> <span class="hljs-string">Radeon</span> <span class="hljs-string">RX</span> <span class="hljs-string">Vega,</span> <span class="hljs-string">gfx900:xnack-</span> <span class="hljs-string">(0x900),</span> <span class="hljs-attr">VMM:</span> <span class="hljs-literal">no</span><span class="hljs-string">,</span> <span class="hljs-attr">Wave Size:</span> <span class="hljs-number">64</span><span class="hljs-string">,</span> <span class="hljs-attr">VRAM:</span> <span class="hljs-number">8176 </span><span class="hljs-string">MiB</span>
-  <span class="hljs-attr">version:</span> <span class="hljs-number">8672</span> <span class="hljs-string">(25eec6f32)</span>
-  <span class="hljs-string">built</span> <span class="hljs-string">with</span> <span class="hljs-string">Clang</span> <span class="hljs-number">18.0</span><span class="hljs-number">.0</span> <span class="hljs-string">for</span> <span class="hljs-string">Linux</span> <span class="hljs-string">x86_64</span>
-<span class="hljs-string">~$</span> <span class="hljs-string">llama-cli</span> <span class="hljs-string">-m</span> <span class="hljs-string">~/Downloads/gemma-4-E4B-it-Q5_K_M.gguf</span> <span class="hljs-string">-ngl</span> <span class="hljs-number">999</span>
-<span class="hljs-string">~$</span> <span class="hljs-string">llama-server</span> <span class="hljs-string">-m</span> <span class="hljs-string">~/Downloads/gemma-4-E4B-it-Q5_K_M.gguf</span> <span class="hljs-string">-ngl</span> <span class="hljs-number">999</span> <span class="hljs-string">-c</span> <span class="hljs-number">2048</span> <span class="hljs-string">--host</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>
+<pre><code class="hljs language-bash">~$ llama-cli --version
+  ggml_cuda_init: found 1 ROCm devices (Total VRAM: 8176 MiB):
+  Device 0: Radeon RX Vega, gfx900:xnack- (0x900), VMM: no, Wave Size: 64, VRAM: 8176 MiB
+  version: 8672 (25eec6f32)
+  built with Clang 18.0.0 <span class="hljs-keyword">for</span> Linux x86_64
+~$ llama-cli -m ~/Downloads/gemma-4-E4B-it-Q5_K_M.gguf -ngl 999
+~$ llama-server -m ~/Downloads/gemma-4-E4B-it-Q5_K_M.gguf -ngl 999 -c 2048 --host 0.0.0.0
 </code></pre>
 <ul>
 <li>rocm-smi 可以看到 GPU 的运行情况</li>
-</ul>0:{"buildId":"JUAEZQtQRM9OWL58OlUjN","rsc":["$","$1","c",{"children":[["$","article",null,{"className":"max-w-2xl mx-auto px-5 py-10","children":[["$","header",null,{"className":"mb-8","children":[["$","h1",null,{"className":"font-mono text-xl font-semibold text-[var(--color-text)] leading-tight","children":"Ubuntu 24.04.2 + AMD Vega56 + llama.cpp"}],["$","div",null,{"className":"flex items-center gap-3 mt-2 text-xs text-[var(--color-text-tertiary)] font-mono","children":[["$","time",null,{"dateTime":"2026-04-02","children":"2026-04-02"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"2 min read"}]]}],false]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}],["$L5"],"$L6"]}],"loading":null,"isPartial":false}
+</ul>0:{"buildId":"KOr5xSzrXQcKkKNuFLzDL","rsc":["$","$1","c",{"children":[["$","article",null,{"className":"max-w-2xl mx-auto px-5 py-10","children":[["$","header",null,{"className":"mb-8","children":[["$","h1",null,{"className":"font-mono text-xl font-semibold text-[var(--color-text)] leading-tight","children":"Ubuntu 24.04.2 + AMD Vega56 + llama.cpp"}],["$","div",null,{"className":"flex items-center gap-3 mt-2 text-xs text-[var(--color-text-tertiary)] font-mono","children":[["$","time",null,{"dateTime":"2026-04-02","children":"2026-04-02"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"2 min read"}]]}],false]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}],["$L5"],"$L6"]}],"loading":null,"isPartial":false}
 3:["$","$L7",null,{}]
 4:["$","footer",null,{"className":"mt-8 pt-4 border-t border-[var(--color-border)]","children":["$","$L8",null,{"href":"/","className":"text-sm text-[var(--color-link)] hover:underline","children":"← 返回"}]}]
 5:["$","script","script-0",{"src":"/_next/static/chunks/bbef3146f2d34722.js","async":true}]
