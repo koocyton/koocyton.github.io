@@ -3,50 +3,62 @@
 8:I[22016,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/bbef3146f2d34722.js"],""]
 9:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
 a:"$Sreact.suspense"
-2:Tcae,<h3>ubuntu 24.04.2 ( 测试中 )</h3>
-<blockquote>
-<p>24.04.4 肯定不行</p>
-</blockquote>
-<h3>安装AMD的驱动</h3>
-<h6>方法</h6>
-<pre><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> apt update
-<span class="hljs-built_in">sudo</span> apt install <span class="hljs-string">"linux-headers-<span class="hljs-subst">$(uname -r)</span>"</span> <span class="hljs-string">"linux-modules-extra-<span class="hljs-subst">$(uname -r)</span>"</span>
-<span class="hljs-built_in">sudo</span> apt install python3-setuptools python3-wheel
-<span class="hljs-built_in">sudo</span> usermod -a -G render,video <span class="hljs-variable">$LOGNAME</span> <span class="hljs-comment"># Add the current user to the render and video groups</span>
-wget https://repo.radeon.com/amdgpu-install/6.3.3/ubuntu/noble/amdgpu-install_6.3.60303-1_all.deb
-<span class="hljs-built_in">sudo</span> apt install ./amdgpu-install_6.3.60303-1_all.deb
-<span class="hljs-built_in">sudo</span> apt update
-<span class="hljs-built_in">sudo</span> apt install amdgpu-dkms rocm
-</code></pre>
-<h6>地址：</h6>
-<p>Linux® Drivers for AMD Radeon™ and Radeon PRO™ Graphics</p>
-<p>下载amdgpu-install_6.3.60304-1_all.deb</p>
-<p>安装</p>
-<pre><code class="hljs language-shell"><span class="hljs-meta prompt_">~$ </span><span class="bash"><span class="hljs-built_in">sudo</span> amdgpu-install --no-dkms</span>
+2:T1898,<h3>1. install ubuntu 24.04.2</h3>
+<ul>
+<li>不要使用 24.04.4 不支持</li>
+<li><a href="https://mirrors.sohu.com/ubuntu-releases/24.04.2/">https://mirrors.sohu.com/ubuntu-releases/24.04.2/</a></li>
+</ul>
+<h3>2. 安装AMD的驱动</h3>
+<pre><code class="hljs language-shell"><span class="hljs-meta prompt_">~$ </span><span class="bash"><span class="hljs-built_in">sudo</span> apt update</span>
+<span class="hljs-meta prompt_">~$ </span><span class="bash"><span class="hljs-built_in">sudo</span> apt install <span class="hljs-string">"linux-headers-<span class="hljs-subst">$(uname -r)</span>"</span> <span class="hljs-string">"linux-modules-extra-<span class="hljs-subst">$(uname -r)</span>"</span></span>
+<span class="hljs-meta prompt_">~$ </span><span class="bash"><span class="hljs-built_in">sudo</span> apt install python3-setuptools python3-wheel</span>
+<span class="hljs-meta prompt_">~$ </span><span class="bash"><span class="hljs-built_in">sudo</span> usermod -a -G render,video <span class="hljs-variable">$LOGNAME</span></span>
+<span class="hljs-meta prompt_">~$ </span><span class="bash">wget https://repo.radeon.com/amdgpu-install/6.3.3/ubuntu/noble/amdgpu-install_6.3.60303-1_all.deb</span>
+<span class="hljs-meta prompt_">~$ </span><span class="bash"><span class="hljs-built_in">sudo</span> apt install ./amdgpu-install_6.3.60303-1_all.deb</span>
+<span class="hljs-meta prompt_">~$ </span><span class="bash"><span class="hljs-built_in">sudo</span> apt update</span>
+<span class="hljs-meta prompt_">~$ </span><span class="bash"><span class="hljs-built_in">sudo</span> apt install amdgpu-dkms rocm</span>
+<span class="hljs-meta prompt_">~$ </span><span class="bash"><span class="hljs-built_in">sudo</span> amdgpu-install --no-dkms</span>
 <span class="hljs-meta prompt_">~$ </span><span class="bash"><span class="hljs-built_in">sudo</span> apt install rocm-dev</span>
 <span class="hljs-meta prompt_">~$ </span><span class="bash"><span class="hljs-built_in">sudo</span> reboot</span>
 </code></pre>
-<h1>等待重启</h1>
-<p>然后运行</p>
-<pre><code class="hljs language-shell"><span class="hljs-meta prompt_">~$ </span><span class="bash">/opt/rocm/bin/rocminfo</span>
+<h3>3. 运行下面的事实，顺利的话，都应该执行到位</h3>
+<pre><code class="hljs language-bash">~$ <span class="hljs-built_in">export</span> PATH=/opt/rocm/bin:<span class="hljs-variable">$PATH</span>
+~$ rocminfo
+~$ rocm-smi
+~$ hipcc --version                                                                                             ✘ 127 henry@pchome
+HIP version: 6.3.42134-a9a80e791
+AMD clang version 18.0.0git (https://github.com/RadeonOpenCompute/llvm-project roc-6.3.3 25012 e5bf7e55c91490b07c49d8960fa7983d864936c4)
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /opt/rocm-6.3.3/lib/llvm/bin
+Configuration file: /opt/rocm-6.3.3/lib/llvm/bin/clang++.cfg
 </code></pre>
-<p>可以查看显卡状态。</p>
-<p>二、安装ollama</p>
-<p>首先安装ollama</p>
-<p>可以从ubuntu自带的应用中心安装，</p>
-<p>安装完成后一定要到github安装amd版本的ollama相关库</p>
-<pre><code class="hljs language-sql">GitHub <span class="hljs-operator">-</span> ollama<span class="hljs-operator">/</span>ollama: <span class="hljs-keyword">Get</span> up <span class="hljs-keyword">and</span> <span class="hljs-keyword">running</span> <span class="hljs-keyword">with</span> Llama <span class="hljs-number">3.3</span>, DeepSeek<span class="hljs-operator">-</span>R1, Phi<span class="hljs-number">-4</span>, Gemma <span class="hljs-number">3</span>, <span class="hljs-keyword">and</span> other <span class="hljs-keyword">large</span> <span class="hljs-keyword">language</span> models.
-
-ollama<span class="hljs-operator">/</span>docs<span class="hljs-operator">/</span>linux.md <span class="hljs-keyword">at</span> main · ollama<span class="hljs-operator">/</span>ollama · GitHub
+<h3>4. 编译安装 llama.cpp (ollama 难整)</h3>
+<pre><code class="hljs language-ini">~$ git clone <span class="hljs-attr">--depth</span>=<span class="hljs-number">1</span> https://github.com/ggerganov/llama.cpp
+~$ cmake -B build \
+ <span class="hljs-attr">-DGGML_USE_HIP</span>=<span class="hljs-literal">ON</span> \
+ <span class="hljs-attr">-DGGML_HIPBLAS</span>=<span class="hljs-literal">ON</span> \
+ <span class="hljs-attr">-DAMDGPU_TARGETS</span>=gfx900 \
+ <span class="hljs-attr">-DCMAKE_PREFIX_PATH</span>=/opt/rocm \
+ <span class="hljs-attr">-DCMAKE_BUILD_TYPE</span>=Release
+~$ cmake --build build -j$(nproc)
+<span class="hljs-comment"># 如果这里报错，就单独编译这两个</span>
+~$ cmake --build build -j$(nproc) --target llama-cli
+~$ cmake --build build -j$(nproc) --target llama-server
 </code></pre>
-<p>找到</p>
-<pre><code class="hljs language-bash">AMD GPU install
-If you have an AMD GPU, also download and extract the additional ROCm package:
-
-curl -L https://ollama.com/download/ollama-linux-amd64-rocm.tgz -o ollama-linux-amd64-rocm.tgz
-<span class="hljs-built_in">sudo</span> tar -C /usr -xzf ollama-linux-amd64-rocm.tgz
+<h3>下载模型 gemma-4-E4B-it-Q5_K_M.gguf</h3>
+<pre><code class="hljs language-shell"><span class="hljs-meta prompt_">~$ </span><span class="bash"><span class="hljs-built_in">sudo</span> apt install aria2c</span>
+<span class="hljs-meta prompt_">~$ </span><span class="bash">aria2c -x 16 -s 16 <span class="hljs-string">"https://cdn-lfs-cn-1.modelscope.cn/prod/lfs-objects/44/e9/292ff1b243a0923e8c46ed58111e46a6c300be74797b6dd54ae0e66b5bba?filename=gemma-4-E4B-it-Q5_K_M.gguf&#x26;namespace=unsloth&#x26;repository=gemma-4-E4B-it-GGUF&#x26;revision=master&#x26;tag=model&#x26;auth_key=1775583418-ee4c008381624c4ca11096720b246e79-0-0a5874921a93f20fc7ca3094678b8e7a"</span></span>
 </code></pre>
-<p>按照方法下载，下载较慢</p>0:{"buildId":"q3q0OFxo2o_Iv9KYUrbG-","rsc":["$","$1","c",{"children":[["$","article",null,{"className":"max-w-2xl mx-auto px-5 py-10","children":[["$","header",null,{"className":"mb-8","children":[["$","h1",null,{"className":"font-mono text-xl font-semibold text-[var(--color-text)] leading-tight","children":"AMD Vega 56 ubuntu 24.04.2 安装大模型"}],["$","div",null,{"className":"flex items-center gap-3 mt-2 text-xs text-[var(--color-text-tertiary)] font-mono","children":[["$","time",null,{"dateTime":"2026-04-02","children":"2026-04-02"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"2 min read"}]]}],false]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}],["$L5"],"$L6"]}],"loading":null,"isPartial":false}
+<h3>运行 llama.cpp</h3>
+<pre><code class="hljs language-yaml"><span class="hljs-string">~$</span> <span class="hljs-string">llama-cli</span> <span class="hljs-string">--version</span>
+  <span class="hljs-attr">ggml_cuda_init: found 1 ROCm devices (Total VRAM: 8176 MiB):</span>
+  <span class="hljs-attr">Device 0:</span> <span class="hljs-string">Radeon</span> <span class="hljs-string">RX</span> <span class="hljs-string">Vega,</span> <span class="hljs-string">gfx900:xnack-</span> <span class="hljs-string">(0x900),</span> <span class="hljs-attr">VMM:</span> <span class="hljs-literal">no</span><span class="hljs-string">,</span> <span class="hljs-attr">Wave Size:</span> <span class="hljs-number">64</span><span class="hljs-string">,</span> <span class="hljs-attr">VRAM:</span> <span class="hljs-number">8176 </span><span class="hljs-string">MiB</span>
+  <span class="hljs-attr">version:</span> <span class="hljs-number">8672</span> <span class="hljs-string">(25eec6f32)</span>
+  <span class="hljs-string">built</span> <span class="hljs-string">with</span> <span class="hljs-string">Clang</span> <span class="hljs-number">18.0</span><span class="hljs-number">.0</span> <span class="hljs-string">for</span> <span class="hljs-string">Linux</span> <span class="hljs-string">x86_64</span>
+<span class="hljs-string">~$</span> <span class="hljs-string">llama-cli</span> <span class="hljs-string">-m</span> <span class="hljs-string">~/Downloads/gemma-4-E4B-it-Q5_K_M.gguf</span> <span class="hljs-string">-ngl</span> <span class="hljs-number">999</span>
+<span class="hljs-string">~$</span> <span class="hljs-string">llama-server</span> <span class="hljs-string">-m</span> <span class="hljs-string">~/Downloads/gemma-4-E4B-it-Q5_K_M.gguf</span> <span class="hljs-string">-ngl</span> <span class="hljs-number">999</span> <span class="hljs-string">-c</span> <span class="hljs-number">2048</span> <span class="hljs-string">--host</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>
+</code></pre>0:{"buildId":"OL0DdZoLXz0GrT4u2-yra","rsc":["$","$1","c",{"children":[["$","article",null,{"className":"max-w-2xl mx-auto px-5 py-10","children":[["$","header",null,{"className":"mb-8","children":[["$","h1",null,{"className":"font-mono text-xl font-semibold text-[var(--color-text)] leading-tight","children":"AMD Vega 56 ubuntu 24.04.2 安装大模型"}],["$","div",null,{"className":"flex items-center gap-3 mt-2 text-xs text-[var(--color-text-tertiary)] font-mono","children":[["$","time",null,{"dateTime":"2026-04-02","children":"2026-04-02"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"2 min read"}]]}],false]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$2"}}],"$L3","$L4"]}],["$L5"],"$L6"]}],"loading":null,"isPartial":false}
 3:["$","$L7",null,{}]
 4:["$","footer",null,{"className":"mt-8 pt-4 border-t border-[var(--color-border)]","children":["$","$L8",null,{"href":"/","className":"text-sm text-[var(--color-link)] hover:underline","children":"← 返回"}]}]
 5:["$","script","script-0",{"src":"/_next/static/chunks/bbef3146f2d34722.js","async":true}]
