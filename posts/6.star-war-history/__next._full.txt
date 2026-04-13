@@ -4,14 +4,17 @@
 4:I[37457,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"default"]
 8:I[68027,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"default"]
 :HL["/_next/static/chunks/3bda7f16aa466dbd.css","style"]
-0:{"P":null,"b":"KOr5xSzrXQcKkKNuFLzDL","c":["","posts","6.star-war-history",""],"q":"","i":false,"f":[[["",{"children":["posts",{"children":[["slug","6.star-war-history","d"],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3bda7f16aa466dbd.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/7c92e96509cd355e.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"zh-CN","children":["$","body",null,{"className":"min-h-screen flex flex-col antialiased","children":[["$","header",null,{"className":"border-b border-[var(--color-border)]","children":["$","div",null,{"className":"max-w-2xl mx-auto px-5 h-12 flex items-center justify-between","children":[["$","$L2",null,{"href":"/","className":"font-mono text-sm font-semibold text-[var(--color-text)] hover:text-[var(--color-link)] transition-colors","children":"一洼绿地"}],["$","nav",null,{"className":"flex items-center gap-5","children":[[["$","$L2","/",{"href":"/","className":"text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors","children":"文章"}],["$","$L2","/archives",{"href":"/archives","className":"text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors","children":"归档"}],["$","$L2","/tags",{"href":"/tags","className":"text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors","children":"标签"}],["$","$L2","/about",{"href":"/about","className":"text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors","children":"关于"}]],["$","a",null,{"href":"https://github.com/koocyton","target":"_blank","rel":"noopener noreferrer","className":"text-[var(--color-text-tertiary)] hover:text-[var(--color-text)] transition-colors","children":["$","svg",null,{"className":"w-4 h-4","fill":"currentColor","viewBox":"0 0 24 24","children":["$","path",null,{"d":"M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"}]}]}]]}]]}]}],["$","main",null,{"className":"flex-1","children":["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"max-w-2xl mx-auto px-5 py-20 text-center","children":[["$","h1",null,{"className":"font-mono text-4xl font-semibold text-[var(--color-text)] mb-2","children":"404"}],["$","p",null,{"className":"text-sm text-[var(--color-text-tertiary)] mb-6","children":"页面不存在"}],["$","$L2",null,{"href":"/","className":"text-sm text-[var(--color-link)] hover:underline","children":"← 返回首页"}]]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","footer",null,{"className":"border-t border-[var(--color-border)] py-6","children":["$","div",null,{"className":"max-w-2xl mx-auto px-5 text-xs text-[var(--color-text-tertiary)]","children":["© ",2026," koocyton"]}]}]]}]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":["$L5",[["$","script","script-0",{"src":"/_next/static/chunks/bbef3146f2d34722.js","async":true,"nonce":"$undefined"}]],"$L6"]}],{},null,false,false]},null,false,false]},null,false,false]},null,false,false],"$L7",false]],"m":"$undefined","G":["$8",[]],"S":true}
+0:{"P":null,"b":"tgyIc5v3-wCIBQt-5sTcO","c":["","posts","6.star-war-history",""],"q":"","i":false,"f":[[["",{"children":["posts",{"children":[["slug","6.star-war-history","d"],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3bda7f16aa466dbd.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/7c92e96509cd355e.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"zh-CN","children":["$","body",null,{"className":"min-h-screen flex flex-col antialiased","children":[["$","header",null,{"className":"border-b border-[var(--color-border)]","children":["$","div",null,{"className":"max-w-2xl mx-auto px-5 h-12 flex items-center justify-between","children":[["$","$L2",null,{"href":"/","className":"font-mono text-sm font-semibold text-[var(--color-text)] hover:text-[var(--color-link)] transition-colors","children":"一洼绿地"}],["$","nav",null,{"className":"flex items-center gap-5","children":[[["$","$L2","/",{"href":"/","className":"text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors","children":"文章"}],["$","$L2","/archives",{"href":"/archives","className":"text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors","children":"归档"}],["$","$L2","/tags",{"href":"/tags","className":"text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors","children":"标签"}],["$","$L2","/about",{"href":"/about","className":"text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors","children":"关于"}]],["$","a",null,{"href":"https://github.com/koocyton","target":"_blank","rel":"noopener noreferrer","className":"text-[var(--color-text-tertiary)] hover:text-[var(--color-text)] transition-colors","children":["$","svg",null,{"className":"w-4 h-4","fill":"currentColor","viewBox":"0 0 24 24","children":["$","path",null,{"d":"M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"}]}]}]]}]]}]}],["$","main",null,{"className":"flex-1","children":["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"max-w-2xl mx-auto px-5 py-20 text-center","children":[["$","h1",null,{"className":"font-mono text-4xl font-semibold text-[var(--color-text)] mb-2","children":"404"}],["$","p",null,{"className":"text-sm text-[var(--color-text-tertiary)] mb-6","children":"页面不存在"}],["$","$L2",null,{"href":"/","className":"text-sm text-[var(--color-link)] hover:underline","children":"← 返回首页"}]]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","footer",null,{"className":"border-t border-[var(--color-border)] py-6","children":["$","div",null,{"className":"max-w-2xl mx-auto px-5 text-xs text-[var(--color-text-tertiary)]","children":["© ",2026," koocyton"]}]}]]}]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":["$L5",[["$","script","script-0",{"src":"/_next/static/chunks/bbef3146f2d34722.js","async":true,"nonce":"$undefined"}]],"$L6"]}],{},null,false,false]},null,false,false]},null,false,false]},null,false,false],"$L7",false]],"m":"$undefined","G":["$8",[]],"S":true}
 9:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
 a:"$Sreact.suspense"
 c:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"ViewportBoundary"]
 e:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"MetadataBoundary"]
 6:["$","$L9",null,{"children":["$","$a",null,{"name":"Next.MetadataOutlet","children":"$@b"}]}]
 7:["$","$1","h",{"children":[null,["$","$Lc",null,{"children":"$Ld"}],["$","div",null,{"hidden":true,"children":["$","$Le",null,{"children":["$","$a",null,{"name":"Next.Metadata","children":"$Lf"}]}]}],null]}]
-10:Tf340,<p><img src="/posts/6.star-war-history/star-war.jpg" alt="星球大战"></p>
+10:Tf8ce,<p><img src="/posts/6.star-war-history/star-war.jpg" alt="星球大战"></p>
+<h2>阅读指南</h2>
+<p>这篇文章按时间轴整理《星球大战》大事件。为了更易读，我把内容分成若干“时代”，每个时代内部再按年份排列；电影主线剧情会以 <code>EPISODE</code> 标出。</p>
+<h2>时间标记（看年份先看这里）</h2>
 <ul>
 <li>
 <p>BBY：雅汶战役前（Before Battle of Yavin）</p>
@@ -20,6 +23,10 @@ e:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be
 <p>ABY：雅汶战役后（After Battle of Yavin）</p>
 </li>
 </ul>
+<blockquote>
+<p>说明：文中后半段还出现 <code>ASW</code>、<code>A.D.</code> 等标记，属于不同资料源的写法；我保留原文，但会在后续章节用分区提示“非正史/占位内容”。</p>
+</blockquote>
+<h2>远古与共和国奠基（13,500,000,000–1,000 BBY）</h2>
 <h5>13,500,000,000 BBY</h5>
 <p>　　宇宙诞生。原力和生命在百万年内逐渐出现。</p>
 <h5>5,000,000,000 BBY</h5>
@@ -112,6 +119,8 @@ e:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be
 <h5>500 BBY</h5>
 <p>　　奥德兰皇家工程、核心银河系统、蓝迪里星际造船被奎特造船厂收购。</p>
 <p>　　</p>
+<hr>
+<h2>共和国末期与前传时代（100–19 BBY）</h2>
 <h5>100 BBY</h5>
 <p>　　蓝迪里星际造船的生产达到高峰，并在下个世纪设计出无畏者巡洋舰（Dreadnaught）、胜利级星际驱逐舰（Victory Star Destroyer）和曼道罗力安运囚舰（Mandalorian Dungeon Ship）。</p>
 <h5>96 BBY</h5>
@@ -122,7 +131,8 @@ e:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be
 <p>　　Seti Ashgad为萨普罗（Subpro）公司和印康设计了 Z-95猎头者（Headhunter）战机，以印康公司位于的 Fresia星Coromon岛上一种肉食动物命名。</p>
 <p>32 BBY</p>
 <p>　　此时期的共和只剩下约一万名绝地。近代的绝地戒律（Jedi Code）版本出现。</p>
-<h4>EPISODE I</h4>
+<h3>电影主线（前传三部曲）</h3>
+<h4>EPISODE I（幽灵的威胁）</h4>
 <p>　　绝地学徒欧比-旺（Obi-Wan Kenobi）和其师魁-刚·金（Qui-Gon Jinn）被议会派往纳布（Naboo）解决贸易联盟的暴力封锁。贸易联盟在达斯·西迪厄斯（Darth Sidious）操纵下攻击绝地并攻占纳布。绝地带着阿米达拉女王（Padme Amidala）逃出，因引擎击损而停留塔图因（Tatooine）。魁-刚·金发现具有原力天赋的男孩安纳金·天行者（Anakin Skywalker），并遭遇西斯之徒达斯·摩尔（Darth Maul）。阿米达拉于科洛桑会面参议员帕尔帕庭（Palpatine）。阿米达拉与绝地率众收复纳布，魁-刚·金被达斯·摩尔杀死，欧比-旺腰斩达斯·摩尔。帕尔帕庭成为最高议长。欧比-旺收安那为徒。</p>
 <p>　　离开绝地戒律的杜库伯爵（Count Dooku）成为西斯的徒弟。达斯·西迪厄斯以绝地大师 Sifo-Dyas为名义秘密向卡米诺（Kamino）订制克隆人，并雇用奖金猎人詹戈·费特（Jango Fett）做克隆人的母体。奎特造船厂的分支罗瑟那重工程（RHE）受托秘密制造克隆人的载具。</p>
 <p>　　两百艘装有新型连动线路的无畏级锋刃舰队（Katana Fleet）或黑潮舰队（Dark Force）意外消失在太空深处。</p>
@@ -131,12 +141,12 @@ e:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be
 <p>　　包括乔洛斯·克暴斯（Jorus C’Baoth）在内的六名绝地大师参与延外势力计划（Outbound Flight Project），但在帕尔帕庭的指令下在境外遭Chiss人索龙（Thrawn）拦截而摧毁。六艘无畏者的生还者利用船上的设备建立了延外殖民地。</p>
 <h5>22 BBY</h5>
 <p>　　印康和萨普罗公司以Z-95 AF4结束长达125年的合作关系。印康买下Z-95的专利。奎特造船厂设计出欢呼者级运输舰和Delta-7绝地战机。</p>
-<h4>EPISODE II</h4>
+<h4>EPISODE II（克隆人的进攻）</h4>
 <p>　　以杜库为首的分离主义分子正将银河系一分为二，反建军的阿米达拉参议员屡遭刺杀。欧比-旺发现卡米诺的克隆人军团，跟踪詹戈·费特到吉奥诺西斯（Geonosis）并被杜库俘虏。帕尔帕庭获得紧急处分权建立共和军。共和绝地和克隆人出动救援，是为吉奥诺西斯战役。安纳金、欧比-旺与尤达分别对抗杜库，但杜库依然逃脱。杜库取得死星（Death Star）设计。安纳金与阿米达拉私定终生。</p>
 <p>　　长达三十个月的克隆战争展开。</p>
 <h5>20 BBY</h5>
 <p>　　第一艘胜利级星际驱逐舰（Victory Star Destroyer）出厂，由华勒克斯·毕利赛克斯（Walex Blissex）设计。</p>
-<h4>EPISODE III</h4>
+<h4>EPISODE III（西斯的复仇）</h4>
 <h5>19 BBY</h5>
 <p>　　被分离主义份子俘虏的帕尔帕庭被安纳金拯救，安纳金杀死杜库。梅斯·温杜发现帕尔帕庭的阴谋却遭安纳金杀害。堕入黑暗的安纳金成为帕尔帕庭的新徒弟达斯·维德（Darth Vader）。帕尔帕庭露出西斯大君的真面目，宣布绝地是共和的敌人。许多绝地被达斯·维德所杀，其它绝地则遭到克隆人反扑。达斯·维德与欧比-旺战斗，跌入火山后被救回。安纳金长子被欧比-旺秘密带给塔图因的拉尔斯夫妇扶养，女儿则交给贝尔·奥加纳（Bail Organa）。欧比-旺和尤达隐居。帝国兴起并开始扩张，帕尔帕庭巩固权力并宣布新秩序（New Order），实施歧视非人类种族政策。奥加纳与蒙·茉斯玛等决定抵制帕尔帕庭的权力扩张。</p>
 <p>　　达斯·维德奴役诺里族（Noghri）。</p>
@@ -162,7 +172,10 @@ e:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be
 <h5>Year 0</h5>
 <p>　　死星完工，塔金以摧毁Despayre作为测试。Bevel Lemelis在死星完成运作后被派回科洛桑研发质子鱼雷球（Torpedo Sphere）。</p>
 <p>　　莱娅·奥加纳（Leia Organa）得知死星的存在。佣兵凯·卡特恩（Kyle Katarn）从帝国在Danuta的储藏库偷取死星的蓝图，并经由间谍交到莱娅手中。</p>
-<h4>EPISODE IV</h4>
+<hr>
+<h2>帝国时代与正传三部曲（19 BBY–4 ABY）</h2>
+<h3>电影主线（正传三部曲）</h3>
+<h4>EPISODE IV（新希望）</h4>
 <p>　　莱娅登上坦特维IV型飞船（Tantive IV）前往塔图因寻找欧比-旺，却遭到达斯·维德的星际驱逐舰破坏者号（Devastator）拦截。莱娅将蓝图交给R2-D2和C-3PO，两机器人以逃生舱落于塔图因上，辗转被卢克·天行者（Luke Skywalker，安纳金之子）接收。皇帝解散参议院。塔金以死星炸毁奥德兰。卢克在塔图因沙漠发现隐居的欧比-旺。卢克、欧比-旺搭乘汉·索罗（Han Solo）与楚巴卡（Chewbacca）的“千年隼”号 （Millennium Falcon）前往奥德兰时被死星捕捉。一行人救出莱娅回到雅汶4号卫星，欧比-旺死在维德手下。塔金随“千年隼”号 的追踪器带死星到雅汶准备摧毁反抗军基地，卢克与反抗军飞行员以战机成功攻击死星的弱点并予以摧毁，是为雅汶战役（Battle of Yavin）。塔金死于死星上，维德随座机逃出。在死星摧毁后红中队的生还队员重组为侠盗中队（Rogue Squadron）。</p>
 <p>　　帕尔帕庭来到卡力班却被西斯幽魂伤害，之后回科洛桑时其手下Droga Pestage到Byss准备一个皇帝的克隆人。</p>
 <p>　　超级星际驱逐舰执行者号（Executor）和露珊奇亚号（Lusankya）从Fondor和奎特造船厂完工。</p>
@@ -178,7 +191,7 @@ e:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be
 <p>　　反抗军正式以霍斯为主基地，并取得奎特制的星球离子炮，在工程师团完成霍斯基地运作后将大批物资移到该处。</p>
 <p>　　索龙在经历多年后从未知星域返回科洛桑。</p>
 <p>　　达斯·维德指派到欧佐（Ozzel）上将的死亡中队（Death Squadron）舰队，并继续寻找卢克的下落。执行者号的存在正式被揭露.</p>
-<h4>EPISODE V</h4>
+<h4>EPISODE V（帝国反击战）</h4>
 <h5>3 ABY</h5>
 <p>　　亚拉基（Arakyd）腹蛇（Viper）探测机器人出现，帝国以此机器人找到霍斯的反抗军基地，达斯·维德率死亡中队封锁霍斯并派军登陆。反抗军在侠盗中队与离子炮掩护下撤离，是为霍斯战役（Battle of Hoth）。卢克前往尤达隐居地达戈巴（Dagobah）接受绝地训练。汉、莱娅与机器人乘坐“千年隼”号 逃入霍斯小行星带躲避帝国追击，之后来到汉的走私者与赌徒朋友蓝多·卡瑞辛（Lando Calrissian）掌管的贝斯坪云城 （Cloud City），途中遭奖金猎人波巴·费特（Boba Fett）追踪，一行人在云城被帝国俘虏，汉被碳化交给波巴带给塔图因的赫特族贾巴（Jabba the Hutts）。卢克赶到云城与维德战斗却失去右手，并发现维德是自己父亲的身分。蓝多救出其它人以“千年隼”号 逃脱。</p>
 <p>　　帕尔帕庭计划建造更大且为他量身打造的星际驱逐舰日蚀级（Eclipse）和君主级（Sovereign），日蚀级在他死后停工，不过将在重返之时继续。帝国在Hockaleg星附近建造一个功能类似死星的塔金战斗基地，遭到卢克等人摧毁。</p>
@@ -195,7 +208,7 @@ e:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be
 <p>　　蒙·莫斯玛从波森人得知死星的消息后召集所有反抗武力。反抗军偷取一艘帝国交通梭泰迪恩号（Tydirium）。帝国的众多武力集结恩多保卫死星。</p>
 <p>　　席-鲁克人（Ssi-Ruuk）攻击巴库拉，巴库拉送出急求救讯息给恩多的皇帝。</p>
 <p>　　札林中了索龙的计谋，以匿踪装置逃入超空间时意外爆炸身亡。帝国的高科技武器大多在对抗札林的战役中损失殆尽。</p>
-<h4>EPISODE VI</h4>
+<h4>EPISODE VI（绝地归来）</h4>
 <p>　　反抗军从塔图因救出索罗，杀死波巴和贾巴（事实上波巴没有死）。卢克发现莱娅是自己的妹妹。卢克、莱娅、汉等人以泰迪恩号渗透恩多卫星并试图摧毁护盾产生器，得到当地依渥克人（Ewok）的协助。卢克前往死星面对维德与帕尔帕庭。反抗军以基地一号（Home One）为首的舰队抵达死星时落入以执行者号为首的帝国舰队埋伏。卢克使维德回归光明面，维德杀死帕尔帕庭。恩多的护盾产生器被摧毁。执行者号被摧毁，蓝多驾驶“千年隼”号 率战机摧毁死星，此为恩多战役（Battle of Endor）。维德杀死皇帝后衰弱而死，帝国舰队败逃并分裂到各处。皇帝死前以原令命令皇帝之手（Emperor’s Hand）玛拉·贾德（Mara Jade）猎杀卢克。</p>
 <p>　　反抗军在恩多战后拦截到来自巴库拉的讯息，卢克领导一支舰队与当地帝国军合作抵抗这种恐怖的爬虫外星种族席-鲁克，此种族能控制囚犯思想并将之连接到武器上来战斗，卢克差点落入席-鲁克的控制。</p>
 <p>　　曼道机动（MandalMotors）公司任命一位新共和执行长，从此成为新共和的重要供货商。西纳舰队系统和天鹅座太空厂（Cygnus Spaceworks）继续生产哨兵 （Sentinel）登陆梭给私人和新共和上游厂商。</p>
@@ -305,6 +318,11 @@ e:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be
 <p>　　奎特造船厂研发出共和级（Republic-class）星际驱逐舰。</p>
 <p>　　卢克收杰森与安纳金为学徒，而婕纳成为玛拉的学徒。婕纳发现自己驾驶战机的天赋。</p>
 <p>　　莱娅退下总统职位，但是接任的是佛列亚，因此让许多重要人物如亚克博决定退休</p>
+<hr>
+<h2>新共和与传奇扩展宇宙（约 4–24 ABY）</h2>
+<blockquote>
+<p>提醒：从这一段起，很多事件来自“传奇（Legends）/扩展宇宙”资料源，时间线更细更长；如果你只想看电影主线，可直接读到上面的 <code>EPISODE VI</code> 为止。</p>
+</blockquote>
 <p>新绝地武士团与遇战疯入侵（25 ABY ——40ABY）</p>
 <p>25 ABY
 　　蒙·莫斯玛过世。</p>
@@ -342,8 +360,10 @@ e:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be
 <p>　　Nas Choka代表Vong投降。战争终于结束，共有365万亿人死亡，无数世界毁灭变更。Sekot化为崭新的世界Zonama Sekot（原 Sekot之子）并成为剩余Vong的新家，并同意返回未知星域，让Vong重新创造族群。科洛桑的世界脑留下作为承诺。银河联盟在科洛桑恢复前暂时将首都移到Denon。剩余的Alpha Red被消灭。卢克招集整个银河的绝地探索新的原力视野。众人最后聚在卡须克缅怀楚巴卡的事迹 ……</p>
 <p>新绝地学院将被设在Ossus。</p>
 <p>　</p>
-<p>+34 ASW4
-绝地使用着黑色匿踪版本的X翼战机──StealthX。</p>
+<hr>
+<h2>后续（含不同资料源的时间标记）</h2>
+<h3>+34 ASW4</h3>
+<p>绝地使用着黑色匿踪版本的X翼战机──StealthX。</p>
 <p>当年在摩克参予任务的绝地成员不约而同收到了一个神秘的呼唤，径自前往银河边疆，接着奇斯人向GFFA提出抗议，要求绝地不得干预他们的边疆纷争。路克、玛拉、韩、莉亚等人前去调查后才发现原来曾被认为在奥德兰灭绝的昆虫种族Killik定居在未知星域，而摩克任务中带着受伤的Raynar Thul一起逃离的黑暗绝地Welk和Lomi Plo并未在摩克星上空被击落，他们最终来到了Killik的殖民地，并融入该种族集合心智的一部分。藉由Raynar的力量协调各巢穴，Killik开始快速向奇斯人的疆域扩张，因而爆发战争。</p>
 <p>摩克任务的绝地成员出于帮助弱者心态，执意投入对抗奇斯的努力，然而他们与Killik日益相处使得心智也逐渐联结上集合心智，成为联结者（joiner）。路克等人也随后发现Killik背后有一个连Raynar都不晓得的神秘巢穴──黑巢﹝Dark Nest﹞，其地位类似集合心智意识背后的「无意识」，并不断影响Killik族的侵略举止，甚至也影响了逐渐成为联结者的绝地们，一位绝地Alema也堕入黑暗并遭到了黑巢的吸收。</p>
 <p>路克等人借由新发现找到了黑巢的所在，在首次交锋中路克击退Alema并杀死Welk，然而黑巢的活动继续扩展。当Killik以取得的科技拼凑出巨型船只准备进入银河中心时，GFFA舰队和Killik爆发短暂的交火，路克和玛拉等人也阻止了黑巢的船只离开，但他们首次遭遇威力强大的Lomi Plo──黑巢的隐身之后。黑巢也抢走了GFFA的一艘RSD亚克博号。</p>
@@ -351,9 +371,11 @@ e:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be
 <p>莉亚结束政治生涯，随Saba为师，并在Killik危机结束后获得正式的绝地武士头衔。</p>
 <p>杰森与Tenel Ka生下一名女婴，但没有人知道这名女婴的父亲就是他。他在遇战疯危机后期发展的新绝地哲学也遭受路克的质疑，同时又看见了一个银河遭受大战的残破梦境景像。</p>
 <p>路克首次从R2的记录影像得知自己生母的身分以及死因。</p>
-<p>？？？？？？</p>
+<p>（此处原文为占位：？？？？？？）</p>
 <p>传奇的延续（40 ABY —— ）</p>
-<p>？？？？？？</p>
+<p>（此处原文为占位：？？？？？？）</p>
+<hr>
+<h2>趣味内容（非正史，请勿当真）</h2>
 <p>以下为卡兰坦斯站长参考原始数据的搞笑内容，请勿当真……</p>
 <h5>1,000 ABY</h5>
 <p>　　天行者全像纪录和其它预言、传奇等被合并为怀尔日志（The Journal of the Whills）全像纪录。</p>
@@ -364,7 +386,7 @@ e:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be
 <h5>10,188 ABY (1973 A.D.)</h5>
 <p>　　残骸漂流而终于坠落地球，掉在加州Modesto市的一位年轻制片乔治·卢卡斯家的后院。他秘密翻译怀尔日志的内容并计划拍成电影，花了四五年的时间写剧本。在联美和环球拒绝后，二十世纪福斯公司同意卢卡斯的计划。卢卡斯成立工业光魔来重现全像纪录的投影效果。</p>
 <h5>10,191 ABY (1977 A.D.)</h5>
-<p>　　卢卡斯的第一部巨作上映</p>5:["$","article",null,{"className":"max-w-2xl mx-auto px-5 py-10","children":[["$","header",null,{"className":"mb-8","children":[["$","h1",null,{"className":"font-mono text-xl font-semibold text-[var(--color-text)] leading-tight","children":"星球大战编年史"}],["$","div",null,{"className":"flex items-center gap-3 mt-2 text-xs text-[var(--color-text-tertiary)] font-mono","children":[["$","time",null,{"dateTime":"2023-01-06","children":"2023-01-06"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"84 min read"}]]}],["$","div",null,{"className":"flex flex-wrap gap-1.5 mt-3","children":[["$","$L2","star war",{"href":"/tags/star%20war","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","star war"]}],["$","$L2","film",{"href":"/tags/film","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","film"]}]]}]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$10"}}],"$L11","$L12"]}]
+<p>　　卢卡斯的第一部巨作上映</p>5:["$","article",null,{"className":"max-w-2xl mx-auto px-5 py-10","children":[["$","header",null,{"className":"mb-8","children":[["$","h1",null,{"className":"font-mono text-xl font-semibold text-[var(--color-text)] leading-tight","children":"星球大战编年史"}],["$","div",null,{"className":"flex items-center gap-3 mt-2 text-xs text-[var(--color-text-tertiary)] font-mono","children":[["$","time",null,{"dateTime":"2023-01-06","children":"2023-01-06"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"86 min read"}]]}],["$","div",null,{"className":"flex flex-wrap gap-1.5 mt-3","children":[["$","$L2","star war",{"href":"/tags/star%20war","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","star war"]}],["$","$L2","film",{"href":"/tags/film","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","film"]}]]}]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$10"}}],"$L11","$L12"]}]
 13:I[31175,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/bbef3146f2d34722.js"],"default"]
 11:["$","$L13",null,{}]
 12:["$","footer",null,{"className":"mt-8 pt-4 border-t border-[var(--color-border)]","children":["$","$L2",null,{"href":"/","className":"text-sm text-[var(--color-link)] hover:underline","children":"← 返回"}]}]
