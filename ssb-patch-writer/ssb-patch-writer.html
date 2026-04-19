@@ -12,14 +12,15 @@
     button { padding: 0.5rem 1rem; margin: 0 0.25rem 0.25rem 0; cursor: pointer; }
     button:disabled { opacity: 0.6; cursor: not-allowed; }
     input[type="file"] { margin: 0.5rem 0; }
-    #log { background: #f5f5f5; padding: 0.75rem; border-radius: 4px; font-family: monospace; font-size: 0.85rem; white-space: pre-wrap; word-break: break-all; max-height: 240px; overflow-y: auto; }
+    #log { background: #f5f5f5; padding: 0.75rem; border-radius: 4px; font-family: monospace; font-size: 0.85rem; white-space: pre-wrap; word-break: break-all; max-height: 280px; overflow-y: auto; }
     .err { color: #c00; }
     .ok { color: #080; }
   </style>
 </head>
 <body>
   <h1>K5 SSB 补丁写入</h1>
-  <p>通过浏览器连接 K5 对讲机（USB 串口），将 SSB 补丁文件写入 EEPROM 地址 <strong>0x3C228</strong>（约 15832 字节）。需使用 <strong>Chrome / Edge</strong> 并已刷支持 2Mbit EEPROM 与 UART 的固件。对讲机请<strong>正常开机</strong>后插线写入；<strong>不要</strong>进入固件刷机/升级模式（例如关机长按 PTT 再插 USB 等），与本工具使用的串口协议不同。</p>
+  <p>通过浏览器连接 K5 对讲机（USB 串口），将 SSB 补丁文件写入 EEPROM 地址 <strong>0x3C228</strong>（约 15832 字节）。需使用 <strong>Chrome / Edge</strong>，并已刷支持 2Mbit EEPROM 与 UART 的固件。</p>
+  <p><strong>使用方式：</strong>对讲机<strong>正常开机</strong>即可写入，<strong>无需</strong>进入固件升级/刷机模式。若 CPS/写频软件已占用串口，请先关闭后再用本页连接。</p>
 
   <div class="box">
     <div>
@@ -59,6 +60,10 @@
         line.textContent = `[${new Date().toLocaleTimeString()}] ${msg}\n`;
         logEl.appendChild(line);
         logEl.scrollTop = logEl.scrollHeight;
+      }
+
+      function delay(ms) {
+        return new Promise(function (r) { setTimeout(r, ms); });
       }
 
       function crc16ccitt(buf, len) {
@@ -115,6 +120,37 @@
         await sendPacket(writer, buf);
       }
 
+      /**
+       * 固件对每个 0x0538 包会回复一帧数据；若不读取，USB 缓冲塞满后机会阻塞，
+       * 进度会停在约 14xxx/15832。写入期间持续 drain。
+       */
+      function startDrainReader(port) {
+        let cancelled = false;
+        const reader = port.readable.getReader();
+        const promise = (async function () {
+          try {
+            while (!cancelled) {
+              try {
+                const step = await reader.read();
+                if (step.done) break;
+              } catch (e) {
+                if (cancelled || e.name === 'AbortError') break;
+                throw e;
+              }
+            }
+          } finally {
+            try { reader.releaseLock(); } catch (e) { /* ignore */ }
+          }
+        })();
+        return {
+          promise: promise,
+          cancel: async function () {
+            cancelled = true;
+            try { await reader.cancel(); } catch (e) { /* ignore */ }
+          }
+        };
+      }
+
       async function connect() {
         if (!('serial' in navigator)) {
           log('此浏览器不支持 Web Serial，请使用 Chrome 或 Edge。', true);
@@ -123,7 +159,7 @@
         try {
           port = await navigator.serial.requestPort();
           await port.open({ baudRate: 115200 });
-          log('串口已打开（未发送数据，不会触发 TX）。对讲机保持开机即可；勿使用固件刷机模式。准备好后点「写入 0x3C228」。', false);
+          log('串口已打开。对讲机请保持正常开机；无需进入刷机/升级模式。选择补丁文件后可点「写入」。', false);
           btnConnect.textContent = '已连接';
           btnConnect.disabled = true;
         } catch (e) {
@@ -140,58 +176,58 @@
           log('补丁长度 ' + patchBytes.length + ' 超过 ' + SSB_PATCH_SIZE + '，将只写入前 ' + SSB_PATCH_SIZE + ' 字节。', false);
         }
         const toWrite = patchBytes.subarray(0, SSB_PATCH_SIZE);
+        const totalChunks = Math.ceil(toWrite.length / CHUNK_PAYLOAD);
         btnWrite.disabled = true;
-        log('开始写入 0x3C228，共 ' + toWrite.length + ' 字节，每块 ' + CHUNK_PAYLOAD + ' 字节…');
-        let writer = null;
-        let rxReader = null;
-        let rxDraining = false;
+        log('开始写入 0x3C228，共 ' + toWrite.length + ' 字节，约 ' + totalChunks + ' 包（每包 ' + CHUNK_PAYLOAD + ' 字节数据）…');
+
+        let writer;
+        let drain;
         try {
-          await port.open({ baudRate: 115200 }).catch(() => {});
-          writer = port.writable.getWriter();
-          rxDraining = true;
-          if (port.readable) {
-            rxReader = port.readable.getReader();
-            (async function drainRx() {
-              try {
-                while (rxDraining) {
-                  const { done } = await rxReader.read();
-                  if (done) break;
-                }
-              } catch (_) { /* 取消或关闭时忽略 */ }
-            })();
+          if (!port.writable || !port.readable) {
+            log('串口未就绪，请重新连接。', true);
+            return;
           }
-          log('发送 0x0514 获取会话…');
+          writer = port.writable.getWriter();
+          drain = startDrainReader(port);
+
+          log('发送 0x0514 建立会话…');
           await cmd0514(writer);
+          await delay(200);
+
           let addr = SSB_EEPROM_ADDR;
-          const totalChunks = Math.ceil(toWrite.length / CHUNK_PAYLOAD);
           let chunkIndex = 0;
           for (let i = 0; i < toWrite.length; i += CHUNK_PAYLOAD) {
-            chunkIndex += 1;
             const chunk = toWrite.subarray(i, Math.min(i + CHUNK_PAYLOAD, toWrite.length));
             await cmd0538Chunk(writer, addr, chunk);
             addr += chunk.length;
-            await new Promise(r => setTimeout(r, 150));
-            const written = Math.min(i + chunk.length, toWrite.length);
-            if (chunkIndex % 10 === 0 || chunkIndex === totalChunks) {
-              log('已写 ' + written + ' / ' + toWrite.length + ' 字节');
+            chunkIndex++;
+            const written = Math.min(i + CHUNK_PAYLOAD, toWrite.length);
+            /* 每包或每 10 包打一次进度，最后必打 */
+            if (chunkIndex === totalChunks || chunkIndex % 10 === 0 || chunkIndex === 1) {
+              log('进度: ' + written + ' / ' + toWrite.length + ' 字节（包 ' + chunkIndex + ' / ' + totalChunks + '）');
             }
+            await delay(120);
           }
-          log('✓ 全部写入完成（' + toWrite.length + ' / ' + toWrite.length + ' 字节）。请重启对讲机：F+0 进 Radio，FM/AM 下长按 F 进单边带，单边带下短按 F 切换 USB/LSB/CW，长按 F 退回 AM。', false);
+
+          await delay(250);
+          try { writer.releaseLock(); } catch (e) { /* ignore */ }
+          writer = null;
+          await drain.cancel();
+          await drain.promise.catch(function () {});
+
+          log('写入完成。', false);
+          log('请重启对讲机后再试 SSB：F+0 进 Radio，FM/AM 下长按 F 进单边带；单边带下短按 F 切换 USB/LSB/CW，长按 F 退回 AM。', false);
         } catch (e) {
           log('写入失败: ' + e.message, true);
-        } finally {
-          rxDraining = false;
-          if (rxReader) {
-            try { await rxReader.cancel(); } catch (_) {}
-            try { rxReader.releaseLock(); } catch (_) {}
-            rxReader = null;
-          }
-          if (writer) {
-            try { writer.releaseLock(); } catch (_) {}
-            writer = null;
-          }
-          btnWrite.disabled = false;
+          try {
+            if (writer) {
+              try { writer.releaseLock(); } catch (e2) {}
+            }
+            if (drain) await drain.cancel();
+            if (drain) await drain.promise.catch(function () {});
+          } catch (e3) {}
         }
+        btnWrite.disabled = false;
       }
 
       fileEl.addEventListener('change', function () {
