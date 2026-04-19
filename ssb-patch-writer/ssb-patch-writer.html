@@ -19,7 +19,7 @@
 </head>
 <body>
   <h1>K5 SSB 补丁写入</h1>
-  <p>通过浏览器连接 K5 对讲机（USB 串口），将 SSB 补丁文件写入 EEPROM 地址 <strong>0x3C228</strong>（约 15832 字节）。需使用 <strong>Chrome / Edge</strong> 并已刷支持 2Mbit EEPROM 与 UART 的固件。</p>
+  <p>通过浏览器连接 K5 对讲机（USB 串口），将 SSB 补丁文件写入 EEPROM 地址 <strong>0x3C228</strong>（约 15832 字节）。需使用 <strong>Chrome / Edge</strong> 并已刷支持 2Mbit EEPROM 与 UART 的固件。对讲机请<strong>正常开机</strong>后插线写入；<strong>不要</strong>进入固件刷机/升级模式（例如关机长按 PTT 再插 USB 等），与本工具使用的串口协议不同。</p>
 
   <div class="box">
     <div>
@@ -123,7 +123,7 @@
         try {
           port = await navigator.serial.requestPort();
           await port.open({ baudRate: 115200 });
-          log('串口已打开（未发送数据，不会触发 TX）。请在对讲机进入“写频/编程”模式后再点“写入 0x3C228”。', false);
+          log('串口已打开（未发送数据，不会触发 TX）。对讲机保持开机即可；勿使用固件刷机模式。准备好后点「写入 0x3C228」。', false);
           btnConnect.textContent = '已连接';
           btnConnect.disabled = true;
         } catch (e) {
@@ -142,25 +142,56 @@
         const toWrite = patchBytes.subarray(0, SSB_PATCH_SIZE);
         btnWrite.disabled = true;
         log('开始写入 0x3C228，共 ' + toWrite.length + ' 字节，每块 ' + CHUNK_PAYLOAD + ' 字节…');
+        let writer = null;
+        let rxReader = null;
+        let rxDraining = false;
         try {
           await port.open({ baudRate: 115200 }).catch(() => {});
-          const writer = port.writable.getWriter();
+          writer = port.writable.getWriter();
+          rxDraining = true;
+          if (port.readable) {
+            rxReader = port.readable.getReader();
+            (async function drainRx() {
+              try {
+                while (rxDraining) {
+                  const { done } = await rxReader.read();
+                  if (done) break;
+                }
+              } catch (_) { /* 取消或关闭时忽略 */ }
+            })();
+          }
           log('发送 0x0514 获取会话…');
           await cmd0514(writer);
           let addr = SSB_EEPROM_ADDR;
+          const totalChunks = Math.ceil(toWrite.length / CHUNK_PAYLOAD);
+          let chunkIndex = 0;
           for (let i = 0; i < toWrite.length; i += CHUNK_PAYLOAD) {
+            chunkIndex += 1;
             const chunk = toWrite.subarray(i, Math.min(i + CHUNK_PAYLOAD, toWrite.length));
             await cmd0538Chunk(writer, addr, chunk);
             addr += chunk.length;
             await new Promise(r => setTimeout(r, 150));
-            if ((i / CHUNK_PAYLOAD) % 20 === 0 && i > 0) log('已写 ' + i + ' / ' + toWrite.length + ' 字节');
+            const written = Math.min(i + chunk.length, toWrite.length);
+            if (chunkIndex % 10 === 0 || chunkIndex === totalChunks) {
+              log('已写 ' + written + ' / ' + toWrite.length + ' 字节');
+            }
           }
-          writer.releaseLock();
-          log('写入完成。请重启对讲机：F+0 进 Radio，FM/AM 下长按 F 进单边带，单边带下短按 F 切换 USB/LSB/CW，长按 F 退回 AM。', false);
+          log('✓ 全部写入完成（' + toWrite.length + ' / ' + toWrite.length + ' 字节）。请重启对讲机：F+0 进 Radio，FM/AM 下长按 F 进单边带，单边带下短按 F 切换 USB/LSB/CW，长按 F 退回 AM。', false);
         } catch (e) {
           log('写入失败: ' + e.message, true);
+        } finally {
+          rxDraining = false;
+          if (rxReader) {
+            try { await rxReader.cancel(); } catch (_) {}
+            try { rxReader.releaseLock(); } catch (_) {}
+            rxReader = null;
+          }
+          if (writer) {
+            try { writer.releaseLock(); } catch (_) {}
+            writer = null;
+          }
+          btnWrite.disabled = false;
         }
-        btnWrite.disabled = false;
       }
 
       fileEl.addEventListener('change', function () {
