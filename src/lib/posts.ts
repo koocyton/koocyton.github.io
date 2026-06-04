@@ -28,12 +28,31 @@ export interface Post extends PostMeta {
   contentHtml: string;
 }
 
+export type PostLocale = "zh" | "en";
+
 function normalizeSlug(filename: string): string {
-  return filename.replace(/\.md$/, "");
+  return filename.replace(/\.en\.md$/, "").replace(/\.md$/, "");
+}
+
+function isLocalePostFile(filename: string): boolean {
+  if (!filename.endsWith(".md")) return false;
+  if (filename.endsWith(".en.md")) return false;
+  return true;
+}
+
+export function getPostLocalePath(slug: string, locale: PostLocale = "zh"): string {
+  return path.join(postsDirectory, `${slug}${locale === "en" ? ".en" : ""}.md`);
+}
+
+export function getPostLocales(slug: string): PostLocale[] {
+  const locales: PostLocale[] = [];
+  if (fs.existsSync(getPostLocalePath(slug, "zh"))) locales.push("zh");
+  if (fs.existsSync(getPostLocalePath(slug, "en"))) locales.push("en");
+  return locales;
 }
 
 export function getAllPosts(): PostMeta[] {
-  const files = fs.readdirSync(postsDirectory).filter((f) => f.endsWith(".md"));
+  const files = fs.readdirSync(postsDirectory).filter(isLocalePostFile);
 
   const posts = files.map((filename) => {
     const slug = normalizeSlug(filename);
@@ -62,8 +81,14 @@ export function getAllPosts(): PostMeta[] {
   );
 }
 
-export async function getPostBySlug(slug: string): Promise<Post> {
-  const fullPath = path.join(postsDirectory, `${slug}.md`);
+export async function getPostBySlug(
+  slug: string,
+  locale: PostLocale = "zh"
+): Promise<Post> {
+  const fullPath = getPostLocalePath(slug, locale);
+  if (!fs.existsSync(fullPath)) {
+    throw new Error(`Post not found: ${slug} (${locale})`);
+  }
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
   const stats = readingTime(content);
