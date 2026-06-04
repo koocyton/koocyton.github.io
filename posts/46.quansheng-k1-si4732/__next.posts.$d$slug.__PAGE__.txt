@@ -1,13 +1,25 @@
 1:"$Sreact.fragment"
-2:I[22016,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/bbef3146f2d34722.js"],""]
-8:I[31175,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/bbef3146f2d34722.js"],"default"]
-9:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
-a:"$Sreact.suspense"
-3:T104e,<h1>泉盛 K1 改装 SI4732</h1>
+2:I[22016,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/e5875ffb3df92969.js"],""]
+3:I[20319,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/e5875ffb3df92969.js"],"default"]
+a:I[31175,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/e5875ffb3df92969.js"],"default"]
+b:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
+4:T145e,<h1>泉盛 K1 改装 SI4732</h1>
 <p>在泉盛 UV-K1（K1）上加装基于 <strong>SI4732-A10</strong> 的接收小板，可扩展 <strong>短波 AM、广播 FM、单边带（SSB）</strong> 等收听能力。硬件按本文 PCB 制作并焊接，主机板只需引出少量信号；刷入配套 <strong>F4HWN</strong> 系固件后即可使用。</p>
 <blockquote>
 <p>改装涉及拆机与细线焊接，操作前请备份校准数据，风险自负。</p>
 </blockquote>
+<h2>开源固件仓库</h2>
+<p>固件源码、Docker 编译脚本与说明见 GitHub：</p>
+<p><strong><a href="https://github.com/koocyton/quansheng-k1-f4hwn-si4732">koocyton/quansheng-k1-f4hwn-si4732</a></strong></p>
+<p>本仓库在 <a href="https://github.com/armel/uv-k1-k5v3-firmware-custom">armel/uv-k1-k5v3-firmware-custom</a>（F4HWN / Fusion，面向 <strong>PY32F071</strong> 的 UV-K1 / UV-K5 V3）基础上维护，并包含 K1 外接 <strong>SI4732</strong> 的 <strong>Si4732</strong> 编译预设。</p>
+<h3>自行编译（Docker）</h3>
+<p>环境需安装 Docker 与 Bash（Linux、macOS、WSL 或 Windows Git Bash）。</p>
+<p>克隆仓库后执行：</p>
+<pre><code class="hljs language-bash">./compile-with-docker.sh Si4732
+</code></pre>
+<p>脚本在 Docker 内完成配置与编译，产物位于 <code>build/Si4732/</code>（含 <code>f4hwn.si4732.bin</code>）。首次运行会拉取/构建镜像，可能需数分钟。</p>
+<p>其它版本（<code>Fusion</code>、<code>Bandscope</code>、<code>Broadcast</code> 等）及 <code>./compile-with-docker.sh All</code> 见仓库 README。</p>
 <h2>改装板 PCB</h2>
 <p>下图是 K1 专用 SI4732 转接板布局（丝印 <strong>5163.xyz</strong>）。板上已集成 SI4732、20 MHz 晶振及必要外围；对外主要引出 <strong>GND</strong>、<strong>AMI</strong>（芯片 AM 天线输入）、<strong>RST</strong>（复位），顶部另有 <strong>U.FL</strong> 座可接独立天线以改善 FM。</p>
 <p><img src="/posts/46.quansheng-k1-si4732/k1.si4732.png" alt="K1 SI4732 改装板 PCB"></p>
@@ -51,7 +63,7 @@ a:"$Sreact.suspense"
 <li>装回外壳前通电前再检查一遍焊点与短路。</li>
 </ol>
 <h2>固件下载与刷机</h2>
-<p>本仓库提供已编译的 K1 + SI4732 固件（基于 F4HWN / Fusion 分支）：</p>
+<p>本站提供与 <strong>Si4732</strong> 预设一致的预编译固件（也可从上述 GitHub <code>build/Si4732/</code> 或 Release 获取）：</p>
 <p><strong><a href="f4hwn.si4732.bin">f4hwn.si4732.bin</a></strong> — 点击下载</p>
 <p>刷机推荐使用浏览器工具 <strong><a href="https://armel.github.io/uvtools2/?mode=flash">UVTools2</a></strong>（Chrome / Edge）：</p>
 <ol>
@@ -60,7 +72,6 @@ a:"$Sreact.suspense"
 <li>选择对应串口，执行 <strong>Flash Firmware</strong>。</li>
 <li>刷机完成后建议用 UVTools2 <strong>备份校准数据</strong>（Dump Calib），便于以后恢复。</li>
 </ol>
-<p>上游工程与更多说明：<a href="https://github.com/armel/uv-k1-k5v3-firmware-custom">armel/uv-k1-k5v3-firmware-custom</a></p>
 <h2>收听操作（参考）</h2>
 <p>固件逻辑与 F4HWN 系相近，常见按键（以实际固件菜单为准）：</p>
 <pre><code class="hljs language-text">[F+0]     进入收音机 / SI4732 模式
@@ -73,9 +84,89 @@ SSB 下短按 [F]  可切换 USB / LSB / CW 等（视固件版本）
 <ul>
 <li><a href="/posts/21.quansheng-k6-si4732">泉盛 K5 K6 改 Si4732 电路设计</a> — K5/K6 放大器 PCB 思路可参考</li>
 <li><a href="/posts/40.ssb-patch-writer">K5 K6 V1 单边带补丁与刷机</a> — 刷机模式与 SSB 操作习惯类似</li>
-</ul>0:{"buildId":"PAjmRArZMaHA8w1ACyN6V","rsc":["$","$1","c",{"children":[["$","article",null,{"className":"max-w-2xl mx-auto px-5 py-10","children":[["$","header",null,{"className":"mb-8","children":[["$","h1",null,{"className":"font-mono text-xl font-semibold text-[var(--color-text)] leading-tight","children":"泉盛 K1 改装 SI4732 及固件"}],["$","div",null,{"className":"flex items-center gap-3 mt-2 text-xs text-[var(--color-text-tertiary)] font-mono","children":[["$","time",null,{"dateTime":"2026-06-04","children":"2026-06-04"}],["$","span",null,{"children":"·"}],["$","span",null,{"children":"4 min read"}]]}],["$","div",null,{"className":"flex flex-wrap gap-1.5 mt-3","children":[["$","$L2","quansheng",{"href":"/tags/quansheng","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","quansheng"]}],["$","$L2","k1",{"href":"/tags/k1","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","k1"]}],["$","$L2","si4732",{"href":"/tags/si4732","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","si4732"]}]]}]]}],["$","div",null,{"className":"prose","dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4","$L5"]}],["$L6"],"$L7"]}],"loading":null,"isPartial":false}
-4:["$","$L8",null,{}]
-5:["$","footer",null,{"className":"mt-8 pt-4 border-t border-[var(--color-border)]","children":["$","$L2",null,{"href":"/","className":"text-sm text-[var(--color-link)] hover:underline","children":"← 返回"}]}]
-6:["$","script","script-0",{"src":"/_next/static/chunks/bbef3146f2d34722.js","async":true}]
-7:["$","$L9",null,{"children":["$","$a",null,{"name":"Next.MetadataOutlet","children":"$@b"}]}]
-b:null
+</ul>5:T1314,<h1>Quansheng K1 SI4732 Mod</h1>
+<p>Add a small <strong>SI4732-A10</strong> receiver board to the Quansheng <strong>UV-K1 (K1)</strong> to listen on <strong>shortwave AM, broadcast FM, and single-sideband (SSB)</strong>. Build the adapter from the PCB below, wire a few signals on the main board, then flash the matching <strong>F4HWN</strong>-based <strong>Si4732</strong> firmware.</p>
+<blockquote>
+<p>Opening the radio and fine-pitch soldering are required. Back up calibration data first. Proceed at your own risk.</p>
+</blockquote>
+<h2>Open-source firmware repository</h2>
+<p>Firmware sources, Docker build scripts, and hardware notes live on GitHub:</p>
+<p><strong><a href="https://github.com/koocyton/quansheng-k1-f4hwn-si4732">koocyton/quansheng-k1-f4hwn-si4732</a></strong></p>
+<p>This repo is a fork of <a href="https://github.com/armel/uv-k1-k5v3-firmware-custom">armel/uv-k1-k5v3-firmware-custom</a> (F4HWN / Fusion for <strong>PY32F071</strong> on UV-K1 and UV-K5 V3). The <strong>Si4732</strong> CMake preset adds support for an external SI4732 board on the K1.</p>
+<h3>Build from source (Docker)</h3>
+<p>Prerequisites: Docker and Bash (Linux, macOS, WSL, or Git Bash on Windows).</p>
+<p>Clone the repository, then run:</p>
+<pre><code class="hljs language-bash">./compile-with-docker.sh Si4732
+</code></pre>
+<p>The script configures and builds inside Docker. Output appears under <code>build/Si4732/</code> (including <code>f4hwn.si4732.bin</code>). The first run may take a few minutes while the Docker image is created.</p>
+<p>Other presets (<code>Fusion</code>, <code>Bandscope</code>, <code>Broadcast</code>, …) and <code>./compile-with-docker.sh All</code> are documented in the repository README.</p>
+<h2>Adapter PCB</h2>
+<p>Layout of the K1 SI4732 adapter (silkscreen <strong>5163.xyz</strong>). The board includes the SI4732, a 20 MHz crystal, and passives. Main signals: <strong>GND</strong>, <strong>AMI</strong> (AM antenna input), <strong>RST</strong> (reset). A <strong>U.FL</strong> pad at the top accepts an optional antenna for better FM.</p>
+<p><img src="/posts/46.quansheng-k1-si4732/k1.si4732.png" alt="K1 SI4732 adapter PCB"></p>
+<h2>Main-board RST (PA14)</h2>
+<p>Wire <strong>RST</strong> to <strong>PA14</strong> (pin <strong>37</strong>) on the <strong>PY32F071</strong>. The photo below marks a recommended solder point—verify against your board before soldering.</p>
+<p><img src="/posts/46.quansheng-k1-si4732/k1-si4732-rst-pa14.png" alt="K1 main-board RST at PA14"></p>
+<h2>Wiring summary</h2>
+<table>
+<thead>
+<tr>
+<th>Adapter</th>
+<th>Description</th>
+<th>K1 side</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>GND</strong></td>
+<td>Common ground</td>
+<td>Main-board ground</td>
+</tr>
+<tr>
+<td><strong>AMI</strong></td>
+<td>SI4732 AM / MW antenna input</td>
+<td>Original <strong>BK1080</strong> FM chip antenna path (same idea as K5/K6 SI4732 mods)</td>
+</tr>
+<tr>
+<td><strong>RST</strong></td>
+<td>Reset, active low</td>
+<td><strong>PA14 (37)</strong> — see photo</td>
+</tr>
+</tbody>
+</table>
+<p>I2C and audio routing stay on the adapter. Use <code>k1.si4732.png</code> as the reference when ordering or assembling the PCB.</p>
+<p>EasyEDA project (Pro import): <a href="ProDoc_K1-AD8091_2026-06-04.epro2">ProDoc_K1-AD8091_2026-06-04.epro2</a></p>
+<p>Suggested steps:</p>
+<ol>
+<li>Assemble the adapter (fine wire, ESD care).</li>
+<li>Open the K1 and connect <strong>GND</strong>, <strong>AMI</strong>, and <strong>RST</strong> (<strong>RST → PA14</strong>).</li>
+<li>Optionally add a short antenna on the U.FL port for FM.</li>
+<li>Check joints and shorts before power-on.</li>
+</ol>
+<h2>Firmware download &#x26; flashing</h2>
+<p>Prebuilt K1 + SI4732 image (same as the <strong>Si4732</strong> build):</p>
+<p><strong><a href="f4hwn.si4732.bin">f4hwn.si4732.bin</a></strong> — download</p>
+<p>Flash with <strong><a href="https://armel.github.io/uvtools2/?mode=flash">UVTools2</a></strong> in Chrome or Edge:</p>
+<ol>
+<li>Put the radio in <strong>DFU flash mode</strong>, then connect USB (same habit as K5 series).</li>
+<li>Select <code>f4hwn.si4732.bin</code> in UVTools2.</li>
+<li>Pick the serial port and run <strong>Flash Firmware</strong>.</li>
+<li>After flashing, <strong>dump calibration</strong> with UVTools2 (recommended).</li>
+</ol>
+<h2>Listening (reference)</h2>
+<p>Typical F4HWN-style keys (confirm in your firmware menu):</p>
+<pre><code class="hljs language-text">[F+0]           Enter radio / SI4732 mode
+Short [F]       Switch FM / AM, etc.
+Long [F]        Enter or exit SSB
+Short [F] (SSB) Switch USB / LSB / CW (version-dependent)
+</code></pre>
+<p>Check <strong>SysInf</strong> for the firmware version after flashing.</p>
+<h2>Related posts</h2>
+<ul>
+<li><a href="/posts/21.quansheng-k6-si4732">K5/K6 Si4732 PCB design</a></li>
+<li><a href="/posts/40.ssb-patch-writer">K5/K6 V1 SSB patch &#x26; flashing</a></li>
+</ul>0:{"buildId":"GeZ1jRIH3Ir5sD87mRSPo","rsc":["$","$1","c",{"children":[["$","article",null,{"className":"max-w-2xl mx-auto px-5 py-10","children":[["$","header",null,{"className":"mb-8","children":[false,["$","div",null,{"className":"flex items-center gap-3 mb-2 text-xs text-[var(--color-text-tertiary)] font-mono","children":["$","time",null,{"dateTime":"2026-06-04","children":"2026-06-04"}]}],["$","div",null,{"className":"flex flex-wrap gap-1.5 mt-3","children":[["$","$L2","quansheng",{"href":"/tags/quansheng","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","quansheng"]}],["$","$L2","k1",{"href":"/tags/k1","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","k1"]}],["$","$L2","si4732",{"href":"/tags/si4732","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","si4732"]}]]}]]}],["$","$L3",null,{"views":[{"locale":"zh","title":"泉盛 K1 改装 SI4732 及固件","contentHtml":"$4","readingTime":"5 min read"},{"locale":"en","title":"Quansheng K1 SI4732 Mod & Firmware","contentHtml":"$5","readingTime":"3 min read"}]}],"$L6","$L7"]}],["$L8"],"$L9"]}],"loading":null,"isPartial":false}
+6:["$","$La",null,{}]
+7:["$","footer",null,{"className":"mt-8 pt-4 border-t border-[var(--color-border)]","children":["$","$L2",null,{"href":"/","className":"text-sm text-[var(--color-link)] hover:underline","children":"← 返回"}]}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/e5875ffb3df92969.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null
