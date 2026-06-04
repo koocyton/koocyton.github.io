@@ -1,7 +1,3 @@
-"use client";
-
-import { useEffect, useState } from "react";
-
 export type PostLocaleView = {
   locale: "zh" | "en";
   title: string;
@@ -11,68 +7,65 @@ export type PostLocaleView = {
 
 type Props = {
   views: PostLocaleView[];
-  defaultLocale?: "zh" | "en";
+  /** Unique id prefix so radio groups do not clash */
+  idPrefix: string;
 };
 
-const STORAGE_KEY = "post-locale";
+export default function PostLanguageSwitcher({ views, idPrefix }: Props) {
+  const zh = views.find((v) => v.locale === "zh");
+  const en = views.find((v) => v.locale === "en");
+  if (!zh || !en) return null;
 
-export default function PostLanguageSwitcher({
-  views,
-  defaultLocale = "zh",
-}: Props) {
-  const [locale, setLocale] = useState<"zh" | "en">(defaultLocale);
-
-  useEffect(() => {
-    const stored = sessionStorage.getItem(STORAGE_KEY);
-    if (stored === "zh" || stored === "en") {
-      const hasStored = views.some((v) => v.locale === stored);
-      if (hasStored) setLocale(stored);
-    }
-  }, [views]);
-
-  function select(next: "zh" | "en") {
-    setLocale(next);
-    sessionStorage.setItem(STORAGE_KEY, next);
-  }
-
-  const active = views.find((v) => v.locale === locale) ?? views[0];
+  const inputZh = `${idPrefix}-zh`;
+  const inputEn = `${idPrefix}-en`;
 
   return (
-    <>
-      <div className="flex items-center gap-2 mb-6 font-mono text-xs">
-        <span className="text-[var(--color-text-tertiary)]">Language</span>
-        {views.map((view) => (
-          <button
-            key={view.locale}
-            type="button"
-            onClick={() => select(view.locale)}
-            className={
-              locale === view.locale
-                ? "px-2 py-0.5 rounded bg-[var(--color-text)] text-[var(--color-bg)]"
-                : "px-2 py-0.5 rounded text-[var(--color-link)] hover:underline"
-            }
-            aria-pressed={locale === view.locale}
-          >
-            {view.locale === "zh" ? "中文" : "English"}
-          </button>
-        ))}
+    <div className="post-locale">
+      <input
+        type="radio"
+        name={idPrefix}
+        id={inputZh}
+        defaultChecked
+        className="post-locale-input"
+      />
+      <input type="radio" name={idPrefix} id={inputEn} className="post-locale-input" />
+
+      <div className="post-locale-tabs" role="tablist" aria-label="Language">
+        <span className="post-locale-tabs-label">Language</span>
+        <label htmlFor={inputZh} className="post-locale-tab post-locale-tab-zh">
+          中文
+        </label>
+        <label htmlFor={inputEn} className="post-locale-tab post-locale-tab-en">
+          English
+        </label>
       </div>
-      <div className="mb-8">
+
+      <div className="post-locale-title post-locale-title-zh">
         <h1 className="font-mono text-xl font-semibold text-[var(--color-text)] leading-tight">
-          {active.title}
+          {zh.title}
         </h1>
         <div className="flex items-center gap-3 mt-2 text-xs text-[var(--color-text-tertiary)] font-mono">
-          <span>{active.readingTime}</span>
+          <span>{zh.readingTime}</span>
         </div>
       </div>
-      {views.map((view) => (
-        <div
-          key={view.locale}
-          className="prose"
-          hidden={locale !== view.locale}
-          dangerouslySetInnerHTML={{ __html: view.contentHtml }}
-        />
-      ))}
-    </>
+
+      <div className="post-locale-title post-locale-title-en">
+        <h1 className="font-mono text-xl font-semibold text-[var(--color-text)] leading-tight">
+          {en.title}
+        </h1>
+        <div className="flex items-center gap-3 mt-2 text-xs text-[var(--color-text-tertiary)] font-mono">
+          <span>{en.readingTime}</span>
+        </div>
+      </div>
+
+      <div
+        className="prose post-locale-body post-locale-body-zh"
+        dangerouslySetInnerHTML={{ __html: zh.contentHtml }}
+      />
+      <div
+        className="prose post-locale-body post-locale-body-en"
+        dangerouslySetInnerHTML={{ __html: en.contentHtml }}
+      />
+    </div>
   );
 }

@@ -128,3 +128,75 @@ body {
 .hljs {
   background: transparent !important;
 }
+
+/* Post language switcher (CSS-only, works on static export) */
+.post-locale-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.post-locale-tabs {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 0.75rem;
+}
+
+.post-locale-tabs-label {
+  color: var(--color-text-tertiary);
+}
+
+.post-locale-tab {
+  cursor: pointer;
+  padding: 0.125rem 0.5rem;
+  border-radius: 4px;
+  color: var(--color-link);
+  user-select: none;
+}
+
+.post-locale-tab:hover {
+  text-decoration: underline;
+}
+
+.post-locale-title {
+  margin-bottom: 2rem;
+}
+
+.post-locale-title-en,
+.post-locale-body-en {
+  display: none;
+}
+
+/* Radio + label (sibling selectors; works without client JS) */
+.post-locale-input[id$="-en"]:checked ~ .post-locale-title-zh,
+.post-locale-input[id$="-en"]:checked ~ .post-locale-body-zh {
+  display: none;
+}
+
+.post-locale-input[id$="-en"]:checked ~ .post-locale-title-en,
+.post-locale-input[id$="-en"]:checked ~ .post-locale-body-en {
+  display: block;
+}
+
+.post-locale-input[id$="-en"]:checked ~ .post-locale-tabs .post-locale-tab-en {
+  background-color: var(--color-text);
+  color: var(--color-bg);
+  text-decoration: none;
+}
+
+.post-locale-input[id$="-zh"]:checked ~ .post-locale-tabs .post-locale-tab-zh {
+  background-color: var(--color-text);
+  color: var(--color-bg);
+  text-decoration: none;
+}

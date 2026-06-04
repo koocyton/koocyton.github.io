@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "predev": "rm -rf .next/dev",
     "dev": "next dev",
+    "dev:webpack": "rm -rf .next/dev && next dev --webpack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

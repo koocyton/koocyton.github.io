@@ -72,6 +72,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
       {hasSwitcher ? (
         <PostLanguageSwitcher
+          idPrefix={`post-lang-${slug.replace(/[^a-zA-Z0-9-]/g, "-")}`}
           views={postsByLocale.map(({ locale, post }) => ({
             locale: locale as PostLocale,
             title: post.title,
