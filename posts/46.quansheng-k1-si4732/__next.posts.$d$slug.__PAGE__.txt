@@ -3,8 +3,8 @@
 a:I[31175,["/_next/static/chunks/7c92e96509cd355e.js","/_next/static/chunks/bbef3146f2d34722.js"],"default"]
 b:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
 c:"$Sreact.suspense"
-3:T145e,<h1>泉盛 K1 改装 SI4732</h1>
-<p>在泉盛 UV-K1（K1）上加装基于 <strong>SI4732-A10</strong> 的接收小板，可扩展 <strong>短波 AM、广播 FM、单边带（SSB）</strong> 等收听能力。硬件按本文 PCB 制作并焊接，主机板只需引出少量信号；刷入配套 <strong>F4HWN</strong> 系固件后即可使用。</p>
+3:T153b,<h1>泉盛 K1 改装 SI4732</h1>
+<p>在泉盛 UV-K1（K1）上加装基于 <strong>SI4732-A10</strong> 的接收小板，可扩展 <strong>短波 AM、广播 FM、单边带（SSB）</strong> 等收听能力。硬件按本文 PCB 制作并焊接，主机板只需引出少量信号；刷入配套 <strong>F4HWN</strong> 系固件后即可使用（固件已内置 SSB，无需再刷单边带补丁）。</p>
 <blockquote>
 <p>改装涉及拆机与细线焊接，操作前请备份校准数据，风险自负。</p>
 </blockquote>
@@ -62,7 +62,7 @@ c:"$Sreact.suspense"
 <li>装回外壳前通电前再检查一遍焊点与短路。</li>
 </ol>
 <h2>固件下载与刷机</h2>
-<p>本站提供与 <strong>Si4732</strong> 预设一致的预编译固件（也可从上述 GitHub <code>build/Si4732/</code> 或 Release 获取）：</p>
+<p>本站提供与 <strong>Si4732</strong> 预设一致的预编译固件（也可从上述 GitHub <code>build/Si4732/</code> 或 Release 获取）。固件已内置 SSB（单边带）支持，刷入后即可使用 AM / FM / SSB，<strong>无需</strong>再单独写入 SSB 补丁。</p>
 <p><strong><a href="f4hwn.si4732.bin">f4hwn.si4732.bin</a></strong> — 点击下载</p>
 <p>刷机推荐使用浏览器工具 <strong><a href="https://armel.github.io/uvtools2/?mode=flash">UVTools2</a></strong>（Chrome / Edge）：</p>
 <ol>
@@ -82,10 +82,10 @@ SSB 下短按 [F]  可切换 USB / LSB / CW 等（视固件版本）
 <h2>相关文章</h2>
 <ul>
 <li><a href="/posts/21.quansheng-k6-si4732">泉盛 K5 K6 改 Si4732 电路设计</a> — K5/K6 放大器 PCB 思路可参考</li>
-<li><a href="/posts/40.ssb-patch-writer">K5 K6 V1 单边带补丁与刷机</a> — 刷机模式与 SSB 操作习惯类似</li>
-</ul>0:{"buildId":"M1vqzvxlipTlYBg8Vwe1o","rsc":["$","$1","c",{"children":[["$","article",null,{"className":"max-w-2xl mx-auto px-5 py-10","children":[["$","header",null,{"className":"mb-8","children":[false,["$","div",null,{"className":"flex items-center gap-3 mb-2 text-xs text-[var(--color-text-tertiary)] font-mono","children":["$","time",null,{"dateTime":"2026-06-04","children":"2026-06-04"}]}],["$","div",null,{"className":"flex flex-wrap gap-1.5 mt-3","children":[["$","$L2","quansheng",{"href":"/tags/quansheng","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","quansheng"]}],["$","$L2","k1",{"href":"/tags/k1","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","k1"]}],["$","$L2","si4732",{"href":"/tags/si4732","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","si4732"]}]]}]]}],["$","div",null,{"className":"post-locale","children":[["$","input",null,{"type":"radio","name":"post-lang-46-quansheng-k1-si4732","id":"post-lang-46-quansheng-k1-si4732-zh","defaultChecked":true,"className":"post-locale-input"}],["$","input",null,{"type":"radio","name":"post-lang-46-quansheng-k1-si4732","id":"post-lang-46-quansheng-k1-si4732-en","className":"post-locale-input"}],["$","div",null,{"className":"post-locale-tabs","role":"tablist","aria-label":"Language","children":[["$","span",null,{"className":"post-locale-tabs-label","children":"Language"}],["$","label",null,{"htmlFor":"post-lang-46-quansheng-k1-si4732-zh","className":"post-locale-tab post-locale-tab-zh","children":"中文"}],["$","label",null,{"htmlFor":"post-lang-46-quansheng-k1-si4732-en","className":"post-locale-tab post-locale-tab-en","children":"English"}]]}],["$","div",null,{"className":"post-locale-title post-locale-title-zh","children":[["$","h1",null,{"className":"font-mono text-xl font-semibold text-[var(--color-text)] leading-tight","children":"泉盛 K1 改装 SI4732 及固件"}],["$","div",null,{"className":"flex items-center gap-3 mt-2 text-xs text-[var(--color-text-tertiary)] font-mono","children":["$","span",null,{"children":"5 min read"}]}]]}],["$","div",null,{"className":"post-locale-title post-locale-title-en","children":[["$","h1",null,{"className":"font-mono text-xl font-semibold text-[var(--color-text)] leading-tight","children":"Quansheng K1 SI4732 Mod & Firmware"}],["$","div",null,{"className":"flex items-center gap-3 mt-2 text-xs text-[var(--color-text-tertiary)] font-mono","children":["$","span",null,{"children":"3 min read"}]}]]}],["$","div",null,{"className":"prose post-locale-body post-locale-body-zh","dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4"]}],"$L5","$L6"]}],["$L7"],"$L8"]}],"loading":null,"isPartial":false}
-9:T1314,<h1>Quansheng K1 SI4732 Mod</h1>
-<p>Add a small <strong>SI4732-A10</strong> receiver board to the Quansheng <strong>UV-K1 (K1)</strong> to listen on <strong>shortwave AM, broadcast FM, and single-sideband (SSB)</strong>. Build the adapter from the PCB below, wire a few signals on the main board, then flash the matching <strong>F4HWN</strong>-based <strong>Si4732</strong> firmware.</p>
+<li><a href="/posts/40.ssb-patch-writer">K5 K6 V1 单边带补丁与刷机</a> — 仅适用于 K5/K6 V1；K1 Si4732 固件已内置 SSB，无需此步骤</li>
+</ul>0:{"buildId":"3R4Y8p-ez8ATCiPt2Kil-","rsc":["$","$1","c",{"children":[["$","article",null,{"className":"max-w-2xl mx-auto px-5 py-10","children":[["$","header",null,{"className":"mb-8","children":[false,["$","div",null,{"className":"flex items-center gap-3 mb-2 text-xs text-[var(--color-text-tertiary)] font-mono","children":["$","time",null,{"dateTime":"2026-06-04","children":"2026-06-04"}]}],["$","div",null,{"className":"flex flex-wrap gap-1.5 mt-3","children":[["$","$L2","quansheng",{"href":"/tags/quansheng","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","quansheng"]}],["$","$L2","k1",{"href":"/tags/k1","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","k1"]}],["$","$L2","si4732",{"href":"/tags/si4732","className":"text-xs font-mono text-[var(--color-text-tertiary)] hover:text-[var(--color-link)] transition-colors","children":["#","si4732"]}]]}]]}],["$","div",null,{"className":"post-locale","children":[["$","input",null,{"type":"radio","name":"post-lang-46-quansheng-k1-si4732","id":"post-lang-46-quansheng-k1-si4732-zh","defaultChecked":true,"className":"post-locale-input"}],["$","input",null,{"type":"radio","name":"post-lang-46-quansheng-k1-si4732","id":"post-lang-46-quansheng-k1-si4732-en","className":"post-locale-input"}],["$","div",null,{"className":"post-locale-tabs","role":"tablist","aria-label":"Language","children":[["$","span",null,{"className":"post-locale-tabs-label","children":"Language"}],["$","label",null,{"htmlFor":"post-lang-46-quansheng-k1-si4732-zh","className":"post-locale-tab post-locale-tab-zh","children":"中文"}],["$","label",null,{"htmlFor":"post-lang-46-quansheng-k1-si4732-en","className":"post-locale-tab post-locale-tab-en","children":"English"}]]}],["$","div",null,{"className":"post-locale-title post-locale-title-zh","children":[["$","h1",null,{"className":"font-mono text-xl font-semibold text-[var(--color-text)] leading-tight","children":"泉盛 K1 改装 SI4732 及固件"}],["$","div",null,{"className":"flex items-center gap-3 mt-2 text-xs text-[var(--color-text-tertiary)] font-mono","children":["$","span",null,{"children":"5 min read"}]}]]}],["$","div",null,{"className":"post-locale-title post-locale-title-en","children":[["$","h1",null,{"className":"font-mono text-xl font-semibold text-[var(--color-text)] leading-tight","children":"Quansheng K1 SI4732 Mod & Firmware"}],["$","div",null,{"className":"flex items-center gap-3 mt-2 text-xs text-[var(--color-text-tertiary)] font-mono","children":["$","span",null,{"children":"3 min read"}]}]]}],["$","div",null,{"className":"prose post-locale-body post-locale-body-zh","dangerouslySetInnerHTML":{"__html":"$3"}}],"$L4"]}],"$L5","$L6"]}],["$L7"],"$L8"]}],"loading":null,"isPartial":false}
+9:T1413,<h1>Quansheng K1 SI4732 Mod</h1>
+<p>Add a small <strong>SI4732-A10</strong> receiver board to the Quansheng <strong>UV-K1 (K1)</strong> to listen on <strong>shortwave AM, broadcast FM, and single-sideband (SSB)</strong>. Build the adapter from the PCB below, wire a few signals on the main board, then flash the matching <strong>F4HWN</strong>-based <strong>Si4732</strong> firmware (SSB support is built in—no separate SSB patch required).</p>
 <blockquote>
 <p>Opening the radio and fine-pitch soldering are required. Back up calibration data first. Proceed at your own risk.</p>
 </blockquote>
@@ -143,7 +143,7 @@ SSB 下短按 [F]  可切换 USB / LSB / CW 等（视固件版本）
 <li>Check joints and shorts before power-on.</li>
 </ol>
 <h2>Firmware download &#x26; flashing</h2>
-<p>Prebuilt K1 + SI4732 image (same as the <strong>Si4732</strong> build):</p>
+<p>Prebuilt K1 + SI4732 image (same as the <strong>Si4732</strong> build). SSB support is included in this firmware—flash it once for AM, FM, and SSB; <strong>no</strong> separate SSB patch step is needed.</p>
 <p><strong><a href="f4hwn.si4732.bin">f4hwn.si4732.bin</a></strong> — download</p>
 <p>Flash with <strong><a href="https://armel.github.io/uvtools2/?mode=flash">UVTools2</a></strong> in Chrome or Edge:</p>
 <ol>
@@ -163,7 +163,7 @@ Short [F] (SSB) Switch USB / LSB / CW (version-dependent)
 <h2>Related posts</h2>
 <ul>
 <li><a href="/posts/21.quansheng-k6-si4732">K5/K6 Si4732 PCB design</a></li>
-<li><a href="/posts/40.ssb-patch-writer">K5/K6 V1 SSB patch &#x26; flashing</a></li>
+<li><a href="/posts/40.ssb-patch-writer">K5/K6 V1 SSB patch &#x26; flashing</a> — K5/K6 V1 only; the K1 Si4732 firmware already includes SSB</li>
 </ul>4:["$","div",null,{"className":"prose post-locale-body post-locale-body-en","dangerouslySetInnerHTML":{"__html":"$9"}}]
 5:["$","$La",null,{}]
 6:["$","footer",null,{"className":"mt-8 pt-4 border-t border-[var(--color-border)]","children":["$","$L2",null,{"href":"/","className":"text-sm text-[var(--color-link)] hover:underline","children":"← 返回"}]}]
