@@ -121,7 +121,7 @@ function TreeItem({
   );
 }
 
-const DEFAULT_EXPANDED = new Set(["cv", "resp", "endo", "onco"]);
+const DEFAULT_EXPANDED = new Set(["cv", "resp", "endo", "onco", "gi", "renal", "infect"]);
 
 export default function MedicalGuidesApp() {
   const [treeQuery, setTreeQuery] = useState("");
@@ -224,7 +224,7 @@ export default function MedicalGuidesApp() {
         <div className="px-4 py-2.5 flex flex-wrap items-center gap-x-4 gap-y-2">
           <div className="min-w-0">
             <h1 className="font-mono text-sm font-semibold text-[var(--color-text)] leading-tight">
-              临床指南导航系统
+              个人 AI 工具测试，不提供参考
             </h1>
             <p className="text-[11px] text-[var(--color-text-tertiary)] font-mono mt-0.5">
               Clinical Guideline Navigator · 仅索引官方链接，不镜像正文
@@ -505,7 +505,7 @@ export default function MedicalGuidesApp() {
                       style={{ borderLeftWidth: 3 }}
                     >
                       <strong className="text-[var(--color-text)] font-medium">免责提示：</strong>
-                      本系统仅为指南目录与官方链接导航工具，不提供、不复制、不替代任何医疗指南正文，也不构成诊疗建议。临床决策请以最新官方原文、当地法规及执业规范为准。
+                      本页面为个人 AI 工具测试，不提供临床参考。仅作指南目录与官方链接导航演示，不提供、不复制、不替代任何医疗指南正文，也不构成诊疗建议。请以最新官方原文为准。
                     </div>
 
                     <h2 className="font-mono text-sm font-semibold text-[var(--color-text)] mb-2">内容概括</h2>
