@@ -2,5 +2,5 @@
 2:I[78664,["/_next/static/chunks/2636f1e5b506aa66.js","/_next/static/chunks/0c502bc0b06cb0ea.js"],"default"]
 3:I[97367,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"OutletBoundary"]
 4:"$Sreact.suspense"
-0:{"buildId":"RjK4FbWRLtUH7a5erdVLb","rsc":["$","$1","c",{"children":[["$","$L2",null,{"href":"/medical-guides/","title":"个人 AI 工具测试，不提供参考"}],[["$","script","script-0",{"src":"/_next/static/chunks/0c502bc0b06cb0ea.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
+0:{"buildId":"0SCo__eogHoow_RLsDlxa","rsc":["$","$1","c",{"children":[["$","$L2",null,{"href":"/medical-guides/","title":"个人 AI 工具测试，不提供参考"}],[["$","script","script-0",{"src":"/_next/static/chunks/0c502bc0b06cb0ea.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
 5:null
