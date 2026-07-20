@@ -1,4 +1,4 @@
-import { getAllPosts } from "@/lib/posts";
+import { getAllPosts, getPostHref } from "@/lib/posts";
 import Link from "next/link";
 
 export const metadata = { title: "归档 - 一洼绿地" };
@@ -29,7 +29,7 @@ export default function ArchivesPage() {
                   {post.date.slice(5)}
                 </time>
                 <Link
-                  href={`/posts/${post.slug}`}
+                  href={getPostHref(post)}
                   className="text-sm text-[var(--color-text)] hover:text-[var(--color-link)] transition-colors"
                 >
                   {post.title}

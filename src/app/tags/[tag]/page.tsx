@@ -1,4 +1,4 @@
-import { getAllTags, getPostsByTag } from "@/lib/posts";
+import { getAllTags, getPostsByTag, getPostHref } from "@/lib/posts";
 import Link from "next/link";
 
 export async function generateStaticParams() {
@@ -26,7 +26,7 @@ export default async function TagPage({ params }: { params: Promise<{ tag: strin
               {post.date}
             </time>
             <Link
-              href={`/posts/${post.slug}`}
+              href={getPostHref(post)}
               className="text-sm text-[var(--color-text)] hover:text-[var(--color-link)] transition-colors"
             >
               {post.title}

@@ -22,6 +22,13 @@ export interface PostMeta {
   categories: string[];
   headerImg: string;
   readingTime: string;
+  /** 若设置，列表点击直达该应用页而非文章页 */
+  appPath?: string;
+}
+
+/** 文章在列表中的跳转地址 */
+export function getPostHref(post: Pick<PostMeta, "slug" | "appPath">): string {
+  return post.appPath || `/posts/${post.slug}`;
 }
 
 export interface Post extends PostMeta {
@@ -73,6 +80,7 @@ export function getAllPosts(): PostMeta[] {
       categories: Array.isArray(data.categories) ? data.categories.map(String) : [],
       headerImg: data["header-img"] || "/img/header_img/newhome_bg.jpg",
       readingTime: stats.text,
+      appPath: typeof data.appPath === "string" ? data.appPath : undefined,
     };
   });
 
@@ -124,6 +132,7 @@ export async function getPostBySlug(
     categories: Array.isArray(data.categories) ? data.categories : [],
     headerImg: data["header-img"] || "/img/header_img/newhome_bg.jpg",
     readingTime: stats.text,
+    appPath: typeof data.appPath === "string" ? data.appPath : undefined,
     contentHtml: processedContent.toString(),
   };
 }

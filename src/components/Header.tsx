@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { href: "/", label: "文章" },
@@ -8,9 +11,14 @@ const navLinks = [
 ];
 
 export default function Header() {
+  const pathname = usePathname();
+  const wide = pathname?.startsWith("/medical-guides");
+
   return (
     <header className="border-b border-[var(--color-border)]">
-      <div className="max-w-2xl mx-auto px-5 h-12 flex items-center justify-between">
+      <div
+        className={`${wide ? "max-w-none" : "max-w-2xl"} mx-auto px-5 h-12 flex items-center justify-between`}
+      >
         <Link
           href="/"
           className="font-mono text-sm font-semibold text-[var(--color-text)] hover:text-[var(--color-link)] transition-colors"

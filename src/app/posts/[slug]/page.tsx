@@ -7,6 +7,7 @@ import {
 import Link from "next/link";
 import Comments from "@/components/Comments";
 import PostLanguageSwitcher from "@/components/PostLanguageSwitcher";
+import AppRedirect from "@/components/AppRedirect";
 
 export async function generateStaticParams() {
   return getAllPosts().map((post) => ({ slug: post.slug }));
@@ -34,6 +35,10 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   );
 
   const primary = postsByLocale.find((p) => p.locale === "zh")?.post ?? postsByLocale[0].post;
+
+  if (primary.appPath) {
+    return <AppRedirect href={primary.appPath} title={primary.title} />;
+  }
 
   return (
     <article className="max-w-2xl mx-auto px-5 py-10">

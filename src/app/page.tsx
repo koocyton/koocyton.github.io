@@ -1,4 +1,4 @@
-import { getAllPosts } from "@/lib/posts";
+import { getAllPosts, getPostHref } from "@/lib/posts";
 import Link from "next/link";
 
 export default function HomePage() {
@@ -17,7 +17,7 @@ export default function HomePage() {
               {post.date}
             </time>
             <Link
-              href={`/posts/${post.slug}`}
+              href={getPostHref(post)}
               className="text-sm text-[var(--color-text)] hover:text-[var(--color-link)] transition-colors truncate"
             >
               {post.title}

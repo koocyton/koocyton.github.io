@@ -6,7 +6,8 @@
     "predev": "rm -rf .next/dev",
     "dev": "next dev",
     "dev:webpack": "rm -rf .next/dev && next dev --webpack",
-    "build": "next build",
+    "generate:guides": "node scripts/generate-medical-guides.mjs",
+    "build": "npm run generate:guides && next build",
     "start": "next start",
     "lint": "next lint"
   },
