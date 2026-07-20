@@ -1,110 +1,85 @@
 import type { TaxonomyNode } from "./types";
 
-/** 左侧分类树：疾病编码体系 + 国内/国际指南机构 */
+/**
+ * 左侧医学分类树（疾病导向）
+ * 机构筛选在中栏工具条完成，不占用树结构。
+ */
 export const taxonomyTree: TaxonomyNode = {
   id: "root",
-  label: "疾病与指南",
+  label: "疾病",
+  labelEn: "Diseases",
   children: [
     {
-      id: "disease",
-      label: "疾病",
+      id: "cv",
+      label: "心血管",
+      labelEn: "Cardiovascular",
       children: [
-        {
-          id: "icd10",
-          label: "ICD-10",
-          children: [
-            { id: "icd10-i", label: "I 传染病和寄生虫病" },
-            { id: "icd10-ii", label: "II 肿瘤" },
-            { id: "icd10-iii", label: "III 血液及免疫疾病" },
-            { id: "icd10-iv", label: "IV 内分泌、营养和代谢" },
-            { id: "icd10-v", label: "V 精神和行为障碍" },
-            { id: "icd10-vi", label: "VI 神经系统疾病" },
-            { id: "icd10-ix", label: "IX 循环系统疾病" },
-            { id: "icd10-x", label: "X 呼吸系统疾病" },
-            { id: "icd10-xi", label: "XI 消化系统疾病" },
-            { id: "icd10-xiv", label: "XIV 泌尿生殖系统" },
-            { id: "icd10-xv", label: "XV 妊娠、分娩和产褥期" },
-          ],
-        },
-        {
-          id: "icd11",
-          label: "ICD-11",
-          children: [
-            { id: "icd11-01", label: "01 某些传染病或寄生虫病" },
-            { id: "icd11-02", label: "02 肿瘤" },
-            { id: "icd11-05", label: "05 内分泌、营养或代谢疾病" },
-            { id: "icd11-06", label: "06 精神、行为或神经发育障碍" },
-            { id: "icd11-08", label: "08 神经系统疾病" },
-            { id: "icd11-11", label: "11 循环系统疾病" },
-            { id: "icd11-12", label: "12 呼吸系统疾病" },
-            { id: "icd11-13", label: "13 消化系统疾病" },
-            { id: "icd11-16", label: "16 泌尿生殖系统疾病" },
-          ],
-        },
-        {
-          id: "mesh",
-          label: "MeSH",
-          children: [
-            { id: "mesh-c14", label: "C14 心血管系统疾病" },
-            { id: "mesh-c08", label: "C08 呼吸系统疾病" },
-            { id: "mesh-c04", label: "C04 肿瘤" },
-            { id: "mesh-c18", label: "C18 营养与代谢疾病" },
-            { id: "mesh-c19", label: "C19 内分泌系统疾病" },
-            { id: "mesh-c10", label: "C10 神经系统疾病" },
-            { id: "mesh-f03", label: "F03 精神障碍" },
-            { id: "mesh-c12", label: "C12 泌尿生殖系统疾病" },
-          ],
-        },
-        {
-          id: "snomed",
-          label: "SNOMED CT（可选）",
-          children: [
-            { id: "snomed-cv", label: "心血管疾病概念" },
-            { id: "snomed-endo", label: "内分泌与代谢概念" },
-            { id: "snomed-onco", label: "肿瘤学概念" },
-            { id: "snomed-resp", label: "呼吸系统概念" },
-            { id: "snomed-neuro", label: "神经系统概念" },
-          ],
-        },
+        { id: "cv-htn", label: "高血压", labelEn: "Hypertension" },
+        { id: "cv-cad", label: "冠心病", labelEn: "Coronary artery disease" },
+        { id: "cv-hf", label: "心力衰竭", labelEn: "Heart failure" },
+        { id: "cv-af", label: "心房颤动", labelEn: "Atrial fibrillation" },
+        { id: "cv-stroke", label: "卒中", labelEn: "Stroke" },
       ],
     },
     {
-      id: "domestic",
-      label: "国内指南",
+      id: "resp",
+      label: "呼吸",
+      labelEn: "Respiratory",
       children: [
-        { id: "cma", label: "中华医学会" },
-        { id: "nhc", label: "国家卫健委" },
-        { id: "cmda", label: "中国医师协会" },
-        { id: "caca", label: "CACA" },
+        { id: "resp-asthma", label: "哮喘", labelEn: "Asthma" },
+        { id: "resp-copd", label: "COPD", labelEn: "COPD" },
       ],
     },
     {
-      id: "international",
-      label: "国际指南",
+      id: "endo",
+      label: "内分泌",
+      labelEn: "Endocrine",
       children: [
-        { id: "who", label: "WHO" },
-        { id: "nice", label: "NICE" },
-        { id: "aha", label: "AHA" },
-        { id: "esc", label: "ESC" },
-        { id: "ada", label: "ADA" },
-        { id: "nccn", label: "NCCN" },
-        { id: "kdigo", label: "KDIGO" },
-        { id: "ats", label: "ATS / ERS" },
-        { id: "acog", label: "ACOG" },
-        { id: "uspstf", label: "USPSTF" },
+        { id: "endo-dm", label: "糖尿病", labelEn: "Diabetes" },
+        { id: "endo-gdm", label: "妊娠期糖尿病", labelEn: "GDM" },
       ],
+    },
+    {
+      id: "onco",
+      label: "肿瘤",
+      labelEn: "Oncology",
+      children: [
+        { id: "onco-breast", label: "乳腺癌", labelEn: "Breast cancer" },
+        { id: "onco-lung", label: "肺癌", labelEn: "Lung cancer" },
+        { id: "onco-crc", label: "结直肠癌", labelEn: "Colorectal cancer" },
+        { id: "onco-gastric", label: "胃癌", labelEn: "Gastric cancer" },
+      ],
+    },
+    {
+      id: "renal",
+      label: "肾脏",
+      labelEn: "Renal",
+      children: [{ id: "renal-ckd", label: "慢性肾脏病", labelEn: "CKD" }],
+    },
+    {
+      id: "infect",
+      label: "感染",
+      labelEn: "Infectious",
+      children: [
+        { id: "infect-hbv", label: "乙型肝炎", labelEn: "Hepatitis B" },
+        { id: "infect-amr", label: "抗菌药物耐药", labelEn: "AMR" },
+      ],
+    },
+    {
+      id: "psych",
+      label: "精神",
+      labelEn: "Mental health",
+      children: [{ id: "psych-dep", label: "抑郁障碍", labelEn: "Depression" }],
+    },
+    {
+      id: "obgyn",
+      label: "妇产",
+      labelEn: "Obstetrics",
+      children: [{ id: "obgyn-maternal", label: "孕产期保健", labelEn: "Maternal care" }],
     },
   ],
 };
 
-/** 收集某节点及其全部子孙 id */
-export function collectNodeIds(node: TaxonomyNode): string[] {
-  const ids = [node.id];
-  node.children?.forEach((child) => ids.push(...collectNodeIds(child)));
-  return ids;
-}
-
-/** 在树中查找节点 */
 export function findNode(node: TaxonomyNode, id: string): TaxonomyNode | null {
   if (node.id === id) return node;
   for (const child of node.children || []) {
@@ -114,7 +89,6 @@ export function findNode(node: TaxonomyNode, id: string): TaxonomyNode | null {
   return null;
 }
 
-/** 获取从根到目标的路径标签 */
 export function getNodePath(node: TaxonomyNode, id: string, trail: string[] = []): string[] | null {
   const next = [...trail, node.label];
   if (node.id === id) return next;
@@ -123,4 +97,12 @@ export function getNodePath(node: TaxonomyNode, id: string, trail: string[] = []
     if (found) return found;
   }
   return null;
+}
+
+export function collectDescendantIds(node: TaxonomyNode): string[] {
+  const ids = [node.id];
+  for (const child of node.children || []) {
+    ids.push(...collectDescendantIds(child));
+  }
+  return ids;
 }

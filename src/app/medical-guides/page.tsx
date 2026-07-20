@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import MedicalGuidesApp from "@/components/MedicalGuidesApp";
 
 export const metadata: Metadata = {
-  title: "医疗指南检索（AI 整理版） - 一洼绿地",
-  description: "按疾病编码体系与国内外指南机构检索临床指南摘要，左侧分类、中间目录、右侧内容。",
+  title: "临床指南导航系统 / Clinical Guideline Navigator - 一洼绿地",
+  description:
+    "全球医疗指南检索与导航：疾病分类、机构筛选、官方原文链接。不镜像指南正文。",
 };
 
 export default function MedicalGuidesPage() {

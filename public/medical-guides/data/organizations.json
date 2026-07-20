@@ -1,0 +1,22 @@
+{
+  "domestic": [
+    { "id": "nhc", "name": "国家卫生健康委员会", "country": "中国", "url": "http://www.nhc.gov.cn/" },
+    { "id": "cma", "name": "中华医学会", "country": "中国", "url": "https://www.cma.org.cn/" },
+    { "id": "cmda", "name": "中国医师协会", "country": "中国", "url": "https://www.cmda.net/" },
+    { "id": "caca", "name": "中国抗癌协会", "country": "中国", "url": "https://www.caca.org.cn/" },
+    { "id": "cacm", "name": "中华中医药学会", "country": "中国", "url": "https://www.cacm.org.cn/" }
+  ],
+  "international": [
+    { "id": "who", "name": "WHO", "country": "国际", "url": "https://www.who.int/" },
+    { "id": "nice", "name": "NICE", "country": "英国", "url": "https://www.nice.org.uk/" },
+    { "id": "aha", "name": "AHA", "country": "美国", "url": "https://www.heart.org/" },
+    { "id": "acc", "name": "ACC", "country": "美国", "url": "https://www.acc.org/" },
+    { "id": "esc", "name": "ESC", "country": "欧洲", "url": "https://www.escardio.org/" },
+    { "id": "ada", "name": "ADA", "country": "美国", "url": "https://diabetes.org/" },
+    { "id": "kdigo", "name": "KDIGO", "country": "国际", "url": "https://kdigo.org/" },
+    { "id": "nccn", "name": "NCCN", "country": "美国", "url": "https://www.nccn.org/" },
+    { "id": "idsa", "name": "IDSA", "country": "美国", "url": "https://www.idsociety.org/" },
+    { "id": "gold", "name": "GOLD", "country": "国际", "url": "https://goldcopd.org/" },
+    { "id": "gina", "name": "GINA", "country": "国际", "url": "https://ginasthma.org/" }
+  ]
+}
