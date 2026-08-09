@@ -121,7 +121,19 @@ function TreeItem({
   );
 }
 
-const DEFAULT_EXPANDED = new Set(["cv", "resp", "endo", "onco", "gi", "renal", "infect"]);
+const DEFAULT_EXPANDED = new Set([
+  "cv",
+  "resp",
+  "endo",
+  "onco",
+  "gi",
+  "renal",
+  "infect",
+  "neuro",
+  "psych",
+  "rheum",
+  "crit",
+]);
 
 export default function MedicalGuidesApp() {
   const [treeQuery, setTreeQuery] = useState("");

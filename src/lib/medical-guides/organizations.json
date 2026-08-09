@@ -4,6 +4,7 @@
     { "id": "cma", "name": "中华医学会", "country": "中国", "url": "https://www.cma.org.cn/" },
     { "id": "cmda", "name": "中国医师协会", "country": "中国", "url": "https://www.cmda.net/" },
     { "id": "caca", "name": "中国抗癌协会", "country": "中国", "url": "https://www.caca.org.cn/" },
+    { "id": "csco", "name": "中国临床肿瘤学会", "country": "中国", "url": "http://www.csco.org.cn/" },
     { "id": "cacm", "name": "中华中医药学会", "country": "中国", "url": "https://www.cacm.org.cn/" }
   ],
   "international": [
@@ -15,8 +16,16 @@
     { "id": "ada", "name": "ADA", "country": "美国", "url": "https://diabetes.org/" },
     { "id": "kdigo", "name": "KDIGO", "country": "国际", "url": "https://kdigo.org/" },
     { "id": "nccn", "name": "NCCN", "country": "美国", "url": "https://www.nccn.org/" },
+    { "id": "esmo", "name": "ESMO", "country": "欧洲", "url": "https://www.esmo.org/" },
+    { "id": "asco", "name": "ASCO", "country": "美国", "url": "https://www.asco.org/" },
     { "id": "idsa", "name": "IDSA", "country": "美国", "url": "https://www.idsociety.org/" },
+    { "id": "aasld", "name": "AASLD", "country": "美国", "url": "https://www.aasld.org/" },
+    { "id": "eular", "name": "EULAR", "country": "欧洲", "url": "https://www.eular.org/" },
+    { "id": "acr", "name": "ACR", "country": "美国", "url": "https://rheumatology.org/" },
+    { "id": "ats", "name": "ATS", "country": "美国", "url": "https://www.thoracic.org/" },
+    { "id": "uspstf", "name": "USPSTF", "country": "美国", "url": "https://www.uspreventiveservicestaskforce.org/" },
     { "id": "gold", "name": "GOLD", "country": "国际", "url": "https://goldcopd.org/" },
-    { "id": "gina", "name": "GINA", "country": "国际", "url": "https://ginasthma.org/" }
+    { "id": "gina", "name": "GINA", "country": "国际", "url": "https://ginasthma.org/" },
+    { "id": "ssc", "name": "Surviving Sepsis Campaign", "country": "国际", "url": "https://www.sccm.org/" }
   ]
 }
