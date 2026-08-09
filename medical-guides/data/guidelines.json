@@ -140,6 +140,27 @@
     "embeddable": false
   },
   {
+    "embeddable": false,
+    "language": "en",
+    "id": "esc_all_guidelines_hub",
+    "title": "All ESC Clinical Practice Guidelines (hub)",
+    "organization": "ESC",
+    "country": "欧洲",
+    "disease": "心血管通则",
+    "category": "心血管",
+    "nodeIds": [
+      "cv"
+    ],
+    "year": 2025,
+    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/",
+    "type": "Guideline Hub",
+    "tags": [
+      "ESC",
+      "Hub"
+    ],
+    "summary": "ESC 全部临床实践指南总目录（便于检索最新版与聚焦更新）。"
+  },
+  {
     "id": "asco_guidelines_hub",
     "title": "ASCO Guidelines Hub",
     "organization": "ASCO",
@@ -159,6 +180,120 @@
     ],
     "summary": "ASCO 临床实践指南总入口（乳腺癌、肺癌等多病种）。",
     "embeddable": false
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "easl_cpg_hub",
+    "title": "EASL Clinical Practice Guidelines Hub",
+    "organization": "EASL",
+    "country": "欧洲",
+    "disease": "肝病通则",
+    "category": "消化",
+    "nodeIds": [
+      "gi",
+      "infect"
+    ],
+    "year": 2025,
+    "url": "https://easl.eu/publications/clinical-practice-guidelines/",
+    "type": "Guideline Hub",
+    "tags": [
+      "EASL",
+      "Hub"
+    ],
+    "summary": "欧洲肝病学会全部临床实践指南总入口。"
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "easl_tips_2025",
+    "title": "EASL Clinical Practice Guidelines on TIPS",
+    "organization": "EASL",
+    "country": "欧洲",
+    "disease": "TIPS / 门脉高压",
+    "category": "消化",
+    "nodeIds": [
+      "gi",
+      "gi-portal",
+      "gi-cirrhosis"
+    ],
+    "year": 2025,
+    "url": "https://easl.eu/publications/clinical-practice-guidelines/",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "TIPS",
+      "Portal hypertension",
+      "EASL"
+    ],
+    "summary": "EASL 2025 经颈静脉肝内门体分流术（TIPS）指南。"
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "easl_aih_2025",
+    "title": "EASL Clinical Practice Guidelines: Autoimmune hepatitis (2025)",
+    "organization": "EASL",
+    "country": "欧洲",
+    "disease": "自身免疫性肝炎",
+    "category": "消化",
+    "nodeIds": [
+      "gi",
+      "gi-aih"
+    ],
+    "year": 2025,
+    "url": "https://easl.eu/publications/clinical-practice-guidelines/",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "AIH",
+      "EASL"
+    ],
+    "summary": "EASL 2025 自身免疫性肝炎管理指南。"
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "easl_hbv_2025",
+    "title": "EASL Clinical Practice Guidelines: Hepatitis B virus infection (2025)",
+    "organization": "EASL",
+    "country": "欧洲",
+    "disease": "乙型肝炎",
+    "category": "感染",
+    "nodeIds": [
+      "infect",
+      "infect-hbv",
+      "gi"
+    ],
+    "year": 2025,
+    "url": "https://easl.eu/publications/clinical-practice-guidelines/",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "HBV",
+      "EASL"
+    ],
+    "summary": "EASL 2025 乙型肝炎病毒感染管理临床实践指南（Journal of Hepatology）。"
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "easl_vascular_liver_2025",
+    "title": "EASL Clinical Practice Guidelines: Vascular diseases of the liver",
+    "organization": "EASL",
+    "country": "欧洲",
+    "disease": "肝脏血管病",
+    "category": "消化",
+    "nodeIds": [
+      "gi",
+      "gi-vascular",
+      "gi-portal"
+    ],
+    "year": 2025,
+    "url": "https://easl.eu/publications/clinical-practice-guidelines/",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "Vascular liver disease",
+      "EASL"
+    ],
+    "summary": "EASL 2025 肝脏血管性疾病指南（含门静脉血栓等）。"
   },
   {
     "id": "gold_2025",
@@ -181,6 +316,49 @@
     ],
     "summary": "GOLD 2025 COPD 全球策略报告页。",
     "embeddable": false
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "kdigo_adpkd",
+    "title": "KDIGO Guideline: Autosomal Dominant Polycystic Kidney Disease",
+    "organization": "KDIGO",
+    "country": "国际",
+    "disease": "常染色体显性多囊肾",
+    "category": "肾脏",
+    "nodeIds": [
+      "renal",
+      "renal-adpkd"
+    ],
+    "year": 2025,
+    "url": "https://kdigo.org/guidelines/",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "ADPKD",
+      "KDIGO"
+    ],
+    "summary": "KDIGO ADPKD 指南专题（见 KDIGO Guidelines 列表）。"
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "kdigo_guidelines_hub",
+    "title": "KDIGO Guidelines Hub",
+    "organization": "KDIGO",
+    "country": "国际",
+    "disease": "肾脏通则",
+    "category": "肾脏",
+    "nodeIds": [
+      "renal"
+    ],
+    "year": 2025,
+    "url": "https://kdigo.org/guidelines/",
+    "type": "Guideline Hub",
+    "tags": [
+      "KDIGO",
+      "Hub"
+    ],
+    "summary": "KDIGO 全部指南总入口。"
   },
   {
     "id": "nccn_lymphoma",
@@ -646,6 +824,27 @@
     "embeddable": false
   },
   {
+    "embeddable": false,
+    "language": "en",
+    "id": "asn_kidney_week_guidelines",
+    "title": "ASN — Nephrology guideline / education hub",
+    "organization": "ASN",
+    "country": "美国",
+    "disease": "肾脏通则",
+    "category": "肾脏",
+    "nodeIds": [
+      "renal"
+    ],
+    "year": 2024,
+    "url": "https://www.asn-online.org/",
+    "type": "Guideline Hub",
+    "tags": [
+      "ASN",
+      "Nephrology"
+    ],
+    "summary": "美国肾脏病学会官网（教育与指南相关资源）。"
+  },
+  {
     "id": "ats_ards_2024",
     "title": "ATS Guidelines related to ARDS / critical care hub",
     "organization": "ATS",
@@ -688,6 +887,77 @@
     ],
     "summary": "中国临床肿瘤学会（CSCO）官网指南相关入口。",
     "embeddable": false
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "easl_hcc_2024",
+    "title": "EASL Clinical Practice Guidelines: Hepatocellular Carcinoma (2024)",
+    "organization": "EASL",
+    "country": "欧洲",
+    "disease": "肝细胞癌",
+    "category": "肿瘤",
+    "nodeIds": [
+      "onco",
+      "onco-liver",
+      "gi",
+      "infect-hbv",
+      "infect-hcv"
+    ],
+    "year": 2024,
+    "url": "https://easl.eu/publications/clinical-practice-guidelines/",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "HCC",
+      "EASL"
+    ],
+    "summary": "EASL 2024 肝细胞癌管理指南（病毒性肝炎相关 HCC 监测与治疗关键）。"
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "easl_masld_2024",
+    "title": "EASL–EASD–EASO CPG: MASLD",
+    "organization": "EASL",
+    "country": "欧洲",
+    "disease": "代谢相关脂肪性肝病",
+    "category": "消化",
+    "nodeIds": [
+      "gi",
+      "gi-nafld",
+      "endo"
+    ],
+    "year": 2024,
+    "url": "https://easl.eu/publications/clinical-practice-guidelines/",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "MASLD",
+      "EASL",
+      "EASD",
+      "EASO"
+    ],
+    "summary": "EASL–EASD–EASO 代谢相关脂肪性肝病（MASLD）联合指南。"
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "era_guidelines_hub",
+    "title": "ERA — European Renal Association guidelines hub",
+    "organization": "ERA",
+    "country": "欧洲",
+    "disease": "肾脏通则",
+    "category": "肾脏",
+    "nodeIds": [
+      "renal"
+    ],
+    "year": 2024,
+    "url": "https://www.era-online.org/guidelines/",
+    "type": "Guideline Hub",
+    "tags": [
+      "ERA",
+      "Nephrology"
+    ],
+    "summary": "欧洲肾脏协会（ERA）指南与最佳实践入口。"
   },
   {
     "id": "esmo_breast",
@@ -800,6 +1070,27 @@
     "embeddable": false
   },
   {
+    "embeddable": false,
+    "language": "en",
+    "id": "isn_guidelines_hub",
+    "title": "ISN — International Society of Nephrology resources",
+    "organization": "ISN",
+    "country": "国际",
+    "disease": "肾脏通则",
+    "category": "肾脏",
+    "nodeIds": [
+      "renal"
+    ],
+    "year": 2024,
+    "url": "https://www.theisn.org/",
+    "type": "Guideline Hub",
+    "tags": [
+      "ISN",
+      "Nephrology"
+    ],
+    "summary": "国际肾脏病学会资源入口（含全球肾脏健康倡议相关文件）。"
+  },
+  {
     "id": "kdigo_ckd_2024",
     "title": "KDIGO 2024 CKD Evaluation and Management",
     "organization": "KDIGO",
@@ -820,6 +1111,82 @@
     ],
     "summary": "KDIGO CKD 评估与管理指南专题页。",
     "embeddable": false
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "kdigo_anca_2024",
+    "title": "KDIGO 2024 Guideline: ANCA-Associated Vasculitis",
+    "organization": "KDIGO",
+    "country": "国际",
+    "disease": "ANCA 相关血管炎",
+    "category": "肾脏",
+    "nodeIds": [
+      "renal",
+      "renal-anca",
+      "renal-gn",
+      "rheum",
+      "rheum-vasculitis"
+    ],
+    "year": 2024,
+    "url": "https://kdigo.org/guidelines/gd/",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "ANCA",
+      "Vasculitis",
+      "KDIGO"
+    ],
+    "summary": "KDIGO 2024 ANCA 相关血管炎管理指南（肾小球疾病更新章节）。"
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "kdigo_ln_2024",
+    "title": "KDIGO 2024 Guideline: Lupus Nephritis",
+    "organization": "KDIGO",
+    "country": "国际",
+    "disease": "狼疮性肾炎",
+    "category": "肾脏",
+    "nodeIds": [
+      "renal",
+      "renal-ln",
+      "renal-gn",
+      "rheum",
+      "rheum-sle"
+    ],
+    "year": 2024,
+    "url": "https://kdigo.org/guidelines/gd/",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "Lupus nephritis",
+      "KDIGO"
+    ],
+    "summary": "KDIGO 2024 狼疮性肾炎管理指南。"
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "kdigo_hf_ckd",
+    "title": "KDIGO Guideline: Heart Failure in CKD",
+    "organization": "KDIGO",
+    "country": "国际",
+    "disease": "CKD 合并心力衰竭",
+    "category": "肾脏",
+    "nodeIds": [
+      "renal",
+      "renal-hf",
+      "cv",
+      "cv-hf"
+    ],
+    "year": 2024,
+    "url": "https://kdigo.org/guidelines/",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "Heart failure",
+      "CKD",
+      "KDIGO"
+    ],
+    "summary": "KDIGO CKD 合并心力衰竭指南入口。"
   },
   {
     "id": "nice_breast_ng101",
@@ -1363,6 +1730,31 @@
     "embeddable": false
   },
   {
+    "embeddable": false,
+    "language": "en",
+    "id": "aasld_hcc",
+    "title": "AASLD Practice Guidance: Hepatocellular Carcinoma",
+    "organization": "AASLD",
+    "country": "美国",
+    "disease": "肝细胞癌",
+    "category": "肿瘤",
+    "nodeIds": [
+      "onco",
+      "onco-liver",
+      "infect-hbv",
+      "infect-hcv",
+      "gi"
+    ],
+    "year": 2023,
+    "url": "https://www.aasld.org/practice-guidelines",
+    "type": "Practice Guidance",
+    "tags": [
+      "HCC",
+      "AASLD"
+    ],
+    "summary": "AASLD 肝细胞癌实践指南合集入口。"
+  },
+  {
     "id": "aasld_hcv_2023",
     "title": "AASLD–IDSA HCV Guidance",
     "organization": "AASLD",
@@ -1385,6 +1777,54 @@
     ],
     "summary": "AASLD–IDSA 丙型肝炎诊疗指导网站。",
     "embeddable": false
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "easl_aclf_2023",
+    "title": "EASL Clinical Practice Guidelines: Acute-on-chronic liver failure",
+    "organization": "EASL",
+    "country": "欧洲",
+    "disease": "慢加急性肝衰竭",
+    "category": "消化",
+    "nodeIds": [
+      "gi",
+      "gi-aclf",
+      "gi-cirrhosis",
+      "infect"
+    ],
+    "year": 2023,
+    "url": "https://doi.org/10.1016/j.jhep.2023.04.021",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "ACLF",
+      "EASL"
+    ],
+    "summary": "EASL 2023 慢加急性肝衰竭（ACLF）临床实践指南。"
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "easl_hdv",
+    "title": "EASL Clinical Practice Guidelines: Hepatitis D virus infection",
+    "organization": "EASL",
+    "country": "欧洲",
+    "disease": "丁型肝炎",
+    "category": "感染",
+    "nodeIds": [
+      "infect",
+      "infect-hdv",
+      "infect-hbv",
+      "gi"
+    ],
+    "year": 2023,
+    "url": "https://easl.eu/publications/clinical-practice-guidelines/",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "HDV",
+      "EASL"
+    ],
+    "summary": "EASL 丁型肝炎（HDV）相关临床实践指南入口。"
   },
   {
     "id": "esmo_supportive",
@@ -1430,6 +1870,30 @@
     ],
     "summary": "EULAR SLE 管理推荐入口。",
     "embeddable": false
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "idsa_hbv_hiv",
+    "title": "IDSA / HIVMA — HBV and HIV coinfection resources",
+    "organization": "IDSA",
+    "country": "美国",
+    "disease": "HIV / HBV 合并感染",
+    "category": "感染",
+    "nodeIds": [
+      "infect",
+      "infect-hbv",
+      "infect-hiv"
+    ],
+    "year": 2023,
+    "url": "https://www.idsociety.org/practice-guideline/hbv-guidance/",
+    "type": "Practice Guidance",
+    "tags": [
+      "HBV",
+      "HIV",
+      "IDSA"
+    ],
+    "summary": "IDSA 乙肝相关实践指导入口（含特殊人群）。"
   },
   {
     "id": "nice_cg181",
@@ -1631,6 +2095,74 @@
     "embeddable": false
   },
   {
+    "embeddable": false,
+    "language": "en",
+    "id": "nice_vte_ng158_cv",
+    "title": "NICE NG158 Venous thromboembolic diseases",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "静脉血栓栓塞性疾病",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-pe",
+      "heme",
+      "heme-vte"
+    ],
+    "year": 2023,
+    "url": "https://www.nice.org.uk/guidance/ng158",
+    "type": "NICE Guideline",
+    "tags": [
+      "VTE",
+      "NICE"
+    ],
+    "summary": "NICE 静脉血栓栓塞性疾病诊断、管理与血栓症检查指南。"
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "who_hav",
+    "title": "WHO — Hepatitis A fact sheet / guidance hub",
+    "organization": "WHO",
+    "country": "国际",
+    "disease": "甲型肝炎",
+    "category": "感染",
+    "nodeIds": [
+      "infect",
+      "infect-hav"
+    ],
+    "year": 2023,
+    "url": "https://www.who.int/news-room/fact-sheets/detail/hepatitis-a",
+    "type": "Guideline Hub",
+    "tags": [
+      "HAV",
+      "WHO"
+    ],
+    "summary": "WHO 甲型肝炎主题与相关技术文件入口。"
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "who_hev",
+    "title": "WHO — Hepatitis E fact sheet / guidance hub",
+    "organization": "WHO",
+    "country": "国际",
+    "disease": "戊型肝炎",
+    "category": "感染",
+    "nodeIds": [
+      "infect",
+      "infect-hev"
+    ],
+    "year": 2023,
+    "url": "https://www.who.int/news-room/fact-sheets/detail/hepatitis-e",
+    "type": "Guideline Hub",
+    "tags": [
+      "HEV",
+      "WHO"
+    ],
+    "summary": "WHO 戊型肝炎主题与相关技术文件入口。"
+  },
+  {
     "id": "who_amr",
     "title": "WHO Antimicrobial resistance topic & guidance",
     "organization": "WHO",
@@ -1698,6 +2230,51 @@
     "embeddable": false
   },
   {
+    "embeddable": false,
+    "language": "en",
+    "id": "aha_cholesterol_fu_2022",
+    "title": "2022 ACC Expert Consensus: Nonstatin Therapies for LDL-C",
+    "organization": "ACC",
+    "country": "美国",
+    "disease": "血脂异常（非他汀）",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-lipid"
+    ],
+    "year": 2022,
+    "url": "https://www.jacc.org/doi/10.1016/j.jacc.2022.07.006",
+    "type": "Expert Consensus Decision Pathway",
+    "tags": [
+      "LDL-C",
+      "ACC"
+    ],
+    "summary": "ACC 2022 LDL-C 风险管理非他汀治疗专家共识路径。"
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "aha_acc_aortic_2022",
+    "title": "2022 ACC/AHA Guideline for Aortic Disease",
+    "organization": "AHA / ACC",
+    "country": "美国",
+    "disease": "主动脉疾病",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-aortic"
+    ],
+    "year": 2022,
+    "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001106",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "Aorta",
+      "AHA",
+      "ACC"
+    ],
+    "summary": "ACC/AHA 2022 主动脉疾病诊断与管理指南。"
+  },
+  {
     "id": "aha_acc_hf_2022",
     "title": "2022 AHA/ACC/HFSA Heart Failure Guideline",
     "organization": "AHA / ACC",
@@ -1719,6 +2296,52 @@
     ],
     "summary": "AHA/ACC/HFSA 2022 心力衰竭管理指南。",
     "embeddable": false
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "esc_cardiooncology_2022",
+    "title": "2022 ESC Guidelines on cardio-oncology",
+    "organization": "ESC",
+    "country": "欧洲",
+    "disease": "心脏肿瘤学",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-cardioonc",
+      "onco"
+    ],
+    "year": 2022,
+    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/cardio-oncology/",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "Cardio-oncology",
+      "ESC"
+    ],
+    "summary": "ESC 2022 心脏肿瘤学（肿瘤治疗相关心血管毒性）指南。"
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "esc_va_2022",
+    "title": "2022 ESC Guidelines: Ventricular Arrhythmias and SCD Prevention",
+    "organization": "ESC",
+    "country": "欧洲",
+    "disease": "室性心律失常 / 猝死预防",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-arrhythmia"
+    ],
+    "year": 2022,
+    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/ventricular-arrhythmias-and-the-prevention-of-sudden-cardiac-death/",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "VA",
+      "SCD",
+      "ESC"
+    ],
+    "summary": "ESC 2022 室性心律失常与心脏性猝死预防指南。"
   },
   {
     "id": "esc_pulmonary_hypertension_2022",
@@ -1812,6 +2435,29 @@
     "embeddable": false
   },
   {
+    "embeddable": false,
+    "language": "en",
+    "id": "baveno_vii",
+    "title": "Baveno VII Consensus: Portal Hypertension",
+    "organization": "Baveno",
+    "country": "国际",
+    "disease": "门脉高压",
+    "category": "消化",
+    "nodeIds": [
+      "gi",
+      "gi-portal",
+      "gi-cirrhosis"
+    ],
+    "year": 2022,
+    "url": "https://doi.org/10.1016/j.jhep.2021.12.022",
+    "type": "Consensus",
+    "tags": [
+      "Portal hypertension",
+      "Baveno"
+    ],
+    "summary": "Baveno VII 门脉高压共识（肝硬化并发症管理重要参考）。"
+  },
+  {
     "id": "eular_ra_2022",
     "title": "EULAR recommendations for RA management (update)",
     "organization": "EULAR",
@@ -1856,6 +2502,31 @@
     ],
     "summary": "KDIGO CKD 合并糖尿病管理指南专题页。",
     "embeddable": false
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "kdigo_hcv_ckd",
+    "title": "KDIGO Guideline: Hepatitis C in CKD",
+    "organization": "KDIGO",
+    "country": "国际",
+    "disease": "CKD 合并丙型肝炎",
+    "category": "肾脏",
+    "nodeIds": [
+      "renal",
+      "renal-hcv",
+      "infect",
+      "infect-hcv"
+    ],
+    "year": 2022,
+    "url": "https://kdigo.org/guidelines/hepatitis-c-in-ckd/",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "HCV",
+      "CKD",
+      "KDIGO"
+    ],
+    "summary": "KDIGO CKD 患者丙型肝炎管理指南。"
   },
   {
     "id": "nice_pcos_cks",
@@ -2157,6 +2828,52 @@
     "embeddable": false
   },
   {
+    "embeddable": false,
+    "language": "en",
+    "id": "who_hcv_2022",
+    "title": "WHO Guidelines: Hepatitis C updated recommendations",
+    "organization": "WHO",
+    "country": "国际",
+    "disease": "丙型肝炎",
+    "category": "感染",
+    "nodeIds": [
+      "infect",
+      "infect-hcv"
+    ],
+    "year": 2022,
+    "url": "https://www.who.int/publications/i/item/9789240052390",
+    "type": "Guideline",
+    "tags": [
+      "HCV",
+      "WHO"
+    ],
+    "summary": "WHO 丙型肝炎感染者诊疗更新推荐。"
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "aha_acc_coronary_revasc_2021",
+    "title": "2021 ACC/AHA/SCAI Guideline for Coronary Artery Revascularization",
+    "organization": "AHA / ACC",
+    "country": "美国",
+    "disease": "冠脉血运重建",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-revasc",
+      "cv-cad"
+    ],
+    "year": 2021,
+    "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001038",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "Revascularization",
+      "AHA",
+      "ACC"
+    ],
+    "summary": "ACC/AHA/SCAI 2021 冠状动脉血运重建指南。"
+  },
+  {
     "id": "aha_acc_chest_pain_2021",
     "title": "2021 AHA/ACC Chest Pain Guideline",
     "organization": "AHA / ACC",
@@ -2180,11 +2897,13 @@
     "embeddable": false
   },
   {
-    "id": "aha_stroke_primary_2021",
-    "title": "2021 AHA/ASA Guideline: Primary Prevention of Stroke",
+    "embeddable": false,
+    "language": "en",
+    "id": "aha_asa_secondary_stroke_2021",
+    "title": "2021 AHA/ASA Guideline: Secondary Stroke Prevention",
     "organization": "AHA",
     "country": "美国",
-    "disease": "卒中一级预防",
+    "disease": "卒中 / TIA 二级预防",
     "category": "心血管",
     "nodeIds": [
       "cv",
@@ -2193,14 +2912,13 @@
     "year": 2021,
     "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000375",
     "type": "Clinical Practice Guideline",
-    "language": "en",
     "tags": [
       "Stroke",
-      "Prevention",
-      "AHA"
+      "TIA",
+      "AHA",
+      "ASA"
     ],
-    "summary": "AHA/ASA 2021 卒中一级预防指南。",
-    "embeddable": false
+    "summary": "AHA/ASA 卒中与 TIA 患者卒中预防（二级预防）指南。"
   },
   {
     "id": "esc_hf_2021",
@@ -2223,6 +2941,30 @@
     ],
     "summary": "ESC 急慢性心力衰竭指南专题页。",
     "embeddable": false
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "esc_pacing_2021",
+    "title": "2021 ESC Guidelines on cardiac pacing and CRT",
+    "organization": "ESC",
+    "country": "欧洲",
+    "disease": "心脏起搏 / CRT",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-pacing",
+      "cv-hf"
+    ],
+    "year": 2021,
+    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/cardiac-pacing-and-cardiac-resynchronization-therapy/",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "Pacing",
+      "CRT",
+      "ESC"
+    ],
+    "summary": "ESC 2021 心脏起搏与心脏再同步治疗指南。"
   },
   {
     "id": "esc_prevention_2021",
@@ -2313,6 +3055,30 @@
     "embeddable": false
   },
   {
+    "embeddable": false,
+    "language": "en",
+    "id": "aasld_portal_htn",
+    "title": "AASLD Guidance: Portal Hypertension / Ascites / Varices",
+    "organization": "AASLD",
+    "country": "美国",
+    "disease": "门脉高压 / 腹水 / 静脉曲张",
+    "category": "消化",
+    "nodeIds": [
+      "gi",
+      "gi-portal",
+      "gi-cirrhosis"
+    ],
+    "year": 2021,
+    "url": "https://www.aasld.org/practice-guidelines",
+    "type": "Practice Guidance",
+    "tags": [
+      "Portal hypertension",
+      "Ascites",
+      "AASLD"
+    ],
+    "summary": "AASLD 门脉高压相关并发症实践指导入口。"
+  },
+  {
     "id": "acr_vasculitis_2021",
     "title": "ACR/VF Guideline for Vasculitis",
     "organization": "ACR",
@@ -2335,6 +3101,31 @@
     "embeddable": false
   },
   {
+    "embeddable": false,
+    "language": "en",
+    "id": "chest_antithrombotic_2021",
+    "title": "CHEST Guideline: Antithrombotic Therapy for VTE Disease",
+    "organization": "CHEST",
+    "country": "美国",
+    "disease": "静脉血栓栓塞抗栓",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-pe",
+      "heme",
+      "heme-vte"
+    ],
+    "year": 2021,
+    "url": "https://journal.chestnet.org/article/S0012-3692(21)01506-3/fulltext",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "VTE",
+      "Antithrombotic",
+      "CHEST"
+    ],
+    "summary": "CHEST VTE 疾病抗栓治疗指南（第 2 次更新）。"
+  },
+  {
     "id": "idsa_cdiff_2021",
     "title": "IDSA/SHEA Clostridioides difficile Guidelines",
     "organization": "IDSA",
@@ -2355,6 +3146,29 @@
     ],
     "summary": "IDSA/SHEA 艰难梭菌感染临床实践指南。",
     "embeddable": false
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "kdigo_igan",
+    "title": "KDIGO — IgA Nephropathy / IgA Vasculitis",
+    "organization": "KDIGO",
+    "country": "国际",
+    "disease": "IgA 肾病",
+    "category": "肾脏",
+    "nodeIds": [
+      "renal",
+      "renal-igan",
+      "renal-gn"
+    ],
+    "year": 2021,
+    "url": "https://kdigo.org/guidelines/gd/",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "IgAN",
+      "KDIGO"
+    ],
+    "summary": "KDIGO 肾小球疾病指南中的 IgA 肾病 / IgA 血管炎章节入口。"
   },
   {
     "id": "kdigo_bp_2021",
@@ -2451,6 +3265,30 @@
     "embeddable": false
   },
   {
+    "embeddable": false,
+    "language": "en",
+    "id": "nice_hyperphos_ng507",
+    "title": "NICE — Hyperphosphataemia in CKD (see NG203 / related)",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "CKD 高磷血症",
+    "category": "肾脏",
+    "nodeIds": [
+      "renal",
+      "renal-mbd",
+      "renal-ckd"
+    ],
+    "year": 2021,
+    "url": "https://www.nice.org.uk/guidance/ng203",
+    "type": "NICE Guideline",
+    "tags": [
+      "CKD-MBD",
+      "Phosphate",
+      "NICE"
+    ],
+    "summary": "CKD 矿物质骨代谢相关推荐见 NICE NG203 等条目。"
+  },
+  {
     "id": "nice_itp",
     "title": "NICE — Immune thrombocytopenia (related TA / pathways)",
     "organization": "NICE",
@@ -2537,6 +3375,28 @@
     ],
     "summary": "NICE 16 岁以上慢性疼痛评估与管理指南。",
     "embeddable": false
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "nice_af_ng196",
+    "title": "NICE NG196 Atrial fibrillation: diagnosis and management",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "心房颤动",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-af"
+    ],
+    "year": 2021,
+    "url": "https://www.nice.org.uk/guidance/ng196",
+    "type": "NICE Guideline",
+    "tags": [
+      "AF",
+      "NICE"
+    ],
+    "summary": "NICE 心房颤动诊断与管理指南。"
   },
   {
     "id": "nice_acne_ng198",
@@ -2879,6 +3739,96 @@
     "embeddable": false
   },
   {
+    "embeddable": false,
+    "language": "en",
+    "id": "esc_sports_2020",
+    "title": "2020 ESC Guidelines on sports cardiology and exercise",
+    "organization": "ESC",
+    "country": "欧洲",
+    "disease": "运动心脏病学",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-prev",
+      "cv-arrhythmia"
+    ],
+    "year": 2020,
+    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/sports-cardiology-and-exercise-in-patients-with-cardiovascular-disease/",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "Sports cardiology",
+      "ESC"
+    ],
+    "summary": "ESC 2020 运动心脏病学与心血管疾病患者运动指南。"
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "esc_achd_2020",
+    "title": "2020 ESC Guidelines: Adult Congenital Heart Disease",
+    "organization": "ESC",
+    "country": "欧洲",
+    "disease": "成人先天性心脏病",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-achd"
+    ],
+    "year": 2020,
+    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/adult-congenital-heart-disease/",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "ACHD",
+      "ESC"
+    ],
+    "summary": "ESC 2020 成人先天性心脏病管理指南。"
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "easl_hcv_2020",
+    "title": "EASL Recommendations on Treatment of Hepatitis C (final update)",
+    "organization": "EASL",
+    "country": "欧洲",
+    "disease": "丙型肝炎",
+    "category": "感染",
+    "nodeIds": [
+      "infect",
+      "infect-hcv",
+      "gi"
+    ],
+    "year": 2020,
+    "url": "https://easl.eu/publications/clinical-practice-guidelines/",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "HCV",
+      "EASL"
+    ],
+    "summary": "EASL 丙型肝炎治疗推荐（系列最终更新）。"
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "kdigo_transplant",
+    "title": "KDIGO — Kidney transplant care resources",
+    "organization": "KDIGO",
+    "country": "国际",
+    "disease": "肾移植",
+    "category": "肾脏",
+    "nodeIds": [
+      "renal",
+      "renal-transplant"
+    ],
+    "year": 2020,
+    "url": "https://kdigo.org/guidelines/",
+    "type": "Guideline Hub",
+    "tags": [
+      "Transplant",
+      "KDIGO"
+    ],
+    "summary": "KDIGO 指南总目录（含移植相关主题，请以官网最新发布为准）。"
+  },
+  {
     "id": "nice_rhinitis_qs",
     "title": "NICE — Allergic rhinitis (see BSACI / related pathways)",
     "organization": "NICE",
@@ -3014,6 +3964,28 @@
     "embeddable": false
   },
   {
+    "embeddable": false,
+    "language": "en",
+    "id": "nice_acs_ng185",
+    "title": "NICE NG185 Acute coronary syndromes",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "急性冠脉综合征",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-cad"
+    ],
+    "year": 2020,
+    "url": "https://www.nice.org.uk/guidance/ng185",
+    "type": "NICE Guideline",
+    "tags": [
+      "ACS",
+      "NICE"
+    ],
+    "summary": "NICE 急性冠脉综合征指南。"
+  },
+  {
     "id": "nice_gdm_ng3",
     "title": "NICE NG3 Diabetes in pregnancy",
     "organization": "NICE",
@@ -3059,6 +4031,29 @@
     "embeddable": false
   },
   {
+    "id": "acc_aha_primary_prev_2019",
+    "title": "2019 ACC/AHA Guideline on the Primary Prevention of Cardiovascular Disease",
+    "organization": "AHA / ACC",
+    "country": "美国",
+    "disease": "心血管疾病一级预防",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-prev"
+    ],
+    "year": 2019,
+    "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000000678",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "Prevention",
+      "AHA",
+      "ACC"
+    ],
+    "summary": "ACC/AHA 2019 心血管疾病一级预防指南。",
+    "embeddable": false
+  },
+  {
     "id": "esc_pe_2019",
     "title": "2019 ESC Guidelines for acute pulmonary embolism",
     "organization": "ESC",
@@ -3081,6 +4076,28 @@
     ],
     "summary": "ESC 急性肺栓塞诊断与管理指南页。",
     "embeddable": false
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "esc_svt_2019",
+    "title": "2019 ESC Guidelines: Supraventricular Tachycardia",
+    "organization": "ESC",
+    "country": "欧洲",
+    "disease": "室上性心动过速",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-arrhythmia"
+    ],
+    "year": 2019,
+    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/supraventricular-tachycardia/",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "SVT",
+      "ESC"
+    ],
+    "summary": "ESC 2019 室上性心动过速管理指南。"
   },
   {
     "id": "esc_lipid_2019",
@@ -3125,6 +4142,50 @@
     ],
     "summary": "中国 ACS 相关指南的 PubMed 文献条目。",
     "embeddable": false
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "aasld_aih",
+    "title": "AASLD Guidance: Autoimmune Hepatitis",
+    "organization": "AASLD",
+    "country": "美国",
+    "disease": "自身免疫性肝炎",
+    "category": "消化",
+    "nodeIds": [
+      "gi",
+      "gi-aih"
+    ],
+    "year": 2019,
+    "url": "https://www.aasld.org/practice-guidelines",
+    "type": "Practice Guidance",
+    "tags": [
+      "AIH",
+      "AASLD"
+    ],
+    "summary": "AASLD 自身免疫性肝炎实践指导入口。"
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "aasld_alcohol",
+    "title": "AASLD Practice Guidance: Alcohol-Associated Liver Disease",
+    "organization": "AASLD",
+    "country": "美国",
+    "disease": "酒精相关肝病",
+    "category": "消化",
+    "nodeIds": [
+      "gi",
+      "gi-alcohol"
+    ],
+    "year": 2019,
+    "url": "https://www.aasld.org/practice-guidelines",
+    "type": "Practice Guidance",
+    "tags": [
+      "ALD",
+      "AASLD"
+    ],
+    "summary": "AASLD 酒精相关肝病实践指导入口。"
   },
   {
     "id": "pubmed_aha_stroke_2019",
@@ -3487,6 +4548,77 @@
     "embeddable": false
   },
   {
+    "embeddable": false,
+    "language": "en",
+    "id": "aha_cholesterol_2018",
+    "title": "2018 AHA/ACC Guideline on Blood Cholesterol Management",
+    "organization": "AHA / ACC",
+    "country": "美国",
+    "disease": "血脂异常",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-lipid",
+      "cv-prev"
+    ],
+    "year": 2018,
+    "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000000625",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "Cholesterol",
+      "AHA",
+      "ACC"
+    ],
+    "summary": "AHA/ACC 2018 血胆固醇管理指南。"
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "esc_syncope_2018",
+    "title": "2018 ESC Guidelines: Diagnosis and Management of Syncope",
+    "organization": "ESC",
+    "country": "欧洲",
+    "disease": "晕厥",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-syncope"
+    ],
+    "year": 2018,
+    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/syncope/",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "Syncope",
+      "ESC"
+    ],
+    "summary": "ESC 2018 晕厥诊断与管理指南。"
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "esc_revasc_2018",
+    "title": "2018 ESC/EACTS Guidelines on myocardial revascularization",
+    "organization": "ESC",
+    "country": "欧洲",
+    "disease": "心肌血运重建",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-revasc",
+      "cv-cad"
+    ],
+    "year": 2018,
+    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/myocardial-revascularization/",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "Revascularization",
+      "PCI",
+      "CABG",
+      "ESC"
+    ],
+    "summary": "ESC/EACTS 2018 心肌血运重建指南。"
+  },
+  {
     "id": "pubmed_cma_htn_2018",
     "title": "中国高血压防治指南（2018 修订版）— PubMed 条目",
     "organization": "中华医学会",
@@ -3530,6 +4662,75 @@
     ],
     "summary": "AASLD 慢性乙型肝炎实践指导。",
     "embeddable": false
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "aasld_hbv_guidance",
+    "title": "AASLD Practice Guidance: Chronic Hepatitis B",
+    "organization": "AASLD",
+    "country": "美国",
+    "disease": "慢性乙型肝炎",
+    "category": "感染",
+    "nodeIds": [
+      "infect",
+      "infect-hbv",
+      "gi"
+    ],
+    "year": 2018,
+    "url": "https://www.aasld.org/practice-guidelines/chronic-hepatitis-b",
+    "type": "Practice Guidance",
+    "tags": [
+      "HBV",
+      "AASLD"
+    ],
+    "summary": "AASLD 慢性乙型肝炎实践指导专题页。"
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "easl_alcohol_2018",
+    "title": "EASL CPG: Alcohol-related liver disease",
+    "organization": "EASL",
+    "country": "欧洲",
+    "disease": "酒精相关肝病",
+    "category": "消化",
+    "nodeIds": [
+      "gi",
+      "gi-alcohol",
+      "gi-cirrhosis"
+    ],
+    "year": 2018,
+    "url": "https://easl.eu/publications/clinical-practice-guidelines/",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "ALD",
+      "EASL"
+    ],
+    "summary": "EASL 酒精相关肝病临床实践指南。"
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "easl_decompensated_cirrhosis_2018",
+    "title": "EASL CPG: Decompensated cirrhosis",
+    "organization": "EASL",
+    "country": "欧洲",
+    "disease": "失代偿期肝硬化",
+    "category": "消化",
+    "nodeIds": [
+      "gi",
+      "gi-cirrhosis",
+      "gi-portal"
+    ],
+    "year": 2018,
+    "url": "https://easl.eu/publications/clinical-practice-guidelines/",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "Cirrhosis",
+      "EASL"
+    ],
+    "summary": "EASL 失代偿期肝硬化管理临床实践指南。"
   },
   {
     "id": "idsa_influenza_2018",
@@ -3596,6 +4797,28 @@
     ],
     "summary": "NICE 胰腺炎指南条目。",
     "embeddable": false
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "nice_hf_ng106",
+    "title": "NICE NG106 Chronic heart failure in adults",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "慢性心力衰竭",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-hf"
+    ],
+    "year": 2018,
+    "url": "https://www.nice.org.uk/guidance/ng106",
+    "type": "NICE Guideline",
+    "tags": [
+      "Heart failure",
+      "NICE"
+    ],
+    "summary": "NICE 成人慢性心力衰竭诊断与管理指南。"
   },
   {
     "id": "nice_dialysis_ng107",
@@ -3847,6 +5070,29 @@
     "embeddable": false
   },
   {
+    "embeddable": false,
+    "language": "en",
+    "id": "kdigo_mbd",
+    "title": "KDIGO CKD-Mineral and Bone Disorder (CKD-MBD)",
+    "organization": "KDIGO",
+    "country": "国际",
+    "disease": "CKD-MBD",
+    "category": "肾脏",
+    "nodeIds": [
+      "renal",
+      "renal-mbd",
+      "renal-ckd"
+    ],
+    "year": 2017,
+    "url": "https://kdigo.org/guidelines/ckd-mbd/",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "CKD-MBD",
+      "KDIGO"
+    ],
+    "summary": "KDIGO CKD 矿物质与骨异常指南。"
+  },
+  {
     "id": "nice_osteo_cg146",
     "title": "NICE CG146 Osteoporosis: assessing the risk of fragility fracture",
     "organization": "NICE",
@@ -3912,6 +5158,28 @@
     ],
     "summary": "NICE 特发性肺纤维化诊断与管理指南。",
     "embeddable": false
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "nice_hepatitis_b_cg165",
+    "title": "NICE CG165 Hepatitis B (chronic): diagnosis and management",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "慢性乙型肝炎",
+    "category": "感染",
+    "nodeIds": [
+      "infect",
+      "infect-hbv"
+    ],
+    "year": 2017,
+    "url": "https://www.nice.org.uk/guidance/cg165",
+    "type": "NICE Guideline",
+    "tags": [
+      "HBV",
+      "NICE"
+    ],
+    "summary": "NICE 慢性乙型肝炎诊断与管理指南。"
   },
   {
     "id": "nice_ibs_cg61",
@@ -3980,6 +5248,31 @@
     "embeddable": false
   },
   {
+    "embeddable": false,
+    "language": "en",
+    "id": "who_hbv_testing_2017",
+    "title": "WHO Guidelines on hepatitis B and C testing",
+    "organization": "WHO",
+    "country": "国际",
+    "disease": "乙肝 / 丙肝检测",
+    "category": "感染",
+    "nodeIds": [
+      "infect",
+      "infect-hbv",
+      "infect-hcv"
+    ],
+    "year": 2017,
+    "url": "https://www.who.int/publications/i/item/9789241549981",
+    "type": "Guideline",
+    "tags": [
+      "HBV",
+      "HCV",
+      "Testing",
+      "WHO"
+    ],
+    "summary": "WHO 乙型与丙型肝炎检测指南。"
+  },
+  {
     "id": "aha_acc_pad_2016",
     "title": "2016 AHA/ACC Guideline: Lower Extremity PAD",
     "organization": "AHA / ACC",
@@ -4001,6 +5294,73 @@
     ],
     "summary": "AHA/ACC 下肢外周动脉疾病管理指南。",
     "embeddable": false
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "apasL_hcv",
+    "title": "APASL clinical practice recommendations: hepatitis C",
+    "organization": "APASL",
+    "country": "亚太",
+    "disease": "丙型肝炎",
+    "category": "感染",
+    "nodeIds": [
+      "infect",
+      "infect-hcv",
+      "gi"
+    ],
+    "year": 2016,
+    "url": "https://www.apasl.info/",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "HCV",
+      "APASL"
+    ],
+    "summary": "APASL 丙型肝炎相关推荐入口。"
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "nice_hepatitis_c_ng43",
+    "title": "NICE — Hepatitis C related technology appraisals / pathway",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "丙型肝炎",
+    "category": "感染",
+    "nodeIds": [
+      "infect",
+      "infect-hcv"
+    ],
+    "year": 2016,
+    "url": "https://www.nice.org.uk/guidance/conditions-and-diseases/liver-conditions/hepatitis",
+    "type": "Guideline Hub",
+    "tags": [
+      "HCV",
+      "NICE"
+    ],
+    "summary": "NICE 肝炎相关指南与技术评估路径入口。"
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "nice_stable_angina_cg126",
+    "title": "NICE CG126 Stable angina: management",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "稳定型心绞痛",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-cad"
+    ],
+    "year": 2016,
+    "url": "https://www.nice.org.uk/guidance/cg126",
+    "type": "NICE Guideline",
+    "tags": [
+      "Angina",
+      "NICE"
+    ],
+    "summary": "NICE 稳定型心绞痛管理指南。"
   },
   {
     "id": "nice_mnd_ng42",
@@ -4093,6 +5453,29 @@
     "embeddable": false
   },
   {
+    "embeddable": false,
+    "language": "en",
+    "id": "apasL_hbv",
+    "title": "APASL clinical practice guidelines: hepatitis B",
+    "organization": "APASL",
+    "country": "亚太",
+    "disease": "乙型肝炎",
+    "category": "感染",
+    "nodeIds": [
+      "infect",
+      "infect-hbv",
+      "gi"
+    ],
+    "year": 2015,
+    "url": "https://www.apasl.info/",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "HBV",
+      "APASL"
+    ],
+    "summary": "亚太肝脏研究学会（APASL）乙肝等相关指南入口（以学会站点最新版为准）。"
+  },
+  {
     "id": "pubmed_hp",
     "title": "Kyoto global consensus on Helicobacter pylori gastritis — PubMed",
     "organization": "多机构共识",
@@ -4180,6 +5563,29 @@
     ],
     "summary": "NICE 镰状细胞病急性疼痛与相关管理指南入口。",
     "embeddable": false
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "esc_aortic_2014",
+    "title": "2014 ESC Guidelines on aortic diseases",
+    "organization": "ESC",
+    "country": "欧洲",
+    "disease": "主动脉疾病",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-aortic",
+      "cv-pad"
+    ],
+    "year": 2014,
+    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/aortic-diseases/",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "Aorta",
+      "ESC"
+    ],
+    "summary": "ESC 主动脉疾病指南（可与 2024 PAD/主动脉疾病指南对照）。"
   },
   {
     "id": "nice_psychosis_cg178",
@@ -4272,6 +5678,28 @@
     ],
     "summary": "KDIGO CKD 贫血管理指南。",
     "embeddable": false
+  },
+  {
+    "embeddable": false,
+    "language": "en",
+    "id": "kdigo_aki_2012",
+    "title": "KDIGO Clinical Practice Guideline for Acute Kidney Injury",
+    "organization": "KDIGO",
+    "country": "国际",
+    "disease": "急性肾损伤",
+    "category": "肾脏",
+    "nodeIds": [
+      "renal",
+      "renal-aki"
+    ],
+    "year": 2012,
+    "url": "https://kdigo.org/guidelines/acute-kidney-injury/",
+    "type": "Clinical Practice Guideline",
+    "tags": [
+      "AKI",
+      "KDIGO"
+    ],
+    "summary": "KDIGO 急性肾损伤临床实践指南专题页。"
   },
   {
     "id": "pubmed_kdigo_aki",
