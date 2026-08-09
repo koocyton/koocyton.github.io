@@ -12,7 +12,8 @@ const navLinks = [
 
 export default function Header() {
   const pathname = usePathname();
-  const wide = pathname?.startsWith("/medical-guides");
+  const wide =
+    pathname?.startsWith("/medical-guides") || pathname?.startsWith("/inquiry-chat");
 
   return (
     <header className="border-b border-[var(--color-border)]">
