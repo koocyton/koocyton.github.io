@@ -1,362 +1,54 @@
 [
   {
-    "id": "esc_htn_2024",
-    "title": "2024 ESC Guidelines: Elevated Blood Pressure and Hypertension",
+    "id": "esc_cvd_pregnancy_2025",
+    "title": "2025 ESC Guidelines: Cardiovascular Disease and Pregnancy",
     "organization": "ESC",
     "country": "欧洲",
-    "disease": "高血压",
+    "disease": "妊娠合并心血管疾病",
     "category": "心血管",
     "nodeIds": [
       "cv",
-      "cv-htn"
+      "cv-preg",
+      "obgyn"
     ],
-    "year": 2024,
-    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/elevated-blood-pressure-and-hypertension/",
+    "year": 2025,
+    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/cardiovascular-disease-and-pregnancy/",
     "type": "Clinical Practice Guideline",
     "language": "en",
     "tags": [
-      "Hypertension",
+      "Pregnancy",
+      "CVD",
       "ESC"
     ],
-    "summary": "ESC 2024 高血压与血压升高管理指南专题页（含全文入口）。",
+    "summary": "ESC 2025 妊娠与心血管疾病管理指南专题页。",
     "embeddable": false
   },
   {
-    "id": "who_htn_2021",
-    "title": "WHO Guideline for the pharmacological treatment of hypertension in adults",
-    "organization": "WHO",
-    "country": "国际",
-    "disease": "高血压",
-    "category": "心血管",
-    "nodeIds": [
-      "cv",
-      "cv-htn"
-    ],
-    "year": 2021,
-    "url": "https://www.who.int/publications/i/item/9789240033986",
-    "type": "Guideline",
-    "language": "en",
-    "tags": [
-      "Hypertension",
-      "WHO"
-    ],
-    "summary": "WHO 成人高血压药物治疗指南出版物条目页。",
-    "embeddable": false
-  },
-  {
-    "id": "nice_htn_ng136",
-    "title": "NICE NG136 Hypertension in adults: diagnosis and management",
-    "organization": "NICE",
-    "country": "英国",
-    "disease": "高血压",
-    "category": "心血管",
-    "nodeIds": [
-      "cv",
-      "cv-htn"
-    ],
-    "year": 2023,
-    "url": "https://www.nice.org.uk/guidance/ng136",
-    "type": "NICE Guideline",
-    "language": "en",
-    "tags": [
-      "Hypertension",
-      "NICE"
-    ],
-    "summary": "NICE 成人高血压诊断与管理指南条目页。",
-    "embeddable": false
-  },
-  {
-    "id": "pubmed_cma_htn_2018",
-    "title": "中国高血压防治指南（2018 修订版）— PubMed 条目",
-    "organization": "中华医学会",
-    "country": "中国",
-    "disease": "高血压",
-    "category": "心血管",
-    "nodeIds": [
-      "cv",
-      "cv-htn"
-    ],
-    "year": 2018,
-    "url": "https://pubmed.ncbi.nlm.nih.gov/30580542/",
-    "type": "临床实践指南",
-    "language": "zh",
-    "tags": [
-      "高血压",
-      "CMA"
-    ],
-    "summary": "中国高血压防治指南 2018 修订版的 PubMed 文献条目（可据此定位期刊全文）。",
-    "embeddable": false
-  },
-  {
-    "id": "esc_acs_2023",
-    "title": "2023 ESC Guidelines for the management of acute coronary syndromes",
+    "id": "esc_myocarditis_2025",
+    "title": "2025 ESC Guidelines: Myocarditis and Pericarditis",
     "organization": "ESC",
     "country": "欧洲",
-    "disease": "冠心病 / ACS",
+    "disease": "心肌炎 / 心包炎",
     "category": "心血管",
     "nodeIds": [
       "cv",
-      "cv-cad"
+      "cv-myo"
     ],
-    "year": 2023,
-    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/acute-coronary-syndromes/",
+    "year": 2025,
+    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/myocarditis-and-pericarditis/",
     "type": "Clinical Practice Guideline",
     "language": "en",
     "tags": [
-      "ACS",
+      "Myocarditis",
+      "Pericarditis",
       "ESC"
     ],
-    "summary": "ESC 急性冠脉综合征指南专题页。",
+    "summary": "ESC 2025 心肌炎与心包炎管理指南专题页。",
     "embeddable": false
   },
   {
-    "id": "pubmed_cma_acs",
-    "title": "急性冠脉综合征急诊快速诊疗指南 — PubMed 条目",
-    "organization": "中华医学会",
-    "country": "中国",
-    "disease": "冠心病 / ACS",
-    "category": "心血管",
-    "nodeIds": [
-      "cv",
-      "cv-cad"
-    ],
-    "year": 2019,
-    "url": "https://pubmed.ncbi.nlm.nih.gov/31550814/",
-    "type": "临床实践指南",
-    "language": "zh",
-    "tags": [
-      "ACS",
-      "CMA"
-    ],
-    "summary": "中国 ACS 相关指南的 PubMed 文献条目。",
-    "embeddable": false
-  },
-  {
-    "id": "esc_hf_2021",
-    "title": "2021 ESC Guidelines for acute and chronic heart failure",
-    "organization": "ESC",
-    "country": "欧洲",
-    "disease": "心力衰竭",
-    "category": "心血管",
-    "nodeIds": [
-      "cv",
-      "cv-hf"
-    ],
-    "year": 2021,
-    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/acute-and-chronic-heart-failure/",
-    "type": "Clinical Practice Guideline",
-    "language": "en",
-    "tags": [
-      "Heart failure",
-      "ESC"
-    ],
-    "summary": "ESC 急慢性心力衰竭指南专题页。",
-    "embeddable": false
-  },
-  {
-    "id": "acc_hf_hub",
-    "title": "ACC Heart Failure Guideline Hub",
-    "organization": "ACC",
-    "country": "美国",
-    "disease": "心力衰竭",
-    "category": "心血管",
-    "nodeIds": [
-      "cv",
-      "cv-hf"
-    ],
-    "year": 2022,
-    "url": "https://www.acc.org/Guidelines/hubs/heart-failure",
-    "type": "Guideline Hub",
-    "language": "en",
-    "tags": [
-      "Heart failure",
-      "ACC"
-    ],
-    "summary": "ACC 心力衰竭指南资源中心（指向正式指南与工具）。",
-    "embeddable": false
-  },
-  {
-    "id": "aha_guidelines_statements",
-    "title": "AHA Guidelines & Statements Index",
-    "organization": "AHA",
-    "country": "美国",
-    "disease": "心力衰竭",
-    "category": "心血管",
-    "nodeIds": [
-      "cv",
-      "cv-hf",
-      "cv-stroke"
-    ],
-    "year": 2024,
-    "url": "https://professional.heart.org/en/guidelines-and-statements",
-    "type": "Guideline Hub",
-    "language": "en",
-    "tags": [
-      "AHA",
-      "Guidelines"
-    ],
-    "summary": "AHA 专业指南与科学声明索引页。",
-    "embeddable": false
-  },
-  {
-    "id": "esc_af_2024",
-    "title": "2024 ESC Guidelines for atrial fibrillation",
-    "organization": "ESC",
-    "country": "欧洲",
-    "disease": "心房颤动",
-    "category": "心血管",
-    "nodeIds": [
-      "cv",
-      "cv-af"
-    ],
-    "year": 2024,
-    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/atrial-fibrillation/",
-    "type": "Clinical Practice Guideline",
-    "language": "en",
-    "tags": [
-      "AF",
-      "ESC"
-    ],
-    "summary": "ESC 心房颤动管理指南专题页。",
-    "embeddable": false
-  },
-  {
-    "id": "pubmed_cma_af",
-    "title": "心房颤动诊断和治疗中国指南 — PubMed 条目",
-    "organization": "中华医学会",
-    "country": "中国",
-    "disease": "心房颤动",
-    "category": "心血管",
-    "nodeIds": [
-      "cv",
-      "cv-af"
-    ],
-    "year": 2023,
-    "url": "https://pubmed.ncbi.nlm.nih.gov/37231614/",
-    "type": "临床实践指南",
-    "language": "zh",
-    "tags": [
-      "房颤",
-      "CMA"
-    ],
-    "summary": "中国房颤指南相关 PubMed 文献条目。",
-    "embeddable": false
-  },
-  {
-    "id": "pubmed_aha_stroke_2019",
-    "title": "AHA/ASA Early Management of Acute Ischemic Stroke — PubMed",
-    "organization": "AHA",
-    "country": "美国",
-    "disease": "卒中",
-    "category": "心血管",
-    "nodeIds": [
-      "cv",
-      "cv-stroke"
-    ],
-    "year": 2019,
-    "url": "https://pubmed.ncbi.nlm.nih.gov/31662037/",
-    "type": "Clinical Practice Guideline",
-    "language": "en",
-    "tags": [
-      "Stroke",
-      "AHA"
-    ],
-    "summary": "急性缺血性卒中早期管理指南 PubMed 条目。",
-    "embeddable": false
-  },
-  {
-    "id": "esc_lipid_2019",
-    "title": "2019 ESC/EAS Guidelines for dyslipidaemias",
-    "organization": "ESC",
-    "country": "欧洲",
-    "disease": "血脂异常",
-    "category": "心血管",
-    "nodeIds": [
-      "cv",
-      "cv-lipid"
-    ],
-    "year": 2019,
-    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/dyslipidaemias/",
-    "type": "Clinical Practice Guideline",
-    "language": "en",
-    "tags": [
-      "Lipids",
-      "ESC"
-    ],
-    "summary": "ESC/EAS 血脂异常管理指南专题页。",
-    "embeddable": false
-  },
-  {
-    "id": "nice_cg181",
-    "title": "NICE CG181 CVD risk assessment and lipid modification",
-    "organization": "NICE",
-    "country": "英国",
-    "disease": "血脂异常",
-    "category": "心血管",
-    "nodeIds": [
-      "cv",
-      "cv-lipid"
-    ],
-    "year": 2023,
-    "url": "https://www.nice.org.uk/guidance/cg181",
-    "type": "NICE Guideline",
-    "language": "en",
-    "tags": [
-      "Lipids",
-      "NICE"
-    ],
-    "summary": "NICE 心血管风险评估与调脂指南条目。",
-    "embeddable": false
-  },
-  {
-    "id": "esc_pad_2024",
-    "title": "2024 ESC Guidelines for peripheral arterial and aortic diseases",
-    "organization": "ESC",
-    "country": "欧洲",
-    "disease": "外周动脉疾病",
-    "category": "心血管",
-    "nodeIds": [
-      "cv",
-      "cv-pad"
-    ],
-    "year": 2024,
-    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/peripheral-arterial-and-aortic-diseases/",
-    "type": "Clinical Practice Guideline",
-    "language": "en",
-    "tags": [
-      "PAD",
-      "ESC"
-    ],
-    "summary": "ESC 外周动脉与主动脉疾病指南专题页。",
-    "embeddable": false
-  },
-  {
-    "id": "esc_pe_2019",
-    "title": "2019 ESC Guidelines for acute pulmonary embolism",
-    "organization": "ESC",
-    "country": "欧洲",
-    "disease": "肺栓塞",
-    "category": "心血管",
-    "nodeIds": [
-      "cv",
-      "cv-pe",
-      "heme",
-      "heme-vte"
-    ],
-    "year": 2019,
-    "url": "https://www.escardio.org/Guidelines/Clinical-Practice-Guidelines/Acute-Pulmonary-Embolism-Diagnosis-and-Management-of",
-    "type": "Clinical Practice Guideline",
-    "language": "en",
-    "tags": [
-      "PE",
-      "ESC"
-    ],
-    "summary": "ESC 急性肺栓塞诊断与管理指南页。",
-    "embeddable": false
-  },
-  {
-    "id": "esc_vhd_2021",
-    "title": "2021 ESC/EACTS Guidelines for valvular heart disease",
+    "id": "esc_vhd_2025",
+    "title": "2025 ESC/EACTS Guidelines: Valvular Heart Disease",
     "organization": "ESC",
     "country": "欧洲",
     "disease": "心脏瓣膜病",
@@ -365,193 +57,63 @@
       "cv",
       "cv-vhd"
     ],
-    "year": 2021,
+    "year": 2025,
     "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/valvular-heart-disease/",
     "type": "Clinical Practice Guideline",
     "language": "en",
     "tags": [
       "VHD",
-      "ESC"
+      "ESC",
+      "EACTS"
     ],
-    "summary": "ESC/EACTS 心脏瓣膜病指南专题页。",
+    "summary": "ESC/EACTS 2025 心脏瓣膜病管理指南专题页。",
     "embeddable": false
   },
   {
-    "id": "gina_2024",
-    "title": "GINA 2024 Global Strategy for Asthma",
-    "organization": "GINA",
-    "country": "国际",
-    "disease": "哮喘",
-    "category": "呼吸",
+    "id": "esc_dyslipidaemia_fu_2025",
+    "title": "2025 Focused Update: ESC/EAS Dyslipidaemias",
+    "organization": "ESC",
+    "country": "欧洲",
+    "disease": "血脂异常",
+    "category": "心血管",
     "nodeIds": [
-      "resp",
-      "resp-asthma"
-    ],
-    "year": 2024,
-    "url": "https://ginasthma.org/2024-report/",
-    "type": "Strategy Report",
-    "language": "en",
-    "tags": [
-      "Asthma",
-      "GINA"
-    ],
-    "summary": "GINA 2024 哮喘全球策略报告页。",
-    "embeddable": false
-  },
-  {
-    "id": "gold_2025",
-    "title": "GOLD 2025 Global Strategy for COPD",
-    "organization": "GOLD",
-    "country": "国际",
-    "disease": "COPD",
-    "category": "呼吸",
-    "nodeIds": [
-      "resp",
-      "resp-copd"
+      "cv",
+      "cv-lipid"
     ],
     "year": 2025,
-    "url": "https://goldcopd.org/2025-gold-report/",
-    "type": "Strategy Report",
+    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/dyslipidaemias/",
+    "type": "Focused Update",
     "language": "en",
     "tags": [
-      "COPD",
-      "GOLD"
+      "Lipids",
+      "ESC",
+      "EAS"
     ],
-    "summary": "GOLD 2025 COPD 全球策略报告页。",
+    "summary": "ESC/EAS 血脂异常指南 2025 聚焦更新专题页。",
     "embeddable": false
   },
   {
-    "id": "nice_copd_ng115",
-    "title": "NICE NG115 COPD in over 16s",
-    "organization": "NICE",
-    "country": "英国",
-    "disease": "COPD",
-    "category": "呼吸",
-    "nodeIds": [
-      "resp",
-      "resp-copd"
-    ],
-    "year": 2019,
-    "url": "https://www.nice.org.uk/guidance/ng115",
-    "type": "NICE Guideline",
-    "language": "en",
-    "tags": [
-      "COPD",
-      "NICE"
-    ],
-    "summary": "NICE COPD 诊断与管理指南条目。",
-    "embeddable": false
-  },
-  {
-    "id": "idsa_cap",
-    "title": "IDSA/ATS Community-Acquired Pneumonia in Adults",
-    "organization": "IDSA",
+    "id": "ada_obesity_2025",
+    "title": "ADA Standards of Care — Obesity / Weight management sections",
+    "organization": "ADA",
     "country": "美国",
-    "disease": "社区获得性肺炎",
-    "category": "呼吸",
+    "disease": "肥胖与体重管理",
+    "category": "内分泌代谢",
     "nodeIds": [
-      "resp",
-      "resp-cap",
-      "infect"
+      "endo",
+      "endo-obesity",
+      "endo-t2dm"
     ],
-    "year": 2019,
-    "url": "https://www.idsociety.org/practice-guideline/community-acquired-pneumonia-cap-in-adults/",
-    "type": "Clinical Practice Guideline",
+    "year": 2025,
+    "url": "https://diabetesjournals.org/care/issue/48/Supplement_1",
+    "type": "Standards of Care",
     "language": "en",
     "tags": [
-      "CAP",
-      "IDSA"
+      "Obesity",
+      "ADA",
+      "Diabetes"
     ],
-    "summary": "IDSA/ATS 成人社区获得性肺炎指南页。",
-    "embeddable": false
-  },
-  {
-    "id": "who_tb_2022",
-    "title": "WHO consolidated guidelines on tuberculosis",
-    "organization": "WHO",
-    "country": "国际",
-    "disease": "结核病",
-    "category": "呼吸",
-    "nodeIds": [
-      "resp",
-      "resp-tb",
-      "infect"
-    ],
-    "year": 2022,
-    "url": "https://www.who.int/publications/i/item/9789240051829",
-    "type": "Guideline",
-    "language": "en",
-    "tags": [
-      "TB",
-      "WHO"
-    ],
-    "summary": "WHO 结核病综合指南出版物条目。",
-    "embeddable": false
-  },
-  {
-    "id": "pubmed_osa",
-    "title": "AASM Adult OSA Diagnostic Testing Guideline — PubMed",
-    "organization": "AASM",
-    "country": "美国",
-    "disease": "睡眠呼吸暂停",
-    "category": "呼吸",
-    "nodeIds": [
-      "resp",
-      "resp-osa"
-    ],
-    "year": 2017,
-    "url": "https://pubmed.ncbi.nlm.nih.gov/28162150/",
-    "type": "Clinical Practice Guideline",
-    "language": "en",
-    "tags": [
-      "OSA",
-      "AASM"
-    ],
-    "summary": "成人 OSA 诊断检测指南 PubMed 条目。",
-    "embeddable": false
-  },
-  {
-    "id": "pubmed_ild",
-    "title": "IPF clinical practice guideline — PubMed",
-    "organization": "ATS / ERS",
-    "country": "国际",
-    "disease": "间质性肺病",
-    "category": "呼吸",
-    "nodeIds": [
-      "resp",
-      "resp-ild"
-    ],
-    "year": 2018,
-    "url": "https://pubmed.ncbi.nlm.nih.gov/30168754/",
-    "type": "Clinical Practice Guideline",
-    "language": "en",
-    "tags": [
-      "ILD",
-      "IPF"
-    ],
-    "summary": "特发性肺纤维化临床实践指南 PubMed 条目。",
-    "embeddable": false
-  },
-  {
-    "id": "pubmed_cma_copd",
-    "title": "慢性阻塞性肺疾病诊治指南（中国）— PubMed",
-    "organization": "中华医学会",
-    "country": "中国",
-    "disease": "COPD",
-    "category": "呼吸",
-    "nodeIds": [
-      "resp",
-      "resp-copd"
-    ],
-    "year": 2021,
-    "url": "https://pubmed.ncbi.nlm.nih.gov/34326095/",
-    "type": "临床实践指南",
-    "language": "zh",
-    "tags": [
-      "COPD",
-      "CMA"
-    ],
-    "summary": "中国 COPD 诊治指南相关 PubMed 文献条目。",
+    "summary": "ADA 护理标准中肥胖与体重管理相关章节入口。",
     "embeddable": false
   },
   {
@@ -578,180 +140,91 @@
     "embeddable": false
   },
   {
-    "id": "nice_t2dm_ng28",
-    "title": "NICE NG28 Type 2 diabetes in adults",
-    "organization": "NICE",
-    "country": "英国",
-    "disease": "2 型糖尿病",
-    "category": "内分泌代谢",
+    "id": "asco_guidelines_hub",
+    "title": "ASCO Guidelines Hub",
+    "organization": "ASCO",
+    "country": "美国",
+    "disease": "肿瘤通则",
+    "category": "肿瘤",
     "nodeIds": [
-      "endo",
-      "endo-t2dm"
+      "onco"
     ],
-    "year": 2022,
-    "url": "https://www.nice.org.uk/guidance/ng28",
-    "type": "NICE Guideline",
+    "year": 2025,
+    "url": "https://www.asco.org/practice-patients/guidelines",
+    "type": "Guideline Hub",
     "language": "en",
     "tags": [
-      "T2DM",
-      "NICE"
+      "ASCO",
+      "Oncology"
     ],
-    "summary": "NICE 成人 2 型糖尿病管理指南条目。",
+    "summary": "ASCO 临床实践指南总入口（乳腺癌、肺癌等多病种）。",
     "embeddable": false
   },
   {
-    "id": "nice_t1dm_ng17",
-    "title": "NICE NG17 Type 1 diabetes in adults",
-    "organization": "NICE",
-    "country": "英国",
-    "disease": "1 型糖尿病",
-    "category": "内分泌代谢",
-    "nodeIds": [
-      "endo",
-      "endo-t1dm"
-    ],
-    "year": 2022,
-    "url": "https://www.nice.org.uk/guidance/ng17",
-    "type": "NICE Guideline",
-    "language": "en",
-    "tags": [
-      "T1DM",
-      "NICE"
-    ],
-    "summary": "NICE 成人 1 型糖尿病指南条目。",
-    "embeddable": false
-  },
-  {
-    "id": "who_diabetes_pub",
-    "title": "WHO diabetes-related guideline publication",
-    "organization": "WHO",
+    "id": "gold_2025",
+    "title": "GOLD 2025 Global Strategy for COPD",
+    "organization": "GOLD",
     "country": "国际",
-    "disease": "2 型糖尿病",
-    "category": "内分泌代谢",
+    "disease": "COPD",
+    "category": "呼吸",
     "nodeIds": [
-      "endo",
-      "endo-t2dm"
+      "resp",
+      "resp-copd"
     ],
-    "year": 2023,
-    "url": "https://www.who.int/publications/i/item/9789240064898",
-    "type": "Guideline",
+    "year": 2025,
+    "url": "https://goldcopd.org/2025-gold-report/",
+    "type": "Strategy Report",
     "language": "en",
     "tags": [
-      "Diabetes",
-      "WHO"
+      "COPD",
+      "GOLD"
     ],
-    "summary": "WHO 糖尿病相关技术文件/指南出版物页。",
+    "summary": "GOLD 2025 COPD 全球策略报告页。",
     "embeddable": false
   },
   {
-    "id": "pubmed_cma_dm",
-    "title": "中国 2 型糖尿病防治指南 — PubMed",
-    "organization": "中华医学会",
-    "country": "中国",
-    "disease": "2 型糖尿病",
-    "category": "内分泌代谢",
+    "id": "nccn_lymphoma",
+    "title": "NCCN Guidelines: B-Cell Lymphomas",
+    "organization": "NCCN",
+    "country": "美国",
+    "disease": "B 细胞淋巴瘤",
+    "category": "肿瘤",
     "nodeIds": [
-      "endo",
-      "endo-t2dm"
+      "onco",
+      "onco-lymphoma",
+      "heme"
     ],
-    "year": 2021,
-    "url": "https://pubmed.ncbi.nlm.nih.gov/33543266/",
-    "type": "临床实践指南",
-    "language": "zh",
+    "year": 2025,
+    "url": "https://www.nccn.org/guidelines/category_1",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
     "tags": [
-      "糖尿病",
-      "CMA"
+      "Lymphoma",
+      "NCCN"
     ],
-    "summary": "中国 2 型糖尿病防治指南相关 PubMed 文献条目。",
+    "summary": "NCCN 淋巴瘤等 Category 1 指南目录入口。",
     "embeddable": false
   },
   {
-    "id": "nice_obesity_cg189",
-    "title": "NICE CG189 Obesity: identification, assessment and management",
-    "organization": "NICE",
-    "country": "英国",
-    "disease": "肥胖",
-    "category": "内分泌代谢",
+    "id": "nccn_bladder",
+    "title": "NCCN Guidelines: Bladder Cancer",
+    "organization": "NCCN",
+    "country": "美国",
+    "disease": "膀胱癌",
+    "category": "肿瘤",
     "nodeIds": [
-      "endo",
-      "endo-obesity"
+      "onco",
+      "onco-bladder"
     ],
-    "year": 2023,
-    "url": "https://www.nice.org.uk/guidance/cg189",
-    "type": "NICE Guideline",
+    "year": 2025,
+    "url": "https://www.nccn.org/guidelines/guidelines-detail?category=1&id=1417",
+    "type": "Clinical Practice Guideline",
     "language": "en",
     "tags": [
-      "Obesity",
-      "NICE"
+      "Bladder",
+      "NCCN"
     ],
-    "summary": "NICE 肥胖识别与管理指南条目。",
-    "embeddable": false
-  },
-  {
-    "id": "nice_thyroid_ng145",
-    "title": "NICE NG145 Thyroid disease: assessment and management",
-    "organization": "NICE",
-    "country": "英国",
-    "disease": "甲状腺疾病",
-    "category": "内分泌代谢",
-    "nodeIds": [
-      "endo",
-      "endo-thyroid"
-    ],
-    "year": 2019,
-    "url": "https://www.nice.org.uk/guidance/ng145",
-    "type": "NICE Guideline",
-    "language": "en",
-    "tags": [
-      "Thyroid",
-      "NICE"
-    ],
-    "summary": "NICE 甲状腺疾病指南条目。",
-    "embeddable": false
-  },
-  {
-    "id": "nice_osteo_cg146",
-    "title": "NICE CG146 Osteoporosis: assessing the risk of fragility fracture",
-    "organization": "NICE",
-    "country": "英国",
-    "disease": "骨质疏松",
-    "category": "内分泌代谢",
-    "nodeIds": [
-      "endo",
-      "endo-osteo"
-    ],
-    "year": 2017,
-    "url": "https://www.nice.org.uk/guidance/cg146",
-    "type": "NICE Guideline",
-    "language": "en",
-    "tags": [
-      "Osteoporosis",
-      "NICE"
-    ],
-    "summary": "NICE 骨质疏松脆性骨折风险评估指南条目。",
-    "embeddable": false
-  },
-  {
-    "id": "nice_gout_ng219",
-    "title": "NICE NG219 Gout: diagnosis and management",
-    "organization": "NICE",
-    "country": "英国",
-    "disease": "痛风 / 高尿酸",
-    "category": "内分泌代谢",
-    "nodeIds": [
-      "endo",
-      "endo-gout",
-      "rheum"
-    ],
-    "year": 2022,
-    "url": "https://www.nice.org.uk/guidance/ng219",
-    "type": "NICE Guideline",
-    "language": "en",
-    "tags": [
-      "Gout",
-      "NICE"
-    ],
-    "summary": "NICE 痛风诊断与管理指南条目。",
+    "summary": "NCCN 膀胱癌指南条目。",
     "embeddable": false
   },
   {
@@ -777,25 +250,25 @@
     "embeddable": false
   },
   {
-    "id": "nccn_nsclc",
-    "title": "NCCN Guidelines: Non-Small Cell Lung Cancer",
+    "id": "nccn_cervical",
+    "title": "NCCN Guidelines: Cervical Cancer",
     "organization": "NCCN",
     "country": "美国",
-    "disease": "肺癌",
+    "disease": "宫颈癌",
     "category": "肿瘤",
     "nodeIds": [
       "onco",
-      "onco-lung"
+      "onco-cervix"
     ],
     "year": 2025,
-    "url": "https://www.nccn.org/guidelines/guidelines-detail?category=1&id=1450",
+    "url": "https://www.nccn.org/guidelines/guidelines-detail?category=1&id=1426",
     "type": "NCCN Guidelines",
     "language": "en",
     "tags": [
-      "Lung",
+      "Cervical",
       "NCCN"
     ],
-    "summary": "NCCN 非小细胞肺癌指南详情页。",
+    "summary": "NCCN 宫颈癌指南详情页。",
     "embeddable": false
   },
   {
@@ -818,6 +291,28 @@
       "NCCN"
     ],
     "summary": "NCCN 结肠癌指南详情页。",
+    "embeddable": false
+  },
+  {
+    "id": "nccn_esophageal",
+    "title": "NCCN Guidelines: Esophageal and EGJ Cancers",
+    "organization": "NCCN",
+    "country": "美国",
+    "disease": "食管癌",
+    "category": "肿瘤",
+    "nodeIds": [
+      "onco",
+      "onco-eso"
+    ],
+    "year": 2025,
+    "url": "https://www.nccn.org/guidelines/category_1",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "Esophageal",
+      "NCCN"
+    ],
+    "summary": "NCCN 食管及食管胃交界癌指南目录入口。",
     "embeddable": false
   },
   {
@@ -865,47 +360,69 @@
     "embeddable": false
   },
   {
-    "id": "nccn_prostate",
-    "title": "NCCN Guidelines: Prostate Cancer",
+    "id": "nccn_melanoma",
+    "title": "NCCN Guidelines: Melanoma",
     "organization": "NCCN",
     "country": "美国",
-    "disease": "前列腺癌",
+    "disease": "黑色素瘤",
     "category": "肿瘤",
     "nodeIds": [
       "onco",
-      "onco-prostate"
+      "onco-melanoma"
     ],
     "year": 2025,
-    "url": "https://www.nccn.org/guidelines/guidelines-detail?category=1&id=1459",
-    "type": "NCCN Guidelines",
+    "url": "https://www.nccn.org/guidelines/guidelines-detail?category=1&id=1445",
+    "type": "Clinical Practice Guideline",
     "language": "en",
     "tags": [
-      "Prostate",
+      "Melanoma",
       "NCCN"
     ],
-    "summary": "NCCN 前列腺癌指南详情页。",
+    "summary": "NCCN 黑色素瘤指南条目（需注册查看全文）。",
     "embeddable": false
   },
   {
-    "id": "nccn_cervical",
-    "title": "NCCN Guidelines: Cervical Cancer",
+    "id": "nccn_nsclc",
+    "title": "NCCN Guidelines: Non-Small Cell Lung Cancer",
     "organization": "NCCN",
     "country": "美国",
-    "disease": "宫颈癌",
+    "disease": "肺癌",
     "category": "肿瘤",
     "nodeIds": [
       "onco",
-      "onco-cervix"
+      "onco-lung"
     ],
     "year": 2025,
-    "url": "https://www.nccn.org/guidelines/guidelines-detail?category=1&id=1426",
+    "url": "https://www.nccn.org/guidelines/guidelines-detail?category=1&id=1450",
     "type": "NCCN Guidelines",
     "language": "en",
     "tags": [
-      "Cervical",
+      "Lung",
       "NCCN"
     ],
-    "summary": "NCCN 宫颈癌指南详情页。",
+    "summary": "NCCN 非小细胞肺癌指南详情页。",
+    "embeddable": false
+  },
+  {
+    "id": "nccn_ovarian",
+    "title": "NCCN Guidelines: Ovarian Cancer",
+    "organization": "NCCN",
+    "country": "美国",
+    "disease": "卵巢癌",
+    "category": "肿瘤",
+    "nodeIds": [
+      "onco",
+      "onco-ovary"
+    ],
+    "year": 2025,
+    "url": "https://www.nccn.org/guidelines/guidelines-detail?category=1&id=1453",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "Ovarian",
+      "NCCN"
+    ],
+    "summary": "NCCN 卵巢癌指南条目。",
     "embeddable": false
   },
   {
@@ -931,25 +448,2839 @@
     "embeddable": false
   },
   {
-    "id": "who_cancer_pain",
-    "title": "WHO Guidelines for management of cancer pain",
-    "organization": "WHO",
-    "country": "国际",
-    "disease": "癌痛",
+    "id": "nccn_prostate",
+    "title": "NCCN Guidelines: Prostate Cancer",
+    "organization": "NCCN",
+    "country": "美国",
+    "disease": "前列腺癌",
     "category": "肿瘤",
     "nodeIds": [
       "onco",
-      "onco-pain"
+      "onco-prostate"
     ],
-    "year": 2018,
-    "url": "https://www.who.int/publications/i/item/9789241550390",
+    "year": 2025,
+    "url": "https://www.nccn.org/guidelines/guidelines-detail?category=1&id=1459",
+    "type": "NCCN Guidelines",
+    "language": "en",
+    "tags": [
+      "Prostate",
+      "NCCN"
+    ],
+    "summary": "NCCN 前列腺癌指南详情页。",
+    "embeddable": false
+  },
+  {
+    "id": "nccn_thyroid",
+    "title": "NCCN Guidelines: Thyroid Carcinoma",
+    "organization": "NCCN",
+    "country": "美国",
+    "disease": "甲状腺癌",
+    "category": "肿瘤",
+    "nodeIds": [
+      "onco",
+      "onco-thyroid"
+    ],
+    "year": 2025,
+    "url": "https://www.nccn.org/guidelines/category_1",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "Thyroid cancer",
+      "NCCN"
+    ],
+    "summary": "NCCN 甲状腺癌指南（见 Category 1 目录）。",
+    "embeddable": false
+  },
+  {
+    "id": "esc_af_2024",
+    "title": "2024 ESC Guidelines for atrial fibrillation",
+    "organization": "ESC",
+    "country": "欧洲",
+    "disease": "心房颤动",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-af"
+    ],
+    "year": 2024,
+    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/atrial-fibrillation/",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "AF",
+      "ESC"
+    ],
+    "summary": "ESC 心房颤动管理指南专题页。",
+    "embeddable": false
+  },
+  {
+    "id": "esc_pad_2024",
+    "title": "2024 ESC Guidelines for peripheral arterial and aortic diseases",
+    "organization": "ESC",
+    "country": "欧洲",
+    "disease": "外周动脉疾病",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-pad"
+    ],
+    "year": 2024,
+    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/peripheral-arterial-and-aortic-diseases/",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "PAD",
+      "ESC"
+    ],
+    "summary": "ESC 外周动脉与主动脉疾病指南专题页。",
+    "embeddable": false
+  },
+  {
+    "id": "esc_ccs_2024",
+    "title": "2024 ESC Guidelines: Chronic Coronary Syndromes",
+    "organization": "ESC",
+    "country": "欧洲",
+    "disease": "慢性冠脉综合征",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-cad"
+    ],
+    "year": 2024,
+    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/chronic-coronary-syndromes/",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "CCS",
+      "CAD",
+      "ESC"
+    ],
+    "summary": "ESC 2024 慢性冠脉综合征管理指南专题页。",
+    "embeddable": false
+  },
+  {
+    "id": "esc_htn_2024",
+    "title": "2024 ESC Guidelines: Elevated Blood Pressure and Hypertension",
+    "organization": "ESC",
+    "country": "欧洲",
+    "disease": "高血压",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-htn"
+    ],
+    "year": 2024,
+    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/elevated-blood-pressure-and-hypertension/",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "Hypertension",
+      "ESC"
+    ],
+    "summary": "ESC 2024 高血压与血压升高管理指南专题页（含全文入口）。",
+    "embeddable": false
+  },
+  {
+    "id": "nhc_guideline_hub",
+    "title": "国家卫生健康委员会 — 临床诊疗相关文件入口",
+    "organization": "国家卫生健康委员会",
+    "country": "中国",
+    "disease": "通则",
+    "category": "感染",
+    "nodeIds": [
+      "infect"
+    ],
+    "year": 2024,
+    "url": "http://www.nhc.gov.cn/",
+    "type": "Guideline Hub",
+    "language": "zh",
+    "tags": [
+      "NHC",
+      "China"
+    ],
+    "summary": "国家卫健委政策与诊疗规范公开入口（含传染病等）。",
+    "embeddable": false
+  },
+  {
+    "id": "cma_journals_hub",
+    "title": "中华医学会杂志社 — 指南与共识检索入口",
+    "organization": "中华医学会",
+    "country": "中国",
+    "disease": "通则",
+    "category": "心血管",
+    "nodeIds": [
+      "cv"
+    ],
+    "year": 2024,
+    "url": "https://www.cma.org.cn/",
+    "type": "Guideline Hub",
+    "language": "zh",
+    "tags": [
+      "CMA",
+      "China"
+    ],
+    "summary": "中华医学会官网；国内专科指南多发表于中华系列杂志，可由此检索最新版。",
+    "embeddable": false
+  },
+  {
+    "id": "aha_guidelines_statements",
+    "title": "AHA Guidelines & Statements Index",
+    "organization": "AHA",
+    "country": "美国",
+    "disease": "心力衰竭",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-hf",
+      "cv-stroke"
+    ],
+    "year": 2024,
+    "url": "https://professional.heart.org/en/guidelines-and-statements",
+    "type": "Guideline Hub",
+    "language": "en",
+    "tags": [
+      "AHA",
+      "Guidelines"
+    ],
+    "summary": "AHA 专业指南与科学声明索引页。",
+    "embeddable": false
+  },
+  {
+    "id": "ats_ards_2024",
+    "title": "ATS Guidelines related to ARDS / critical care hub",
+    "organization": "ATS",
+    "country": "美国",
+    "disease": "ARDS",
+    "category": "急危重症",
+    "nodeIds": [
+      "crit",
+      "crit-ards",
+      "resp"
+    ],
+    "year": 2024,
+    "url": "https://www.thoracic.org/statements/",
+    "type": "Guideline Hub",
+    "language": "en",
+    "tags": [
+      "ARDS",
+      "ATS"
+    ],
+    "summary": "ATS 声明与指南合集（含 ARDS / 重症呼吸相关文档）。",
+    "embeddable": false
+  },
+  {
+    "id": "csco_guidelines_hub",
+    "title": "CSCO 诊疗指南合集入口",
+    "organization": "中国临床肿瘤学会",
+    "country": "中国",
+    "disease": "肿瘤通则",
+    "category": "肿瘤",
+    "nodeIds": [
+      "onco"
+    ],
+    "year": 2024,
+    "url": "http://www.csco.org.cn/",
+    "type": "Guideline Hub",
+    "language": "zh",
+    "tags": [
+      "CSCO",
+      "Oncology"
+    ],
+    "summary": "中国临床肿瘤学会（CSCO）官网指南相关入口。",
+    "embeddable": false
+  },
+  {
+    "id": "esmo_breast",
+    "title": "ESMO Clinical Practice Guidelines: Breast Cancer",
+    "organization": "ESMO",
+    "country": "欧洲",
+    "disease": "乳腺癌",
+    "category": "肿瘤",
+    "nodeIds": [
+      "onco",
+      "onco-breast"
+    ],
+    "year": 2024,
+    "url": "https://www.esmo.org/guidelines/guidelines-by-topic/esmo-clinical-practice-guidelines-breast-cancer",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "Breast",
+      "ESMO"
+    ],
+    "summary": "ESMO 乳腺癌临床实践指南专题。",
+    "embeddable": false
+  },
+  {
+    "id": "esmo_crc",
+    "title": "ESMO Clinical Practice Guidelines: Colorectal Cancer",
+    "organization": "ESMO",
+    "country": "欧洲",
+    "disease": "结直肠癌",
+    "category": "肿瘤",
+    "nodeIds": [
+      "onco",
+      "onco-crc"
+    ],
+    "year": 2024,
+    "url": "https://www.esmo.org/guidelines/guidelines-by-topic/esmo-clinical-practice-guidelines-gastrointestinal-cancers",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "CRC",
+      "ESMO"
+    ],
+    "summary": "ESMO 胃肠道肿瘤（含结直肠癌）指南专题。",
+    "embeddable": false
+  },
+  {
+    "id": "esmo_lung",
+    "title": "ESMO Clinical Practice Guidelines: Lung Cancer",
+    "organization": "ESMO",
+    "country": "欧洲",
+    "disease": "肺癌",
+    "category": "肿瘤",
+    "nodeIds": [
+      "onco",
+      "onco-lung"
+    ],
+    "year": 2024,
+    "url": "https://www.esmo.org/guidelines/guidelines-by-topic/esmo-clinical-practice-guidelines-lung-and-chest-tumours",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "Lung",
+      "ESMO"
+    ],
+    "summary": "ESMO 肺癌与胸部肿瘤指南专题。",
+    "embeddable": false
+  },
+  {
+    "id": "gina_2024",
+    "title": "GINA 2024 Global Strategy for Asthma",
+    "organization": "GINA",
+    "country": "国际",
+    "disease": "哮喘",
+    "category": "呼吸",
+    "nodeIds": [
+      "resp",
+      "resp-asthma"
+    ],
+    "year": 2024,
+    "url": "https://ginasthma.org/2024-report/",
+    "type": "Strategy Report",
+    "language": "en",
+    "tags": [
+      "Asthma",
+      "GINA"
+    ],
+    "summary": "GINA 2024 哮喘全球策略报告页。",
+    "embeddable": false
+  },
+  {
+    "id": "idsa_all",
+    "title": "IDSA Practice Guidelines Index",
+    "organization": "IDSA",
+    "country": "美国",
+    "disease": "尿路感染",
+    "category": "感染",
+    "nodeIds": [
+      "infect",
+      "infect-uti"
+    ],
+    "year": 2024,
+    "url": "https://www.idsociety.org/practice-guideline/all-practice-guidelines",
+    "type": "Guideline Hub",
+    "language": "en",
+    "tags": [
+      "UTI",
+      "IDSA"
+    ],
+    "summary": "IDSA 实践指南总索引（含尿路感染等专题）。",
+    "embeddable": false
+  },
+  {
+    "id": "kdigo_ckd_2024",
+    "title": "KDIGO 2024 CKD Evaluation and Management",
+    "organization": "KDIGO",
+    "country": "国际",
+    "disease": "慢性肾脏病",
+    "category": "肾脏",
+    "nodeIds": [
+      "renal",
+      "renal-ckd"
+    ],
+    "year": 2024,
+    "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "CKD",
+      "KDIGO"
+    ],
+    "summary": "KDIGO CKD 评估与管理指南专题页。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_breast_ng101",
+    "title": "NICE NG101 Early and locally advanced breast cancer",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "乳腺癌",
+    "category": "肿瘤",
+    "nodeIds": [
+      "onco",
+      "onco-breast"
+    ],
+    "year": 2024,
+    "url": "https://www.nice.org.uk/guidance/ng101",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Breast cancer",
+      "NICE"
+    ],
+    "summary": "NICE 早期及局部晚期乳腺癌诊断与管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_lung_ng122",
+    "title": "NICE NG122 Lung cancer: diagnosis and management",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "肺癌",
+    "category": "肿瘤",
+    "nodeIds": [
+      "onco",
+      "onco-lung"
+    ],
+    "year": 2024,
+    "url": "https://www.nice.org.uk/guidance/ng122",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Lung cancer",
+      "NICE"
+    ],
+    "summary": "NICE 肺癌诊断与管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_covid_ng191",
+    "title": "NICE NG191 COVID-19 rapid guideline",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "COVID-19",
+    "category": "感染",
+    "nodeIds": [
+      "infect",
+      "infect-covid"
+    ],
+    "year": 2024,
+    "url": "https://www.nice.org.uk/guidance/ng191",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "COVID-19",
+      "NICE"
+    ],
+    "summary": "NICE COVID-19 管理快速指南条目。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_menopause_ng23",
+    "title": "NICE NG23 Menopause: identification and management",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "围绝经期",
+    "category": "妇产",
+    "nodeIds": [
+      "obgyn",
+      "obgyn-meno"
+    ],
+    "year": 2024,
+    "url": "https://www.nice.org.uk/guidance/ng23",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Menopause",
+      "NICE"
+    ],
+    "summary": "NICE 围绝经期识别与管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_meningitis_ng240",
+    "title": "NICE NG240 Meningitis (bacterial) and meningococcal disease",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "细菌性脑膜炎",
+    "category": "感染",
+    "nodeIds": [
+      "infect",
+      "infect-meningitis"
+    ],
+    "year": 2024,
+    "url": "https://www.nice.org.uk/guidance/ng240",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Meningitis",
+      "NICE"
+    ],
+    "summary": "NICE 细菌性脑膜炎与脑膜炎球菌病指南。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_ovarian_ng241",
+    "title": "NICE NG241 Ovarian cancer: recognition and initial management",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "卵巢癌",
+    "category": "肿瘤",
+    "nodeIds": [
+      "onco",
+      "onco-ovary"
+    ],
+    "year": 2024,
+    "url": "https://www.nice.org.uk/guidance/ng241",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Ovarian cancer",
+      "NICE"
+    ],
+    "summary": "NICE 卵巢癌识别与初始管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_asthma_ng245",
+    "title": "NICE NG245 Asthma: diagnosis, monitoring and chronic management (BTS/NICE/SIGN)",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "哮喘",
+    "category": "呼吸",
+    "nodeIds": [
+      "resp",
+      "resp-asthma",
+      "ped",
+      "ped-asthma"
+    ],
+    "year": 2024,
+    "url": "https://www.nice.org.uk/guidance/ng245",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Asthma",
+      "NICE",
+      "BTS",
+      "SIGN"
+    ],
+    "summary": "BTS/NICE/SIGN 联合哮喘诊断、监测与慢性管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_mg_ng247",
+    "title": "NICE NG247 Myasthenia gravis and Lambert-Eaton myasthenic syndrome",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "重症肌无力",
+    "category": "神经",
+    "nodeIds": [
+      "neuro",
+      "neuro-mg"
+    ],
+    "year": 2024,
+    "url": "https://www.nice.org.uk/guidance/ng247",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Myasthenia",
+      "NICE"
+    ],
+    "summary": "NICE 重症肌无力与 LEMS 指南。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_sepsis_ng51",
+    "title": "NICE NG51 Sepsis: recognition, diagnosis and early management",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "脓毒症",
+    "category": "感染",
+    "nodeIds": [
+      "infect",
+      "infect-sepsis",
+      "crit",
+      "crit-sepsis"
+    ],
+    "year": 2024,
+    "url": "https://www.nice.org.uk/guidance/ng51",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Sepsis",
+      "NICE"
+    ],
+    "summary": "NICE 脓毒症识别、诊断与早期管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_endometriosis_ng73",
+    "title": "NICE NG73 Endometriosis: diagnosis and management",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "子宫内膜异位症",
+    "category": "妇产",
+    "nodeIds": [
+      "obgyn",
+      "obgyn-endo"
+    ],
+    "year": 2024,
+    "url": "https://www.nice.org.uk/guidance/ng73",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Endometriosis",
+      "NICE"
+    ],
+    "summary": "NICE 子宫内膜异位症诊断与管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "uspstf_breast",
+    "title": "USPSTF Recommendation: Breast Cancer Screening",
+    "organization": "USPSTF",
+    "country": "美国",
+    "disease": "乳腺癌筛查",
+    "category": "肿瘤",
+    "nodeIds": [
+      "onco",
+      "onco-breast"
+    ],
+    "year": 2024,
+    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/breast-cancer-screening",
+    "type": "Recommendation Statement",
+    "language": "en",
+    "tags": [
+      "Screening",
+      "USPSTF",
+      "Breast"
+    ],
+    "summary": "USPSTF 乳腺癌筛查推荐声明。",
+    "embeddable": false
+  },
+  {
+    "id": "who_obesity_2024",
+    "title": "WHO — Obesity and overweight fact / guideline hub",
+    "organization": "WHO",
+    "country": "国际",
+    "disease": "肥胖",
+    "category": "内分泌代谢",
+    "nodeIds": [
+      "endo",
+      "endo-obesity"
+    ],
+    "year": 2024,
+    "url": "https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight",
+    "type": "Guideline Hub",
+    "language": "en",
+    "tags": [
+      "Obesity",
+      "WHO"
+    ],
+    "summary": "WHO 肥胖主题与相关指南入口。",
+    "embeddable": false
+  },
+  {
+    "id": "who_hbv_2024",
+    "title": "WHO Guidelines for chronic hepatitis B (2024)",
+    "organization": "WHO",
+    "country": "国际",
+    "disease": "乙型肝炎",
+    "category": "感染",
+    "nodeIds": [
+      "infect",
+      "infect-hbv"
+    ],
+    "year": 2024,
+    "url": "https://www.who.int/publications/i/item/9789240090903",
     "type": "Guideline",
     "language": "en",
     "tags": [
-      "Cancer pain",
+      "HBV",
       "WHO"
     ],
-    "summary": "WHO 癌痛管理指南出版物页。",
+    "summary": "WHO 慢性乙肝指南出版物页。",
+    "embeddable": false
+  },
+  {
+    "id": "who_malaria_2024",
+    "title": "WHO Guidelines for malaria",
+    "organization": "WHO",
+    "country": "国际",
+    "disease": "疟疾",
+    "category": "感染",
+    "nodeIds": [
+      "infect",
+      "infect-malaria"
+    ],
+    "year": 2024,
+    "url": "https://www.who.int/publications/i/item/guidelines-for-malaria",
+    "type": "Guideline",
+    "language": "en",
+    "tags": [
+      "Malaria",
+      "WHO"
+    ],
+    "summary": "WHO 疟疾指南合集入口。",
+    "embeddable": false
+  },
+  {
+    "id": "aha_acc_af_2023",
+    "title": "2023 ACC/AHA/ACCP/HRS Atrial Fibrillation Guideline",
+    "organization": "AHA / ACC",
+    "country": "美国",
+    "disease": "心房颤动",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-af"
+    ],
+    "year": 2023,
+    "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001193",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "AF",
+      "AHA",
+      "ACC"
+    ],
+    "summary": "ACC/AHA 等 2023 心房颤动管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "aha_acc_cad_2023",
+    "title": "2023 AHA/ACC Chronic Coronary Disease Guideline",
+    "organization": "AHA / ACC",
+    "country": "美国",
+    "disease": "慢性冠脉疾病",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-cad"
+    ],
+    "year": 2023,
+    "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001168",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "CCD",
+      "AHA",
+      "ACC"
+    ],
+    "summary": "AHA/ACC 2023 慢性冠脉疾病管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "esc_acs_2023",
+    "title": "2023 ESC Guidelines for the management of acute coronary syndromes",
+    "organization": "ESC",
+    "country": "欧洲",
+    "disease": "冠心病 / ACS",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-cad"
+    ],
+    "year": 2023,
+    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/acute-coronary-syndromes/",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "ACS",
+      "ESC"
+    ],
+    "summary": "ESC 急性冠脉综合征指南专题页。",
+    "embeddable": false
+  },
+  {
+    "id": "esc_cardiomyopathies_2023",
+    "title": "2023 ESC Guidelines: Cardiomyopathies",
+    "organization": "ESC",
+    "country": "欧洲",
+    "disease": "心肌病",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-cm"
+    ],
+    "year": 2023,
+    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/cardiomyopathies/",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "Cardiomyopathy",
+      "ESC"
+    ],
+    "summary": "ESC 2023 心肌病管理指南专题页。",
+    "embeddable": false
+  },
+  {
+    "id": "esc_cvd_diabetes_2023",
+    "title": "2023 ESC Guidelines: Cardiovascular Disease in Diabetes",
+    "organization": "ESC",
+    "country": "欧洲",
+    "disease": "糖尿病合并心血管疾病",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-prev",
+      "endo",
+      "endo-t2dm"
+    ],
+    "year": 2023,
+    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/cardiovascular-disease-in-diabetes/",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "Diabetes",
+      "CVD",
+      "ESC"
+    ],
+    "summary": "ESC 2023 糖尿病患者心血管疾病管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "esc_endocarditis_2023",
+    "title": "2023 ESC Guidelines: Infective Endocarditis",
+    "organization": "ESC",
+    "country": "欧洲",
+    "disease": "感染性心内膜炎",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-ie"
+    ],
+    "year": 2023,
+    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/endocarditis/",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "Endocarditis",
+      "ESC"
+    ],
+    "summary": "ESC 2023 感染性心内膜炎指南专题页。",
+    "embeddable": false
+  },
+  {
+    "id": "esc_hf_focused_2023",
+    "title": "2023 Focused Update: ESC Heart Failure Guidelines",
+    "organization": "ESC",
+    "country": "欧洲",
+    "disease": "心力衰竭",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-hf"
+    ],
+    "year": 2023,
+    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/acute-and-chronic-heart-failure/",
+    "type": "Focused Update",
+    "language": "en",
+    "tags": [
+      "Heart failure",
+      "ESC"
+    ],
+    "summary": "ESC 2021 心衰指南 2023 聚焦更新专题页。",
+    "embeddable": false
+  },
+  {
+    "id": "pubmed_cma_af",
+    "title": "心房颤动诊断和治疗中国指南 — PubMed 条目",
+    "organization": "中华医学会",
+    "country": "中国",
+    "disease": "心房颤动",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-af"
+    ],
+    "year": 2023,
+    "url": "https://pubmed.ncbi.nlm.nih.gov/37231614/",
+    "type": "临床实践指南",
+    "language": "zh",
+    "tags": [
+      "房颤",
+      "CMA"
+    ],
+    "summary": "中国房颤指南相关 PubMed 文献条目。",
+    "embeddable": false
+  },
+  {
+    "id": "pubmed_masld",
+    "title": "AASLD Practice Guidance on MASLD — PubMed",
+    "organization": "AASLD",
+    "country": "美国",
+    "disease": "脂肪肝 / MASLD",
+    "category": "消化",
+    "nodeIds": [
+      "gi",
+      "gi-nafld"
+    ],
+    "year": 2023,
+    "url": "https://pubmed.ncbi.nlm.nih.gov/37363821/",
+    "type": "Practice Guidance",
+    "language": "en",
+    "tags": [
+      "MASLD",
+      "AASLD"
+    ],
+    "summary": "AASLD MASLD 实践指导 PubMed 条目。",
+    "embeddable": false
+  },
+  {
+    "id": "aasld_masld_2023",
+    "title": "AASLD Practice Guidance on NAFLD / MASLD",
+    "organization": "AASLD",
+    "country": "美国",
+    "disease": "脂肪性肝病",
+    "category": "消化",
+    "nodeIds": [
+      "gi",
+      "gi-nafld"
+    ],
+    "year": 2023,
+    "url": "https://www.aasld.org/practice-guidelines",
+    "type": "Practice Guidance",
+    "language": "en",
+    "tags": [
+      "MASLD",
+      "NAFLD",
+      "AASLD"
+    ],
+    "summary": "AASLD 实践指南合集（含 NAFLD/MASLD 相关指导）。",
+    "embeddable": false
+  },
+  {
+    "id": "aasld_hcv_2023",
+    "title": "AASLD–IDSA HCV Guidance",
+    "organization": "AASLD",
+    "country": "美国",
+    "disease": "丙型肝炎",
+    "category": "感染",
+    "nodeIds": [
+      "infect",
+      "infect-hcv",
+      "gi"
+    ],
+    "year": 2023,
+    "url": "https://www.hcvguidelines.org/",
+    "type": "Practice Guidance",
+    "language": "en",
+    "tags": [
+      "HCV",
+      "AASLD",
+      "IDSA"
+    ],
+    "summary": "AASLD–IDSA 丙型肝炎诊疗指导网站。",
+    "embeddable": false
+  },
+  {
+    "id": "esmo_supportive",
+    "title": "ESMO Clinical Practice Guidelines: Supportive Care",
+    "organization": "ESMO",
+    "country": "欧洲",
+    "disease": "肿瘤支持治疗",
+    "category": "肿瘤",
+    "nodeIds": [
+      "onco",
+      "onco-pain",
+      "pall"
+    ],
+    "year": 2023,
+    "url": "https://www.esmo.org/guidelines/guidelines-by-topic/esmo-clinical-practice-guidelines-supportive-and-palliative-care",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "Supportive care",
+      "ESMO"
+    ],
+    "summary": "ESMO 支持与缓和治疗指南专题。",
+    "embeddable": false
+  },
+  {
+    "id": "eular_sle_2023",
+    "title": "EULAR recommendations for SLE",
+    "organization": "EULAR",
+    "country": "欧洲",
+    "disease": "系统性红斑狼疮",
+    "category": "风湿免疫",
+    "nodeIds": [
+      "rheum",
+      "rheum-sle"
+    ],
+    "year": 2023,
+    "url": "https://www.eular.org/recommendations-management.cfm",
+    "type": "Recommendations",
+    "language": "en",
+    "tags": [
+      "SLE",
+      "EULAR"
+    ],
+    "summary": "EULAR SLE 管理推荐入口。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_cg181",
+    "title": "NICE CG181 CVD risk assessment and lipid modification",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "血脂异常",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-lipid"
+    ],
+    "year": 2023,
+    "url": "https://www.nice.org.uk/guidance/cg181",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Lipids",
+      "NICE"
+    ],
+    "summary": "NICE 心血管风险评估与调脂指南条目。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_bipolar_cg185",
+    "title": "NICE CG185 Bipolar disorder",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "双相情感障碍",
+    "category": "精神心理",
+    "nodeIds": [
+      "psych",
+      "psych-bipolar"
+    ],
+    "year": 2023,
+    "url": "https://www.nice.org.uk/guidance/cg185",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Bipolar",
+      "NICE"
+    ],
+    "summary": "NICE 双相情感障碍指南条目。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_obesity_cg189",
+    "title": "NICE CG189 Obesity: identification, assessment and management",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "肥胖",
+    "category": "内分泌代谢",
+    "nodeIds": [
+      "endo",
+      "endo-obesity"
+    ],
+    "year": 2023,
+    "url": "https://www.nice.org.uk/guidance/cg189",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Obesity",
+      "NICE"
+    ],
+    "summary": "NICE 肥胖识别与管理指南条目。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_ad_cg57",
+    "title": "NICE CG57 Atopic eczema in under 12s",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "特应性皮炎",
+    "category": "皮肤",
+    "nodeIds": [
+      "derm",
+      "derm-ad"
+    ],
+    "year": 2023,
+    "url": "https://www.nice.org.uk/guidance/cg57",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Atopic dermatitis",
+      "NICE"
+    ],
+    "summary": "NICE 儿童特应性皮炎指南条目。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_adrenal",
+    "title": "NICE CKS — Addison's disease / adrenal insufficiency",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "肾上腺功能不全",
+    "category": "内分泌代谢",
+    "nodeIds": [
+      "endo",
+      "endo-adrenal"
+    ],
+    "year": 2023,
+    "url": "https://cks.nice.org.uk/topics/addisons-disease/",
+    "type": "Clinical Knowledge Summary",
+    "language": "en",
+    "tags": [
+      "Adrenal",
+      "NICE CKS"
+    ],
+    "summary": "NICE CKS 艾迪生病 / 肾上腺功能不全主题页。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_pmr",
+    "title": "NICE CKS — Polymyalgia rheumatica",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "风湿性多肌痛",
+    "category": "风湿免疫",
+    "nodeIds": [
+      "rheum",
+      "rheum-pmr"
+    ],
+    "year": 2023,
+    "url": "https://cks.nice.org.uk/topics/polymyalgia-rheumatica/",
+    "type": "Clinical Knowledge Summary",
+    "language": "en",
+    "tags": [
+      "PMR",
+      "NICE CKS"
+    ],
+    "summary": "NICE CKS 风湿性多肌痛主题页。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_preec_ng133",
+    "title": "NICE NG133 Hypertension in pregnancy",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "子痫前期",
+    "category": "妇产",
+    "nodeIds": [
+      "obgyn",
+      "obgyn-preec",
+      "cv-htn"
+    ],
+    "year": 2023,
+    "url": "https://www.nice.org.uk/guidance/ng133",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Preeclampsia",
+      "NICE"
+    ],
+    "summary": "NICE 妊娠期高血压（含子痫前期）指南条目。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_htn_ng136",
+    "title": "NICE NG136 Hypertension in adults: diagnosis and management",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "高血压",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-htn"
+    ],
+    "year": 2023,
+    "url": "https://www.nice.org.uk/guidance/ng136",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Hypertension",
+      "NICE"
+    ],
+    "summary": "NICE 成人高血压诊断与管理指南条目页。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_vte_ng158",
+    "title": "NICE NG158 Venous thromboembolic diseases",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "静脉血栓栓塞",
+    "category": "血液",
+    "nodeIds": [
+      "heme",
+      "heme-vte"
+    ],
+    "year": 2023,
+    "url": "https://www.nice.org.uk/guidance/ng158",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "VTE",
+      "NICE"
+    ],
+    "summary": "NICE 静脉血栓栓塞疾病指南条目。",
+    "embeddable": false
+  },
+  {
+    "id": "who_amr",
+    "title": "WHO Antimicrobial resistance topic & guidance",
+    "organization": "WHO",
+    "country": "国际",
+    "disease": "抗菌药物耐药",
+    "category": "感染",
+    "nodeIds": [
+      "infect",
+      "infect-amr"
+    ],
+    "year": 2023,
+    "url": "https://www.who.int/health-topics/antimicrobial-resistance",
+    "type": "Guideline Hub",
+    "language": "en",
+    "tags": [
+      "AMR",
+      "WHO"
+    ],
+    "summary": "WHO 抗菌药物耐药主题页。",
+    "embeddable": false
+  },
+  {
+    "id": "who_diabetes_pub",
+    "title": "WHO diabetes-related guideline publication",
+    "organization": "WHO",
+    "country": "国际",
+    "disease": "2 型糖尿病",
+    "category": "内分泌代谢",
+    "nodeIds": [
+      "endo",
+      "endo-t2dm"
+    ],
+    "year": 2023,
+    "url": "https://www.who.int/publications/i/item/9789240064898",
+    "type": "Guideline",
+    "language": "en",
+    "tags": [
+      "Diabetes",
+      "WHO"
+    ],
+    "summary": "WHO 糖尿病相关技术文件/指南出版物页。",
+    "embeddable": false
+  },
+  {
+    "id": "who_mental_depression",
+    "title": "WHO mhGAP / Depression guideline resources",
+    "organization": "WHO",
+    "country": "国际",
+    "disease": "抑郁障碍",
+    "category": "精神心理",
+    "nodeIds": [
+      "psych",
+      "psych-dep"
+    ],
+    "year": 2023,
+    "url": "https://www.who.int/publications/i/item/9789240084278",
+    "type": "Guideline",
+    "language": "en",
+    "tags": [
+      "Depression",
+      "WHO",
+      "mhGAP"
+    ],
+    "summary": "WHO 精神卫生相关指南 / mhGAP 资源入口。",
+    "embeddable": false
+  },
+  {
+    "id": "aha_acc_hf_2022",
+    "title": "2022 AHA/ACC/HFSA Heart Failure Guideline",
+    "organization": "AHA / ACC",
+    "country": "美国",
+    "disease": "心力衰竭",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-hf"
+    ],
+    "year": 2022,
+    "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001063",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "Heart failure",
+      "AHA",
+      "ACC"
+    ],
+    "summary": "AHA/ACC/HFSA 2022 心力衰竭管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "esc_pulmonary_hypertension_2022",
+    "title": "2022 ESC/ERS Guidelines: Pulmonary Hypertension",
+    "organization": "ESC",
+    "country": "欧洲",
+    "disease": "肺动脉高压",
+    "category": "呼吸",
+    "nodeIds": [
+      "resp",
+      "resp-ph",
+      "cv"
+    ],
+    "year": 2022,
+    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/pulmonary-hypertension/",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "PH",
+      "ESC",
+      "ERS"
+    ],
+    "summary": "ESC/ERS 2022 肺动脉高压诊断与治疗指南。",
+    "embeddable": false
+  },
+  {
+    "id": "pubmed_cma_hbv",
+    "title": "慢性乙型肝炎防治指南 — PubMed",
+    "organization": "中华医学会",
+    "country": "中国",
+    "disease": "乙型肝炎",
+    "category": "感染",
+    "nodeIds": [
+      "infect",
+      "infect-hbv"
+    ],
+    "year": 2022,
+    "url": "https://pubmed.ncbi.nlm.nih.gov/36617452/",
+    "type": "临床实践指南",
+    "language": "zh",
+    "tags": [
+      "乙肝",
+      "CMA"
+    ],
+    "summary": "中国慢性乙肝防治指南相关 PubMed 条目。",
+    "embeddable": false
+  },
+  {
+    "id": "acc_hf_hub",
+    "title": "ACC Heart Failure Guideline Hub",
+    "organization": "ACC",
+    "country": "美国",
+    "disease": "心力衰竭",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-hf"
+    ],
+    "year": 2022,
+    "url": "https://www.acc.org/Guidelines/hubs/heart-failure",
+    "type": "Guideline Hub",
+    "language": "en",
+    "tags": [
+      "Heart failure",
+      "ACC"
+    ],
+    "summary": "ACC 心力衰竭指南资源中心（指向正式指南与工具）。",
+    "embeddable": false
+  },
+  {
+    "id": "aha_trauma_related",
+    "title": "ATLS / trauma care — ACS COT resources",
+    "organization": "ACS",
+    "country": "美国",
+    "disease": "创伤",
+    "category": "急危重症",
+    "nodeIds": [
+      "crit",
+      "crit-trauma"
+    ],
+    "year": 2022,
+    "url": "https://www.facs.org/quality-programs/trauma/education/advanced-trauma-life-support/",
+    "type": "Education / Standard",
+    "language": "en",
+    "tags": [
+      "Trauma",
+      "ATLS",
+      "ACS"
+    ],
+    "summary": "美国外科学会 ATLS 创伤生命支持资源入口。",
+    "embeddable": false
+  },
+  {
+    "id": "eular_ra_2022",
+    "title": "EULAR recommendations for RA management (update)",
+    "organization": "EULAR",
+    "country": "欧洲",
+    "disease": "类风湿关节炎",
+    "category": "风湿免疫",
+    "nodeIds": [
+      "rheum",
+      "rheum-ra"
+    ],
+    "year": 2022,
+    "url": "https://www.eular.org/recommendations-management.cfm",
+    "type": "Recommendations",
+    "language": "en",
+    "tags": [
+      "RA",
+      "EULAR"
+    ],
+    "summary": "EULAR 类风湿关节炎等管理推荐合集入口。",
+    "embeddable": false
+  },
+  {
+    "id": "kdigo_dkd",
+    "title": "KDIGO Diabetes Management in CKD",
+    "organization": "KDIGO",
+    "country": "国际",
+    "disease": "糖尿病肾病",
+    "category": "肾脏",
+    "nodeIds": [
+      "renal",
+      "renal-dn",
+      "endo",
+      "endo-t2dm"
+    ],
+    "year": 2022,
+    "url": "https://kdigo.org/guidelines/diabetes-ckd/",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "DKD",
+      "KDIGO"
+    ],
+    "summary": "KDIGO CKD 合并糖尿病管理指南专题页。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_pcos_cks",
+    "title": "NICE CKS — Polycystic ovary syndrome",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "多囊卵巢综合征",
+    "category": "内分泌代谢",
+    "nodeIds": [
+      "endo",
+      "endo-pcos",
+      "obgyn"
+    ],
+    "year": 2022,
+    "url": "https://cks.nice.org.uk/topics/polycystic-ovary-syndrome/",
+    "type": "Clinical Knowledge Summary",
+    "language": "en",
+    "tags": [
+      "PCOS",
+      "NICE CKS"
+    ],
+    "summary": "NICE CKS 多囊卵巢综合征主题页。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_melanoma_ng14",
+    "title": "NICE NG14 Melanoma: assessment and management",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "黑色素瘤",
+    "category": "肿瘤",
+    "nodeIds": [
+      "onco",
+      "onco-melanoma"
+    ],
+    "year": 2022,
+    "url": "https://www.nice.org.uk/guidance/ng14",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Melanoma",
+      "NICE"
+    ],
+    "summary": "NICE 黑色素瘤评估与管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_fracture_ng158_related",
+    "title": "NICE NG166 / Osteoporosis fragility fracture pathways",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "脆性骨折",
+    "category": "骨科",
+    "nodeIds": [
+      "ortho",
+      "ortho-fracture",
+      "endo",
+      "endo-osteo"
+    ],
+    "year": 2022,
+    "url": "https://www.nice.org.uk/guidance/cg146",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Fracture",
+      "Osteoporosis",
+      "NICE"
+    ],
+    "summary": "骨质疏松相关骨折风险评估（链至 CG146，可继续检索 NG166 等）。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_t1dm_ng17",
+    "title": "NICE NG17 Type 1 diabetes in adults",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "1 型糖尿病",
+    "category": "内分泌代谢",
+    "nodeIds": [
+      "endo",
+      "endo-t1dm"
+    ],
+    "year": 2022,
+    "url": "https://www.nice.org.uk/guidance/ng17",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "T1DM",
+      "NICE"
+    ],
+    "summary": "NICE 成人 1 型糖尿病指南条目。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_epilepsy_ng217",
+    "title": "NICE NG217 Epilepsies in children, young people and adults",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "癫痫",
+    "category": "神经",
+    "nodeIds": [
+      "neuro",
+      "neuro-epilepsy"
+    ],
+    "year": 2022,
+    "url": "https://www.nice.org.uk/guidance/ng217",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Epilepsy",
+      "NICE"
+    ],
+    "summary": "NICE 癫痫指南条目。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_gout_ng219",
+    "title": "NICE NG219 Gout: diagnosis and management",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "痛风 / 高尿酸",
+    "category": "内分泌代谢",
+    "nodeIds": [
+      "endo",
+      "endo-gout",
+      "rheum"
+    ],
+    "year": 2022,
+    "url": "https://www.nice.org.uk/guidance/ng219",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Gout",
+      "NICE"
+    ],
+    "summary": "NICE 痛风诊断与管理指南条目。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_ms_ng220",
+    "title": "NICE NG220 Multiple sclerosis in adults",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "多发性硬化",
+    "category": "神经",
+    "nodeIds": [
+      "neuro",
+      "neuro-ms"
+    ],
+    "year": 2022,
+    "url": "https://www.nice.org.uk/guidance/ng220",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "MS",
+      "NICE"
+    ],
+    "summary": "NICE 成人多发性硬化管理指南条目。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_depression_ng222",
+    "title": "NICE NG222 Depression in adults",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "抑郁障碍",
+    "category": "精神心理",
+    "nodeIds": [
+      "psych",
+      "psych-dep"
+    ],
+    "year": 2022,
+    "url": "https://www.nice.org.uk/guidance/ng222",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Depression",
+      "NICE"
+    ],
+    "summary": "NICE 成人抑郁治疗与管理指南条目。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_ped_uti_ng224",
+    "title": "NICE NG224 Urinary tract infection in under 16s",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "儿童尿路感染",
+    "category": "儿科",
+    "nodeIds": [
+      "ped",
+      "ped-uti",
+      "infect",
+      "infect-uti"
+    ],
+    "year": 2022,
+    "url": "https://www.nice.org.uk/guidance/ng224",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "UTI",
+      "Pediatrics",
+      "NICE"
+    ],
+    "summary": "NICE 16 岁以下尿路感染诊断与管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_oa_ng226",
+    "title": "NICE NG226 Osteoarthritis in over 16s",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "骨关节炎",
+    "category": "风湿免疫",
+    "nodeIds": [
+      "rheum",
+      "rheum-oa",
+      "ortho",
+      "ortho-oa-knee"
+    ],
+    "year": 2022,
+    "url": "https://www.nice.org.uk/guidance/ng226",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "OA",
+      "NICE"
+    ],
+    "summary": "NICE 16 岁以上骨关节炎诊断与管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_thyroid_cancer_ng230",
+    "title": "NICE NG230 Thyroid cancer: assessment and management",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "甲状腺癌",
+    "category": "肿瘤",
+    "nodeIds": [
+      "onco",
+      "onco-thyroid",
+      "endo",
+      "endo-thyroid"
+    ],
+    "year": 2022,
+    "url": "https://www.nice.org.uk/guidance/ng230",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Thyroid cancer",
+      "NICE"
+    ],
+    "summary": "NICE 甲状腺癌评估与管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_t2dm_ng28",
+    "title": "NICE NG28 Type 2 diabetes in adults",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "2 型糖尿病",
+    "category": "内分泌代谢",
+    "nodeIds": [
+      "endo",
+      "endo-t2dm"
+    ],
+    "year": 2022,
+    "url": "https://www.nice.org.uk/guidance/ng28",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "T2DM",
+      "NICE"
+    ],
+    "summary": "NICE 成人 2 型糖尿病管理指南条目。",
+    "embeddable": false
+  },
+  {
+    "id": "who_tb_2022",
+    "title": "WHO consolidated guidelines on tuberculosis",
+    "organization": "WHO",
+    "country": "国际",
+    "disease": "结核病",
+    "category": "呼吸",
+    "nodeIds": [
+      "resp",
+      "resp-tb",
+      "infect"
+    ],
+    "year": 2022,
+    "url": "https://www.who.int/publications/i/item/9789240051829",
+    "type": "Guideline",
+    "language": "en",
+    "tags": [
+      "TB",
+      "WHO"
+    ],
+    "summary": "WHO 结核病综合指南出版物条目。",
+    "embeddable": false
+  },
+  {
+    "id": "aha_acc_chest_pain_2021",
+    "title": "2021 AHA/ACC Chest Pain Guideline",
+    "organization": "AHA / ACC",
+    "country": "美国",
+    "disease": "胸痛",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-cad"
+    ],
+    "year": 2021,
+    "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000001029",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "Chest pain",
+      "AHA",
+      "ACC"
+    ],
+    "summary": "AHA/ACC 2021 胸痛评估与诊断指南（Circulation）。",
+    "embeddable": false
+  },
+  {
+    "id": "aha_stroke_primary_2021",
+    "title": "2021 AHA/ASA Guideline: Primary Prevention of Stroke",
+    "organization": "AHA",
+    "country": "美国",
+    "disease": "卒中一级预防",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-stroke"
+    ],
+    "year": 2021,
+    "url": "https://www.ahajournals.org/doi/10.1161/STR.0000000000000375",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "Stroke",
+      "Prevention",
+      "AHA"
+    ],
+    "summary": "AHA/ASA 2021 卒中一级预防指南。",
+    "embeddable": false
+  },
+  {
+    "id": "esc_hf_2021",
+    "title": "2021 ESC Guidelines for acute and chronic heart failure",
+    "organization": "ESC",
+    "country": "欧洲",
+    "disease": "心力衰竭",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-hf"
+    ],
+    "year": 2021,
+    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/acute-and-chronic-heart-failure/",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "Heart failure",
+      "ESC"
+    ],
+    "summary": "ESC 急慢性心力衰竭指南专题页。",
+    "embeddable": false
+  },
+  {
+    "id": "esc_prevention_2021",
+    "title": "2021 ESC Guidelines: Cardiovascular Disease Prevention",
+    "organization": "ESC",
+    "country": "欧洲",
+    "disease": "心血管病预防",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-prev"
+    ],
+    "year": 2021,
+    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/cvd-prevention-in-clinical-practice/",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "Prevention",
+      "ESC"
+    ],
+    "summary": "ESC 2021 临床实践中的心血管病预防指南。",
+    "embeddable": false
+  },
+  {
+    "id": "esc_vhd_2021",
+    "title": "2021 ESC/EACTS Guidelines for valvular heart disease",
+    "organization": "ESC",
+    "country": "欧洲",
+    "disease": "心脏瓣膜病",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-vhd"
+    ],
+    "year": 2021,
+    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/valvular-heart-disease/",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "VHD",
+      "ESC"
+    ],
+    "summary": "ESC/EACTS 心脏瓣膜病指南专题页。",
+    "embeddable": false
+  },
+  {
+    "id": "pubmed_cma_copd",
+    "title": "慢性阻塞性肺疾病诊治指南（中国）— PubMed",
+    "organization": "中华医学会",
+    "country": "中国",
+    "disease": "COPD",
+    "category": "呼吸",
+    "nodeIds": [
+      "resp",
+      "resp-copd"
+    ],
+    "year": 2021,
+    "url": "https://pubmed.ncbi.nlm.nih.gov/34326095/",
+    "type": "临床实践指南",
+    "language": "zh",
+    "tags": [
+      "COPD",
+      "CMA"
+    ],
+    "summary": "中国 COPD 诊治指南相关 PubMed 文献条目。",
+    "embeddable": false
+  },
+  {
+    "id": "pubmed_cma_dm",
+    "title": "中国 2 型糖尿病防治指南 — PubMed",
+    "organization": "中华医学会",
+    "country": "中国",
+    "disease": "2 型糖尿病",
+    "category": "内分泌代谢",
+    "nodeIds": [
+      "endo",
+      "endo-t2dm"
+    ],
+    "year": 2021,
+    "url": "https://pubmed.ncbi.nlm.nih.gov/33543266/",
+    "type": "临床实践指南",
+    "language": "zh",
+    "tags": [
+      "糖尿病",
+      "CMA"
+    ],
+    "summary": "中国 2 型糖尿病防治指南相关 PubMed 文献条目。",
+    "embeddable": false
+  },
+  {
+    "id": "acr_vasculitis_2021",
+    "title": "ACR/VF Guideline for Vasculitis",
+    "organization": "ACR",
+    "country": "美国",
+    "disease": "血管炎",
+    "category": "风湿免疫",
+    "nodeIds": [
+      "rheum",
+      "rheum-vasculitis"
+    ],
+    "year": 2021,
+    "url": "https://rheumatology.org/vasculitis-guideline",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "Vasculitis",
+      "ACR"
+    ],
+    "summary": "ACR/VF 血管炎指南专题页。",
+    "embeddable": false
+  },
+  {
+    "id": "idsa_cdiff_2021",
+    "title": "IDSA/SHEA Clostridioides difficile Guidelines",
+    "organization": "IDSA",
+    "country": "美国",
+    "disease": "艰难梭菌感染",
+    "category": "感染",
+    "nodeIds": [
+      "infect",
+      "infect-cdiff"
+    ],
+    "year": 2021,
+    "url": "https://www.idsociety.org/practice-guideline/clostridioides-difficile/",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "C. difficile",
+      "IDSA"
+    ],
+    "summary": "IDSA/SHEA 艰难梭菌感染临床实践指南。",
+    "embeddable": false
+  },
+  {
+    "id": "kdigo_bp_2021",
+    "title": "KDIGO 2021 Blood Pressure in CKD Guideline",
+    "organization": "KDIGO",
+    "country": "国际",
+    "disease": "CKD 血压管理",
+    "category": "肾脏",
+    "nodeIds": [
+      "renal",
+      "renal-ckd",
+      "renal-htn",
+      "cv",
+      "cv-htn"
+    ],
+    "year": 2021,
+    "url": "https://kdigo.org/guidelines/blood-pressure-in-ckd/",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "CKD",
+      "Hypertension",
+      "KDIGO"
+    ],
+    "summary": "KDIGO CKD 血压管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "kdigo_gn_2021",
+    "title": "KDIGO 2021 Clinical Practice Guideline for Glomerular Diseases",
+    "organization": "KDIGO",
+    "country": "国际",
+    "disease": "肾小球疾病",
+    "category": "肾脏",
+    "nodeIds": [
+      "renal",
+      "renal-gn"
+    ],
+    "year": 2021,
+    "url": "https://kdigo.org/guidelines/gd/",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "Glomerular",
+      "KDIGO"
+    ],
+    "summary": "KDIGO 2021 肾小球疾病临床实践指南。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_urticaria_cg153_related",
+    "title": "NICE — Chronic urticaria pathways (see also BSACI)",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "慢性荨麻疹",
+    "category": "皮肤",
+    "nodeIds": [
+      "derm",
+      "derm-urticaria",
+      "allergy"
+    ],
+    "year": 2021,
+    "url": "https://www.nice.org.uk/guidance/ta339",
+    "type": "NICE Technology Appraisal",
+    "language": "en",
+    "tags": [
+      "Urticaria",
+      "NICE"
+    ],
+    "summary": "NICE 慢性自发性荨麻疹相关技术评估入口。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_glomerular",
+    "title": "NICE — Glomerular disease / CKD pathways",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "肾小球疾病",
+    "category": "肾脏",
+    "nodeIds": [
+      "renal",
+      "renal-gn"
+    ],
+    "year": 2021,
+    "url": "https://www.nice.org.uk/guidance/ng203",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Glomerular",
+      "CKD",
+      "NICE"
+    ],
+    "summary": "肾小球疾病常参照 NICE CKD 路径及专科指南（本条目链至 NG203）。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_itp",
+    "title": "NICE — Immune thrombocytopenia (related TA / pathways)",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "免疫性血小板减少症",
+    "category": "血液",
+    "nodeIds": [
+      "heme",
+      "heme-itp"
+    ],
+    "year": 2021,
+    "url": "https://www.nice.org.uk/guidance/ta667",
+    "type": "NICE Technology Appraisal",
+    "language": "en",
+    "tags": [
+      "ITP",
+      "NICE"
+    ],
+    "summary": "NICE ITP 相关技术评估入口。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_headache_cg150",
+    "title": "NICE CG150 Headaches in over 12s",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "偏头痛",
+    "category": "神经",
+    "nodeIds": [
+      "neuro",
+      "neuro-migraine"
+    ],
+    "year": 2021,
+    "url": "https://www.nice.org.uk/guidance/cg150",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Migraine",
+      "NICE"
+    ],
+    "summary": "NICE 头痛（含偏头痛）指南条目。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_prostate_ng131",
+    "title": "NICE NG131 Prostate cancer: diagnosis and management",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "前列腺癌",
+    "category": "肿瘤",
+    "nodeIds": [
+      "onco",
+      "onco-prostate"
+    ],
+    "year": 2021,
+    "url": "https://www.nice.org.uk/guidance/ng131",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Prostate cancer",
+      "NICE"
+    ],
+    "summary": "NICE 前列腺癌诊断与管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_chronic_pain_ng193",
+    "title": "NICE NG193 Chronic pain (primary and secondary) in over 16s",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "慢性疼痛",
+    "category": "缓和医疗",
+    "nodeIds": [
+      "pall",
+      "pall-pain"
+    ],
+    "year": 2021,
+    "url": "https://www.nice.org.uk/guidance/ng193",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Chronic pain",
+      "NICE"
+    ],
+    "summary": "NICE 16 岁以上慢性疼痛评估与管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_acne_ng198",
+    "title": "NICE NG198 Acne vulgaris: management",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "痤疮",
+    "category": "皮肤",
+    "nodeIds": [
+      "derm",
+      "derm-acne"
+    ],
+    "year": 2021,
+    "url": "https://www.nice.org.uk/guidance/ng198",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Acne",
+      "NICE"
+    ],
+    "summary": "NICE 寻常痤疮管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_cdiff_ng199",
+    "title": "NICE NG199 Clostridioides difficile infection: antimicrobial prescribing",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "艰难梭菌感染",
+    "category": "感染",
+    "nodeIds": [
+      "infect",
+      "infect-cdiff"
+    ],
+    "year": 2021,
+    "url": "https://www.nice.org.uk/guidance/ng199",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "C. difficile",
+      "NICE"
+    ],
+    "summary": "NICE 艰难梭菌感染抗菌处方指南。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_osa_ng202",
+    "title": "NICE NG202 Obstructive sleep apnoea/hypopnoea syndrome",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "阻塞性睡眠呼吸暂停",
+    "category": "呼吸",
+    "nodeIds": [
+      "resp",
+      "resp-osa"
+    ],
+    "year": 2021,
+    "url": "https://www.nice.org.uk/guidance/ng202",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "OSA",
+      "NICE"
+    ],
+    "summary": "NICE 阻塞性睡眠呼吸暂停等睡眠障碍指南。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_ckd_ng203",
+    "title": "NICE NG203 Chronic kidney disease",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "慢性肾脏病",
+    "category": "肾脏",
+    "nodeIds": [
+      "renal",
+      "renal-ckd"
+    ],
+    "year": 2021,
+    "url": "https://www.nice.org.uk/guidance/ng203",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "CKD",
+      "NICE"
+    ],
+    "summary": "NICE 慢性肾脏病评估与管理指南条目。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_anemia_ng8",
+    "title": "NICE NG8 Chronic kidney disease: managing anaemia",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "贫血",
+    "category": "血液",
+    "nodeIds": [
+      "heme",
+      "heme-anemia",
+      "renal-ckd"
+    ],
+    "year": 2021,
+    "url": "https://www.nice.org.uk/guidance/ng8",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Anemia",
+      "NICE"
+    ],
+    "summary": "NICE 慢性肾病贫血管理指南条目。",
+    "embeddable": false
+  },
+  {
+    "id": "pubmed_ssc_2021",
+    "title": "Surviving Sepsis Campaign Guidelines 2021 — PubMed",
+    "organization": "SSC",
+    "country": "国际",
+    "disease": "脓毒症",
+    "category": "感染",
+    "nodeIds": [
+      "infect",
+      "infect-sepsis"
+    ],
+    "year": 2021,
+    "url": "https://pubmed.ncbi.nlm.nih.gov/34605781/",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "Sepsis",
+      "SSC"
+    ],
+    "summary": "拯救脓毒症运动 2021 国际指南 PubMed 条目。",
+    "embeddable": false
+  },
+  {
+    "id": "ssc_sepsis_2021",
+    "title": "Surviving Sepsis Campaign: International Guidelines 2021",
+    "organization": "SSC",
+    "country": "国际",
+    "disease": "脓毒症",
+    "category": "急危重症",
+    "nodeIds": [
+      "infect",
+      "infect-sepsis",
+      "crit",
+      "crit-sepsis"
+    ],
+    "year": 2021,
+    "url": "https://www.sccm.org/clinical-resources/guidelines/guidelines/surviving-sepsis-campaign-guidelines-2021",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "Sepsis",
+      "SSC"
+    ],
+    "summary": "拯救脓毒症运动 2021 国际指南入口。",
+    "embeddable": false
+  },
+  {
+    "id": "uspstf_crc",
+    "title": "USPSTF Recommendation: Colorectal Cancer Screening",
+    "organization": "USPSTF",
+    "country": "美国",
+    "disease": "结直肠癌筛查",
+    "category": "消化",
+    "nodeIds": [
+      "gi",
+      "gi-crc-screen",
+      "onco",
+      "onco-crc"
+    ],
+    "year": 2021,
+    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/colorectal-cancer-screening",
+    "type": "Recommendation Statement",
+    "language": "en",
+    "tags": [
+      "Screening",
+      "USPSTF",
+      "CRC"
+    ],
+    "summary": "USPSTF 结直肠癌筛查推荐声明（A/B 级等高证据等级）。",
+    "embeddable": false
+  },
+  {
+    "id": "uspstf_htn",
+    "title": "USPSTF Recommendation: Hypertension Screening",
+    "organization": "USPSTF",
+    "country": "美国",
+    "disease": "高血压筛查",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-htn"
+    ],
+    "year": 2021,
+    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/hypertension-in-adults-screening",
+    "type": "Recommendation Statement",
+    "language": "en",
+    "tags": [
+      "Screening",
+      "USPSTF",
+      "Hypertension"
+    ],
+    "summary": "USPSTF 成人高血压筛查推荐。",
+    "embeddable": false
+  },
+  {
+    "id": "uspstf_lung",
+    "title": "USPSTF Recommendation: Lung Cancer Screening",
+    "organization": "USPSTF",
+    "country": "美国",
+    "disease": "肺癌筛查",
+    "category": "肿瘤",
+    "nodeIds": [
+      "onco",
+      "onco-lung"
+    ],
+    "year": 2021,
+    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/lung-cancer-screening",
+    "type": "Recommendation Statement",
+    "language": "en",
+    "tags": [
+      "Screening",
+      "USPSTF",
+      "Lung"
+    ],
+    "summary": "USPSTF 肺癌筛查推荐声明。",
+    "embeddable": false
+  },
+  {
+    "id": "who_hiv_2021",
+    "title": "WHO Consolidated guidelines on HIV prevention, testing, treatment",
+    "organization": "WHO",
+    "country": "国际",
+    "disease": "HIV",
+    "category": "感染",
+    "nodeIds": [
+      "infect",
+      "infect-hiv"
+    ],
+    "year": 2021,
+    "url": "https://www.who.int/publications/i/item/9789240031593",
+    "type": "Guideline",
+    "language": "en",
+    "tags": [
+      "HIV",
+      "WHO"
+    ],
+    "summary": "WHO HIV 预防、检测、治疗与服务整合指南。",
+    "embeddable": false
+  },
+  {
+    "id": "who_hiv",
+    "title": "WHO Consolidated HIV guidelines",
+    "organization": "WHO",
+    "country": "国际",
+    "disease": "HIV / AIDS",
+    "category": "感染",
+    "nodeIds": [
+      "infect",
+      "infect-hiv"
+    ],
+    "year": 2021,
+    "url": "https://www.who.int/publications/i/item/9789240031593",
+    "type": "Guideline",
+    "language": "en",
+    "tags": [
+      "HIV",
+      "WHO"
+    ],
+    "summary": "WHO HIV 综合指南出版物页。",
+    "embeddable": false
+  },
+  {
+    "id": "who_htn_2021",
+    "title": "WHO Guideline for the pharmacological treatment of hypertension in adults",
+    "organization": "WHO",
+    "country": "国际",
+    "disease": "高血压",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-htn"
+    ],
+    "year": 2021,
+    "url": "https://www.who.int/publications/i/item/9789240033986",
+    "type": "Guideline",
+    "language": "en",
+    "tags": [
+      "Hypertension",
+      "WHO"
+    ],
+    "summary": "WHO 成人高血压药物治疗指南出版物条目页。",
+    "embeddable": false
+  },
+  {
+    "id": "aha_acc_vhd_2020",
+    "title": "2020 ACC/AHA Guideline: Valvular Heart Disease",
+    "organization": "AHA / ACC",
+    "country": "美国",
+    "disease": "心脏瓣膜病",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-vhd"
+    ],
+    "year": 2020,
+    "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000000923",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "VHD",
+      "AHA",
+      "ACC"
+    ],
+    "summary": "ACC/AHA 2020 心脏瓣膜病管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "aha_cpr_2020",
+    "title": "2020 AHA Guidelines for CPR and ECC",
+    "organization": "AHA",
+    "country": "美国",
+    "disease": "心肺复苏",
+    "category": "急危重症",
+    "nodeIds": [
+      "crit",
+      "crit-cardiac-arrest"
+    ],
+    "year": 2020,
+    "url": "https://cpr.heart.org/en/resuscitation-science/cpr-and-ecc-guidelines",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "CPR",
+      "ECC",
+      "AHA"
+    ],
+    "summary": "AHA 心肺复苏与心血管急救指南入口。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_rhinitis_qs",
+    "title": "NICE — Allergic rhinitis (see BSACI / related pathways)",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "变应性鼻炎",
+    "category": "过敏免疫",
+    "nodeIds": [
+      "allergy",
+      "allergy-rhinitis"
+    ],
+    "year": 2020,
+    "url": "https://www.nice.org.uk/guidance/ng126",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Rhinitis",
+      "NICE"
+    ],
+    "summary": "NICE 相关鼻窦炎路径（变应性鼻炎检索入口）。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_vasculitis",
+    "title": "NICE — Vasculitis related pathways",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "血管炎",
+    "category": "风湿免疫",
+    "nodeIds": [
+      "rheum",
+      "rheum-vasculitis"
+    ],
+    "year": 2020,
+    "url": "https://www.nice.org.uk/guidance/ng100",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Vasculitis",
+      "NICE"
+    ],
+    "summary": "血管炎相关 NICE 入口（可进一步检索专科学会指南）。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_anxiety_cg113",
+    "title": "NICE CG113 Generalised anxiety disorder and panic disorder",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "焦虑障碍",
+    "category": "精神心理",
+    "nodeIds": [
+      "psych",
+      "psych-anxiety"
+    ],
+    "year": 2020,
+    "url": "https://www.nice.org.uk/guidance/cg113",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Anxiety",
+      "NICE"
+    ],
+    "summary": "NICE 广泛性焦虑与惊恐障碍指南条目。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_anaphylaxis_cg134",
+    "title": "NICE CG134 Anaphylaxis: assessment and referral",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "过敏性休克",
+    "category": "过敏免疫",
+    "nodeIds": [
+      "allergy",
+      "allergy-anaphylaxis",
+      "crit"
+    ],
+    "year": 2020,
+    "url": "https://www.nice.org.uk/guidance/cg134",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Anaphylaxis",
+      "NICE"
+    ],
+    "summary": "NICE 过敏性休克评估与转诊指南。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_ra_ng100",
+    "title": "NICE NG100 Rheumatoid arthritis in adults",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "类风湿关节炎",
+    "category": "风湿免疫",
+    "nodeIds": [
+      "rheum",
+      "rheum-ra"
+    ],
+    "year": 2020,
+    "url": "https://www.nice.org.uk/guidance/ng100",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "RA",
+      "NICE"
+    ],
+    "summary": "NICE 成人类风湿关节炎管理指南条目。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_crc_screen_ng151",
+    "title": "NICE NG151 Colorectal cancer",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "结直肠癌",
+    "category": "肿瘤",
+    "nodeIds": [
+      "onco",
+      "onco-crc",
+      "gi",
+      "gi-crc-screen"
+    ],
+    "year": 2020,
+    "url": "https://www.nice.org.uk/guidance/ng151",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Colorectal",
+      "NICE"
+    ],
+    "summary": "NICE 结直肠癌诊断与管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_gdm_ng3",
+    "title": "NICE NG3 Diabetes in pregnancy",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "妊娠期糖尿病",
+    "category": "妇产",
+    "nodeIds": [
+      "obgyn",
+      "endo-gdm",
+      "endo"
+    ],
+    "year": 2020,
+    "url": "https://www.nice.org.uk/guidance/ng3",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "GDM",
+      "NICE"
+    ],
+    "summary": "NICE 妊娠合并糖尿病指南条目。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_lbp_ng59",
+    "title": "NICE NG59 Low back pain and sciatica in over 16s",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "腰痛 / 坐骨神经痛",
+    "category": "骨科",
+    "nodeIds": [
+      "ortho",
+      "ortho-lbp"
+    ],
+    "year": 2020,
+    "url": "https://www.nice.org.uk/guidance/ng59",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Low back pain",
+      "NICE"
+    ],
+    "summary": "NICE 腰痛与坐骨神经痛评估与管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "esc_pe_2019",
+    "title": "2019 ESC Guidelines for acute pulmonary embolism",
+    "organization": "ESC",
+    "country": "欧洲",
+    "disease": "肺栓塞",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-pe",
+      "heme",
+      "heme-vte"
+    ],
+    "year": 2019,
+    "url": "https://www.escardio.org/Guidelines/Clinical-Practice-Guidelines/Acute-Pulmonary-Embolism-Diagnosis-and-Management-of",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "PE",
+      "ESC"
+    ],
+    "summary": "ESC 急性肺栓塞诊断与管理指南页。",
+    "embeddable": false
+  },
+  {
+    "id": "esc_lipid_2019",
+    "title": "2019 ESC/EAS Guidelines for dyslipidaemias",
+    "organization": "ESC",
+    "country": "欧洲",
+    "disease": "血脂异常",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-lipid"
+    ],
+    "year": 2019,
+    "url": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/dyslipidaemias/",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "Lipids",
+      "ESC"
+    ],
+    "summary": "ESC/EAS 血脂异常管理指南专题页。",
+    "embeddable": false
+  },
+  {
+    "id": "pubmed_cma_acs",
+    "title": "急性冠脉综合征急诊快速诊疗指南 — PubMed 条目",
+    "organization": "中华医学会",
+    "country": "中国",
+    "disease": "冠心病 / ACS",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-cad"
+    ],
+    "year": 2019,
+    "url": "https://pubmed.ncbi.nlm.nih.gov/31550814/",
+    "type": "临床实践指南",
+    "language": "zh",
+    "tags": [
+      "ACS",
+      "CMA"
+    ],
+    "summary": "中国 ACS 相关指南的 PubMed 文献条目。",
+    "embeddable": false
+  },
+  {
+    "id": "pubmed_aha_stroke_2019",
+    "title": "AHA/ASA Early Management of Acute Ischemic Stroke — PubMed",
+    "organization": "AHA",
+    "country": "美国",
+    "disease": "卒中",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-stroke"
+    ],
+    "year": 2019,
+    "url": "https://pubmed.ncbi.nlm.nih.gov/31662037/",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "Stroke",
+      "AHA"
+    ],
+    "summary": "急性缺血性卒中早期管理指南 PubMed 条目。",
+    "embeddable": false
+  },
+  {
+    "id": "pubmed_sle",
+    "title": "EULAR/ACR SLE classification criteria — PubMed",
+    "organization": "EULAR / ACR",
+    "country": "国际",
+    "disease": "系统性红斑狼疮",
+    "category": "风湿免疫",
+    "nodeIds": [
+      "rheum",
+      "rheum-sle"
+    ],
+    "year": 2019,
+    "url": "https://pubmed.ncbi.nlm.nih.gov/31383717/",
+    "type": "Classification Criteria",
+    "language": "en",
+    "tags": [
+      "SLE",
+      "EULAR"
+    ],
+    "summary": "EULAR/ACR SLE 分类标准 PubMed 条目。",
+    "embeddable": false
+  },
+  {
+    "id": "idsa_cap",
+    "title": "IDSA/ATS Community-Acquired Pneumonia in Adults",
+    "organization": "IDSA",
+    "country": "美国",
+    "disease": "社区获得性肺炎",
+    "category": "呼吸",
+    "nodeIds": [
+      "resp",
+      "resp-cap",
+      "infect"
+    ],
+    "year": 2019,
+    "url": "https://www.idsociety.org/practice-guideline/community-acquired-pneumonia-cap-in-adults/",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "CAP",
+      "IDSA"
+    ],
+    "summary": "IDSA/ATS 成人社区获得性肺炎指南页。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_contraception_cg30",
+    "title": "NICE CG30 Long-acting reversible contraception",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "长效可逆避孕",
+    "category": "妇产",
+    "nodeIds": [
+      "obgyn",
+      "obgyn-contraception"
+    ],
+    "year": 2019,
+    "url": "https://www.nice.org.uk/guidance/cg30",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Contraception",
+      "NICE"
+    ],
+    "summary": "NICE 长效可逆避孕指南。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_copd_ng115",
+    "title": "NICE NG115 COPD in over 16s",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "COPD",
+    "category": "呼吸",
+    "nodeIds": [
+      "resp",
+      "resp-copd"
+    ],
+    "year": 2019,
+    "url": "https://www.nice.org.uk/guidance/ng115",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "COPD",
+      "NICE"
+    ],
+    "summary": "NICE COPD 诊断与管理指南条目。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_stones_ng118",
+    "title": "NICE NG118 Renal and ureteric stones",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "泌尿系结石",
+    "category": "泌尿",
+    "nodeIds": [
+      "uro",
+      "uro-stone",
+      "renal"
+    ],
+    "year": 2019,
+    "url": "https://www.nice.org.uk/guidance/ng118",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Urolithiasis",
+      "NICE"
+    ],
+    "summary": "NICE 肾结石与输尿管结石评估与管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_incontinence_ng123",
+    "title": "NICE NG123 Urinary incontinence and pelvic organ prolapse in women",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "女性尿失禁",
+    "category": "泌尿",
+    "nodeIds": [
+      "uro",
+      "uro-incontinence",
+      "obgyn"
+    ],
+    "year": 2019,
+    "url": "https://www.nice.org.uk/guidance/ng123",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Incontinence",
+      "NICE"
+    ],
+    "summary": "NICE 女性尿失禁与盆腔器官脱垂指南。",
     "embeddable": false
   },
   {
@@ -999,90 +3330,92 @@
     "embeddable": false
   },
   {
-    "id": "pubmed_hp",
-    "title": "Kyoto global consensus on Helicobacter pylori gastritis — PubMed",
-    "organization": "多机构共识",
-    "country": "国际",
-    "disease": "幽门螺杆菌",
-    "category": "消化",
-    "nodeIds": [
-      "gi",
-      "gi-hp"
-    ],
-    "year": 2015,
-    "url": "https://pubmed.ncbi.nlm.nih.gov/26187504/",
-    "type": "Consensus",
-    "language": "en",
-    "tags": [
-      "H.pylori"
-    ],
-    "summary": "幽门螺杆菌胃炎京都全球共识 PubMed 条目。",
-    "embeddable": false
-  },
-  {
-    "id": "nice_cirrhosis_ng50",
-    "title": "NICE NG50 Cirrhosis in over 16s",
+    "id": "nice_palliative_ng142",
+    "title": "NICE NG142 End of life care for adults",
     "organization": "NICE",
     "country": "英国",
-    "disease": "肝硬化",
-    "category": "消化",
+    "disease": "成人临终关怀",
+    "category": "缓和医疗",
     "nodeIds": [
-      "gi",
-      "gi-cirrhosis"
+      "pall",
+      "pall-care"
     ],
-    "year": 2016,
-    "url": "https://www.nice.org.uk/guidance/ng50",
+    "year": 2019,
+    "url": "https://www.nice.org.uk/guidance/ng142",
     "type": "NICE Guideline",
     "language": "en",
     "tags": [
-      "Cirrhosis",
+      "Palliative",
       "NICE"
     ],
-    "summary": "NICE 肝硬化评估与管理指南条目。",
+    "summary": "NICE 成人临终关怀服务指南。",
     "embeddable": false
   },
   {
-    "id": "pubmed_masld",
-    "title": "AASLD Practice Guidance on MASLD — PubMed",
-    "organization": "AASLD",
-    "country": "美国",
-    "disease": "脂肪肝 / MASLD",
-    "category": "消化",
-    "nodeIds": [
-      "gi",
-      "gi-nafld"
-    ],
-    "year": 2023,
-    "url": "https://pubmed.ncbi.nlm.nih.gov/37363821/",
-    "type": "Practice Guidance",
-    "language": "en",
-    "tags": [
-      "MASLD",
-      "AASLD"
-    ],
-    "summary": "AASLD MASLD 实践指导 PubMed 条目。",
-    "embeddable": false
-  },
-  {
-    "id": "nice_pancreatitis_ng104",
-    "title": "NICE NG104 Pancreatitis",
+    "id": "nice_fever_ng143",
+    "title": "NICE NG143 Fever in under 5s",
     "organization": "NICE",
     "country": "英国",
-    "disease": "胰腺炎",
-    "category": "消化",
+    "disease": "5 岁以下发热",
+    "category": "儿科",
     "nodeIds": [
-      "gi",
-      "gi-pancreatitis"
+      "ped",
+      "ped-fever"
     ],
-    "year": 2018,
-    "url": "https://www.nice.org.uk/guidance/ng104",
+    "year": 2019,
+    "url": "https://www.nice.org.uk/guidance/ng143",
     "type": "NICE Guideline",
     "language": "en",
     "tags": [
-      "Pancreatitis",
+      "Fever",
+      "Pediatrics",
       "NICE"
     ],
-    "summary": "NICE 胰腺炎指南条目。",
+    "summary": "NICE 5 岁以下儿童发热评估与初始管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_thyroid_ng145",
+    "title": "NICE NG145 Thyroid disease: assessment and management",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "甲状腺疾病",
+    "category": "内分泌代谢",
+    "nodeIds": [
+      "endo",
+      "endo-thyroid"
+    ],
+    "year": 2019,
+    "url": "https://www.nice.org.uk/guidance/ng145",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Thyroid",
+      "NICE"
+    ],
+    "summary": "NICE 甲状腺疾病指南条目。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_aki_ng148",
+    "title": "NICE NG148 Acute kidney injury: prevention, detection and management",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "急性肾损伤",
+    "category": "肾脏",
+    "nodeIds": [
+      "renal",
+      "renal-aki"
+    ],
+    "year": 2019,
+    "url": "https://www.nice.org.uk/guidance/ng148",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "AKI",
+      "NICE"
+    ],
+    "summary": "NICE 急性肾损伤预防、识别与管理指南。",
     "embeddable": false
   },
   {
@@ -1108,357 +3441,298 @@
     "embeddable": false
   },
   {
-    "id": "kdigo_ckd_2024",
-    "title": "KDIGO 2024 CKD Evaluation and Management",
-    "organization": "KDIGO",
-    "country": "国际",
-    "disease": "慢性肾脏病",
-    "category": "肾脏",
-    "nodeIds": [
-      "renal",
-      "renal-ckd"
-    ],
-    "year": 2024,
-    "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
-    "type": "Clinical Practice Guideline",
-    "language": "en",
-    "tags": [
-      "CKD",
-      "KDIGO"
-    ],
-    "summary": "KDIGO CKD 评估与管理指南专题页。",
-    "embeddable": false
-  },
-  {
-    "id": "nice_ckd_ng203",
-    "title": "NICE NG203 Chronic kidney disease",
+    "id": "nice_tb_ng33",
+    "title": "NICE NG33 Tuberculosis",
     "organization": "NICE",
     "country": "英国",
-    "disease": "慢性肾脏病",
-    "category": "肾脏",
+    "disease": "结核病",
+    "category": "呼吸",
     "nodeIds": [
-      "renal",
-      "renal-ckd"
+      "resp",
+      "resp-tb",
+      "infect"
     ],
-    "year": 2021,
-    "url": "https://www.nice.org.uk/guidance/ng203",
+    "year": 2019,
+    "url": "https://www.nice.org.uk/guidance/ng33",
     "type": "NICE Guideline",
     "language": "en",
     "tags": [
-      "CKD",
+      "TB",
       "NICE"
     ],
-    "summary": "NICE 慢性肾脏病评估与管理指南条目。",
+    "summary": "NICE 结核病预防、诊断与管理指南。",
     "embeddable": false
   },
   {
-    "id": "kdigo_dkd",
-    "title": "KDIGO Diabetes Management in CKD",
-    "organization": "KDIGO",
-    "country": "国际",
-    "disease": "糖尿病肾病",
-    "category": "肾脏",
+    "id": "nice_adhd_ng87",
+    "title": "NICE NG87 Attention deficit hyperactivity disorder",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "ADHD",
+    "category": "精神心理",
     "nodeIds": [
-      "renal",
-      "renal-dn",
-      "endo",
-      "endo-t2dm"
+      "psych",
+      "psych-adhd",
+      "ped"
     ],
-    "year": 2022,
-    "url": "https://kdigo.org/guidelines/diabetes-ckd/",
-    "type": "Clinical Practice Guideline",
+    "year": 2019,
+    "url": "https://www.nice.org.uk/guidance/ng87",
+    "type": "NICE Guideline",
     "language": "en",
     "tags": [
-      "DKD",
-      "KDIGO"
+      "ADHD",
+      "NICE"
     ],
-    "summary": "KDIGO CKD 合并糖尿病管理指南专题页。",
+    "summary": "NICE ADHD 诊断与管理指南。",
     "embeddable": false
   },
   {
-    "id": "pubmed_kdigo_aki",
-    "title": "KDIGO Clinical Practice Guideline for AKI — PubMed",
-    "organization": "KDIGO",
-    "country": "国际",
-    "disease": "急性肾损伤",
-    "category": "肾脏",
-    "nodeIds": [
-      "renal",
-      "renal-aki"
-    ],
-    "year": 2012,
-    "url": "https://pubmed.ncbi.nlm.nih.gov/22890468/",
-    "type": "Clinical Practice Guideline",
-    "language": "en",
-    "tags": [
-      "AKI",
-      "KDIGO"
-    ],
-    "summary": "KDIGO 急性肾损伤指南 PubMed 条目。",
-    "embeddable": false
-  },
-  {
-    "id": "who_hbv_2024",
-    "title": "WHO Guidelines for chronic hepatitis B (2024)",
-    "organization": "WHO",
-    "country": "国际",
-    "disease": "乙型肝炎",
-    "category": "感染",
-    "nodeIds": [
-      "infect",
-      "infect-hbv"
-    ],
-    "year": 2024,
-    "url": "https://www.who.int/publications/i/item/9789240090903",
-    "type": "Guideline",
-    "language": "en",
-    "tags": [
-      "HBV",
-      "WHO"
-    ],
-    "summary": "WHO 慢性乙肝指南出版物页。",
-    "embeddable": false
-  },
-  {
-    "id": "pubmed_cma_hbv",
-    "title": "慢性乙型肝炎防治指南 — PubMed",
+    "id": "pubmed_cma_htn_2018",
+    "title": "中国高血压防治指南（2018 修订版）— PubMed 条目",
     "organization": "中华医学会",
     "country": "中国",
-    "disease": "乙型肝炎",
-    "category": "感染",
+    "disease": "高血压",
+    "category": "心血管",
     "nodeIds": [
-      "infect",
-      "infect-hbv"
+      "cv",
+      "cv-htn"
     ],
-    "year": 2022,
-    "url": "https://pubmed.ncbi.nlm.nih.gov/36617452/",
+    "year": 2018,
+    "url": "https://pubmed.ncbi.nlm.nih.gov/30580542/",
     "type": "临床实践指南",
     "language": "zh",
     "tags": [
-      "乙肝",
+      "高血压",
       "CMA"
     ],
-    "summary": "中国慢性乙肝防治指南相关 PubMed 条目。",
+    "summary": "中国高血压防治指南 2018 修订版的 PubMed 文献条目（可据此定位期刊全文）。",
     "embeddable": false
   },
   {
-    "id": "who_hcv",
-    "title": "WHO Guidelines for chronic hepatitis C",
-    "organization": "WHO",
-    "country": "国际",
-    "disease": "丙型肝炎",
+    "id": "aasld_hbv_2018",
+    "title": "AASLD Hepatitis B Guidance",
+    "organization": "AASLD",
+    "country": "美国",
+    "disease": "乙型肝炎",
     "category": "感染",
     "nodeIds": [
       "infect",
-      "infect-hcv"
+      "infect-hbv",
+      "gi"
     ],
     "year": 2018,
-    "url": "https://www.who.int/publications/i/item/9789241550345",
-    "type": "Guideline",
+    "url": "https://www.aasld.org/practice-guidelines/chronic-hepatitis-b",
+    "type": "Practice Guidance",
     "language": "en",
     "tags": [
-      "HCV",
-      "WHO"
+      "HBV",
+      "AASLD"
     ],
-    "summary": "WHO 慢性丙肝诊疗指南出版物页。",
+    "summary": "AASLD 慢性乙型肝炎实践指导。",
     "embeddable": false
   },
   {
-    "id": "who_hiv",
-    "title": "WHO Consolidated HIV guidelines",
-    "organization": "WHO",
-    "country": "国际",
-    "disease": "HIV / AIDS",
+    "id": "idsa_influenza_2018",
+    "title": "IDSA Clinical Practice Guidelines: Seasonal Influenza",
+    "organization": "IDSA",
+    "country": "美国",
+    "disease": "季节性流感",
     "category": "感染",
     "nodeIds": [
       "infect",
-      "infect-hiv"
+      "infect-flu"
     ],
-    "year": 2021,
-    "url": "https://www.who.int/publications/i/item/9789240031593",
-    "type": "Guideline",
-    "language": "en",
-    "tags": [
-      "HIV",
-      "WHO"
-    ],
-    "summary": "WHO HIV 综合指南出版物页。",
-    "embeddable": false
-  },
-  {
-    "id": "pubmed_ssc_2021",
-    "title": "Surviving Sepsis Campaign Guidelines 2021 — PubMed",
-    "organization": "SSC",
-    "country": "国际",
-    "disease": "脓毒症",
-    "category": "感染",
-    "nodeIds": [
-      "infect",
-      "infect-sepsis"
-    ],
-    "year": 2021,
-    "url": "https://pubmed.ncbi.nlm.nih.gov/34605781/",
+    "year": 2018,
+    "url": "https://www.idsociety.org/practice-guideline/influenza/",
     "type": "Clinical Practice Guideline",
     "language": "en",
     "tags": [
-      "Sepsis",
-      "SSC"
+      "Influenza",
+      "IDSA"
     ],
-    "summary": "拯救脓毒症运动 2021 国际指南 PubMed 条目。",
+    "summary": "IDSA 季节性流感临床实践指南。",
     "embeddable": false
   },
   {
-    "id": "nice_covid_ng191",
-    "title": "NICE NG191 COVID-19 rapid guideline",
+    "id": "pubmed_ild",
+    "title": "IPF clinical practice guideline — PubMed",
+    "organization": "ATS / ERS",
+    "country": "国际",
+    "disease": "间质性肺病",
+    "category": "呼吸",
+    "nodeIds": [
+      "resp",
+      "resp-ild"
+    ],
+    "year": 2018,
+    "url": "https://pubmed.ncbi.nlm.nih.gov/30168754/",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "ILD",
+      "IPF"
+    ],
+    "summary": "特发性肺纤维化临床实践指南 PubMed 条目。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_pancreatitis_ng104",
+    "title": "NICE NG104 Pancreatitis",
     "organization": "NICE",
     "country": "英国",
-    "disease": "COVID-19",
-    "category": "感染",
+    "disease": "胰腺炎",
+    "category": "消化",
     "nodeIds": [
-      "infect",
-      "infect-covid"
+      "gi",
+      "gi-pancreatitis"
     ],
-    "year": 2024,
-    "url": "https://www.nice.org.uk/guidance/ng191",
+    "year": 2018,
+    "url": "https://www.nice.org.uk/guidance/ng104",
     "type": "NICE Guideline",
     "language": "en",
     "tags": [
-      "COVID-19",
+      "Pancreatitis",
       "NICE"
     ],
-    "summary": "NICE COVID-19 管理快速指南条目。",
+    "summary": "NICE 胰腺炎指南条目。",
     "embeddable": false
   },
   {
-    "id": "idsa_all",
-    "title": "IDSA Practice Guidelines Index",
-    "organization": "IDSA",
-    "country": "美国",
-    "disease": "尿路感染",
+    "id": "nice_dialysis_ng107",
+    "title": "NICE NG107 Renal replacement therapy and conservative management",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "肾脏替代治疗",
+    "category": "肾脏",
+    "nodeIds": [
+      "renal",
+      "renal-dialysis",
+      "renal-ckd"
+    ],
+    "year": 2018,
+    "url": "https://www.nice.org.uk/guidance/ng107",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Dialysis",
+      "RRT",
+      "NICE"
+    ],
+    "summary": "NICE 肾脏替代治疗与保守管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_uti_ng109",
+    "title": "NICE NG109 Urinary tract infection (lower): antimicrobial prescribing",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "下尿路感染",
     "category": "感染",
     "nodeIds": [
       "infect",
-      "infect-uti"
+      "infect-uti",
+      "uro"
     ],
-    "year": 2024,
-    "url": "https://www.idsociety.org/practice-guideline/all-practice-guidelines",
-    "type": "Guideline Hub",
+    "year": 2018,
+    "url": "https://www.nice.org.uk/guidance/ng109",
+    "type": "NICE Guideline",
     "language": "en",
     "tags": [
       "UTI",
-      "IDSA"
-    ],
-    "summary": "IDSA 实践指南总索引（含尿路感染等专题）。",
-    "embeddable": false
-  },
-  {
-    "id": "who_amr",
-    "title": "WHO Antimicrobial resistance topic & guidance",
-    "organization": "WHO",
-    "country": "国际",
-    "disease": "抗菌药物耐药",
-    "category": "感染",
-    "nodeIds": [
-      "infect",
-      "infect-amr"
-    ],
-    "year": 2023,
-    "url": "https://www.who.int/health-topics/antimicrobial-resistance",
-    "type": "Guideline Hub",
-    "language": "en",
-    "tags": [
       "AMR",
-      "WHO"
+      "NICE"
     ],
-    "summary": "WHO 抗菌药物耐药主题页。",
+    "summary": "NICE 下尿路感染抗菌处方指南。",
     "embeddable": false
   },
   {
-    "id": "nice_epilepsy_ng217",
-    "title": "NICE NG217 Epilepsies in children, young people and adults",
+    "id": "nice_ptsd_ng116",
+    "title": "NICE NG116 Post-traumatic stress disorder",
     "organization": "NICE",
     "country": "英国",
-    "disease": "癫痫",
-    "category": "神经",
+    "disease": "创伤后应激障碍",
+    "category": "精神心理",
     "nodeIds": [
-      "neuro",
-      "neuro-epilepsy"
+      "psych",
+      "psych-ptsd"
     ],
-    "year": 2022,
-    "url": "https://www.nice.org.uk/guidance/ng217",
+    "year": 2018,
+    "url": "https://www.nice.org.uk/guidance/ng116",
     "type": "NICE Guideline",
     "language": "en",
     "tags": [
-      "Epilepsy",
+      "PTSD",
       "NICE"
     ],
-    "summary": "NICE 癫痫指南条目。",
+    "summary": "NICE PTSD 评估与管理指南。",
     "embeddable": false
   },
   {
-    "id": "nice_parkinson_ng71",
-    "title": "NICE NG71 Parkinson’s disease in adults",
+    "id": "nice_bronchiectasis_ng117",
+    "title": "NICE NG117 Bronchiectasis (non-cystic fibrosis)",
     "organization": "NICE",
     "country": "英国",
-    "disease": "帕金森病",
-    "category": "神经",
+    "disease": "支气管扩张",
+    "category": "呼吸",
     "nodeIds": [
-      "neuro",
-      "neuro-parkinson"
+      "resp",
+      "resp-bronch"
     ],
-    "year": 2017,
-    "url": "https://www.nice.org.uk/guidance/ng71",
+    "year": 2018,
+    "url": "https://www.nice.org.uk/guidance/ng117",
     "type": "NICE Guideline",
     "language": "en",
     "tags": [
-      "Parkinson",
+      "Bronchiectasis",
       "NICE"
     ],
-    "summary": "NICE 成人帕金森病指南条目。",
+    "summary": "NICE 非囊性纤维化支气管扩张抗菌治疗指南。",
     "embeddable": false
   },
   {
-    "id": "nice_headache_cg150",
-    "title": "NICE CG150 Headaches in over 12s",
+    "id": "nice_oesophageal_ng83",
+    "title": "NICE NG83 Oesophago-gastric cancer",
     "organization": "NICE",
     "country": "英国",
-    "disease": "偏头痛",
-    "category": "神经",
+    "disease": "食管胃交界癌",
+    "category": "肿瘤",
     "nodeIds": [
-      "neuro",
-      "neuro-migraine"
+      "onco",
+      "onco-eso",
+      "onco-gastric"
     ],
-    "year": 2021,
-    "url": "https://www.nice.org.uk/guidance/cg150",
+    "year": 2018,
+    "url": "https://www.nice.org.uk/guidance/ng83",
     "type": "NICE Guideline",
     "language": "en",
     "tags": [
-      "Migraine",
+      "Esophageal",
+      "Gastric",
       "NICE"
     ],
-    "summary": "NICE 头痛（含偏头痛）指南条目。",
+    "summary": "NICE 食管胃交界肿瘤评估与管理指南。",
     "embeddable": false
   },
   {
-    "id": "nice_ms_ng220",
-    "title": "NICE NG220 Multiple sclerosis in adults",
+    "id": "nice_pancreatic_ng85",
+    "title": "NICE NG85 Pancreatic cancer",
     "organization": "NICE",
     "country": "英国",
-    "disease": "多发性硬化",
-    "category": "神经",
+    "disease": "胰腺癌",
+    "category": "肿瘤",
     "nodeIds": [
-      "neuro",
-      "neuro-ms"
+      "onco",
+      "onco-pancreas"
     ],
-    "year": 2022,
-    "url": "https://www.nice.org.uk/guidance/ng220",
+    "year": 2018,
+    "url": "https://www.nice.org.uk/guidance/ng85",
     "type": "NICE Guideline",
     "language": "en",
     "tags": [
-      "MS",
+      "Pancreatic cancer",
       "NICE"
     ],
-    "summary": "NICE 成人多发性硬化管理指南条目。",
+    "summary": "NICE 胰腺癌诊断与管理指南。",
     "embeddable": false
   },
   {
@@ -1484,247 +3758,114 @@
     "embeddable": false
   },
   {
-    "id": "nice_depression_ng222",
-    "title": "NICE NG222 Depression in adults",
-    "organization": "NICE",
-    "country": "英国",
-    "disease": "抑郁障碍",
-    "category": "精神心理",
-    "nodeIds": [
-      "psych",
-      "psych-dep"
-    ],
-    "year": 2022,
-    "url": "https://www.nice.org.uk/guidance/ng222",
-    "type": "NICE Guideline",
-    "language": "en",
-    "tags": [
-      "Depression",
-      "NICE"
-    ],
-    "summary": "NICE 成人抑郁治疗与管理指南条目。",
-    "embeddable": false
-  },
-  {
-    "id": "nice_bipolar_cg185",
-    "title": "NICE CG185 Bipolar disorder",
-    "organization": "NICE",
-    "country": "英国",
-    "disease": "双相情感障碍",
-    "category": "精神心理",
-    "nodeIds": [
-      "psych",
-      "psych-bipolar"
-    ],
-    "year": 2023,
-    "url": "https://www.nice.org.uk/guidance/cg185",
-    "type": "NICE Guideline",
-    "language": "en",
-    "tags": [
-      "Bipolar",
-      "NICE"
-    ],
-    "summary": "NICE 双相情感障碍指南条目。",
-    "embeddable": false
-  },
-  {
-    "id": "nice_anxiety_cg113",
-    "title": "NICE CG113 Generalised anxiety disorder and panic disorder",
-    "organization": "NICE",
-    "country": "英国",
-    "disease": "焦虑障碍",
-    "category": "精神心理",
-    "nodeIds": [
-      "psych",
-      "psych-anxiety"
-    ],
-    "year": 2020,
-    "url": "https://www.nice.org.uk/guidance/cg113",
-    "type": "NICE Guideline",
-    "language": "en",
-    "tags": [
-      "Anxiety",
-      "NICE"
-    ],
-    "summary": "NICE 广泛性焦虑与惊恐障碍指南条目。",
-    "embeddable": false
-  },
-  {
-    "id": "nice_psychosis_cg178",
-    "title": "NICE CG178 Psychosis and schizophrenia in adults",
-    "organization": "NICE",
-    "country": "英国",
-    "disease": "精神分裂症",
-    "category": "精神心理",
-    "nodeIds": [
-      "psych",
-      "psych-schiz"
-    ],
-    "year": 2014,
-    "url": "https://www.nice.org.uk/guidance/cg178",
-    "type": "NICE Guideline",
-    "language": "en",
-    "tags": [
-      "Schizophrenia",
-      "NICE"
-    ],
-    "summary": "NICE 成人精神病与精神分裂症指南条目。",
-    "embeddable": false
-  },
-  {
-    "id": "nice_ra_ng100",
-    "title": "NICE NG100 Rheumatoid arthritis in adults",
-    "organization": "NICE",
-    "country": "英国",
-    "disease": "类风湿关节炎",
-    "category": "风湿免疫",
-    "nodeIds": [
-      "rheum",
-      "rheum-ra"
-    ],
-    "year": 2020,
-    "url": "https://www.nice.org.uk/guidance/ng100",
-    "type": "NICE Guideline",
-    "language": "en",
-    "tags": [
-      "RA",
-      "NICE"
-    ],
-    "summary": "NICE 成人类风湿关节炎管理指南条目。",
-    "embeddable": false
-  },
-  {
-    "id": "pubmed_sle",
-    "title": "EULAR/ACR SLE classification criteria — PubMed",
-    "organization": "EULAR / ACR",
-    "country": "国际",
-    "disease": "系统性红斑狼疮",
-    "category": "风湿免疫",
-    "nodeIds": [
-      "rheum",
-      "rheum-sle"
-    ],
-    "year": 2019,
-    "url": "https://pubmed.ncbi.nlm.nih.gov/31383717/",
-    "type": "Classification Criteria",
-    "language": "en",
-    "tags": [
-      "SLE",
-      "EULAR"
-    ],
-    "summary": "EULAR/ACR SLE 分类标准 PubMed 条目。",
-    "embeddable": false
-  },
-  {
-    "id": "nice_axspa_ng65",
-    "title": "NICE NG65 Spondyloarthritis in over 16s",
-    "organization": "NICE",
-    "country": "英国",
-    "disease": "强直性脊柱炎",
-    "category": "风湿免疫",
-    "nodeIds": [
-      "rheum",
-      "rheum-as"
-    ],
-    "year": 2017,
-    "url": "https://www.nice.org.uk/guidance/ng65",
-    "type": "NICE Guideline",
-    "language": "en",
-    "tags": [
-      "AxSpA",
-      "NICE"
-    ],
-    "summary": "NICE 脊柱关节炎指南条目。",
-    "embeddable": false
-  },
-  {
-    "id": "nice_preec_ng133",
-    "title": "NICE NG133 Hypertension in pregnancy",
-    "organization": "NICE",
-    "country": "英国",
-    "disease": "子痫前期",
-    "category": "妇产",
-    "nodeIds": [
-      "obgyn",
-      "obgyn-preec",
-      "cv-htn"
-    ],
-    "year": 2023,
-    "url": "https://www.nice.org.uk/guidance/ng133",
-    "type": "NICE Guideline",
-    "language": "en",
-    "tags": [
-      "Preeclampsia",
-      "NICE"
-    ],
-    "summary": "NICE 妊娠期高血压（含子痫前期）指南条目。",
-    "embeddable": false
-  },
-  {
-    "id": "who_anc",
-    "title": "WHO recommendations on antenatal care",
+    "id": "who_hcv",
+    "title": "WHO Guidelines for chronic hepatitis C",
     "organization": "WHO",
     "country": "国际",
-    "disease": "孕产期保健",
-    "category": "妇产",
+    "disease": "丙型肝炎",
+    "category": "感染",
     "nodeIds": [
-      "obgyn",
-      "obgyn-maternal"
+      "infect",
+      "infect-hcv"
     ],
-    "year": 2016,
-    "url": "https://www.who.int/publications/i/item/9789241549912",
+    "year": 2018,
+    "url": "https://www.who.int/publications/i/item/9789241550345",
     "type": "Guideline",
     "language": "en",
     "tags": [
-      "ANC",
+      "HCV",
       "WHO"
     ],
-    "summary": "WHO 产前保健推荐出版物页。",
+    "summary": "WHO 慢性丙肝诊疗指南出版物页。",
     "embeddable": false
   },
   {
-    "id": "nice_gdm_ng3",
-    "title": "NICE NG3 Diabetes in pregnancy",
-    "organization": "NICE",
-    "country": "英国",
-    "disease": "妊娠期糖尿病",
-    "category": "妇产",
+    "id": "who_cancer_pain",
+    "title": "WHO Guidelines for management of cancer pain",
+    "organization": "WHO",
+    "country": "国际",
+    "disease": "癌痛",
+    "category": "肿瘤",
     "nodeIds": [
-      "obgyn",
-      "endo-gdm",
-      "endo"
+      "onco",
+      "onco-pain"
     ],
-    "year": 2020,
-    "url": "https://www.nice.org.uk/guidance/ng3",
-    "type": "NICE Guideline",
+    "year": 2018,
+    "url": "https://www.who.int/publications/i/item/9789241550390",
+    "type": "Guideline",
     "language": "en",
     "tags": [
-      "GDM",
-      "NICE"
+      "Cancer pain",
+      "WHO"
     ],
-    "summary": "NICE 妊娠合并糖尿病指南条目。",
+    "summary": "WHO 癌痛管理指南出版物页。",
     "embeddable": false
   },
   {
-    "id": "nice_ad_cg57",
-    "title": "NICE CG57 Atopic eczema in under 12s",
+    "id": "aha_acc_htn_2017",
+    "title": "2017 ACC/AHA High Blood Pressure Guideline",
+    "organization": "AHA / ACC",
+    "country": "美国",
+    "disease": "高血压",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-htn"
+    ],
+    "year": 2017,
+    "url": "https://www.ahajournals.org/doi/10.1161/HYP.0000000000000065",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "Hypertension",
+      "AHA",
+      "ACC"
+    ],
+    "summary": "ACC/AHA 2017 成人高血压预防、检测、评估与管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "pubmed_osa",
+    "title": "AASM Adult OSA Diagnostic Testing Guideline — PubMed",
+    "organization": "AASM",
+    "country": "美国",
+    "disease": "睡眠呼吸暂停",
+    "category": "呼吸",
+    "nodeIds": [
+      "resp",
+      "resp-osa"
+    ],
+    "year": 2017,
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28162150/",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "OSA",
+      "AASM"
+    ],
+    "summary": "成人 OSA 诊断检测指南 PubMed 条目。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_osteo_cg146",
+    "title": "NICE CG146 Osteoporosis: assessing the risk of fragility fracture",
     "organization": "NICE",
     "country": "英国",
-    "disease": "特应性皮炎",
-    "category": "皮肤",
+    "disease": "骨质疏松",
+    "category": "内分泌代谢",
     "nodeIds": [
-      "derm",
-      "derm-ad"
+      "endo",
+      "endo-osteo"
     ],
-    "year": 2023,
-    "url": "https://www.nice.org.uk/guidance/cg57",
+    "year": 2017,
+    "url": "https://www.nice.org.uk/guidance/cg146",
     "type": "NICE Guideline",
     "language": "en",
     "tags": [
-      "Atopic dermatitis",
+      "Osteoporosis",
       "NICE"
     ],
-    "summary": "NICE 儿童特应性皮炎指南条目。",
+    "summary": "NICE 骨质疏松脆性骨折风险评估指南条目。",
     "embeddable": false
   },
   {
@@ -1750,48 +3891,497 @@
     "embeddable": false
   },
   {
-    "id": "nice_vte_ng158",
-    "title": "NICE NG158 Venous thromboembolic diseases",
+    "id": "nice_ipf_cg163",
+    "title": "NICE CG163 Idiopathic pulmonary fibrosis",
     "organization": "NICE",
     "country": "英国",
-    "disease": "静脉血栓栓塞",
-    "category": "血液",
+    "disease": "特发性肺纤维化",
+    "category": "呼吸",
     "nodeIds": [
-      "heme",
-      "heme-vte"
+      "resp",
+      "resp-ild"
     ],
-    "year": 2023,
-    "url": "https://www.nice.org.uk/guidance/ng158",
+    "year": 2017,
+    "url": "https://www.nice.org.uk/guidance/cg163",
     "type": "NICE Guideline",
     "language": "en",
     "tags": [
-      "VTE",
+      "IPF",
+      "ILD",
       "NICE"
     ],
-    "summary": "NICE 静脉血栓栓塞疾病指南条目。",
+    "summary": "NICE 特发性肺纤维化诊断与管理指南。",
     "embeddable": false
   },
   {
-    "id": "nice_anemia_ng8",
-    "title": "NICE NG8 Chronic kidney disease: managing anaemia",
+    "id": "nice_ibs_cg61",
+    "title": "NICE CG61 Irritable bowel syndrome in adults",
     "organization": "NICE",
     "country": "英国",
-    "disease": "贫血",
-    "category": "血液",
+    "disease": "肠易激综合征",
+    "category": "消化",
     "nodeIds": [
-      "heme",
-      "heme-anemia",
-      "renal-ckd"
+      "gi",
+      "gi-ibs"
     ],
-    "year": 2021,
-    "url": "https://www.nice.org.uk/guidance/ng8",
+    "year": 2017,
+    "url": "https://www.nice.org.uk/guidance/cg61",
     "type": "NICE Guideline",
     "language": "en",
     "tags": [
-      "Anemia",
+      "IBS",
       "NICE"
     ],
-    "summary": "NICE 慢性肾病贫血管理指南条目。",
+    "summary": "NICE 成人肠易激综合征诊断与管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_axspa_ng65",
+    "title": "NICE NG65 Spondyloarthritis in over 16s",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "强直性脊柱炎",
+    "category": "风湿免疫",
+    "nodeIds": [
+      "rheum",
+      "rheum-as"
+    ],
+    "year": 2017,
+    "url": "https://www.nice.org.uk/guidance/ng65",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "AxSpA",
+      "NICE"
+    ],
+    "summary": "NICE 脊柱关节炎指南条目。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_parkinson_ng71",
+    "title": "NICE NG71 Parkinson’s disease in adults",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "帕金森病",
+    "category": "神经",
+    "nodeIds": [
+      "neuro",
+      "neuro-parkinson"
+    ],
+    "year": 2017,
+    "url": "https://www.nice.org.uk/guidance/ng71",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Parkinson",
+      "NICE"
+    ],
+    "summary": "NICE 成人帕金森病指南条目。",
+    "embeddable": false
+  },
+  {
+    "id": "aha_acc_pad_2016",
+    "title": "2016 AHA/ACC Guideline: Lower Extremity PAD",
+    "organization": "AHA / ACC",
+    "country": "美国",
+    "disease": "下肢外周动脉疾病",
+    "category": "心血管",
+    "nodeIds": [
+      "cv",
+      "cv-pad"
+    ],
+    "year": 2016,
+    "url": "https://www.ahajournals.org/doi/10.1161/CIR.0000000000000471",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "PAD",
+      "AHA",
+      "ACC"
+    ],
+    "summary": "AHA/ACC 下肢外周动脉疾病管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_mnd_ng42",
+    "title": "NICE NG42 Motor neurone disease",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "运动神经元病",
+    "category": "神经",
+    "nodeIds": [
+      "neuro",
+      "neuro-als"
+    ],
+    "year": 2016,
+    "url": "https://www.nice.org.uk/guidance/ng42",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "MND",
+      "ALS",
+      "NICE"
+    ],
+    "summary": "NICE 运动神经元病评估与管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_cirrhosis_ng50",
+    "title": "NICE NG50 Cirrhosis in over 16s",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "肝硬化",
+    "category": "消化",
+    "nodeIds": [
+      "gi",
+      "gi-cirrhosis"
+    ],
+    "year": 2016,
+    "url": "https://www.nice.org.uk/guidance/ng50",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Cirrhosis",
+      "NICE"
+    ],
+    "summary": "NICE 肝硬化评估与管理指南条目。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_lymphoma_ng52",
+    "title": "NICE NG52 Non-Hodgkin's lymphoma",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "非霍奇金淋巴瘤",
+    "category": "肿瘤",
+    "nodeIds": [
+      "onco",
+      "onco-lymphoma",
+      "heme"
+    ],
+    "year": 2016,
+    "url": "https://www.nice.org.uk/guidance/ng52",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Lymphoma",
+      "NICE"
+    ],
+    "summary": "NICE 非霍奇金淋巴瘤诊断与管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "who_anc",
+    "title": "WHO recommendations on antenatal care",
+    "organization": "WHO",
+    "country": "国际",
+    "disease": "孕产期保健",
+    "category": "妇产",
+    "nodeIds": [
+      "obgyn",
+      "obgyn-maternal"
+    ],
+    "year": 2016,
+    "url": "https://www.who.int/publications/i/item/9789241549912",
+    "type": "Guideline",
+    "language": "en",
+    "tags": [
+      "ANC",
+      "WHO"
+    ],
+    "summary": "WHO 产前保健推荐出版物页。",
+    "embeddable": false
+  },
+  {
+    "id": "pubmed_hp",
+    "title": "Kyoto global consensus on Helicobacter pylori gastritis — PubMed",
+    "organization": "多机构共识",
+    "country": "国际",
+    "disease": "幽门螺杆菌",
+    "category": "消化",
+    "nodeIds": [
+      "gi",
+      "gi-hp"
+    ],
+    "year": 2015,
+    "url": "https://pubmed.ncbi.nlm.nih.gov/26187504/",
+    "type": "Consensus",
+    "language": "en",
+    "tags": [
+      "H.pylori"
+    ],
+    "summary": "幽门螺杆菌胃炎京都全球共识 PubMed 条目。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_bph_cg97",
+    "title": "NICE CG97 Lower urinary tract symptoms in men",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "男性下尿路症状 / BPH",
+    "category": "泌尿",
+    "nodeIds": [
+      "uro",
+      "uro-bph"
+    ],
+    "year": 2015,
+    "url": "https://www.nice.org.uk/guidance/cg97",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "BPH",
+      "LUTS",
+      "NICE"
+    ],
+    "summary": "NICE 男性下尿路症状（含前列腺增生）指南。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_bladder_ng2",
+    "title": "NICE NG2 Bladder cancer: diagnosis and management",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "膀胱癌",
+    "category": "肿瘤",
+    "nodeIds": [
+      "onco",
+      "onco-bladder",
+      "uro"
+    ],
+    "year": 2015,
+    "url": "https://www.nice.org.uk/guidance/ng2",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Bladder cancer",
+      "NICE"
+    ],
+    "summary": "NICE 膀胱癌诊断与管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_scd_ng20",
+    "title": "NICE NG20 Sickle cell disease",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "镰状细胞病",
+    "category": "血液",
+    "nodeIds": [
+      "heme",
+      "heme-scd"
+    ],
+    "year": 2015,
+    "url": "https://www.nice.org.uk/guidance/cg143",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Sickle cell",
+      "NICE"
+    ],
+    "summary": "NICE 镰状细胞病急性疼痛与相关管理指南入口。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_psychosis_cg178",
+    "title": "NICE CG178 Psychosis and schizophrenia in adults",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "精神分裂症",
+    "category": "精神心理",
+    "nodeIds": [
+      "psych",
+      "psych-schiz"
+    ],
+    "year": 2014,
+    "url": "https://www.nice.org.uk/guidance/cg178",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Schizophrenia",
+      "NICE"
+    ],
+    "summary": "NICE 成人精神病与精神分裂症指南条目。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_gallstone_cg188",
+    "title": "NICE CG188 Gallstone disease",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "胆石症",
+    "category": "消化",
+    "nodeIds": [
+      "gi",
+      "gi-gall"
+    ],
+    "year": 2014,
+    "url": "https://www.nice.org.uk/guidance/cg188",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Gallstones",
+      "NICE"
+    ],
+    "summary": "NICE 胆石症诊断与管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_pneumonia_cg191",
+    "title": "NICE CG191 Pneumonia in adults: diagnosis and management",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "社区获得性肺炎",
+    "category": "呼吸",
+    "nodeIds": [
+      "resp",
+      "resp-cap"
+    ],
+    "year": 2014,
+    "url": "https://www.nice.org.uk/guidance/cg191",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Pneumonia",
+      "CAP",
+      "NICE"
+    ],
+    "summary": "NICE 成人肺炎诊断与管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "kdigo_anemia_2012",
+    "title": "KDIGO Anemia in CKD Guideline",
+    "organization": "KDIGO",
+    "country": "国际",
+    "disease": "CKD 贫血",
+    "category": "肾脏",
+    "nodeIds": [
+      "renal",
+      "renal-ckd",
+      "heme",
+      "heme-anemia"
+    ],
+    "year": 2012,
+    "url": "https://kdigo.org/guidelines/anemia-in-ckd/",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "Anemia",
+      "CKD",
+      "KDIGO"
+    ],
+    "summary": "KDIGO CKD 贫血管理指南。",
+    "embeddable": false
+  },
+  {
+    "id": "pubmed_kdigo_aki",
+    "title": "KDIGO Clinical Practice Guideline for AKI — PubMed",
+    "organization": "KDIGO",
+    "country": "国际",
+    "disease": "急性肾损伤",
+    "category": "肾脏",
+    "nodeIds": [
+      "renal",
+      "renal-aki"
+    ],
+    "year": 2012,
+    "url": "https://pubmed.ncbi.nlm.nih.gov/22890468/",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "AKI",
+      "KDIGO"
+    ],
+    "summary": "KDIGO 急性肾损伤指南 PubMed 条目。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_food_allergy_cg116",
+    "title": "NICE CG116 Food allergy in under 19s",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "食物过敏",
+    "category": "过敏免疫",
+    "nodeIds": [
+      "allergy",
+      "allergy-food",
+      "ped"
+    ],
+    "year": 2011,
+    "url": "https://www.nice.org.uk/guidance/cg116",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "Food allergy",
+      "NICE"
+    ],
+    "summary": "NICE 19 岁以下食物过敏诊断与评估指南。",
+    "embeddable": false
+  },
+  {
+    "id": "idsa_uti_2010",
+    "title": "IDSA Guidelines: Uncomplicated Cystitis and Pyelonephritis",
+    "organization": "IDSA",
+    "country": "美国",
+    "disease": "尿路感染",
+    "category": "感染",
+    "nodeIds": [
+      "infect",
+      "infect-uti"
+    ],
+    "year": 2010,
+    "url": "https://www.idsociety.org/practice-guideline/uncomplicated-cystitis-and-pyelonephritis-uti/",
+    "type": "Clinical Practice Guideline",
+    "language": "en",
+    "tags": [
+      "UTI",
+      "IDSA"
+    ],
+    "summary": "IDSA 无并发症性膀胱炎与肾盂肾炎指南页。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_flu_ta168",
+    "title": "NICE TA168 Amantadine, oseltamivir and zanamivir for influenza",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "流感",
+    "category": "感染",
+    "nodeIds": [
+      "infect",
+      "infect-flu"
+    ],
+    "year": 2009,
+    "url": "https://www.nice.org.uk/guidance/ta168",
+    "type": "NICE Technology Appraisal",
+    "language": "en",
+    "tags": [
+      "Influenza",
+      "NICE"
+    ],
+    "summary": "NICE 流感抗病毒药物技术评估（可与 IDSA 流感指南对照）。",
+    "embeddable": false
+  },
+  {
+    "id": "nice_ocd_cg31",
+    "title": "NICE CG31 Obsessive-compulsive disorder and body dysmorphic disorder",
+    "organization": "NICE",
+    "country": "英国",
+    "disease": "强迫症",
+    "category": "精神心理",
+    "nodeIds": [
+      "psych",
+      "psych-ocd"
+    ],
+    "year": 2005,
+    "url": "https://www.nice.org.uk/guidance/cg31",
+    "type": "NICE Guideline",
+    "language": "en",
+    "tags": [
+      "OCD",
+      "NICE"
+    ],
+    "summary": "NICE 强迫症与躯体变形障碍指南。",
     "embeddable": false
   }
 ]
