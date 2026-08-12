@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 
 const TOOL_MARKUP = `<div class="wrap">
-    <h1>泉盛 UV-K5 / K1 刷机工具</h1>
+    <h1>泉盛 UV-K5 V3 / K1 刷机工具</h1>
     <p class="subtitle">Web Serial · 备份校准 / 刷固件 / 恢复校准 / 备份配置 / 恢复配置 / 写频 / 刷字库</p>
 
     <div class="hint">
