@@ -2,7 +2,7 @@
 
 import { prepareWithSegments, layoutWithLines } from "@chenglou/pretext";
 import { useEffect, useRef, useState } from "react";
-import { distanceToBlade, useLightsaber } from "./Lightsaber";
+import { isTipHitting, useLightsaber } from "./Lightsaber";
 
 type Glyph = {
   ch: string;
@@ -79,22 +79,13 @@ function buildGlyphs(text: string, maxWidth: number): { glyphs: Glyph[]; height:
   return { glyphs, height: Math.max(height, LINE_HEIGHT) };
 }
 
-function bladeNearRect(
-  blade: { x: number; y: number; bx: number; by: number },
-  rect: DOMRect,
-  pad: number
-) {
-  const points = [
-    { x: blade.x, y: blade.y },
-    { x: blade.bx, y: blade.by },
-    { x: (blade.x + blade.bx) / 2, y: (blade.y + blade.by) / 2 },
-  ];
-  return points.some(
-    (p) =>
-      p.x > rect.left - pad &&
-      p.x < rect.right + pad &&
-      p.y > rect.top - pad &&
-      p.y < rect.bottom + pad
+/** 仅剑尖靠近段落时才激活 */
+function tipNearRect(blade: { x: number; y: number; tipR: number }, rect: DOMRect, pad: number) {
+  return (
+    blade.x > rect.left - pad - blade.tipR &&
+    blade.x < rect.right + pad + blade.tipR &&
+    blade.y > rect.top - pad - blade.tipR &&
+    blade.y < rect.bottom + pad + blade.tipR
   );
 }
 
@@ -129,7 +120,7 @@ export default function BurnableText({
     }
     if (!blade || !wrapRef.current) return;
     const rect = wrapRef.current.getBoundingClientRect();
-    if (!bladeNearRect(blade, rect, 36)) return;
+    if (!tipNearRect(blade, rect, 28)) return;
 
     const width = wrapRef.current.clientWidth;
     if (width < 40) return;
@@ -161,7 +152,7 @@ export default function BurnableText({
       if (g.burned || !g.alive) continue;
       const cx = rect.left + g.x + g.w / 2;
       const cy = rect.top + g.y + LINE_HEIGHT * 0.55;
-      if (distanceToBlade(cx, cy, blade) < blade.halfW + 5) {
+      if (isTipHitting(cx, cy, blade, 4)) {
         g.burned = true;
         g.burnT = 0;
         g.vx = (Math.random() - 0.5) * 3.5;
@@ -182,18 +173,18 @@ export default function BurnableText({
     }
   }, [active, blade, tick, text, engaged, color]);
 
-  // 已拆字后持续灼烧
+  // 已拆字后持续灼烧（仅剑尖）
   useEffect(() => {
     if (!active || !blade || !engaged || !wrapRef.current) return;
     const rect = wrapRef.current.getBoundingClientRect();
-    if (!bladeNearRect(blade, rect, 40)) return;
+    if (!tipNearRect(blade, rect, 32)) return;
 
     const hue = color === "red" ? 15 : color === "green" ? 90 : 35;
     for (const g of glyphsRef.current) {
       if (g.burned || !g.alive) continue;
       const cx = rect.left + g.x + g.w / 2;
       const cy = rect.top + g.y + LINE_HEIGHT * 0.55;
-      if (distanceToBlade(cx, cy, blade) < blade.halfW + 5) {
+      if (isTipHitting(cx, cy, blade, 4)) {
         g.burned = true;
         g.burnT = 0;
         g.vx = (Math.random() - 0.5) * 3.5;
