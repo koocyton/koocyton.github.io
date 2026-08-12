@@ -36,7 +36,7 @@ const TOOL_MARKUP = `<div class="wrap">
     <div id="flashPanel" class="tab-panel" role="tabpanel">
       <p class="panel-desc">进入 BOOT 刷机模式后刷入固件。支持远程获取或本地选择 .bin。</p>
       <div class="row">
-        <button type="button" id="fetchFirmwareBtn">远程获取</button>
+        <button type="button" id="fetchFirmwareBtn">远程获取 KOO 5.8.0(中/英切换,中文信道,同时支持原装和si4732改装)</button>
         <label class="file-btn" for="firmwareFile">本地选择</label>
         <input type="file" id="firmwareFile" accept=".bin,application/octet-stream" />
         <span class="file-name" id="firmwareFileName">未选择文件</span>
