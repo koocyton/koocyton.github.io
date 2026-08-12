@@ -150,11 +150,13 @@ const TOOL_MARKUP = `<div class="wrap">
 declare global {
   interface Window {
     __quanshengFlashToolsBooted?: boolean;
+    bootQuanshengFlashTools?: () => void;
   }
 }
 
 export default function QuanshengFlashToolsApp() {
   useEffect(() => {
+    let cancelled = false;
     window.__quanshengFlashToolsBooted = false;
 
     const cssId = "quansheng-flashtools-css";
@@ -166,6 +168,9 @@ export default function QuanshengFlashToolsApp() {
       document.head.appendChild(link);
     }
 
+    // Classic scripts put top-level const/let in the global lexical env; without an IIFE
+    // they cannot be re-evaluated after SPA remount. app.js is wrapped in an IIFE and we
+    // re-inject it on each visit so tab/button listeners bind to the new DOM.
     const scriptId = "quansheng-flashtools-app-js";
     const prev = document.getElementById(scriptId);
     if (prev) prev.remove();
@@ -173,9 +178,18 @@ export default function QuanshengFlashToolsApp() {
     const script = document.createElement("script");
     script.id = scriptId;
     script.src = `/quansheng-flashtools/app.js?v=${Date.now()}`;
+    script.onload = () => {
+      if (cancelled) return;
+      // Re-run boot so UI binds to this mount if an earlier in-flight run missed it.
+      window.bootQuanshengFlashTools?.();
+    };
+    script.onerror = () => {
+      if (!cancelled) console.error("[quansheng-flashtools] failed to load app.js");
+    };
     document.body.appendChild(script);
 
     return () => {
+      cancelled = true;
       window.__quanshengFlashToolsBooted = false;
       const s = document.getElementById(scriptId);
       if (s) s.remove();
