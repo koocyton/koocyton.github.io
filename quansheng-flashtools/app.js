@@ -4,6 +4,7 @@
  *   - UVTools2 by F4HWN (https://armel.github.io/uvtools2/)
  *   - Dondji by BD1AHN (Apache-2.0) https://ethanyan6.github.io/Dondji/
  */
+(function () {
 'use strict';
 
 const REMOTE_FIRMWARE_URL = 'https://github.com/koocyton/armel-uv-k5-firmware-custom/releases/download/20260508/k18-f4hwn-5.8.0-cn.radio.bin';
@@ -79,6 +80,15 @@ function getDocumentDirectoryBaseUrlString() {
 }
 
 const $ = (id) => document.getElementById(id);
+
+function on(id, event, handler) {
+  const el = $(id);
+  if (!el) return;
+  const key = 'on' + event;
+  if (el.dataset[key] === '1') return;
+  el.dataset[key] = '1';
+  el.addEventListener(event, handler);
+}
 
 function showAppToast(messageText, toastVariant) {
   if (!messageText) return;
@@ -441,6 +451,8 @@ async function spiFlashWriteChunk(sessionTs, flashAddress, payload) {
 // ========== TABS ==========
 function initTabs() {
   document.querySelectorAll('.flash-tab').forEach((tab) => {
+    if (tab.dataset.bound === '1') return;
+    tab.dataset.bound = '1';
     tab.addEventListener('click', () => {
       document.querySelectorAll('.flash-tab').forEach((t) => {
         t.classList.remove('active');
@@ -478,7 +490,7 @@ async function withSession(btn, work) {
 }
 
 // ========== FIRMWARE ==========
-$('firmwareFile').addEventListener('change', (e) => {
+on('firmwareFile', 'change', (e) => {
   const file = e.target.files && e.target.files[0];
   if (!file) return;
   const fr = new FileReader();
@@ -492,7 +504,7 @@ $('firmwareFile').addEventListener('change', (e) => {
   fr.readAsArrayBuffer(file);
 });
 
-$('fetchFirmwareBtn').addEventListener('click', async () => {
+on('fetchFirmwareBtn', 'click', async () => {
   const btn = $('fetchFirmwareBtn');
   btn.disabled = true;
   try {
@@ -506,7 +518,7 @@ $('fetchFirmwareBtn').addEventListener('click', async () => {
   }
 });
 
-$('flashBtn').addEventListener('click', async () => {
+on('flashBtn', 'click', async () => {
   if (!firmwareData || isFlashing) return;
   isFlashing = true;
   await withSession($('flashBtn'), async () => {
@@ -553,7 +565,7 @@ $('flashBtn').addEventListener('click', async () => {
 });
 
 // ========== FONT ==========
-$('fontFile').addEventListener('change', (e) => {
+on('fontFile', 'change', (e) => {
   const file = e.target.files && e.target.files[0];
   if (!file) return;
   const fr = new FileReader();
@@ -567,7 +579,7 @@ $('fontFile').addEventListener('change', (e) => {
   fr.readAsArrayBuffer(file);
 });
 
-$('fetchFontBtn').addEventListener('click', async () => {
+on('fetchFontBtn', 'click', async () => {
   const btn = $('fetchFontBtn');
   btn.disabled = true;
   try {
@@ -581,7 +593,7 @@ $('fetchFontBtn').addEventListener('click', async () => {
   }
 });
 
-$('fontFlashBtn').addEventListener('click', async () => {
+on('fontFlashBtn', 'click', async () => {
   if (!fontData || isFontFlashing) return;
   isFontFlashing = true;
   await withSession($('fontFlashBtn'), async () => {
@@ -640,7 +652,7 @@ $('fontFlashBtn').addEventListener('click', async () => {
 });
 
 // ========== CALIB DUMP ==========
-$('dumpBtn').addEventListener('click', async () => {
+on('dumpBtn', 'click', async () => {
   if (isDumping) return;
   isDumping = true;
   await withSession($('dumpBtn'), async () => {
@@ -681,7 +693,7 @@ $('dumpBtn').addEventListener('click', async () => {
 });
 
 // ========== CALIB RESTORE ==========
-$('calibFile').addEventListener('change', (e) => {
+on('calibFile', 'change', (e) => {
   const file = e.target.files && e.target.files[0];
   if (!file) return;
   const fr = new FileReader();
@@ -696,7 +708,7 @@ $('calibFile').addEventListener('change', (e) => {
   fr.readAsArrayBuffer(file);
 });
 
-$('restoreBtn').addEventListener('click', async () => {
+on('restoreBtn', 'click', async () => {
   if (!calibData || isRestoring) return;
   isRestoring = true;
   await withSession($('restoreBtn'), async () => {
@@ -735,7 +747,7 @@ $('restoreBtn').addEventListener('click', async () => {
 });
 
 // ========== CONFIG BACKUP ==========
-$('backupCfgBtn').addEventListener('click', async () => {
+on('backupCfgBtn', 'click', async () => {
   if (isBackupCfg) return;
   isBackupCfg = true;
   await withSession($('backupCfgBtn'), async () => {
@@ -757,7 +769,7 @@ $('backupCfgBtn').addEventListener('click', async () => {
 });
 
 // ========== CONFIG RESTORE ==========
-$('cfgBackupFile').addEventListener('change', (e) => {
+on('cfgBackupFile', 'change', (e) => {
   const file = e.target.files && e.target.files[0];
   if (!file) return;
   const fr = new FileReader();
@@ -772,7 +784,7 @@ $('cfgBackupFile').addEventListener('change', (e) => {
   fr.readAsArrayBuffer(file);
 });
 
-$('restoreCfgBtn').addEventListener('click', async () => {
+on('restoreCfgBtn', 'click', async () => {
   if (!cfgBackupData || isRestoreCfg) return;
   isRestoreCfg = true;
   await withSession($('restoreCfgBtn'), async () => {
@@ -2960,14 +2972,27 @@ function initWritefreqUi() {
   writefreqRebuildRows();
   const readBtn = $('writefreqReadBtn');
   const writeBtn = $('writefreqWriteBtn');
-  if (readBtn) readBtn.addEventListener('click', () => writefreqReadFromDevice());
-  if (writeBtn) writeBtn.addEventListener('click', () => writefreqWriteToDevice());
+  if (readBtn && readBtn.dataset.bound !== '1') {
+    readBtn.dataset.bound = '1';
+    readBtn.addEventListener('click', () => writefreqReadFromDevice());
+  }
+  if (writeBtn && writeBtn.dataset.bound !== '1') {
+    writeBtn.dataset.bound = '1';
+    writeBtn.addEventListener('click', () => writefreqWriteToDevice());
+  }
   const prev = $('writefreqPagePrev');
   const next = $('writefreqPageNext');
-  if (prev) prev.addEventListener('click', () => writefreqPageDelta(-1));
-  if (next) next.addEventListener('click', () => writefreqPageDelta(1));
+  if (prev && prev.dataset.bound !== '1') {
+    prev.dataset.bound = '1';
+    prev.addEventListener('click', () => writefreqPageDelta(-1));
+  }
+  if (next && next.dataset.bound !== '1') {
+    next.dataset.bound = '1';
+    next.addEventListener('click', () => writefreqPageDelta(1));
+  }
   const writefreqTbodyEl = $('writefreqTbody');
-  if (writefreqTbodyEl) {
+  if (writefreqTbodyEl && writefreqTbodyEl.dataset.bound !== '1') {
+    writefreqTbodyEl.dataset.bound = '1';
     writefreqTbodyEl.addEventListener('input', () => writefreqUpdatePaginationUI());
     writefreqTbodyEl.addEventListener('change', () => writefreqUpdatePaginationUI());
     writefreqTbodyEl.addEventListener('click', (ev) => {
@@ -2986,10 +3011,22 @@ function initWritefreqUi() {
 
 // ========== BOOT ==========
 function bootFlashTools() {
-  if (window.__quanshengFlashToolsBooted) return;
-  window.__quanshengFlashToolsBooted = true;
+  // Always (re)bind UI to the current DOM — SPA remount replaces nodes.
   initTabs();
   initWritefreqUi();
+  const logToggle = $('logToggle');
+  if (logToggle && logToggle.dataset.bound !== '1') {
+    logToggle.dataset.bound = '1';
+    logToggle.addEventListener('click', () => {
+      const logDiv = $('log');
+      const visible = !logDiv.classList.contains('collapsed');
+      logDiv.classList.toggle('collapsed', visible);
+      logToggle.textContent = visible ? '显示日志' : '隐藏日志';
+    });
+  }
+
+  if (window.__quanshengFlashToolsBooted) return;
+  window.__quanshengFlashToolsBooted = true;
   if (!('serial' in navigator)) {
     log('浏览器不支持 Web Serial API，请使用 Chrome / Edge', 'error');
     ['flashBtn','fontFlashBtn','dumpBtn','restoreBtn','backupCfgBtn','restoreCfgBtn','writefreqReadBtn','writefreqWriteBtn'].forEach((id) => {
@@ -2998,19 +3035,13 @@ function bootFlashTools() {
   } else {
     log('就绪。点击操作时会请求串口连接，完成后自动断开。', 'info');
   }
-  const logToggle = $('logToggle');
-  if (logToggle) {
-    logToggle.addEventListener('click', () => {
-      const logDiv = $('log');
-      const visible = !logDiv.classList.contains('collapsed');
-      logDiv.classList.toggle('collapsed', visible);
-      logToggle.textContent = visible ? '显示日志' : '隐藏日志';
-    });
-  }
 }
+
+window.bootQuanshengFlashTools = bootFlashTools;
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', bootFlashTools);
 } else {
   bootFlashTools();
 }
+})();
