@@ -1,142 +1,18 @@
-/*
- * Dondji Firmware
- *
- * Copyright (c) 2026 BD1AHN
- *
- * Licensed under the Apache License, Version 2.0
- *
- * Project:
- *     叮咚鸡 (Dondji)
- *
- * Maintainer:
- *     BD1AHN
- *
- * Official Website:
- *     https://ethanyan6.github.io/Dondji/
- *
- * The Dondji name, logo, and official project identity
- * are protected separately from the source code license.
+/*!
+ * Quansheng Flash Tools — Web Serial flasher for UV-K5 V3 / UV-K1
+ * Protocol adapted from:
+ *   - UVTools2 by F4HWN (https://armel.github.io/uvtools2/)
+ *   - Dondji by BD1AHN (Apache-2.0) https://ethanyan6.github.io/Dondji/
  */
-
-
 'use strict';
 
-(function() {
-  var loadingOverlay = document.getElementById('loadingOverlay');
-  var progressFill = document.querySelector('.loading-progress-fill');
-  var progressText = document.querySelector('.loading-progress-text');
-  var speechBubble = document.getElementById('chickenSpeechBubble');
-  
-  if (!loadingOverlay) return;
-  
-  var currentProgress = 0;
-  var targetProgress = 0;
-  var isComplete = false;
-  var animationInterval = null;
-  var bubbleTimeout = null;
-  
-  function updateProgressDisplay(progress) {
-    var percentage = Math.min(100, Math.max(0, Math.round(progress)));
-    if (progressFill) {
-      progressFill.style.width = percentage + '%';
-    }
-    if (progressText) {
-      progressText.textContent = percentage + '%';
-    }
-  }
-  
-  function startAnimation() {
-    if (animationInterval) return;
-    
-    animationInterval = setInterval(function() {
-      if (currentProgress < targetProgress) {
-        currentProgress += Math.max(1, (targetProgress - currentProgress) * 0.15);
-        if (currentProgress >= targetProgress) {
-          currentProgress = targetProgress;
-        }
-        updateProgressDisplay(currentProgress);
-      }
-    }, 30);
-  }
-  
-  function setProgress(progress) {
-    targetProgress = Math.min(100, Math.max(0, progress));
-    startAnimation();
-  }
-  
-  function showSpeechBubble() {
-    if (speechBubble && !isComplete) {
-      speechBubble.classList.add('show');
-    }
-  }
-  
-  function hideSpeechBubble() {
-    if (speechBubble) {
-      speechBubble.classList.remove('show');
-    }
-    if (bubbleTimeout) {
-      clearTimeout(bubbleTimeout);
-      bubbleTimeout = null;
-    }
-  }
-  
-  function hideLoadingOverlay() {
-    if (isComplete) return;
-    isComplete = true;
-    
-    hideSpeechBubble();
-    setProgress(100);
-    
-    setTimeout(function() {
-      if (animationInterval) {
-        clearInterval(animationInterval);
-        animationInterval = null;
-      }
-      
-      loadingOverlay.classList.add('fade-out');
-      setTimeout(function() {
-        loadingOverlay.style.display = 'none';
-      }, 500);
-    }, 600);
-  }
-  
-  updateProgressDisplay(0);
-  
-  bubbleTimeout = setTimeout(showSpeechBubble, 3000);
-  
-  setTimeout(function() { setProgress(20); }, 150);
-  setTimeout(function() { setProgress(40); }, 400);
-  setTimeout(function() { setProgress(60); }, 700);
-  setTimeout(function() { setProgress(80); }, 1000);
-  
-  var progressInterval = setInterval(function() {
-    if (targetProgress < 95) {
-      setProgress(targetProgress + 2);
-    }
-  }, 400);
-  
-  window.addEventListener('load', function() {
-    if (progressInterval) {
-      clearInterval(progressInterval);
-      progressInterval = null;
-    }
-    hideLoadingOverlay();
-  });
-  
-  setTimeout(function() {
-    if (!isComplete) {
-      if (progressInterval) {
-        clearInterval(progressInterval);
-        progressInterval = null;
-      }
-      hideLoadingOverlay();
-    }
-  }, 10000);
-})();
+const REMOTE_FIRMWARE_URL = 'https://github.com/koocyton/armel-uv-k5-firmware-custom/releases/download/20260508/k18-f4hwn-5.8.0-cn.radio.bin';
+const REMOTE_FONT_URL = 'https://github.com/koocyton/armel-uv-k5-firmware-custom/releases/download/20260508/cn_font.bin';
+const LOCAL_FIRMWARE_URL = '/quansheng-flashtools/k18-f4hwn-5.8.0-cn.radio.bin';
+const LOCAL_FONT_URL = '/quansheng-flashtools/cn_font.bin';
 
-// ========== CONSTANTS ==========
+
 const BAUDRATE = 38400;
-const GITHUB_REPO = 'koocyton/armel-uv-k5-firmware-custom';
 
 const MSG_DEV_INFO_REQ     = 0x0514;
 const MSG_DEV_INFO_RESP    = 0x0515;
@@ -154,41 +30,6 @@ const MSG_SPI_FLASH_WRITE_RESP = 0x0522;
 const MSG_NOTIFY_BL_VER    = 0x0530;
 const MSG_REBOOT           = 0x05DD;
 
-function initBusuanziSync() {
-  return; // removed visitor counter
-  const pageUvEl = $('busuanzi_page_uv');
-  const todayUvEl = $('busuanzi_today_uv');
-  const marqueeText = $('marqueeText');
-  const marqueeInner = $('marqueeInner');
-  if (!pageUvEl || !todayUvEl || !marqueeText || !marqueeInner) return;
-  
-  let cloneCreated = false;
-  
-  const observer = new MutationObserver(function() {
-    if (cloneCreated) return;
-    const pageText = pageUvEl.textContent;
-    const todayText = todayUvEl.textContent;
-    if (pageText && todayText && !pageText.includes('spinner') && !todayText.includes('spinner')) {
-      const clone = marqueeText.cloneNode(true);
-      clone.removeAttribute('id');
-      marqueeInner.appendChild(clone);
-      cloneCreated = true;
-      observer.disconnect();
-    }
-  });
-  
-  observer.observe(pageUvEl, { childList: true, characterData: true, subtree: true });
-  observer.observe(todayUvEl, { childList: true, characterData: true, subtree: true });
-  
-  setTimeout(function() {
-    if (!cloneCreated) {
-      const clone = marqueeText.cloneNode(true);
-      clone.removeAttribute('id');
-      marqueeInner.appendChild(clone);
-      cloneCreated = true;
-    }
-  }, 5000);
-}
 
 const OBFUS_TBL = new Uint8Array([
   0x16, 0x6c, 0x14, 0xe6, 0x2e, 0x91, 0x0d, 0x40,
@@ -226,360 +67,86 @@ let isFlashing = false, isFontFlashing = false, isDumping = false, isRestoring =
 let isBackupCfg = false, isRestoreCfg = false;
 let isWritefreqBusy = false;
 
-// ========== UI ==========
-const $ = id => document.getElementById(id);
 
-/**
- * 当前页面所在目录的绝对 URL（始终带尾部 /），用于拼接 firmware、font 等同源相对路径。
- * 若用 document.baseURI 直接拼 `firmware/x`，在地址为 `https://…github.io/仓库名`（无尾部斜杠）时，
- * URL 规范会把路径解析到站点根下的 `/firmware/x`，从而 404；本函数把最后一层视为「目录」再解析。
- * @returns {string}
- */
+
 function getDocumentDirectoryBaseUrlString() {
   const pageUrl = new URL(window.location.href);
   let path = pageUrl.pathname;
-  const pathEndsWithSlash = path.endsWith('/');
-  if (!pathEndsWithSlash) {
-    const pathSegments = path.split('/');
-    const lastSegment = pathSegments.pop() || '';
-    const lastSegmentLooksLikeFile = /\.[a-zA-Z0-9]+$/.test(lastSegment);
-    if (lastSegmentLooksLikeFile) {
-      const pathWithoutFile = path.replace(/[^/]+$/, '');
-      path = pathWithoutFile;
-    } else {
-      path = path + '/';
-    }
+  if (!path.endsWith('/')) {
+    path = path.replace(/[^/]+$/, '');
   }
-  const directoryBase = pageUrl.origin + path;
-  return directoryBase;
+  return pageUrl.origin + path;
 }
 
-const THEME_STORAGE_KEY = 'uvk1-web-theme';
+const $ = (id) => document.getElementById(id);
 
-function applyThemeToDocument(themeName) {
-  const useLight = themeName === 'light';
-  document.documentElement.classList.toggle('theme-light', useLight);
-  const toggleBtn = $('themeToggleBtn');
-  if (!toggleBtn) {
-    return;
-  }
-  let titleText = '';
-  if (useLight) {
-    titleText = '切换为深色主题';
-  } else {
-    titleText = '切换为浅色主题';
-  }
-  toggleBtn.setAttribute('title', titleText);
-  toggleBtn.setAttribute('aria-label', titleText);
-}
-
-function initThemeToggle() {
-  const toggleBtn = $('themeToggleBtn');
-  if (!toggleBtn) {
-    return;
-  }
-  toggleBtn.addEventListener('click', function onThemeToggleClick() {
-    const hasLight = document.documentElement.classList.contains('theme-light');
-    let nextTheme = '';
-    if (hasLight) {
-      nextTheme = 'dark';
-    } else {
-      nextTheme = 'light';
-    }
-    applyThemeToDocument(nextTheme);
-    try {
-      localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
-    } catch (storeErr) {
-      // ignore
-    }
-  });
-  let storedTheme = 'dark';
-  try {
-    const rawStored = localStorage.getItem(THEME_STORAGE_KEY);
-    if (rawStored === 'light' || rawStored === 'dark') {
-      storedTheme = rawStored;
-    }
-  } catch (readErr) {
-    storedTheme = 'dark';
-  }
-  applyThemeToDocument(storedTheme);
-}
-
-// ========== TABS ==========
-function syncWritefreqFullLayoutClass() {
-  const activeTab = document.querySelector('.tab.active');
-  let isWritefreq = false;
-  if (activeTab) {
-    const tabId = activeTab.dataset.tab;
-    if (tabId === 'writefreq') {
-      isWritefreq = true;
-    }
-  }
-  document.body.classList.toggle('writefreq-full', isWritefreq);
-}
-
-/**
- * 写频页把日志（及进度条）挂到 #logDockWritefreq，与表格同区显示；
- * 若只移日志、不移进度条，则进度条会留在 main 底部，看起来仍在「表格下方」。
- */
-function syncLogDockPlacement() {
-  const logSection = $('logContainerSection');
-  const progressSection = $('progressContainer');
-  const dockWf = $('logDockWritefreq');
-  const anchor = $('logAnchorDefault');
-  if (!logSection || !anchor) {
-    return;
-  }
-  if (!progressSection) {
-    return;
-  }
-  const activeTab = document.querySelector('.tab.active');
-  let isWritefreq = false;
-  if (activeTab && activeTab.dataset.tab === 'writefreq') {
-    isWritefreq = true;
-  }
-  if (isWritefreq && dockWf) {
-    dockWf.appendChild(logSection);
-    dockWf.appendChild(progressSection);
-    return;
-  }
-  anchor.after(logSection);
-  logSection.after(progressSection);
-}
-
-function openFlashDeviceWarningModal() {
-  const modalRoot = $('flashDeviceWarningModal');
-  if (!modalRoot) {
-    return;
-  }
-  modalRoot.removeAttribute('hidden');
-  modalRoot.setAttribute('aria-hidden', 'false');
-  const confirmButton = $('flashDeviceWarningOkBtn');
-  if (confirmButton) {
-    confirmButton.focus();
-  }
-}
-
-function closeFlashDeviceWarningModal() {
-  const modalRoot = $('flashDeviceWarningModal');
-  if (!modalRoot) {
-    return;
-  }
-  modalRoot.setAttribute('hidden', '');
-  modalRoot.setAttribute('aria-hidden', 'true');
-}
-
-function initFlashDeviceWarningModal() {
-  const modalRoot = $('flashDeviceWarningModal');
-  if (!modalRoot) {
-    return;
-  }
-  const confirmButton = $('flashDeviceWarningOkBtn');
-  if (confirmButton) {
-    confirmButton.addEventListener('click', function onFlashWarningConfirmClick() {
-      closeFlashDeviceWarningModal();
-    });
-  }
-  const backdropEl = modalRoot.querySelector('[data-flash-warning-dismiss]');
-  if (backdropEl) {
-    backdropEl.addEventListener('click', function onFlashWarningBackdropClick() {
-      closeFlashDeviceWarningModal();
-    });
-  }
-  modalRoot.addEventListener('keydown', function onFlashWarningModalKeydown(event) {
-    const escapeKey = 'Escape';
-    if (event.key !== escapeKey) {
-      return;
-    }
-    closeFlashDeviceWarningModal();
-  });
-}
-
-/**
- * 首次进入页面且默认展示「刷固件」时弹出型号提示。
- */
-function openFlashDeviceWarningIfInitialViewIsFlashTab() {
-  const flashTabBtn = $('tabFlash');
-  const flashContentPanel = $('flash-content');
-  if (!flashTabBtn || !flashContentPanel) {
-    return;
-  }
-  const flashTabIsActive = flashTabBtn.classList.contains('active');
-  const flashPanelIsActive = flashContentPanel.classList.contains('active');
-  if (!flashTabIsActive) {
-    return;
-  }
-  if (!flashPanelIsActive) {
-    return;
-  }
-  openFlashDeviceWarningModal();
-}
-
-document.querySelectorAll('.tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    const previousActiveTab = document.querySelector('.tab.active');
-    let previousTabWasFlash = false;
-    if (previousActiveTab) {
-      const previousTabId = previousActiveTab.dataset.tab;
-      if (previousTabId === 'flash') {
-        previousTabWasFlash = true;
-      }
-    }
-    const targetTabIsFlash = tab.dataset.tab === 'flash';
-    document.querySelectorAll('.tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
-    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-    tab.classList.add('active');
-    tab.setAttribute('aria-selected','true');
-    $(tab.dataset.tab + '-content').classList.add('active');
-    syncWritefreqFullLayoutClass();
-    syncLogDockPlacement();
-    window.requestAnimationFrame(() => {
-      flashStepsBarApplyOverflowPolicy();
-    });
-    let shouldShowFlashDeviceWarning = false;
-    if (targetTabIsFlash) {
-      if (!previousTabWasFlash) {
-        shouldShowFlashDeviceWarning = true;
-      }
-    }
-    if (shouldShowFlashDeviceWarning) {
-      openFlashDeviceWarningModal();
-    }
-  });
-});
-syncWritefreqFullLayoutClass();
-syncLogDockPlacement();
-initThemeToggle();
-initFlashDeviceWarningModal();
-initBusuanziSync();
-window.requestAnimationFrame(() => {
-  openFlashDeviceWarningIfInitialViewIsFlashTab();
-});
-
-/** @type {number|null} */
-let appToastAutoHideTimer = null;
-
-/**
- * 右上角 Toast 提示（样式见 .app-toast），替代 alert。
- * @param {string} messageText
- * @param {'warning'|'info'|'success'} toastVariant
- */
 function showAppToast(messageText, toastVariant) {
-  const root = $('appToastRoot');
-  if (!root) {
-    return;
-  }
-  const variantDefault = 'warning';
-  const variantUse =
-    toastVariant === 'info' || toastVariant === 'success'
-      ? toastVariant
-      : variantDefault;
-  if (appToastAutoHideTimer !== null) {
-    clearTimeout(appToastAutoHideTimer);
-    appToastAutoHideTimer = null;
-  }
-  root.replaceChildren();
-  const toastEl = document.createElement('div');
-  toastEl.className = 'app-toast app-toast--' + variantUse;
-  toastEl.setAttribute('role', 'status');
-
-  const iconSpan = document.createElement('span');
-  iconSpan.className = 'app-toast-icon';
-  iconSpan.setAttribute('aria-hidden', 'true');
-  const svgWarning =
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>';
-  const svgInfo =
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>';
-  const svgSuccess =
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>';
-  let iconHtml = svgWarning;
-  if (variantUse === 'info') {
-    iconHtml = svgInfo;
-  }
-  if (variantUse === 'success') {
-    iconHtml = svgSuccess;
-  }
-  iconSpan.innerHTML = iconHtml;
-
-  const bodyDiv = document.createElement('div');
-  bodyDiv.className = 'app-toast-body';
-  const msgP = document.createElement('p');
-  msgP.className = 'app-toast-msg';
-  msgP.textContent = messageText;
-  bodyDiv.appendChild(msgP);
-
-  const closeBtn = document.createElement('button');
-  closeBtn.type = 'button';
-  closeBtn.className = 'app-toast-close';
-  closeBtn.setAttribute('aria-label', '关闭');
-  closeBtn.textContent = '\u00d7';
-
-  toastEl.appendChild(iconSpan);
-  toastEl.appendChild(bodyDiv);
-  toastEl.appendChild(closeBtn);
-  root.appendChild(toastEl);
-
-  function removeToastFromDom() {
-    const parentNode = toastEl.parentNode;
-    if (parentNode) {
-      parentNode.removeChild(toastEl);
-    }
-  }
-
-  function hideToastAnimated() {
-    toastEl.classList.remove('app-toast-visible');
-    const hideTransitionMs = 340;
-    setTimeout(removeToastFromDom, hideTransitionMs);
-  }
-
-  closeBtn.addEventListener('click', function onToastCloseClick() {
-    if (appToastAutoHideTimer !== null) {
-      clearTimeout(appToastAutoHideTimer);
-      appToastAutoHideTimer = null;
-    }
-    hideToastAnimated();
-  });
-
-  requestAnimationFrame(function toastShowFrame() {
-    toastEl.classList.add('app-toast-visible');
-  });
-
-  const autoHideMs = 6200;
-  appToastAutoHideTimer = window.setTimeout(function toastAutoHide() {
-    appToastAutoHideTimer = null;
-    hideToastAnimated();
-  }, autoHideMs);
+  if (!messageText) return;
+  log(String(messageText), toastVariant === 'warning' ? 'warning' : (toastVariant || 'info'));
 }
 
-// ========== LOG ==========
-function log(msg, type='') {
-  const el = document.createElement('div');
-  el.className = 'log-entry ' + type;
-  el.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+
+function log(msg, type = '') {
   const logDiv = $('log');
-  logDiv.appendChild(el);
+  if (!logDiv) return;
+  const line = document.createElement('div');
+  line.className = 'log-line' + (type ? ' log-' + type : '');
+  const ts = new Date().toLocaleTimeString();
+  line.textContent = '[' + ts + '] ' + msg;
+  logDiv.appendChild(line);
   logDiv.scrollTop = logDiv.scrollHeight;
-  console.log(msg);
 }
-
-$('logToggle').addEventListener('click', () => {
-  const logDiv = $('log');
-  logDiv.classList.toggle('visible');
-  const isVisible = logDiv.classList.contains('visible');
-  const key = isVisible ? 'hideLog' : 'showLog';
-  $('logToggle').textContent = window.t ? window.t(key) : (isVisible ? '隐藏日志' : '显示日志');
-  $('logToggle').setAttribute('data-i18n', key);
-});
 
 function updateProgress(pct) {
   const r = Math.round(pct);
-  $('progressFill').style.width = r + '%';
-  $('progressLabel').textContent = r + '%';
+  const fill = $('progressFill');
+  const label = $('progressLabel');
+  const box = $('progressContainer');
+  if (box) box.hidden = false;
+  if (fill) fill.style.width = r + '%';
+  if (label) label.textContent = r + '%';
 }
 
-function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+function hideProgressSoon(ms = 800) {
+  setTimeout(() => {
+    const box = $('progressContainer');
+    if (box) box.hidden = true;
+    updateProgress(0);
+    const fill = $('progressFill');
+    if (fill) fill.style.width = '0%';
+  }, ms);
+}
 
-// ========== PROTOCOL ==========
+function sleep(ms) { return new Promise((r) => setTimeout(r, ms)); }
+
+function downloadBlob(data, filename) {
+  const blob = new Blob([data], { type: 'application/octet-stream' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+}
+
+async function fetchBinWithFallback(remoteUrl, localUrl, label) {
+  const urls = [remoteUrl, localUrl];
+  let lastErr = null;
+  for (const url of urls) {
+    try {
+      log('正在获取' + label + ': ' + url, 'info');
+      const res = await fetch(url, { cache: 'no-cache', mode: 'cors' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const buf = await res.arrayBuffer();
+      log(label + '已加载 (' + buf.byteLength + ' bytes) ← ' + url, 'success');
+      return new Uint8Array(buf);
+    } catch (e) {
+      lastErr = e;
+      log(label + '获取失败: ' + (e && e.message ? e.message : e) + '，尝试下一地址…', 'info');
+    }
+  }
+  throw lastErr || new Error(label + '加载失败');
+}
+
 function createMessage(msgType, dataLen) {
   const msg = new Uint8Array(4 + dataLen);
   new DataView(msg.buffer).setUint16(0, msgType, true);
@@ -794,36 +361,158 @@ async function requestDeviceInfoForCalib(purpose) {
   throw new Error('超时：未收到设备信息（请开机进入正常工作界面再试，勿停在纯 Bootloader 刷机界面）');
 }
 
-// ========== FIRMWARE FLASH ==========
-$('firmwareFile').addEventListener('change', e => {
-  const file = e.target.files?.[0];
+
+async function spiFlashReadChunk(sessionTs, flashAddress, byteLength) {
+  const addr = flashAddress >>> 0;
+  const len = byteLength;
+  if (len === 0 || len > WRITE_FREQ_SPI_MAX_CHUNK) {
+    return null;
+  }
+  let attempt = 0;
+  for (; attempt < WRITE_FREQ_SPI_READ_RETRIES; attempt++) {
+    if (attempt > 0) {
+      await sleep(80 + attempt * 40);
+    }
+    const req = createMessage(MSG_SPI_FLASH_READ, 12);
+    const reqView = new DataView(req.buffer);
+    reqView.setUint32(4, addr, true);
+    reqView.setUint16(8, len, true);
+    reqView.setUint16(10, 0, true);
+    reqView.setUint32(12, sessionTs >>> 0, true);
+    await sendMessage(req);
+    const resp = await waitForMsg(MSG_SPI_FLASH_READ_RESP, WRITE_FREQ_SPI_READ_WAIT_ITERATIONS);
+    if (!resp) {
+      continue;
+    }
+    const respView = new DataView(resp.data.buffer, resp.data.byteOffset, resp.data.byteLength);
+    const respAddr = respView.getUint32(0, true);
+    const respLen = respView.getUint16(4, true);
+    if (respAddr !== addr) {
+      continue;
+    }
+    if (respLen !== len) {
+      continue;
+    }
+    const payloadAvail = resp.data.length - 8;
+    const copyLen = payloadAvail < len ? payloadAvail : len;
+    const out = new Uint8Array(len);
+    let copyIndex = 0;
+    for (; copyIndex < copyLen; copyIndex++) {
+      out[copyIndex] = resp.data[8 + copyIndex];
+    }
+    return out;
+  }
+  return null;
+}
+
+async function spiFlashWriteChunk(sessionTs, flashAddress, payload) {
+  const addr = flashAddress >>> 0;
+  const chunkLen = payload.length;
+  if (chunkLen === 0 || chunkLen > WRITE_FREQ_SPI_MAX_CHUNK) {
+    return false;
+  }
+  let retry = 0;
+  let ok = false;
+  for (; retry < 3 && !ok; retry++) {
+    if (retry > 0) {
+      await sleep(150);
+    }
+    const msg = createMessage(MSG_SPI_FLASH_WRITE, 12 + chunkLen);
+    const v = new DataView(msg.buffer);
+    v.setUint32(4, addr, true);
+    v.setUint16(8, chunkLen, true);
+    v.setUint16(10, 0, true);
+    v.setUint32(12, sessionTs >>> 0, true);
+    let bi = 0;
+    for (; bi < chunkLen; bi++) {
+      msg[16 + bi] = payload[bi];
+    }
+    await sendMessage(msg);
+    const wr = await waitForMsg(MSG_SPI_FLASH_WRITE_RESP, WRITE_FREQ_SPI_WRITE_WAIT_ITERATIONS);
+    if (wr) {
+      ok = true;
+    }
+  }
+  return ok;
+}
+
+
+
+// ========== TABS ==========
+function initTabs() {
+  document.querySelectorAll('.flash-tab').forEach((tab) => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.flash-tab').forEach((t) => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      document.querySelectorAll('.tab-panel').forEach((p) => p.classList.remove('active'));
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+      const panel = $(tab.dataset.tab + 'Panel');
+      if (panel) panel.classList.add('active');
+    });
+  });
+}
+
+function setBusy(btn, busy) {
+  if (!btn) return;
+  btn.disabled = busy;
+}
+
+async function withSession(btn, work) {
+  setBusy(btn, true);
+  updateProgress(0);
+  try {
+    if (!port) await connect();
+    readBuffer = [];
+    await sleep(800);
+    await work();
+  } catch (e) {
+    log('错误: ' + (e && e.message ? e.message : e), 'error');
+  } finally {
+    setBusy(btn, false);
+    if (port) await disconnect();
+    hideProgressSoon();
+  }
+}
+
+// ========== FIRMWARE ==========
+$('firmwareFile').addEventListener('change', (e) => {
+  const file = e.target.files && e.target.files[0];
   if (!file) return;
   const fr = new FileReader();
-  fr.onload = ev => {
+  fr.onload = (ev) => {
     firmwareData = new Uint8Array(ev.target.result);
-    $('fileName').textContent = file.name + ' (' + firmwareData.length + ' bytes)';
-    $('fileName').classList.add('has-file');
-    $('fileLabel').classList.add('has-file');
-    log(window.t ? window.t('logFirmwareLoaded', {name: file.name, size: firmwareData.length}) : '固件已加载：' + file.name + ' (' + firmwareData.length + ' bytes)', 'success');
+    $('firmwareFileName').textContent = file.name + ' (' + firmwareData.length + ' bytes)';
+    log('固件已加载: ' + file.name, 'success');
     $('flashBtn').disabled = false;
     e.target.value = '';
   };
   fr.readAsArrayBuffer(file);
 });
 
+$('fetchFirmwareBtn').addEventListener('click', async () => {
+  const btn = $('fetchFirmwareBtn');
+  btn.disabled = true;
+  try {
+    firmwareData = await fetchBinWithFallback(REMOTE_FIRMWARE_URL, LOCAL_FIRMWARE_URL, '固件');
+    $('firmwareFileName').textContent = 'k18-f4hwn-5.8.0-cn.radio.bin (' + firmwareData.length + ' bytes)';
+    $('flashBtn').disabled = false;
+  } catch (e) {
+    log('固件加载失败: ' + e.message, 'error');
+  } finally {
+    btn.disabled = false;
+  }
+});
+
 $('flashBtn').addEventListener('click', async () => {
   if (!firmwareData || isFlashing) return;
   isFlashing = true;
-  $('flashBtn').disabled = true;
-  $('progressContainer').style.display = 'block';
-  updateProgress(0);
-  try {
-    if (!port) await connect();
-    readBuffer = [];
-    await sleep(1000);
+  await withSession($('flashBtn'), async () => {
     const dev = await waitForDeviceInfo();
     await handshake(dev.blVersion);
-    log(window.t ? window.t('logStartFlash') : '开始刷入固件...', 'info');
+    log('开始刷入固件...', 'info');
     const pageCount = Math.ceil(firmwareData.length / 256);
     const ts = Date.now() & 0xffffffff;
     let page = 0, retry = 0;
@@ -836,7 +525,7 @@ $('flashBtn').addEventListener('click', async () => {
       v.setUint16(10, pageCount, true);
       const off = page * 256;
       const len = Math.min(256, firmwareData.length - off);
-      for (let i = 0; i < len; i++) msg[16+i] = firmwareData[off+i];
+      for (let i = 0; i < len; i++) msg[16 + i] = firmwareData[off + i];
       await sendMessage(msg);
       let ok = false;
       for (let i = 0; i < 300 && !ok; i++) {
@@ -850,136 +539,28 @@ $('flashBtn').addEventListener('click', async () => {
           if (rp !== page) continue;
           if (err !== 0) { retry++; if (retry > 3) throw new Error('页面 ' + page + ' 错误: ' + err); break; }
           ok = true; retry = 0;
-          if ((page+1) % 20 === 0 || page === pageCount-1) log(window.t ? window.t('logFlashProgress', {page: page+1, total: pageCount}) : '页面 ' + (page+1) + '/' + pageCount, 'success');
+          if ((page + 1) % 20 === 0 || page === pageCount - 1) log('页面 ' + (page + 1) + '/' + pageCount, 'success');
         }
       }
       if (ok) page++;
       else { retry++; if (retry > 3) throw new Error('页面 ' + page + ' 超时'); }
     }
     updateProgress(100);
-    log(window.t ? window.t('logFlashComplete') : '固件刷入完成！', 'success');
-  } catch(e) {
-    log(window.t ? window.t('logError', {msg: e.message}) : '错误: ' + e.message, 'error');
-  } finally {
-    isFlashing = false;
-    $('flashBtn').disabled = !firmwareData;
-    if (port) await disconnect();
-    setTimeout(() => { $('progressContainer').style.display = 'none'; updateProgress(0); }, 1000);
-  }
+    log('固件刷入完成', 'success');
+  });
+  isFlashing = false;
+  $('flashBtn').disabled = !firmwareData;
 });
 
-/**
- * 组装 Dondji.fusion.bin 的候选 URL：相对 flash.js（…/js → …/firmware）与相对当前页面（与 index 同级 firmware）。
- * 与 cn_font 同源策略一致，不再请求 GitHub Releases（避免 CORS 与代理）。
- * @returns {string[]}
- */
-function firmwareCollectDondjiFusionBinCandidateUrls() {
-  const seenHref = new Set();
-  const orderedUrls = [];
-  const FIRMWARE_NAME = 'k18-f4hwn-5.8.0-cn.radio.bin';
-  const REMOTE_FW_URL = 'https://github.com/koocyton/armel-uv-k5-firmware-custom/releases/download/20260508/k18-f4hwn-5.8.0-cn.radio.bin';
-
-  function pushUnique(urlHref) {
-    if (!urlHref) {
-      return;
-    }
-    const already = seenHref.has(urlHref);
-    if (already) {
-      return;
-    }
-    seenHref.add(urlHref);
-    orderedUrls.push(urlHref);
-  }
-
-  // Prefer same-origin mirror (GitHub release assets lack CORS); then try release URL.
-  const flashJsUrl = cnFontGetFlashJsAbsoluteUrl();
-  if (flashJsUrl) {
-    pushUnique(new URL('../firmware/' + FIRMWARE_NAME, flashJsUrl).href);
-  }
-  const docDirectoryBase = getDocumentDirectoryBaseUrlString();
-  pushUnique(new URL('firmware/' + FIRMWARE_NAME, docDirectoryBase).href);
-  pushUnique(REMOTE_FW_URL);
-
-  return orderedUrls;
-}
-
-/**
- * 按候选 URL 依次拉取 Fusion 固件（同源 docs/firmware/Dondji.fusion.bin）。
- * @returns {Promise<ArrayBuffer>}
- */
-function firmwareFetchArrayBuffer() {
-  const candidateUrls = firmwareCollectDondjiFusionBinCandidateUrls();
-  const totalCandidates = candidateUrls.length;
-  let attemptIndex = 0;
-
-  function attemptNextUrl() {
-    if (attemptIndex >= totalCandidates) {
-      const errText =
-        '无法加载固件：已尝试同源 firmware 与 GitHub Release（共 ' +
-        totalCandidates +
-        ' 个地址）。请确认已部署 firmware/k18-f4hwn-5.8.0-cn.radio.bin。';
-      return Promise.reject(new Error(errText));
-    }
-    const fullUrl = candidateUrls[attemptIndex];
-    attemptIndex = attemptIndex + 1;
-    const fetchPromise = fetch(fullUrl);
-    return fetchPromise.then(function onResponse(response) {
-      const responseOk = response.ok;
-      if (responseOk) {
-        return response.arrayBuffer();
-      }
-      return attemptNextUrl();
-    }).catch(function onFetchError() {
-      return attemptNextUrl();
-    });
-  }
-  return attemptNextUrl();
-}
-
-// ========== FETCH LATEST FIRMWARE ==========
-$('fetchLatestBtn').addEventListener('click', async () => {
-  const btn = $('fetchLatestBtn');
-  btn.disabled = true;
-  btn.textContent = window.t ? window.t('loadingFile') : '正在加载...';
-  try {
-    log(window.t ? window.t('logLoadingFile') + ' k18-f4hwn-5.8.0-cn.radio.bin' : '正在加载 k18-f4hwn-5.8.0-cn.radio.bin', 'info');
-    const arrayBuffer = await firmwareFetchArrayBuffer();
-    const loadedBytes = new Uint8Array(arrayBuffer);
-    firmwareData = loadedBytes;
-    const byteLength = firmwareData.length;
-    const sizeKbText = (byteLength / 1024).toFixed(1);
-    $('fwReleaseInfo').style.display = 'block';
-    $('fwReleaseInfo').innerHTML =
-      `<span class="fw-name">k18-f4hwn-5.8.0-cn.radio.bin</span> &middot; ` +
-      `<span class="fw-size">${sizeKbText} KB</span> &middot; ` +
-      `<span class="fw-date">20260508</span>`;
-    $('fileName').textContent = '✓ k18-f4hwn-5.8.0-cn.radio.bin (' + byteLength + ' bytes)';
-    $('fileName').classList.add('has-file');
-    $('fileLabel').classList.add('has-file');
-    log(window.t ? window.t('logFirmwareLoadedDefault', {name: 'k18-f4hwn-5.8.0-cn.radio.bin', size: byteLength}) : '固件已加载: k18-f4hwn-5.8.0-cn.radio.bin (' + byteLength + ' bytes)', 'success');
-    $('flashBtn').disabled = false;
-    $('flashBtn').textContent = '刷入固件';
-  } catch (loadErr) {
-    const messageText = loadErr && loadErr.message ? loadErr.message : String(loadErr);
-    log(window.t ? window.t('logLoadFailed', {msg: messageText}) : '加载失败: ' + messageText, 'error');
-  } finally {
-    btn.disabled = false;
-    btn.textContent = '远程获取';
-  }
-});
-
-// ========== FONT FLASH ==========
-$('fontFile').addEventListener('change', e => {
-  const file = e.target.files?.[0];
+// ========== FONT ==========
+$('fontFile').addEventListener('change', (e) => {
+  const file = e.target.files && e.target.files[0];
   if (!file) return;
   const fr = new FileReader();
-  fr.onload = ev => {
+  fr.onload = (ev) => {
     fontData = new Uint8Array(ev.target.result);
-    cnFontOnFontDataLoaded();
     $('fontFileName').textContent = file.name + ' (' + fontData.length + ' bytes)';
-    $('fontFileName').classList.add('has-file');
-    $('fontFileLabel').classList.add('has-file');
-    log(window.t ? window.t('logFontLoaded', {name: file.name, size: fontData.length}) : '字库已加载：' + file.name + ' (' + fontData.length + ' bytes)', 'success');
+    log('字库已加载: ' + file.name, 'success');
     $('fontFlashBtn').disabled = false;
     e.target.value = '';
   };
@@ -989,117 +570,59 @@ $('fontFile').addEventListener('change', e => {
 $('fetchFontBtn').addEventListener('click', async () => {
   const btn = $('fetchFontBtn');
   btn.disabled = true;
-  btn.textContent = window.t ? window.t('loadingFile') : '正在加载...';
   try {
-    const buf = await cnFontFetchArrayBuffer();
-    fontData = new Uint8Array(buf);
-    cnFontOnFontDataLoaded();
-    $('fontInfo').style.display = 'block';
-    $('fontInfo').innerHTML = `<span class="fw-name">cn_font.bin</span> &middot; <span class="fw-size">${(fontData.length/1024).toFixed(1)} KB</span> &middot; ${CN_FONT_CHAR_COUNT} 字符`;
+    fontData = await fetchBinWithFallback(REMOTE_FONT_URL, LOCAL_FONT_URL, '字库');
     $('fontFileName').textContent = 'cn_font.bin (' + fontData.length + ' bytes)';
-    $('fontFileName').classList.add('has-file');
-    $('fontFileLabel').classList.add('has-file');
-    log(window.t ? window.t('logFontLoadedDefault', {name: 'cn_font.bin', size: fontData.length}) : '字库已加载: cn_font.bin (' + fontData.length + ' bytes)', 'success');
     $('fontFlashBtn').disabled = false;
-  } catch(e) {
-    log(window.t ? window.t('logLoadFailed', {msg: e.message}) : '加载失败: ' + e.message, 'error');
+  } catch (e) {
+    log('字库加载失败: ' + e.message, 'error');
   } finally {
     btn.disabled = false;
-    btn.textContent = '远程获取';
   }
 });
 
 $('fontFlashBtn').addEventListener('click', async () => {
   if (!fontData || isFontFlashing) return;
   isFontFlashing = true;
-  $('fontFlashBtn').disabled = true;
-  $('progressContainer').style.display = 'block';
-  updateProgress(0);
-  try {
-    if (!port) await connect();
-    readBuffer = [];
-    await sleep(1000);
-
-    // Detect device mode: send MSG_DEV_INFO_REQ and check response
-    log(window.t ? window.t('logDetectDevice') : '检测设备模式...', 'info');
+  await withSession($('fontFlashBtn'), async () => {
+    log('检测设备模式...', 'info');
     const ts = Date.now() & 0xffffffff;
     const reqMsg = createMessage(MSG_DEV_INFO_REQ, 4);
     new DataView(reqMsg.buffer).setUint32(4, ts, true);
     await sendMessage(reqMsg);
-
     let isFirmwareMode = false;
     for (let i = 0; i < 100; i++) {
       await sleep(10);
       const msg = fetchMessage(readBuffer);
       if (!msg) continue;
-      if (msg.msgType === MSG_DEV_INFO_RESP) {
-        isFirmwareMode = true;
-        break;
-      }
-      if (msg.msgType === MSG_NOTIFY_DEV_INFO) {
-        // Bootloader mode - keep waiting for possible DEV_INFO_RESP
-      }
+      if (msg.msgType === MSG_DEV_INFO_RESP) { isFirmwareMode = true; break; }
     }
-
-    if (!isFirmwareMode) {
-      throw new Error('设备处于 BOOT 模式，请先刷入固件并启动后再刷字库');
-    }
-
-    log(window.t ? window.t('logDeviceCustomFirmware') : '设备已运行自定义固件，开始刷入字库...', 'success');
-
-    // Write font data in chunks via SPI Flash Write (0x0521)
-    const totalChunks = Math.ceil(fontData.length / SPI_CHUNK_SIZE);
+    if (!isFirmwareMode) throw new Error('设备处于 BOOT 模式，请先刷入固件并正常开机后再刷字库');
+    log('开始刷入字库...', 'success');
     let written = 0;
-
     for (let i = 0; i < fontData.length; i += SPI_CHUNK_SIZE) {
       const chunkLen = Math.min(SPI_CHUNK_SIZE, fontData.length - i);
       const addr = CN_FONT_FLASH_BASE + i;
       let ok = false;
-
       for (let retry = 0; retry < 3 && !ok; retry++) {
-        if (retry > 0) {
-          log(window.t ? window.t('logRetry', {addr: addr.toString(16), retry: retry}) : '重试 @ 0x' + addr.toString(16) + ' (' + retry + ')', 'info');
-          await sleep(200);
-        }
-
+        if (retry > 0) await sleep(200);
         const msg = createMessage(MSG_SPI_FLASH_WRITE, 12 + chunkLen);
         const v = new DataView(msg.buffer);
         v.setUint32(4, addr, true);
         v.setUint16(8, chunkLen, true);
-        v.setUint16(10, 0, true); // padding
+        v.setUint16(10, 0, true);
         v.setUint32(12, ts, true);
-        for (let j = 0; j < chunkLen; j++) msg[16+j] = fontData[i+j];
-
+        for (let j = 0; j < chunkLen; j++) msg[16 + j] = fontData[i + j];
         await sendMessage(msg);
         const resp = await waitForMsg(MSG_SPI_FLASH_WRITE_RESP, 800);
         if (resp) ok = true;
       }
-
       if (!ok) throw new Error('写入超时 @ 0x' + addr.toString(16));
-
       written += chunkLen;
       updateProgress((written / fontData.length) * 100);
-      if ((i / SPI_CHUNK_SIZE) % 10 === 0)
-        log(window.t ? window.t('logWrittenBytes', {written: written, total: fontData.length}) : '已写入 ' + written + '/' + fontData.length + ' bytes', 'info');
-
-      // Delay to avoid overwhelming the firmware during SPI Flash erase
       await sleep(50);
     }
-
-    // 版本字节必须与 cn_font.bin 最后一字节同一地址。仅用 CN_FONT_VERSION_OFFSET 若与 bin 长度不一致，
-    // 会把 1 字节写到拼音表/索引区内，表现为拼音检索整体失效（如 zhong 无候选）。
-    const expectedFontByteLength = CN_FONT_VERSION_OFFSET + 1;
-    if (fontData.length !== expectedFontByteLength) {
-      log(
-        '警告：字库文件 ' + fontData.length + ' 字节，与 CN_FONT_VERSION_OFFSET+1=' +
-          expectedFontByteLength +
-          ' 不一致（多为浏览器缓存了旧 flash.js）。将以 bin 实际末尾地址写入版本字节。',
-        'warn'
-      );
-    }
     const versionByteFlashAddr = CN_FONT_FLASH_BASE + fontData.length - 1;
-
-    // Write version marker（地址固定为当前加载的 bin 最后一字节，避免常量滞后破坏 Flash）
     const verMsg = createMessage(MSG_SPI_FLASH_WRITE, 12 + 1);
     const vv = new DataView(verMsg.buffer);
     vv.setUint32(4, versionByteFlashAddr, true);
@@ -1108,51 +631,21 @@ $('fontFlashBtn').addEventListener('click', async () => {
     vv.setUint32(12, ts, true);
     verMsg[16] = CN_FONT_VERSION;
     await sendMessage(verMsg);
-    const verResp = await waitForMsg(MSG_SPI_FLASH_WRITE_RESP, 100);
-    if (!verResp) log(window.t ? window.t('logVersionWriteTimeout') : '版本标记写入超时（可能固件不支持 SPI Flash 写入）', 'error');
-    else log(window.t ? window.t('logVersionWritten') : '版本标记已写入', 'success');
-
-    // Verify: 与固件 SETTINGS_InitCNFont / menu 一致，读 Flash 基址首 4 字节（「的」前两行）
-    // 必须走 spiFlashReadChunk：0x0520 响应前 8 字节是 Address/Size/Padding，payload 从偏移 8 起
-    const probeBytes = await spiFlashReadChunk(ts, CN_FONT_FLASH_BASE, 4);
-    if (probeBytes) {
-      const probe = new DataView(probeBytes.buffer, probeBytes.byteOffset, probeBytes.byteLength);
-      const w0 = probe.getUint16(0, true);
-      const w1 = probe.getUint16(2, true);
-      if (w0 === 0x1100 && w1 === 0x2100)
-        log(window.t ? window.t('logVerifyPass') : '验证通过：字库数据正确', 'success');
-      else
-        log(window.t ? window.t('logVerifyWarning', {w0: w0.toString(16), w1: w1.toString(16)}) : '验证警告：首字节 0x' + w0.toString(16) + ' 0x' + w1.toString(16) + '（期望 0x1100 0x2100）', 'error');
-    } else {
-      log(window.t ? window.t('logVerifySkip') : '验证跳过：读取超时', 'info');
-    }
-
+    await waitForMsg(MSG_SPI_FLASH_WRITE_RESP, 100);
     updateProgress(100);
-    log(window.t ? window.t('logFontFlashComplete', {size: written}) : '字库刷入完成！共 ' + written + ' bytes', 'success');
-  } catch(e) {
-    log(window.t ? window.t('logError', {msg: e.message}) : '错误: ' + e.message, 'error');
-  } finally {
-    isFontFlashing = false;
-    $('fontFlashBtn').disabled = !fontData;
-    if (port) await disconnect();
-    setTimeout(() => { $('progressContainer').style.display = 'none'; updateProgress(0); }, 1000);
-  }
+    log('字库刷入完成，共 ' + written + ' bytes', 'success');
+  });
+  isFontFlashing = false;
+  $('fontFlashBtn').disabled = !fontData;
 });
 
-// ========== DUMP CALIBRATION ==========
+// ========== CALIB DUMP ==========
 $('dumpBtn').addEventListener('click', async () => {
   if (isDumping) return;
   isDumping = true;
-  $('dumpBtn').disabled = true;
-  $('progressContainer').style.display = 'block';
-  updateProgress(0);
-  $('dumpDownload').style.display = 'none';
-  try {
-    if (!port) await connect();
-    readBuffer = [];
-    await sleep(1000);
-    const calibSession = await requestDeviceInfoForCalib();
-    log(window.t ? window.t('logExportCalibration') : '导出校准数据...', 'info');
+  await withSession($('dumpBtn'), async () => {
+    const calibSession = await requestDeviceInfoForCalib('校准');
+    log('导出校准数据...', 'info');
     const data = new Uint8Array(CALIB_SIZE);
     const ts = calibSession.timestamp;
     let offset = calibEepromBase;
@@ -1172,7 +665,7 @@ $('dumpBtn').addEventListener('click', async () => {
         if (resp.msgType === MSG_READ_EEPROM_RESP) {
           const rv = new DataView(resp.data.buffer);
           if (rv.getUint16(0, true) === offset && resp.data[2] === CALIB_CHUNK) {
-            for (let j = 0; j < CALIB_CHUNK; j++) data[i+j] = resp.data[4+j];
+            for (let j = 0; j < CALIB_CHUNK; j++) data[i + j] = resp.data[4 + j];
             ok = true;
             offset += CALIB_CHUNK;
           }
@@ -1181,33 +674,23 @@ $('dumpBtn').addEventListener('click', async () => {
       if (!ok) throw new Error('读取失败 @ 0x' + offset.toString(16));
     }
     updateProgress(100);
-    const blob = new Blob([data], { type: 'application/octet-stream' });
-    $('dumpLink').href = URL.createObjectURL(blob);
-    $('dumpDownload').style.display = 'block';
-    log(window.t ? window.t('logCalibrationExportComplete') : '校准数据导出完成', 'success');
-  } catch(e) {
-    log(window.t ? window.t('logError', {msg: e.message}) : '错误: ' + e.message, 'error');
-  } finally {
-    isDumping = false;
-    $('dumpBtn').disabled = false;
-    if (port) await disconnect();
-    setTimeout(() => { $('progressContainer').style.display = 'none'; updateProgress(0); }, 800);
-  }
+    downloadBlob(data, 'calibration.dat');
+    log('校准数据已导出', 'success');
+  });
+  isDumping = false;
 });
 
-// ========== RESTORE CALIBRATION ==========
-$('calibFile').addEventListener('change', e => {
-  const file = e.target.files?.[0];
+// ========== CALIB RESTORE ==========
+$('calibFile').addEventListener('change', (e) => {
+  const file = e.target.files && e.target.files[0];
   if (!file) return;
   const fr = new FileReader();
-  fr.onload = ev => {
+  fr.onload = (ev) => {
     const buf = new Uint8Array(ev.target.result);
-    if (buf.length !== CALIB_SIZE) { log(window.t ? window.t('logFileSizeError', {size: buf.length, expected: CALIB_SIZE}) : '文件大小错误: ' + buf.length + ' (需要 ' + CALIB_SIZE + ')', 'error'); return; }
+    if (buf.length !== CALIB_SIZE) { log('文件大小错误: ' + buf.length + ' (需要 ' + CALIB_SIZE + ')', 'error'); return; }
     calibData = buf;
     $('calibFileName').textContent = file.name;
-    $('calibFileName').classList.add('has-file');
-    $('calibFileLabel').classList.add('has-file');
-    log(window.t ? window.t('logCalibrationFileLoaded', {name: file.name}) : '校准文件已加载: ' + file.name, 'success');
+    log('校准文件已加载: ' + file.name, 'success');
     $('restoreBtn').disabled = false;
   };
   fr.readAsArrayBuffer(file);
@@ -1216,15 +699,9 @@ $('calibFile').addEventListener('change', e => {
 $('restoreBtn').addEventListener('click', async () => {
   if (!calibData || isRestoring) return;
   isRestoring = true;
-  $('restoreBtn').disabled = true;
-  $('progressContainer').style.display = 'block';
-  updateProgress(0);
-  try {
-    if (!port) await connect();
-    readBuffer = [];
-    await sleep(1000);
-    const calibSession = await requestDeviceInfoForCalib();
-    log(window.t ? window.t('logRestoreCalibration') : '恢复校准数据...', 'info');
+  await withSession($('restoreBtn'), async () => {
+    const calibSession = await requestDeviceInfoForCalib('校准');
+    log('恢复校准数据...', 'info');
     const ts = calibSession.timestamp;
     let offset = calibEepromBase;
     for (let i = 0; i < CALIB_SIZE; i += CALIB_CHUNK) {
@@ -1235,7 +712,7 @@ $('restoreBtn').addEventListener('click', async () => {
       v.setUint16(6, CALIB_CHUNK, true);
       msg[7] = 1;
       v.setUint32(8, ts, true);
-      for (let j = 0; j < CALIB_CHUNK; j++) msg[12+j] = calibData[i+j];
+      for (let j = 0; j < CALIB_CHUNK; j++) msg[12 + j] = calibData[i + j];
       await sendMessage(msg);
       let ok = false;
       for (let a = 0; a < 300 && !ok; a++) {
@@ -1249,403 +726,22 @@ $('restoreBtn').addEventListener('click', async () => {
       if (!ok) throw new Error('写入失败 @ 0x' + offset.toString(16));
     }
     updateProgress(100);
-    log(window.t ? window.t('logCalibrationRestoreComplete') : '校准数据恢复完成！正在重启...', 'success');
+    log('校准恢复完成，正在重启...', 'success');
     await sendMessage(createMessage(MSG_REBOOT, 0));
     await sleep(500);
-    log(window.t ? window.t('logDeviceRebooted') : '设备已重启', 'success');
-  } catch(e) {
-    log(window.t ? window.t('logError', {msg: e.message}) : '错误: ' + e.message, 'error');
-  } finally {
-    isRestoring = false;
-    $('restoreBtn').disabled = !calibData;
-    if (port) await disconnect();
-    setTimeout(() => { $('progressContainer').style.display = 'none'; updateProgress(0); }, 800);
-  }
+  });
+  isRestoring = false;
+  $('restoreBtn').disabled = !calibData;
 });
 
-// ========== CALIBRATION CHECK ==========
-(function() {
-  // 校准字段定义：每行一个值，offset 相对于校准区基址
-  var CALIB_FIELDS = [
-    { offset: 0xC0, size: 2, label: 'RSSI 校准 Band3', idx: 1 },
-    { offset: 0xC2, size: 2, label: 'RSSI 校准 Band3', idx: 2 },
-    { offset: 0xC4, size: 2, label: 'RSSI 校准 Band3', idx: 3 },
-    { offset: 0xC6, size: 2, label: 'RSSI 校准 Band3', idx: 4 },
-    { offset: 0xC8, size: 2, label: 'RSSI 校准 Band0', idx: 1 },
-    { offset: 0xCA, size: 2, label: 'RSSI 校准 Band0', idx: 2 },
-    { offset: 0xCC, size: 2, label: 'RSSI 校准 Band0', idx: 3 },
-    { offset: 0xCE, size: 2, label: 'RSSI 校准 Band0', idx: 4 },
-    { offset: 0x140, size: 2, label: '电池校准' },
-    { offset: 0x142, size: 2, label: '电池校准' },
-    { offset: 0x144, size: 2, label: '电池校准' },
-    { offset: 0x146, size: 2, label: '电池校准' },
-    { offset: 0x148, size: 2, label: '电池校准' },
-    { offset: 0x14A, size: 2, label: '电池校准' },
-    { offset: 0x150, size: 2, label: 'VOX1 阈值', idx: 1 },
-    { offset: 0x152, size: 2, label: 'VOX1 阈值', idx: 2 },
-    { offset: 0x154, size: 2, label: 'VOX1 阈值', idx: 3 },
-    { offset: 0x156, size: 2, label: 'VOX1 阈值', idx: 4 },
-    { offset: 0x158, size: 2, label: 'VOX1 阈值', idx: 5 },
-    { offset: 0x15A, size: 2, label: 'VOX1 阈值', idx: 6 },
-    { offset: 0x15C, size: 2, label: 'VOX1 阈值', idx: 7 },
-    { offset: 0x15E, size: 2, label: 'VOX1 阈值', idx: 8 },
-    { offset: 0x160, size: 2, label: 'VOX1 阈值', idx: 9 },
-    { offset: 0x162, size: 2, label: 'VOX1 阈值', idx: 10 },
-    { offset: 0x168, size: 2, label: 'VOX0 阈值', idx: 1 },
-    { offset: 0x16A, size: 2, label: 'VOX0 阈值', idx: 2 },
-    { offset: 0x16C, size: 2, label: 'VOX0 阈值', idx: 3 },
-    { offset: 0x16E, size: 2, label: 'VOX0 阈值', idx: 4 },
-    { offset: 0x170, size: 2, label: 'VOX0 阈值', idx: 5 },
-    { offset: 0x172, size: 2, label: 'VOX0 阈值', idx: 6 },
-    { offset: 0x174, size: 2, label: 'VOX0 阈值', idx: 7 },
-    { offset: 0x176, size: 2, label: 'VOX0 阈值', idx: 8 },
-    { offset: 0x178, size: 2, label: 'VOX0 阈值', idx: 9 },
-    { offset: 0x17A, size: 2, label: 'VOX0 阈值', idx: 10 },
-    { offset: 0x188, size: 2, label: '晶振频率偏移 (Hz)', signed: true },
-    { offset: 0x18A, size: 2, label: 'EEPROM_1F8A' },
-    { offset: 0x18C, size: 2, label: 'EEPROM_1F8C' },
-    { offset: 0x18E, size: 1, label: '音量增益 (0-63)' },
-    { offset: 0x18F, size: 1, label: 'DAC增益 (0-15)' }
-  ];
-
-  var calibOfficialData = null;   // 0x1E00 读取的512字节
-  var calibThirdPartyData = null; // 0xB000 读取的512字节
-  var calibBackupData = null;     // 备份校准512字节
-
-  /** 读取单个校准值 */
-  function readCalibVal(buf, off, size, signed) {
-    if (!buf) return null;
-    if (size === 1) return buf[off];
-    var raw = buf[off] | (buf[off + 1] << 8);
-    return signed && raw > 0x7FFF ? raw - 0x10000 : raw;
-  }
-
-  /** 检测单个值是否无效 */
-  function isValInvalid(buf, off, size) {
-    if (!buf) return false;
-    return size === 1 ? buf[off] === 0xFF : (buf[off] | (buf[off + 1] << 8)) === 0xFFFF;
-  }
-
-  function renderCalibTable() {
-    var tbody = $('calibCheckBody');
-    tbody.innerHTML = '';
-    CALIB_FIELDS.forEach(function(f) {
-      var tr = document.createElement('tr');
-      var label = f.label + (f.idx ? ' [' + f.idx + ']' : '');
-
-      // 描述列
-      var tdDesc = document.createElement('td');
-      tdDesc.className = 'calib-desc';
-      tdDesc.textContent = label;
-      tdDesc.title = '0x' + f.offset.toString(16).toUpperCase();
-      tr.appendChild(tdDesc);
-
-      // 官方地址列
-      var tdOff = document.createElement('td');
-      var offV = readCalibVal(calibOfficialData, f.offset, f.size, f.signed);
-      var offBad = isValInvalid(calibOfficialData, f.offset, f.size);
-      tdOff.className = 'calib-val' + (offV !== null ? '' : ' calib-val--empty') + (offBad ? ' calib-val--invalid' : '');
-      tdOff.textContent = offV !== null ? String(offV) : '--';
-      tr.appendChild(tdOff);
-
-      // 第三方地址列
-      var tdTp = document.createElement('td');
-      var tpV = readCalibVal(calibThirdPartyData, f.offset, f.size, f.signed);
-      var tpBad = isValInvalid(calibThirdPartyData, f.offset, f.size);
-      tdTp.className = 'calib-val' + (tpV !== null ? '' : ' calib-val--empty') + (tpBad ? ' calib-val--invalid' : '');
-      tdTp.textContent = tpV !== null ? String(tpV) : '--';
-      tr.appendChild(tdTp);
-
-      // 备份列（单行输入）
-      var tdBackup = document.createElement('td');
-      tdBackup.className = 'calib-backup-cell';
-      var inp = document.createElement('input');
-      inp.type = 'text';
-      inp.dataset.offset = f.offset;
-      inp.dataset.size = f.size;
-      inp.dataset.signed = f.signed ? '1' : '';
-      inp.placeholder = '0';
-      var bv = readCalibVal(calibBackupData, f.offset, f.size, f.signed);
-      inp.value = bv !== null ? String(bv) : '';
-      inp.addEventListener('change', function() { updateBackupField(f.offset, f.size, this.value, f.signed); });
-      tdBackup.appendChild(inp);
-      tr.appendChild(tdBackup);
-
-      tbody.appendChild(tr);
-    });
-  }
-
-  /** 将十进制文本解析回二进制写入 calibBackupData */
-  function updateBackupField(offset, size, text, signed) {
-    if (!calibBackupData) {
-      calibBackupData = new Uint8Array(CALIB_SIZE).fill(0xFF);
-    }
-    var v = parseInt(text.trim(), 10);
-    if (isNaN(v)) return;
-    if (size === 1) {
-      if (v < 0) v = 0;
-      if (v > 255) v = 255;
-      calibBackupData[offset] = v;
-    } else {
-      if (signed) {
-        if (v < -32768) v = -32768;
-        if (v > 32767) v = 32767;
-        v = v < 0 ? v + 0x10000 : v;
-      } else {
-        if (v < 0) v = 0;
-        if (v > 0xFFFF) v = 0xFFFF;
-      }
-      calibBackupData[offset] = v & 0xFF;
-      calibBackupData[offset + 1] = (v >> 8) & 0xFF;
-    }
-  }
-
-  function openCalibCheckModal() {
-    var modal = $('calibCheckModal');
-    if (!modal) return;
-    modal.removeAttribute('hidden');
-    modal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-    renderCalibTable();
-  }
-
-  function closeCalibCheckModal() {
-    var modal = $('calibCheckModal');
-    if (!modal) return;
-    modal.setAttribute('hidden', '');
-    modal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  }
-
-  // 读取单个地址的校准数据
-  async function readCalibFromDevice(baseAddr, label) {
-    log(window.t ? window.t('logReadCalibrationAddr', {addr: baseAddr.toString(16)}) : '读取校准数据 @ 0x' + baseAddr.toString(16) + '...', 'info');
-    var session = await requestDeviceInfoForCalib(label);
-    var data = new Uint8Array(CALIB_SIZE);
-    var ts = session.timestamp;
-    var offset = baseAddr;
-    for (var i = 0; i < CALIB_SIZE; i += CALIB_CHUNK) {
-      var msg = createMessage(MSG_READ_EEPROM, 8);
-      var v = new DataView(msg.buffer);
-      v.setUint16(4, offset, true);
-      v.setUint16(6, CALIB_CHUNK, true);
-      v.setUint32(8, ts, true);
-      await sendMessage(msg);
-      var ok = false;
-      for (var a = 0; a < 300 && !ok; a++) {
-        await sleep(10);
-        var resp = fetchMessage(readBuffer);
-        if (!resp) continue;
-        if (resp.msgType === MSG_READ_EEPROM_RESP) {
-          var rv = new DataView(resp.data.buffer);
-          if (rv.getUint16(0, true) === offset && resp.data[2] === CALIB_CHUNK) {
-            for (var j = 0; j < CALIB_CHUNK; j++) data[i + j] = resp.data[4 + j];
-            ok = true;
-            offset += CALIB_CHUNK;
-          }
-        }
-      }
-      if (!ok) throw new Error('读取失败 @ 0x' + offset.toString(16));
-    }
-    log(window.t ? window.t('logCalibrationReadAddrComplete', {addr: baseAddr.toString(16)}) : '校准读取完成 @ 0x' + baseAddr.toString(16), 'success');
-    return data;
-  }
-
-  // 读取设备校准（两个地址都读）
-  $('calibReadDeviceBtn').addEventListener('click', async function() {
-    if (isRestoring || isDumping) return;
-    this.disabled = true;
-    $('progressContainer').style.display = 'block';
-    updateProgress(0);
-    try {
-      if (!port) await connect();
-      readBuffer = [];
-      await sleep(1000);
-      calibOfficialData = await readCalibFromDevice(0x1E00, '校准检查-官方');
-      updateProgress(50);
-      // 需要重新连接以读取第二个地址（设备可能重启或状态变化）
-      // 实际上同一连接可以继续读，只需重置 readBuffer
-      readBuffer = [];
-      calibThirdPartyData = await readCalibFromDevice(0xB000, '校准检查-第三方');
-      updateProgress(100);
-      renderCalibTable();
-      log(window.t ? window.t('logDeviceCalibrationReadComplete') : '设备校准读取完成', 'success');
-    } catch(e) {
-      log(window.t ? window.t('logError', {msg: e.message}) : '错误: ' + e.message, 'error');
-    } finally {
-      this.disabled = false;
-      if (port) await disconnect();
-      setTimeout(function() { $('progressContainer').style.display = 'none'; updateProgress(0); }, 800);
-    }
-  });
-
-  // 加载备份校准文件
-  $('calibLoadBackupBtn').addEventListener('click', function() {
-    var input = document.createElement('input');
-    input.type = 'file';
-    input.accept = '.dat';
-    input.addEventListener('change', function(e) {
-      var file = e.target.files && e.target.files[0];
-      if (!file) return;
-      var fr = new FileReader();
-      fr.onload = function(ev) {
-        var buf = new Uint8Array(ev.target.result);
-        if (buf.length !== CALIB_SIZE) {
-          log(window.t ? window.t('logFileSizeError', {size: buf.length, expected: CALIB_SIZE}) : '文件大小错误: ' + buf.length + ' (需要 ' + CALIB_SIZE + ')', 'error'); return; }
-        calibBackupData = buf;
-        renderCalibTable();
-        log(window.t ? window.t('logBackupCalibrationLoaded', {name: file.name}) : '备份校准已加载: ' + file.name, 'success');
-      };
-      fr.readAsArrayBuffer(file);
-    });
-    input.click();
-  });
-
-  // 导出备份校准
-  $('calibExportBackupBtn').addEventListener('click', function() {
-    if (!calibBackupData) {
-      log(window.t ? window.t('logNoBackupCalibrationExport') : '没有备份校准数据可导出', 'error');
-      return;
-    }
-    // 收集表格中最新的输入值
-    var inputs = $('calibCheckBody').querySelectorAll('input[data-offset]');
-    inputs.forEach(function(inp) {
-      updateBackupField(parseInt(inp.dataset.offset, 10), parseInt(inp.dataset.size, 10), inp.value);
-    });
-    var blob = new Blob([calibBackupData], { type: 'application/octet-stream' });
-    var a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'calibration_backup.dat';
-    a.click();
-    URL.revokeObjectURL(a.href);
-    log(window.t ? window.t('logBackupCalibrationExported') : '备份校准已导出', 'success');
-  });
-
-  // 写入校准到指定地址
-  async function writeCalibToAddress(baseAddr, label) {
-    // 从表格收集最新数据
-    if (!calibBackupData) {
-      calibBackupData = new Uint8Array(CALIB_SIZE).fill(0xFF);
-    }
-    var inputs = $('calibCheckBody').querySelectorAll('input[data-offset]');
-    inputs.forEach(function(inp) {
-      updateBackupField(parseInt(inp.dataset.offset, 10), parseInt(inp.dataset.size, 10), inp.value);
-    });
-
-    log(window.t ? window.t('logWriteCalibrationAddr', {addr: baseAddr.toString(16)}) : '写入校准到 0x' + baseAddr.toString(16) + '...', 'info');
-    var session = await requestDeviceInfoForCalib(label);
-    var ts = session.timestamp;
-    var offset = baseAddr;
-    for (var i = 0; i < CALIB_SIZE; i += CALIB_CHUNK) {
-      var msg = createMessage(MSG_WRITE_EEPROM, 24);
-      var v = new DataView(msg.buffer);
-      v.setUint16(4, offset, true);
-      v.setUint16(6, CALIB_CHUNK, true);
-      msg[7] = 1;
-      v.setUint32(8, ts, true);
-      for (var j = 0; j < CALIB_CHUNK; j++) msg[12 + j] = calibBackupData[i + j];
-      await sendMessage(msg);
-      var ok = false;
-      for (var a = 0; a < 300 && !ok; a++) {
-        await sleep(10);
-        var resp = fetchMessage(readBuffer);
-        if (!resp) continue;
-        if (resp.msgType === MSG_WRITE_EEPROM_RESP) {
-          if (new DataView(resp.data.buffer).getUint16(0, true) === offset) {
-            ok = true;
-            offset += CALIB_CHUNK;
-          }
-        }
-      }
-      if (!ok) throw new Error('写入失败 @ 0x' + offset.toString(16));
-    }
-    log(window.t ? window.t('logCalibrationWriteComplete') : '校准写入完成！正在重启...', 'success');
-    await sendMessage(createMessage(MSG_REBOOT, 0));
-    await sleep(500);
-    log(window.t ? window.t('logDeviceRebooted') : '设备已重启', 'success');
-  }
-
-  // 写入官方地址
-  $('calibWriteOfficialBtn').addEventListener('click', async function() {
-    if (isRestoring || isDumping) return;
-    if (!calibBackupData && !$('calibCheckBody').querySelector('input[data-offset]')) {
-      log(window.t ? window.t('logNoBackupCalibrationWrite') : '没有备份校准数据可写入', 'error');
-      return;
-    }
-    this.disabled = true;
-    $('calibWriteThirdPartyBtn').disabled = true;
-    $('progressContainer').style.display = 'block';
-    updateProgress(0);
-    try {
-      if (!port) await connect();
-      readBuffer = [];
-      await sleep(1000);
-      await writeCalibToAddress(0x1E00, '写入官方');
-      updateProgress(100);
-    } catch(e) {
-      log(window.t ? window.t('logError', {msg: e.message}) : '错误: ' + e.message, 'error');
-    } finally {
-      this.disabled = false;
-      $('calibWriteThirdPartyBtn').disabled = false;
-      if (port) await disconnect();
-      setTimeout(function() { $('progressContainer').style.display = 'none'; updateProgress(0); }, 800);
-    }
-  });
-
-  // 写入第三方地址
-  $('calibWriteThirdPartyBtn').addEventListener('click', async function() {
-    if (isRestoring || isDumping) return;
-    if (!calibBackupData && !$('calibCheckBody').querySelector('input[data-offset]')) {
-      log(window.t ? window.t('logNoBackupCalibrationWrite') : '没有备份校准数据可写入', 'error');
-      return;
-    }
-    this.disabled = true;
-    $('calibWriteOfficialBtn').disabled = true;
-    $('progressContainer').style.display = 'block';
-    updateProgress(0);
-    try {
-      if (!port) await connect();
-      readBuffer = [];
-      await sleep(1000);
-      await writeCalibToAddress(0xB000, '写入第三方');
-      updateProgress(100);
-    } catch(e) {
-      log(window.t ? window.t('logError', {msg: e.message}) : '错误: ' + e.message, 'error');
-    } finally {
-      this.disabled = false;
-      $('calibWriteOfficialBtn').disabled = false;
-      if (port) await disconnect();
-      setTimeout(function() { $('progressContainer').style.display = 'none'; updateProgress(0); }, 800);
-    }
-  });
-
-  // 弹窗事件绑定
-  $('checkCalibBtn').addEventListener('click', openCalibCheckModal);
-  $('calibCheckModal').querySelectorAll('[data-calib-check-dismiss]').forEach(function(el) {
-    el.addEventListener('click', closeCalibCheckModal);
-  });
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && !$('calibCheckModal').hidden) {
-      closeCalibCheckModal();
-    }
-  });
-})();
-
-// ========== BACKUP CONFIG ==========
+// ========== CONFIG BACKUP ==========
 $('backupCfgBtn').addEventListener('click', async () => {
   if (isBackupCfg) return;
   isBackupCfg = true;
-  $('backupCfgBtn').disabled = true;
-  $('progressContainer').style.display = 'block';
-  updateProgress(0);
-  $('backupCfgDownload').style.display = 'none';
-  try {
-    if (!port) await connect();
-    readBuffer = [];
-    await sleep(1000);
+  await withSession($('backupCfgBtn'), async () => {
     const session = await requestDeviceInfoForCalib('配置');
     const sessionTs = session.timestamp;
-    log(window.t ? window.t('logExportConfig') : '导出配置数据...', 'info');
+    log('导出配置数据...', 'info');
     const data = new Uint8Array(CONFIG_FLASH_SIZE);
     for (let i = 0; i < CONFIG_FLASH_SIZE; i += CONFIG_CHUNK) {
       updateProgress((i / CONFIG_FLASH_SIZE) * 100);
@@ -1654,33 +750,23 @@ $('backupCfgBtn').addEventListener('click', async () => {
       for (let j = 0; j < CONFIG_CHUNK; j++) data[i + j] = chunk[j];
     }
     updateProgress(100);
-    const blob = new Blob([data], { type: 'application/octet-stream' });
-    $('backupCfgLink').href = URL.createObjectURL(blob);
-    $('backupCfgDownload').style.display = 'block';
-    log(window.t ? window.t('logConfigExportComplete') : '配置数据导出完成', 'success');
-  } catch(e) {
-    log(window.t ? window.t('logError', {msg: e.message}) : '错误: ' + e.message, 'error');
-  } finally {
-    isBackupCfg = false;
-    $('backupCfgBtn').disabled = false;
-    if (port) await disconnect();
-    setTimeout(() => { $('progressContainer').style.display = 'none'; updateProgress(0); }, 800);
-  }
+    downloadBlob(data, 'config_backup.dat');
+    log('配置数据已导出', 'success');
+  });
+  isBackupCfg = false;
 });
 
-// ========== RESTORE CONFIG ==========
-$('cfgBackupFile').addEventListener('change', e => {
-  const file = e.target.files?.[0];
+// ========== CONFIG RESTORE ==========
+$('cfgBackupFile').addEventListener('change', (e) => {
+  const file = e.target.files && e.target.files[0];
   if (!file) return;
   const fr = new FileReader();
-  fr.onload = ev => {
+  fr.onload = (ev) => {
     const buf = new Uint8Array(ev.target.result);
-    if (buf.length !== CONFIG_FLASH_SIZE) { log(window.t ? window.t('logConfigFileSizeError', {size: buf.length, expected: CONFIG_FLASH_SIZE}) : '文件大小错误: ' + buf.length + ' (需要 ' + CONFIG_FLASH_SIZE + ')', 'error'); return; }
+    if (buf.length !== CONFIG_FLASH_SIZE) { log('文件大小错误: ' + buf.length + ' (需要 ' + CONFIG_FLASH_SIZE + ')', 'error'); return; }
     cfgBackupData = buf;
     $('cfgBackupFileName').textContent = file.name;
-    $('cfgBackupFileName').classList.add('has-file');
-    $('cfgBackupFileLabel').classList.add('has-file');
-    log(window.t ? window.t('logConfigFileLoaded', {name: file.name}) : '配置文件已加载: ' + file.name, 'success');
+    log('配置文件已加载: ' + file.name, 'success');
     $('restoreCfgBtn').disabled = false;
   };
   fr.readAsArrayBuffer(file);
@@ -1689,16 +775,10 @@ $('cfgBackupFile').addEventListener('change', e => {
 $('restoreCfgBtn').addEventListener('click', async () => {
   if (!cfgBackupData || isRestoreCfg) return;
   isRestoreCfg = true;
-  $('restoreCfgBtn').disabled = true;
-  $('progressContainer').style.display = 'block';
-  updateProgress(0);
-  try {
-    if (!port) await connect();
-    readBuffer = [];
-    await sleep(1000);
+  await withSession($('restoreCfgBtn'), async () => {
     const session = await requestDeviceInfoForCalib('配置');
     const sessionTs = session.timestamp;
-    log(window.t ? window.t('logRestoreConfig') : '恢复配置数据...', 'info');
+    log('恢复配置数据...', 'info');
     for (let i = 0; i < CONFIG_FLASH_SIZE; i += CONFIG_CHUNK) {
       updateProgress((i / CONFIG_FLASH_SIZE) * 100);
       const chunk = cfgBackupData.slice(i, i + CONFIG_CHUNK);
@@ -1706,131 +786,18 @@ $('restoreCfgBtn').addEventListener('click', async () => {
       if (!ok) throw new Error('写入失败 @ 0x' + (CONFIG_FLASH_BASE + i).toString(16));
     }
     updateProgress(100);
-    log(window.t ? window.t('logConfigRestoreComplete') : '配置数据恢复完成！正在重启...', 'success');
+    log('配置恢复完成，正在重启...', 'success');
     await sendMessage(createMessage(MSG_REBOOT, 0));
     await sleep(500);
-    log(window.t ? window.t('logDeviceRebooted') : '设备已重启', 'success');
-  } catch(e) {
-    log(window.t ? window.t('logError', {msg: e.message}) : '错误: ' + e.message, 'error');
-  } finally {
-    isRestoreCfg = false;
-    $('restoreCfgBtn').disabled = !cfgBackupData;
-    if (port) await disconnect();
-    setTimeout(() => { $('progressContainer').style.display = 'none'; updateProgress(0); }, 800);
-  }
-});
-
-// ========== CAPABILITY CHECK ==========
-if (!('serial' in navigator)) {
-  log(window.t ? window.t('logWebSerialUnsupported') : '浏览器不支持 Web Serial API，请使用 Chrome/Edge/Opera', 'error');
-  $('flashBtn').disabled = true;
-  $('fontFlashBtn').disabled = true;
-  $('dumpBtn').disabled = true;
-  $('restoreBtn').disabled = true;
-  $('backupCfgBtn').disabled = true;
-  $('restoreCfgBtn').disabled = true;
-  const wfRead = $('writefreqReadBtn');
-  const wfWrite = $('writefreqWriteBtn');
-  if (wfRead) wfRead.disabled = true;
-  if (wfWrite) wfWrite.disabled = true;
-}
-
-// ========== VERSION TIMELINE ==========
-function timelineEscapeHtml(rawText) {
-  const s = String(rawText);
-  const stepAmp = s.replace(/&/g, '&amp;');
-  const stepLt = stepAmp.replace(/</g, '&lt;');
-  const stepGt = stepLt.replace(/>/g, '&gt;');
-  const stepQuot = stepGt.replace(/"/g, '&quot;');
-  return stepQuot;
-}
-
-function timelineReleaseMarkdownToSafeHtml(rawMarkdown) {
-  const sourceText = rawMarkdown || '';
-  const trimmedText = sourceText.trim();
-  if (trimmedText.length === 0) {
-    return '';
-  }
-  const hasMarked = typeof marked !== 'undefined' && typeof marked.parse === 'function';
-  const hasPurify = typeof DOMPurify !== 'undefined' && typeof DOMPurify.sanitize === 'function';
-  if (!hasMarked || !hasPurify) {
-    const escapedPlain = timelineEscapeHtml(trimmedText);
-    const fallbackHtml = escapedPlain.replace(/\n/g, '<br>');
-    return fallbackHtml;
-  }
-  let parsedHtml = '';
-  try {
-    parsedHtml = marked.parse(trimmedText);
-  } catch {
-    const escapedPlain = timelineEscapeHtml(trimmedText);
-    const fallbackHtml = escapedPlain.replace(/\n/g, '<br>');
-    return fallbackHtml;
-  }
-  const safeHtml = DOMPurify.sanitize(parsedHtml);
-  return safeHtml;
-}
-
-(function configureTimelineMarked() {
-  if (typeof marked === 'undefined' || typeof marked.setOptions !== 'function') {
-    return;
-  }
-  marked.setOptions({
-    breaks: true,
-    gfm: true,
   });
-})();
-
-(async function loadTimeline() {
-  const container = $('timeline');
-  if (!container) return;
-  try {
-    const resp = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/releases?per_page=20`);
-    if (!resp.ok) throw new Error('HTTP ' + resp.status);
-    const releases = await resp.json();
-    if (!releases.length) { container.innerHTML = '<div class="timeline-loading">暂无发布版本</div>'; return; }
-
-    container.innerHTML = releases.map(r => {
-      const publishedAtDate = new Date(r.published_at);
-      const dateTimeLocaleOptions = {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false,
-      };
-      const dateTimeText = publishedAtDate.toLocaleString('zh-CN', dateTimeLocaleOptions);
-      const bodyHtml = timelineReleaseMarkdownToSafeHtml(r.body || '');
-      const tagEscaped = timelineEscapeHtml(r.tag_name);
-      const nameEscaped = r.name ? timelineEscapeHtml(r.name) : '';
-      const pre = r.prerelease ? '<span class="timeline-prerelease">Pre-release</span>' : '';
-      const bodyBlock = bodyHtml.length > 0 ? `<div class="timeline-body">${bodyHtml}</div>` : '';
-      const nameBlock = nameEscaped.length > 0 ? `<div class="timeline-name">${nameEscaped}</div>` : '';
-      return `<div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-header">
-          <a class="timeline-tag" href="${r.html_url}" target="_blank">${tagEscaped}</a>
-          ${pre}
-          <span class="timeline-date">${dateTimeText}</span>
-        </div>
-        ${nameBlock}
-        ${bodyBlock}
-      </div>`;
-    }).join('');
-  } catch (e) {
-    container.innerHTML = `<div class="timeline-loading">加载失败: ${e.message}</div>`;
-  }
-})();
-
-// ========== WRITE FREQUENCY (MR CHANNELS, SPI FLASH) ==========
-// 地址与固件一致：MR 块 channel*16；统一信道名 0x004000+ch*16；信道属性 ChannelAttributes_t 2 字节 @ 0x8000+ch*2（misc.c FLASH_CHANNEL_ATTR_BASE）；旧中文区 0x020000 仅读取合并/写入时按槽擦除（settings.c）
-// 读取：属性未使用；MR 槽须通过 writefreqMrSlotPassesReadQualityGate（RX 范围、有效功率、band 一致、亚音合法），避免 Flash 残留乱码行。
+  isRestoreCfg = false;
+  $('restoreCfgBtn').disabled = !cfgBackupData;
+});
 
 /** 本工具仅读写设备 MR 的前 N 槽（Flash 下标 0 … N-1，界面 CH1 … CHN）；与固件 misc.h MR_CHANNELS_MAX（1024）一致 */
 const WRITE_FREQ_MR_MAX = 1024;
 /** 写频表导出文件名的前缀（如 Dondji_channels_export.xlsx） */
-const WRITE_FREQ_EXPORT_FILE_PREFIX = 'quansheng';
+const WRITE_FREQ_EXPORT_FILE_PREFIX = 'Quansheng';
 /** 表格第 1 行对应的 MR 信道号（与 WRITE_FREQ_MR_MAX 一致，当前为 1–1024）；默认 1；Excel 导入表头须含「信道号」列 */
 let writefreqTableBaseChannel = 1;
 /** 内存中 N 条信道数据；界面仅渲染一页 WRITE_FREQ_PAGE_SIZE 行 */
@@ -2655,10 +1622,24 @@ function cnFontGetFlashJsAbsoluteUrl() {
  * 解决 Live Server 打开仓库根目录、或 baseURI 与静态文件实际路径不一致时仅页面相对路径 404 的问题。
  * @returns {string[]}
  */
+
 function cnFontCollectCnBinCandidateUrls() {
+  const orderedUrls = [];
+  const seenHref = new Set();
+  function pushUnique(urlHref) {
+    if (!urlHref || seenHref.has(urlHref)) return;
+    seenHref.add(urlHref);
+    orderedUrls.push(urlHref);
+  }
+  pushUnique(typeof LOCAL_FONT_URL !== 'undefined' ? LOCAL_FONT_URL : '');
+  pushUnique(typeof REMOTE_FONT_URL !== 'undefined' ? REMOTE_FONT_URL : '');
+  pushUnique(new URL('cn_font.bin', window.location.href).href);
+  return orderedUrls;
+}
+function cnFontCollectCnBinCandidateUrls_UNUSED_ORIGINAL() {
+
   const seenHref = new Set();
   const orderedUrls = [];
-  const REMOTE_FONT_URL = 'https://github.com/koocyton/armel-uv-k5-firmware-custom/releases/download/20260508/cn_font.bin';
 
   function pushUnique(urlHref) {
     if (!urlHref) {
@@ -2673,14 +1654,19 @@ function cnFontCollectCnBinCandidateUrls() {
   }
 
   const flashJsUrl = cnFontGetFlashJsAbsoluteUrl();
-  if (flashJsUrl) {
-    pushUnique(new URL('../font/cn_font.bin', flashJsUrl).href);
-    pushUnique(new URL('../fonts/cn_font.bin', flashJsUrl).href);
+  const flashJsNonEmpty = flashJsUrl !== '';
+  if (flashJsNonEmpty) {
+    const fromJsFont = new URL('../font/cn_font.bin', flashJsUrl).href;
+    const fromJsFonts = new URL('../fonts/cn_font.bin', flashJsUrl).href;
+    pushUnique(fromJsFont);
+    pushUnique(fromJsFonts);
   }
+
   const docDirectoryBase = getDocumentDirectoryBaseUrlString();
-  pushUnique(new URL('font/cn_font.bin', docDirectoryBase).href);
-  pushUnique(new URL('fonts/cn_font.bin', docDirectoryBase).href);
-  pushUnique(REMOTE_FONT_URL);
+  const fromDocFont = new URL('font/cn_font.bin', docDirectoryBase).href;
+  const fromDocFonts = new URL('fonts/cn_font.bin', docDirectoryBase).href;
+  pushUnique(fromDocFont);
+  pushUnique(fromDocFonts);
 
   return orderedUrls;
 }
@@ -3386,6 +2372,7 @@ function writefreqDestroySortable() {
 }
 
 function writefreqInitSortable() {
+  if (typeof Sortable === 'undefined') return;
   writefreqDestroySortable();
   const tbody = $('writefreqTbody');
   if (!tbody || typeof Sortable === 'undefined') {
@@ -3668,7 +2655,7 @@ async function writefreqReadFromDevice() {
   const writeBtn = $('writefreqWriteBtn');
   if (readBtn) readBtn.disabled = true;
   if (writeBtn) writeBtn.disabled = true;
-  $('progressContainer').style.display = 'block';
+  updateProgress(0); if ($('progressContainer')) $('progressContainer').hidden = false;
   updateProgress(0);
   try {
     if (!port) {
@@ -3760,7 +2747,7 @@ async function writefreqReadFromDevice() {
       await disconnect();
     }
     setTimeout(() => {
-      $('progressContainer').style.display = 'none';
+      if ($('progressContainer')) $('progressContainer').hidden = true;
       updateProgress(0);
     }, 600);
   }
@@ -3843,7 +2830,7 @@ async function writefreqWriteToDevice() {
   const writeBtn = $('writefreqWriteBtn');
   if (readBtn) readBtn.disabled = true;
   if (writeBtn) writeBtn.disabled = true;
-  $('progressContainer').style.display = 'block';
+  updateProgress(0); if ($('progressContainer')) $('progressContainer').hidden = false;
   updateProgress(0);
   try {
     if (!port) {
@@ -3962,1076 +2949,68 @@ async function writefreqWriteToDevice() {
       await disconnect();
     }
     setTimeout(() => {
-      $('progressContainer').style.display = 'none';
+      if ($('progressContainer')) $('progressContainer').hidden = true;
       updateProgress(0);
     }, 600);
   }
 }
 
-function writefreqNormalizeCellCompact(text) {
-  return String(text).replace(/\s+/g, '').toLowerCase();
-}
-
-function writefreqPowerValToSheetLabel(powerVal) {
-  const t = String(powerVal).trim();
-  if (t === '') {
-    return window.t ? window.t('freqSelectPower') : '请选择功率';
-  }
-  const n = Number.parseInt(t, 10);
-  if (!Number.isFinite(n) || n < 1 || n > 7) {
-    return t;
-  }
-  const labelOut = WF_POWER_LABELS[n];
-  return labelOut;
-}
-
-function writefreqSheetLabelToPowerVal(cellText) {
-  const t = String(cellText).trim();
-  if (t === '' || t === '请选择功率') {
-    return '';
-  }
-  const tLower = t.toLowerCase();
-  let pi = 1;
-  for (; pi <= 7; pi++) {
-    if (WF_POWER_LABELS[pi].toLowerCase() === tLower) {
-      return String(pi);
-    }
-  }
-  const legacyNum = Number.parseInt(t, 10);
-  if (Number.isFinite(legacyNum) && legacyNum >= 1 && legacyNum <= 7) {
-    return String(legacyNum);
-  }
-  return '';
-}
-
-function writefreqModValToSheetLabel(modVal) {
-  const t = String(modVal).trim();
-  const idx = Number.parseInt(t, 10);
-  if (!Number.isFinite(idx) || idx < 0 || idx >= WF_MOD_LABELS.length) {
-    return t;
-  }
-  const modLabel = WF_MOD_LABELS[idx];
-  return modLabel;
-}
-
-function writefreqStepValToSheetLabel(stepVal) {
-  const t = String(stepVal).trim();
-  const idx = Number.parseInt(t, 10);
-  if (!Number.isFinite(idx) || idx < 0 || idx >= WF_STEP_OPTIONS.length) {
-    return WF_STEP_OPTIONS[WF_STEP_DEFAULT].label;
-  }
-  return WF_STEP_OPTIONS[idx].label;
-}
-
-function writefreqSheetLabelToStepVal(cellText) {
-  const raw = String(cellText).trim();
-  if (raw === '') {
-    return String(WF_STEP_DEFAULT);
-  }
-  let si = 0;
-  for (; si < WF_STEP_OPTIONS.length; si++) {
-    if (WF_STEP_OPTIONS[si].label === raw) {
-      return String(si);
-    }
-  }
-  const legacyNum = Number.parseInt(raw, 10);
-  if (Number.isFinite(legacyNum) && legacyNum >= 0 && legacyNum < WF_STEP_OPTIONS.length) {
-    return String(legacyNum);
-  }
-  return String(WF_STEP_DEFAULT);
-}
-
-function writefreqScanlistValToSheetLabel(scanlistVal) {
-  const val = scanlistVal !== undefined ? scanlistVal : 0;
-  if (val === 0) {
-    return '不参与';
-  }
-  if (val === WF_SCANLIST_ALL_VAL) {
-    return '全部';
-  }
-  return '列表 ' + String(val);
-}
-
-function writefreqSheetLabelToScanlistVal(cellText) {
-  const raw = String(cellText).trim();
-  if (raw === '' || raw === '不参与' || raw === '无' || raw === '0') {
-    return 0;
-  }
-  if (raw === '全部') {
-    return WF_SCANLIST_ALL_VAL;
-  }
-  const match = raw.match(/列表\s*(\d+)/);
-  if (match) {
-    const listNum = Number.parseInt(match[1], 10);
-    if (Number.isFinite(listNum) && listNum >= 1 && listNum <= WF_SCANLIST_MAX) {
-      return listNum;
-    }
-  }
-  const directNum = Number.parseInt(raw, 10);
-  if (Number.isFinite(directNum) && directNum >= 0 && directNum <= WF_SCANLIST_ALL_VAL) {
-    return directNum;
-  }
-  return 0;
-}
-
-function writefreqSheetLabelToModVal(cellText) {
-  const raw = String(cellText).trim();
-  if (raw === '') {
-    return '0';
-  }
-  let mi = 0;
-  for (; mi < WF_MOD_LABELS.length; mi++) {
-    if (WF_MOD_LABELS[mi] === raw) {
-      return String(mi);
-    }
-  }
-  const rawLower = raw.toLowerCase();
-  let mj = 0;
-  for (; mj < WF_MOD_LABELS.length; mj++) {
-    if (WF_MOD_LABELS[mj].toLowerCase() === rawLower) {
-      return String(mj);
-    }
-  }
-  const legacyNum = Number.parseInt(raw, 10);
-  if (Number.isFinite(legacyNum) && legacyNum >= 0 && legacyNum < WF_MOD_LABELS.length) {
-    return String(legacyNum);
-  }
-  return '0';
-}
-
-function writefreqSftValToSheetLabel(sftVal) {
-  const s = String(sftVal).trim();
-  if (s === '0') {
-    return '关闭';
-  }
-  if (s === '1') {
-    return '+';
-  }
-  if (s === '2') {
-    return '−';
-  }
-  return s;
-}
-
-function writefreqSheetLabelToSftVal(cellText) {
-  const raw = String(cellText).trim();
-  if (raw === '') {
-    return '0';
-  }
-  if (raw === '关闭' || raw === '0') {
-    return '0';
-  }
-  if (raw === '+' || raw === '1') {
-    return '1';
-  }
-  if (raw === '−' || raw === '-' || raw === '–' || raw === '—' || raw === '2') {
-    return '2';
-  }
-  return '0';
-}
-
-function writefreqCtcssValToSheetLabel(storedVal) {
-  const t = String(storedVal).trim();
-  if (t === '') {
-    return 'OFF';
-  }
-  const idx = Number.parseInt(t, 10);
-  if (!Number.isFinite(idx) || idx < 0 || idx >= WF_CTCSS_OPTIONS.length) {
-    return t;
-  }
-  const menuLabel = wfCtcssIndexToMenuLabel(idx);
-  return menuLabel;
-}
-
-function writefreqSheetLabelToCtcssVal(cellText) {
-  const raw = String(cellText).trim();
-  if (raw === '') {
-    return '';
-  }
-  const upperOff = raw.toUpperCase();
-  if (upperOff === 'OFF') {
-    return '';
-  }
-  const compactIn = writefreqNormalizeCellCompact(raw);
-  let ci = 0;
-  for (; ci < WF_CTCSS_OPTIONS.length; ci++) {
-    const menuLabel = wfCtcssIndexToMenuLabel(ci);
-    const compactRef = writefreqNormalizeCellCompact(menuLabel);
-    if (compactRef === compactIn) {
-      return String(ci);
-    }
-    const refNoHz = compactRef.replace(/hz$/, '');
-    const inNoHz = compactIn.replace(/hz$/, '');
-    if (refNoHz === inNoHz && refNoHz.length > 0) {
-      return String(ci);
-    }
-  }
-  const maybeDigits = String(cellText).trim();
-  const legacyIdx = Number.parseInt(maybeDigits, 10);
-  if (Number.isFinite(legacyIdx) && legacyIdx >= 0 && legacyIdx < WF_CTCSS_OPTIONS.length) {
-    const onlyDigits = /^\d+$/.test(maybeDigits);
-    if (onlyDigits) {
-      return String(legacyIdx);
-    }
-  }
-  return '';
-}
-
-function writefreqDcsValToSheetLabel(storedVal) {
-  const t = String(storedVal).trim();
-  if (t === '') {
-    return 'OFF';
-  }
-  if (t.startsWith('N:')) {
-    const rest = t.slice(2);
-    const ni = Number.parseInt(rest, 10);
-    if (Number.isFinite(ni) && ni >= 0 && ni < WF_DCS_OPTIONS.length) {
-      return wfFormatDcsMenuLabel(false, ni);
-    }
-    return t;
-  }
-  if (t.startsWith('I:')) {
-    const rest2 = t.slice(2);
-    const ii = Number.parseInt(rest2, 10);
-    if (Number.isFinite(ii) && ii >= 0 && ii < WF_DCS_OPTIONS.length) {
-      return wfFormatDcsMenuLabel(true, ii);
-    }
-    return t;
-  }
-  return t;
-}
-
-function writefreqSheetLabelToDcsVal(cellText) {
-  const raw = String(cellText).trim();
-  if (raw === '') {
-    return '';
-  }
-  if (raw.toUpperCase() === 'OFF') {
-    return '';
-  }
-  const compactIn = writefreqNormalizeCellCompact(raw);
-  let ni = 0;
-  for (; ni < WF_DCS_OPTIONS.length; ni++) {
-    const labN = wfFormatDcsMenuLabel(false, ni);
-    if (writefreqNormalizeCellCompact(labN) === compactIn) {
-      return 'N:' + ni;
-    }
-    const labI = wfFormatDcsMenuLabel(true, ni);
-    if (writefreqNormalizeCellCompact(labI) === compactIn) {
-      return 'I:' + ni;
-    }
-  }
-  const nMatch = raw.match(/^N:\s*(\d+)\s*$/i);
-  if (nMatch) {
-    const idx = Number.parseInt(nMatch[1], 10);
-    if (Number.isFinite(idx) && idx >= 0 && idx < WF_DCS_OPTIONS.length) {
-      return 'N:' + idx;
-    }
-    return '';
-  }
-  const iMatch = raw.match(/^I:\s*(\d+)\s*$/i);
-  if (iMatch) {
-    const idx2 = Number.parseInt(iMatch[1], 10);
-    if (Number.isFinite(idx2) && idx2 >= 0 && idx2 < WF_DCS_OPTIONS.length) {
-      return 'I:' + idx2;
-    }
-    return '';
-  }
-  return '';
-}
-
-function writefreqExportSheet() {
-  writefreqEnsureModelInit();
-  writefreqFlushDomToModel();
-  const startCh = writefreqGetBaseChannel();
-  const header = [
-    '信道号',
-    '接收频率_MHz',
-    '功率',
-    '接收数字亚音',
-    '接收模拟亚音',
-    '发射数字亚音',
-    '发射模拟亚音',
-    '频差方向',
-    '频差频率_MHz',
-    '调制模式',
-    '步进',
-    '信道列表',
-    '信道名'
-  ];
-  const rows = [];
-  rows.push(header);
-  let exportRowCount = 0;
-  let ri = 0;
-  for (; ri < WRITE_FREQ_MR_MAX; ri++) {
-    const fields = writefreqRowsData[ri];
-    const rxTrimmedExport = writefreqSafeRxTrim(fields);
-    if (rxTrimmedExport === '') {
-      continue;
-    }
-    exportRowCount++;
-    const chNum = startCh + ri;
-    const row = [
-      chNum,
-      fields.rxText.trim(),
-      writefreqPowerValToSheetLabel(fields.powerVal),
-      writefreqDcsValToSheetLabel(fields.rxDcs),
-      writefreqCtcssValToSheetLabel(fields.rxCtcss),
-      writefreqDcsValToSheetLabel(fields.txDcs),
-      writefreqCtcssValToSheetLabel(fields.txCtcss),
-      writefreqSftValToSheetLabel(fields.sftVal),
-      fields.offsetText.trim(),
-      writefreqModValToSheetLabel(fields.modVal),
-      writefreqStepValToSheetLabel(fields.stepVal),
-      writefreqScanlistValToSheetLabel(fields.scanlistVal),
-      fields.channelNameText
-    ];
-    rows.push(row);
-  }
-  const exportBasename = WRITE_FREQ_EXPORT_FILE_PREFIX + '_channels_export';
-  if (typeof XLSX === 'undefined' || !XLSX.utils) {
-    log(window.t ? window.t('logSheetJSNotLoaded') : 'SheetJS 未加载，改用 CSV 导出', 'info');
-    const lines = [];
-    let li = 0;
-    for (; li < rows.length; li++) {
-      const escaped = rows[li].map(cell => {
-        const s = String(cell);
-        if (/[",\n]/.test(s)) {
-          return '"' + s.replace(/"/g, '""') + '"';
-        }
-        return s;
-      });
-      lines.push(escaped.join(','));
-    }
-    const csvBlob = new Blob(['\ufeff' + lines.join('\n')], { type: 'text/csv;charset=utf-8' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(csvBlob);
-    a.download = exportBasename + '.csv';
-    a.click();
-    log(
-      window.t 
-        ? window.t('exportCSVSucc', { count: exportRowCount })
-        : '已导出 CSV（仅已填写接收频率的信道，共 ' + exportRowCount + ' 行）',
-      'success'
-    );
-    return;
-  }
-  const ws = XLSX.utils.aoa_to_sheet(rows);
-  const wb = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb, ws, 'MR信道');
-  XLSX.writeFile(wb, exportBasename + '.xlsx');
-  log(
-    window.t 
-      ? window.t('exportExcelSucc', { count: exportRowCount })
-      : '已导出 Excel（仅已填写接收频率的信道，共 ' + exportRowCount + ' 行）',
-    'success'
-  );
-}
-
-function writefreqImportSheet(rowsAoA) {
-  if (!rowsAoA || rowsAoA.length < 2) {
-    log(window.t ? window.t('logTableEmpty') : '表格内容为空或缺少表头', 'error');
-    return;
-  }
-  const header = rowsAoA[0].map(c => String(c).trim());
-  const idxCh = header.indexOf('信道号');
-  const idxRx = header.indexOf('接收频率_MHz');
-  const idxPwr = header.indexOf('功率');
-  const idxRxDcs = header.indexOf('接收数字亚音');
-  const idxRxCt = header.indexOf('接收模拟亚音');
-  const idxTxDcs = header.indexOf('发射数字亚音');
-  const idxTxCt = header.indexOf('发射模拟亚音');
-  const idxSft = header.indexOf('频差方向');
-  const idxOff = header.indexOf('频差频率_MHz');
-  const idxMod = header.indexOf('调制模式');
-  const idxStep = header.indexOf('步进');
-  const idxScanlist = header.indexOf('信道列表');
-  if (idxScanlist < 0) {
-    idxScanlist = header.indexOf('扫描列表');
-  }
-  let idxName = header.indexOf('信道名');
-  if (idxName < 0) {
-    idxName = header.indexOf('命名信道');
-  }
-  if (idxName < 0) {
-    idxName = header.indexOf('信道名称');
-  }
-  let idxEn = header.indexOf('英文信道名称');
-  if (idxEn < 0) {
-    idxEn = header.indexOf('英文信道名');
-  }
-  let idxCn = header.indexOf('中文信道名称');
-  if (idxCn < 0) {
-    idxCn = header.indexOf('中文信道名');
-  }
-  const legacyTx = header.indexOf('发射频率_MHz');
-  const legacyEn = header.indexOf('英文信道名');
-  const legacyCn = header.indexOf('中文信道名');
-  const hasNew = idxRx >= 0 && idxOff >= 0 && idxSft >= 0;
-  const hasLegacy = idxRx >= 0 && legacyTx >= 0 && legacyEn >= 0 && legacyCn >= 0;
-  if (!hasNew && !hasLegacy) {
-    log(
-      '表头不匹配：请使用新版导出列名（含「信道号」「信道名」），或旧版完整列（接收频率_MHz / 发射频率_MHz / 英文信道名 / 中文信道名）',
-      'error'
-    );
-    return;
-  }
-  /** 与 Flash 槽 0…1023 对齐：界面固定显示 CH1–CH1024 */
-  writefreqTableBaseChannel = 1;
-  writefreqEnsureModelInit();
-  let resetIdx = 0;
-  for (; resetIdx < WRITE_FREQ_MR_MAX; resetIdx++) {
-    writefreqRowsData[resetIdx] = writefreqEmptyRowFields();
-  }
-  const dataRowCount = rowsAoA.length - 1;
-  if (idxCh >= 0 && dataRowCount > 0) {
-    const firstDataRow = rowsAoA[1];
-    const chFirstCell = firstDataRow && firstDataRow[idxCh];
-    const chFirst = Number.parseInt(String(chFirstCell).trim(), 10);
-    if (!Number.isFinite(chFirst)) {
-      log(window.t ? window.t('logFirstRowInvalid') : '首行数据信道号无效', 'error');
-      return;
-    }
-    if (chFirst !== 1) {
-      log(
-        '首行信道号须为 1（导入从 MR CH1 算起），当前为 ' +
-          chFirst +
-          '，已取消导入',
-        'error'
-      );
-      return;
-    }
-  }
-  const cellStrFactory = function cellStrFactory(rowArr) {
-    return function cellStr(idx) {
-      if (idx < 0) {
-        return '';
-      }
-      const raw = rowArr[idx];
-      if (raw === undefined || raw === null) {
-        return '';
-      }
-      return String(raw);
-    };
-  };
-  let di = 0;
-  for (; di < dataRowCount; di++) {
-    const src = rowsAoA[di + 1];
-    const cellStr = cellStrFactory(src);
-    let destSlot = di;
-    if (idxCh >= 0) {
-      const chCellRaw = cellStr(idxCh);
-      const chNumParsed = Number.parseInt(String(chCellRaw).trim(), 10);
-      if (!Number.isFinite(chNumParsed)) {
-        log(window.t ? window.t('logRowChannelInvalid', {row: di + 1}) : '第 ' + (di + 1) + ' 行数据：信道号无效', 'error');
-        return;
-      }
-      if (chNumParsed < 1 || chNumParsed > WRITE_FREQ_MR_MAX) {
-        log(
-          '第 ' + (di + 1) + ' 行数据：信道号须在 1–' + WRITE_FREQ_MR_MAX + ' 之间',
-          'error'
-        );
-        return;
-      }
-      destSlot = chNumParsed - writefreqTableBaseChannel;
-    } else {
-      if (di >= WRITE_FREQ_MR_MAX) {
-        break;
-      }
-    }
-    if (destSlot < 0 || destSlot >= WRITE_FREQ_MR_MAX) {
-      log(window.t ? window.t('logRowChannelOutOfBounds', {row: di + 1}) : '第 ' + (di + 1) + ' 行数据：信道号映射越界', 'error');
-      return;
-    }
-    const merged = writefreqEmptyRowFields();
-    if (hasNew) {
-      merged.rxText = cellStr(idxRx);
-      merged.offsetText = cellStr(idxOff);
-      merged.powerVal = writefreqSheetLabelToPowerVal(cellStr(idxPwr));
-      merged.rxDcs = writefreqSheetLabelToDcsVal(cellStr(idxRxDcs));
-      merged.rxCtcss = writefreqSheetLabelToCtcssVal(cellStr(idxRxCt));
-      merged.txDcs = writefreqSheetLabelToDcsVal(cellStr(idxTxDcs));
-      merged.txCtcss = writefreqSheetLabelToCtcssVal(cellStr(idxTxCt));
-      merged.sftVal = writefreqSheetLabelToSftVal(cellStr(idxSft));
-      merged.modVal = writefreqSheetLabelToModVal(cellStr(idxMod));
-      if (idxStep >= 0) {
-        merged.stepVal = writefreqSheetLabelToStepVal(cellStr(idxStep));
-      }
-      if (idxScanlist >= 0) {
-        merged.scanlistVal = writefreqSheetLabelToScanlistVal(cellStr(idxScanlist));
-      }
-      const hasNameUnifiedCol = idxName >= 0;
-      const hasNamePairCols = idxEn >= 0 && idxCn >= 0;
-      if (hasNamePairCols) {
-        merged.channelNameText = writefreqLegacyTableMergeEnCn(cellStr(idxEn), cellStr(idxCn));
-      } else if (hasNameUnifiedCol) {
-        merged.channelNameText = cellStr(idxName);
-      } else if (idxCn >= 0) {
-        merged.channelNameText = cellStr(idxCn).trim();
-      } else if (idxEn >= 0) {
-        merged.channelNameText = cellStr(idxEn).trim();
-      }
-    }
-    if (hasLegacy && !hasNew) {
-      merged.rxText = cellStr(idxRx);
-      merged.offsetText = '0';
-      merged.sftVal = '0';
-      merged.modVal = '0';
-      merged.powerVal = '1';
-      merged.channelNameText = writefreqLegacyTableMergeEnCn(cellStr(legacyEn), cellStr(legacyCn));
-      const rxTxt = cellStr(idxRx);
-      const txTxt = cellStr(legacyTx);
-      const rxHzTry = Number.parseFloat(rxTxt) * 1e6;
-      const txHzTry = Number.parseFloat(txTxt) * 1e6;
-      if (Number.isFinite(rxHzTry) && Number.isFinite(txHzTry)) {
-        const delta = txHzTry - rxHzTry;
-        let dir = 0;
-        let offAbs = 0;
-        if (delta === 0) {
-          dir = 0;
-          offAbs = 0;
-        } else if (delta > 0) {
-          dir = 1;
-          offAbs = delta;
-        } else {
-          dir = 2;
-          offAbs = -delta;
-        }
-        merged.sftVal = String(dir);
-        merged.offsetText = (offAbs / 1e6).toFixed(6);
-      }
-    }
-    writefreqRowsData[destSlot] = merged;
-  }
-  writefreqPageIndex = 0;
+// ========== WRITEFREQ UI WIRING ==========
+function initWritefreqUi() {
   writefreqRebuildRows();
-  const importedRows = Math.min(dataRowCount, WRITE_FREQ_MR_MAX);
-  log(
-    '已清空内存表格并导入 ' +
-      importedRows +
-      ' 行数据（完整 MR ' +
-      WRITE_FREQ_MR_MAX +
-      ' 槽：未出现在表格中的槽保持空白）。写入设备时仅覆盖 CH1–CH' +
-      WRITE_FREQ_MR_MAX +
-      '。请校验后再写入。',
-    'success'
-  );
-}
-
-const writefreqReadBtnEl = $('writefreqReadBtn');
-if (writefreqReadBtnEl) {
-  writefreqReadBtnEl.addEventListener('click', () => {
-    writefreqReadFromDevice();
-  });
-}
-const writefreqWriteBtnEl = $('writefreqWriteBtn');
-if (writefreqWriteBtnEl) {
-  writefreqWriteBtnEl.addEventListener('click', () => {
-    writefreqWriteToDevice();
-  });
-}
-const writefreqExportBtnEl = $('writefreqExportBtn');
-if (writefreqExportBtnEl) {
-  writefreqExportBtnEl.addEventListener('click', () => {
-    writefreqExportSheet();
-  });
-}
-const writefreqImportBtnEl = $('writefreqImportBtn');
-const writefreqImportFileEl = $('writefreqImportFile');
-if (writefreqImportBtnEl && writefreqImportFileEl) {
-  writefreqImportBtnEl.addEventListener('click', () => {
-    writefreqImportFileEl.click();
-  });
-  writefreqImportFileEl.addEventListener('change', ev => {
-    const file = ev.target.files && ev.target.files[0];
-    if (!file) {
-      return;
-    }
-    const reader = new FileReader();
-    reader.onload = e => {
-      const buf = e.target.result;
-      const nameLower = file.name.toLowerCase();
-      try {
-        if (nameLower.endsWith('.csv')) {
-          const text = new TextDecoder('utf-8').decode(new Uint8Array(buf));
-          const lines = text.split(/\r?\n/).filter(L => L.length > 0);
-          const rows = [];
-          let li = 0;
-          for (; li < lines.length; li++) {
-            const parts = lines[li].split(',');
-            rows.push(parts);
-          }
-          if (rows.length > 0 && rows[0].length > 0) {
-            rows[0][0] = String(rows[0][0]).replace(/^\ufeff/, '');
-          }
-          writefreqImportSheet(rows);
-        } else if (typeof XLSX !== 'undefined' && XLSX.read) {
-          const wb = XLSX.read(buf, { type: 'array' });
-          const sheetName = wb.SheetNames[0];
-          const sheet = wb.Sheets[sheetName];
-          const rows = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-          writefreqImportSheet(rows);
-        } else {
-          log(window.t ? window.t('logLoadSheetJSFirst') : '请先加载 SheetJS 或使用 CSV 导入', 'error');
-        }
-      } catch (err) {
-        log(window.t ? window.t('logImportFailed', {msg: err.message}) : '导入失败: ' + err.message, 'error');
-      }
-    };
-    reader.readAsArrayBuffer(file);
-    writefreqImportFileEl.value = '';
-  });
-}
-
-const writefreqPagePrevEl = $('writefreqPagePrev');
-const writefreqPageNextEl = $('writefreqPageNext');
-if (writefreqPagePrevEl) {
-  writefreqPagePrevEl.addEventListener('click', () => {
-    writefreqPageDelta(-1);
-  });
-}
-if (writefreqPageNextEl) {
-  writefreqPageNextEl.addEventListener('click', () => {
-    writefreqPageDelta(1);
-  });
-}
-
-const writefreqTbodyEl = $('writefreqTbody');
-if (writefreqTbodyEl) {
-  writefreqTbodyEl.addEventListener('input', function writefreqTbodyInputSyncPagination() {
-    writefreqUpdatePaginationUI();
-  });
-  writefreqTbodyEl.addEventListener('change', function writefreqTbodyChangeSyncPagination() {
-    writefreqUpdatePaginationUI();
-  });
-  writefreqTbodyEl.addEventListener('click', function writefreqTbodyDeleteRowClick(ev) {
-    const rawTarget = ev.target;
-    if (!rawTarget || typeof rawTarget.closest !== 'function') {
-      return;
-    }
-    const deleteBtn = rawTarget.closest('.wf-row-delete-btn');
-    if (!deleteBtn) {
-      return;
-    }
-    const tr = deleteBtn.closest('tr');
-    if (!tr) {
-      return;
-    }
-    ev.preventDefault();
-    ev.stopPropagation();
-    writefreqClearCurrentRowFromUi(tr);
-  });
-}
-
-// Export writefreq functions globally for lang.js to call on initialization
-window.writefreqRebuildRows = writefreqRebuildRows;
-window.writefreqUpdatePaginationUI = writefreqUpdatePaginationUI;
-
-writefreqRebuildRows();
-
-// Listen for language change events to rebuild table with translated placeholders
-window.addEventListener('langchange', function(e) {
-  writefreqRebuildRows();
-  writefreqUpdatePaginationUI();
-});
-
-// ========== 刷机步骤条：仅在内容横向溢出时启用横向滚动（避免"装得下仍出现滚动条"） ==========
-function flashStepsBarApplyOverflowPolicy() {
-  const scroll = document.querySelector('.flash-steps-scroll');
-  const inner = document.querySelector('.flash-steps-inner');
-  if (!scroll || !inner) {
-    return;
+  const readBtn = $('writefreqReadBtn');
+  const writeBtn = $('writefreqWriteBtn');
+  if (readBtn) readBtn.addEventListener('click', () => writefreqReadFromDevice());
+  if (writeBtn) writeBtn.addEventListener('click', () => writefreqWriteToDevice());
+  const prev = $('writefreqPagePrev');
+  const next = $('writefreqPageNext');
+  if (prev) prev.addEventListener('click', () => writefreqPageDelta(-1));
+  if (next) next.addEventListener('click', () => writefreqPageDelta(1));
+  const writefreqTbodyEl = $('writefreqTbody');
+  if (writefreqTbodyEl) {
+    writefreqTbodyEl.addEventListener('input', () => writefreqUpdatePaginationUI());
+    writefreqTbodyEl.addEventListener('change', () => writefreqUpdatePaginationUI());
+    writefreqTbodyEl.addEventListener('click', (ev) => {
+      const rawTarget = ev.target;
+      if (!rawTarget || typeof rawTarget.closest !== 'function') return;
+      const deleteBtn = rawTarget.closest('.wf-row-delete-btn');
+      if (!deleteBtn) return;
+      const tr = deleteBtn.closest('tr');
+      if (!tr) return;
+      ev.preventDefault();
+      ev.stopPropagation();
+      writefreqClearCurrentRowFromUi(tr);
+    });
   }
-  /*
-   * 绝对定位的提示框（min-width 较大）会横向伸出步骤区域，仍会计入 scrollWidth，
-   * 导致「一行已放下」却出现横向滚动条。测量时临时去掉提示框占位，只按步骤行是否超出内容区判断。
-   */
-  const tooltipNodeList = inner.querySelectorAll('.flash-step-tooltip');
-  const tooltipCount = tooltipNodeList.length;
-  let tooltipHideIndex = 0;
-  for (; tooltipHideIndex < tooltipCount; tooltipHideIndex++) {
-    tooltipNodeList[tooltipHideIndex].style.display = 'none';
-  }
-  scroll.style.overflowX = 'hidden';
-  void scroll.offsetWidth;
-  const contentAreaWidthPx = scroll.clientWidth;
-  const rowScrollWidthPx = inner.scrollWidth;
-  const epsilonPx = 4;
-  const overflowPx = rowScrollWidthPx - contentAreaWidthPx;
-  const needsHorizontalScroll = overflowPx > epsilonPx;
-  let tooltipRestoreIndex = 0;
-  for (; tooltipRestoreIndex < tooltipCount; tooltipRestoreIndex++) {
-    tooltipNodeList[tooltipRestoreIndex].style.removeProperty('display');
-  }
-  if (needsHorizontalScroll) {
-    scroll.style.overflowX = 'auto';
+}
+
+// ========== BOOT ==========
+function bootFlashTools() {
+  if (window.__quanshengFlashToolsBooted) return;
+  window.__quanshengFlashToolsBooted = true;
+  initTabs();
+  initWritefreqUi();
+  if (!('serial' in navigator)) {
+    log('浏览器不支持 Web Serial API，请使用 Chrome / Edge', 'error');
+    ['flashBtn','fontFlashBtn','dumpBtn','restoreBtn','backupCfgBtn','restoreCfgBtn','writefreqReadBtn','writefreqWriteBtn'].forEach((id) => {
+      const el = $(id); if (el) el.disabled = true;
+    });
   } else {
-    scroll.style.overflowX = 'hidden';
+    log('就绪。点击操作时会请求串口连接，完成后自动断开。', 'info');
+  }
+  const logToggle = $('logToggle');
+  if (logToggle) {
+    logToggle.addEventListener('click', () => {
+      const logDiv = $('log');
+      const visible = !logDiv.classList.contains('collapsed');
+      logDiv.classList.toggle('collapsed', visible);
+      logToggle.textContent = visible ? '显示日志' : '隐藏日志';
+    });
   }
 }
 
-(function setupFlashStepsBarOverflowBehavior() {
-  function scheduleFlashStepsBarOverflowUpdate() {
-    window.requestAnimationFrame(() => {
-      flashStepsBarApplyOverflowPolicy();
-    });
-  }
-  scheduleFlashStepsBarOverflowUpdate();
-  window.addEventListener('resize', scheduleFlashStepsBarOverflowUpdate);
-  const flashStepsScrollEl = document.querySelector('.flash-steps-scroll');
-  if (flashStepsScrollEl && typeof ResizeObserver !== 'undefined') {
-    const resizeObserver = new ResizeObserver(scheduleFlashStepsBarOverflowUpdate);
-    resizeObserver.observe(flashStepsScrollEl);
-  }
-  const mainColumnEl = document.querySelector('.main-column');
-  if (mainColumnEl && typeof ResizeObserver !== 'undefined') {
-    const mainColumnObserver = new ResizeObserver(scheduleFlashStepsBarOverflowUpdate);
-    mainColumnObserver.observe(mainColumnEl);
-  }
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(scheduleFlashStepsBarOverflowUpdate);
-  }
-})();
-
-// ========== 刷机步骤提示框：fixed 定位，避免落在 .flash-steps-scroll 内被 overflow 裁切 ==========
-function flashStepsApplyTooltipPosition(stepItem) {
-  const tip = stepItem.querySelector('.flash-step-tooltip');
-  if (!tip) {
-    return;
-  }
-  const itemRect = stepItem.getBoundingClientRect();
-  const gapPx = 8;
-  const edgeMarginPx = 12;
-  const viewportWidthPx = window.innerWidth;
-  const centerXFromItem = itemRect.left + itemRect.width / 2;
-  const topFromViewport = itemRect.bottom + gapPx;
-  tip.style.position = 'fixed';
-  tip.style.left = centerXFromItem + 'px';
-  tip.style.top = topFromViewport + 'px';
-  tip.style.transform = 'translateX(-50%)';
-  tip.style.right = 'auto';
-  tip.style.bottom = 'auto';
-  tip.classList.add('flash-step-tooltip--open');
-  window.requestAnimationFrame(() => {
-    const tipRectAfterLayout = tip.getBoundingClientRect();
-    let adjustedCenterX = centerXFromItem;
-    if (tipRectAfterLayout.right > viewportWidthPx - edgeMarginPx) {
-      const overflowRightPx = tipRectAfterLayout.right - (viewportWidthPx - edgeMarginPx);
-      adjustedCenterX = adjustedCenterX - overflowRightPx;
-    }
-    if (tipRectAfterLayout.left < edgeMarginPx) {
-      const overflowLeftPx = edgeMarginPx - tipRectAfterLayout.left;
-      adjustedCenterX = adjustedCenterX + overflowLeftPx;
-    }
-    tip.style.left = adjustedCenterX + 'px';
-  });
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bootFlashTools);
+} else {
+  bootFlashTools();
 }
-
-function flashStepsClearTooltip(stepItem) {
-  const tip = stepItem.querySelector('.flash-step-tooltip');
-  if (!tip) {
-    return;
-  }
-  tip.classList.remove('flash-step-tooltip--open');
-  tip.style.position = '';
-  tip.style.left = '';
-  tip.style.top = '';
-  tip.style.transform = '';
-  tip.style.right = '';
-  tip.style.bottom = '';
-}
-
-function flashStepsFindOpenTooltipStepItem() {
-  const openTip = document.querySelector('.flash-step-tooltip.flash-step-tooltip--open');
-  if (!openTip) {
-    return null;
-  }
-  const parentStep = openTip.closest('.flash-step-item');
-  return parentStep;
-}
-
-function flashStepsInitFloatingTooltips() {
-  const stepItems = document.querySelectorAll('.flash-step-item');
-  stepItems.forEach(stepItem => {
-    stepItem.addEventListener('mouseenter', () => {
-      flashStepsApplyTooltipPosition(stepItem);
-    });
-    stepItem.addEventListener('mouseleave', () => {
-      flashStepsClearTooltip(stepItem);
-    });
-    stepItem.addEventListener('focusin', () => {
-      flashStepsApplyTooltipPosition(stepItem);
-    });
-    stepItem.addEventListener('focusout', () => {
-      flashStepsClearTooltip(stepItem);
-    });
-  });
-  window.addEventListener('resize', () => {
-    const openItem = flashStepsFindOpenTooltipStepItem();
-    if (openItem) {
-      flashStepsApplyTooltipPosition(openItem);
-    }
-  });
-  window.addEventListener('scroll', () => {
-    const openItem = flashStepsFindOpenTooltipStepItem();
-    if (openItem) {
-      flashStepsApplyTooltipPosition(openItem);
-    }
-  }, true);
-}
-
-flashStepsInitFloatingTooltips();
-
-// ========== BOOT LOGO UPLOAD ==========
-(function initBootLogoTab() {
-  const logoImageFileInput = $('logoImageFile');
-  const logoImageFileName = $('logoImageFileName');
-  const logoThreshold = $('logoThreshold');
-  const logoThresholdValue = $('logoThresholdValue');
-  const logoInvert = $('logoInvert');
-  const logoPreviewCanvas = $('logoPreviewCanvas');
-  const logoUploadBtn = $('logoUploadBtn');
-  const logoReadBtn = $('logoReadBtn');
-  const logoDownload = $('logoDownload');
-  const logoDownloadLink = $('logoDownloadLink');
-
-  if (!logoImageFileInput || !logoPreviewCanvas) return;
-
-  let logoImageData = null;
-  let currentImage = null;
-
-  function imageToMonochromeBitmap(img, threshold, invert) {
-    const canvas = document.createElement('canvas');
-    canvas.width = 128;
-    canvas.height = 64;
-    const ctx = canvas.getContext('2d');
-    ctx.fillStyle = '#ffffff';
-    ctx.fillRect(0, 0, 128, 64);
-    ctx.drawImage(img, 0, 0, 128, 64);
-    const imgData = ctx.getImageData(0, 0, 128, 64);
-    const pixels = imgData.data;
-    const bitmap = new Uint8Array(1024);
-    for (let y = 0; y < 64; y++) {
-      for (let x = 0; x < 128; x++) {
-        const idx = (y * 128 + x) * 4;
-        const gray = 0.299 * pixels[idx] + 0.587 * pixels[idx + 1] + 0.114 * pixels[idx + 2];
-        let on = gray >= threshold;
-        if (invert) on = !on;
-        if (on) {
-          const page = y >> 3;
-          const bit = y & 7;
-          bitmap[page * 128 + x] |= (1 << bit);
-        }
-      }
-    }
-    return bitmap;
-  }
-
-  function renderPreview(img, threshold, invert) {
-    if (!img) return;
-    const bitmap = imageToMonochromeBitmap(img, threshold, invert);
-    const ctx = logoPreviewCanvas.getContext('2d');
-    ctx.fillStyle = '#000000';
-    ctx.fillRect(0, 0, 128, 64);
-    ctx.fillStyle = '#ffffff';
-    for (let page = 0; page < 8; page++) {
-      for (let x = 0; x < 128; x++) {
-        const byte = bitmap[page * 128 + x];
-        for (let bit = 0; bit < 8; bit++) {
-          if (byte & (1 << bit)) {
-            ctx.fillRect(x, page * 8 + bit, 1, 1);
-          }
-        }
-      }
-    }
-    logoImageData = bitmap;
-  }
-
-  function bitmapToCanvas(bitmap) {
-    const ctx = logoPreviewCanvas.getContext('2d');
-    ctx.fillStyle = '#000000';
-    ctx.fillRect(0, 0, 128, 64);
-    ctx.fillStyle = '#ffffff';
-    for (let page = 0; page < 8; page++) {
-      for (let x = 0; x < 128; x++) {
-        const byte = bitmap[page * 128 + x];
-        for (let bit = 0; bit < 8; bit++) {
-          if (byte & (1 << bit)) {
-            ctx.fillRect(x, page * 8 + bit, 1, 1);
-          }
-        }
-      }
-    }
-  }
-
-  function bitmapToPngDataUrl(bitmap) {
-    const canvas = document.createElement('canvas');
-    canvas.width = 128;
-    canvas.height = 64;
-    const ctx = canvas.getContext('2d');
-    ctx.fillStyle = '#000000';
-    ctx.fillRect(0, 0, 128, 64);
-    ctx.fillStyle = '#ffffff';
-    for (let page = 0; page < 8; page++) {
-      for (let x = 0; x < 128; x++) {
-        const byte = bitmap[page * 128 + x];
-        for (let bit = 0; bit < 8; bit++) {
-          if (byte & (1 << bit)) {
-            ctx.fillRect(x, page * 8 + bit, 1, 1);
-          }
-        }
-      }
-    }
-    return canvas.toDataURL('image/png');
-  }
-
-  logoImageFileInput.addEventListener('change', function(e) {
-    const file = e.target.files[0];
-    if (!file) {
-      logoImageFileName.textContent = '未选择文件';
-      logoUploadBtn.disabled = true;
-      currentImage = null;
-      logoImageData = null;
-      return;
-    }
-    logoImageFileName.textContent = file.name;
-    const reader = new FileReader();
-    reader.onload = function(ev) {
-      const img = new Image();
-      img.onload = function() {
-        currentImage = img;
-        renderPreview(img, parseInt(logoThreshold.value), logoInvert.checked);
-        logoUploadBtn.disabled = false;
-      };
-      img.src = ev.target.result;
-    };
-    reader.readAsDataURL(file);
-  });
-
-  logoThreshold.addEventListener('input', function() {
-    logoThresholdValue.textContent = logoThreshold.value;
-    if (currentImage) {
-      renderPreview(currentImage, parseInt(logoThreshold.value), logoInvert.checked);
-    }
-  });
-
-  logoInvert.addEventListener('change', function() {
-    if (currentImage) {
-      renderPreview(currentImage, parseInt(logoThreshold.value), logoInvert.checked);
-    }
-  });
-
-  logoUploadBtn.addEventListener('click', async function() {
-    if (!logoImageData) {
-      log(window.t ? window.t('logSelectImageFirst') : '请先选择一张图片', 'error');
-      return;
-    }
-    if (!port) {
-      try {
-        await connect();
-      } catch(e) {
-        log(window.t ? window.t('logConnectFailed', {msg: e.message}) : '连接失败: ' + e.message, 'error');
-        return;
-      }
-    }
-    try {
-      isFlashing = true;
-      logoUploadBtn.disabled = true;
-      log(window.t ? window.t('logUploadingBootLogo') : '正在上传开机图片...', 'info');
-
-      const session = await requestDeviceInfoForCalib();
-      const ts = session.timestamp;
-
-      const header = new Uint8Array(LOGO_HEADER_SIZE);
-      header[0] = 0x44;
-      header[1] = 0x4F;
-      header[2] = 0x4E;
-      header[3] = 0x44;
-      header[4] = 0x4A;
-      header[5] = 0x49;
-      header[6] = 0x01;
-      header[7] = 0x00;
-
-      let written = 0;
-      const totalSize = LOGO_HEADER_SIZE + LOGO_BITMAP_SIZE;
-
-      for (let off = 0; off < header.length; off += SPI_CHUNK_SIZE) {
-        const chunkLen = Math.min(SPI_CHUNK_SIZE, header.length - off);
-        const chunk = header.slice(off, off + chunkLen);
-        const ok = await spiFlashWriteChunk(ts, LOGO_FLASH_ADDR + off, chunk);
-        if (!ok) throw new Error('写入 logo 头部失败 @ 0x' + (LOGO_FLASH_ADDR + off).toString(16));
-        written += chunkLen;
-        updateProgress((written / totalSize) * 100);
-        await sleep(50);
-      }
-
-      for (let off = 0; off < logoImageData.length; off += SPI_CHUNK_SIZE) {
-        const chunkLen = Math.min(SPI_CHUNK_SIZE, logoImageData.length - off);
-        const raw = logoImageData.slice(off, off + chunkLen);
-        const chunk = new Uint8Array(raw.length);
-        for (let i = 0; i < raw.length; i++) chunk[i] = raw[i] ^ 0xFF;
-        const ok = await spiFlashWriteChunk(ts, LOGO_FLASH_ADDR + LOGO_HEADER_SIZE + off, chunk);
-        if (!ok) throw new Error('写入 logo 数据失败 @ 0x' + (LOGO_FLASH_ADDR + LOGO_HEADER_SIZE + off).toString(16));
-        written += chunkLen;
-        updateProgress((written / totalSize) * 100);
-        if ((off / SPI_CHUNK_SIZE) % 10 === 0)
-          log(window.t ? window.t('logWrittenBytesProgress', {written: written, total: totalSize}) : '已写入 ' + written + '/' + totalSize + ' bytes', 'info');
-        await sleep(50);
-      }
-
-      updateProgress(100);
-      log(window.t ? window.t('logBootLogoUploadSuccess') : '开机图片上传成功！请在菜单「开机画面」中选择「自定义」', 'success');
-    } catch(e) {
-      log(window.t ? window.t('logUploadFailed', {msg: e.message}) : '上传失败: ' + e.message, 'error');
-    } finally {
-      isFlashing = false;
-      logoUploadBtn.disabled = !logoImageData;
-    }
-  });
-
-  logoReadBtn.addEventListener('click', async function() {
-    if (!port) {
-      try {
-        await connect();
-      } catch(e) {
-        log(window.t ? window.t('logConnectFailed', {msg: e.message}) : '连接失败: ' + e.message, 'error');
-        return;
-      }
-    }
-    try {
-      logoReadBtn.disabled = true;
-      log(window.t ? window.t('logReadingBootLogo') : '正在读取开机图片...', 'info');
-
-      const session = await requestDeviceInfoForCalib();
-      const ts = session.timestamp;
-
-      const bitmap = new Uint8Array(LOGO_BITMAP_SIZE);
-      let readBytes = 0;
-
-      for (let off = 0; off < LOGO_BITMAP_SIZE; off += SPI_CHUNK_SIZE) {
-        const chunkLen = Math.min(SPI_CHUNK_SIZE, LOGO_BITMAP_SIZE - off);
-        const chunk = await spiFlashReadChunk(ts, LOGO_FLASH_ADDR + LOGO_HEADER_SIZE + off, chunkLen);
-        if (!chunk || chunk.length !== chunkLen) {
-          throw new Error('读取 logo 数据失败 @ 0x' + (LOGO_FLASH_ADDR + LOGO_HEADER_SIZE + off).toString(16));
-        }
-        bitmap.set(chunk, off);
-        for (let i = off; i < off + chunkLen; i++) bitmap[i] ^= 0xFF;
-        readBytes += chunkLen;
-        updateProgress((readBytes / LOGO_BITMAP_SIZE) * 100);
-      }
-
-      updateProgress(100);
-      bitmapToCanvas(bitmap);
-      logoImageData = bitmap;
-
-      const dataUrl = bitmapToPngDataUrl(bitmap);
-      logoDownloadLink.href = dataUrl;
-      logoDownload.style.display = 'block';
-      log(window.t ? window.t('logBootLogoReadSuccess') : '开机图片读取成功', 'success');
-    } catch(e) {
-      log(window.t ? window.t('logReadFailed', {msg: e.message}) : '读取失败: ' + e.message, 'error');
-    } finally {
-      logoReadBtn.disabled = false;
-    }
-  });
-})();
