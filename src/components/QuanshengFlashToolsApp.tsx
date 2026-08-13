@@ -140,8 +140,9 @@ const TOOL_MARKUP = `<div class="wrap">
     </div>
 
     <div id="v1flashPanel" class="tab-panel" role="tabpanel">
-      <p class="panel-desc">旧版 UV-K5 / K6（非 K5 V3 / K1）刷入固件。协议与 <a href="https://k5.vicicode.com/#/tool/flash" target="_blank" rel="noopener noreferrer">K5Web 默认 Official</a> 一致。进入 BOOT 刷机模式后连接；支持原厂加密 packed .bin，也支持未加密 raw（≤60KB）。</p>
+      <p class="panel-desc">旧版 UV-K5 / K6（非 K5 V3 / K1）刷入固件。协议与 <a href="https://k5.vicicode.com/#/tool/flash" target="_blank" rel="noopener noreferrer">K5Web 默认 Official</a> 一致。进入 BOOT 刷机模式后连接；支持远程获取或本地选择 packed / raw .bin。</p>
       <div class="row">
+        <button type="button" id="fetchV1FirmwareBtn">远程获取 F4HWN SI4732 packed</button>
         <label class="file-btn" for="v1FirmwareFile">本地选择</label>
         <input type="file" id="v1FirmwareFile" accept=".bin,application/octet-stream" />
         <span class="file-name" id="v1FirmwareFileName">未选择文件</span>

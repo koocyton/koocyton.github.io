@@ -9,8 +9,10 @@
 'use strict';
 
 const REMOTE_FIRMWARE_URL = 'https://github.com/koocyton/armel-uv-k5-firmware-custom/releases/download/20260508/k18-f4hwn-5.8.0-cn.radio.bin';
+const REMOTE_V1_FIRMWARE_URL = 'https://github.com/koocyton/armel-uv-k5-firmware-custom/releases/download/20260508/k5.f4hwn.si4732.packed.bin';
 const REMOTE_FONT_URL = 'https://github.com/koocyton/armel-uv-k5-firmware-custom/releases/download/20260508/cn_font.bin';
 const LOCAL_FIRMWARE_URL = '/quansheng-flashtools/k18-f4hwn-5.8.0-cn.radio.bin';
+const LOCAL_V1_FIRMWARE_URL = '/quansheng-flashtools/k5.f4hwn.si4732.packed.bin';
 const LOCAL_FONT_URL = '/quansheng-flashtools/cn_font.bin';
 
 
@@ -724,6 +726,20 @@ async function waitForV1Bootloader(timeoutMs = 8000) {
   }
   throw new Error('超时：未检测到旧版 K5 刷机模式（请关机后按住 PTT 再开机）');
 }
+
+on('fetchV1FirmwareBtn', 'click', async () => {
+  const btn = $('fetchV1FirmwareBtn');
+  btn.disabled = true;
+  try {
+    v1FirmwareData = await fetchBinWithFallback(REMOTE_V1_FIRMWARE_URL, LOCAL_V1_FIRMWARE_URL, '旧版 K5 固件');
+    $('v1FirmwareFileName').textContent = 'k5.f4hwn.si4732.packed.bin (' + v1FirmwareData.length + ' bytes)';
+    $('v1FlashBtn').disabled = false;
+  } catch (e) {
+    log('旧版 K5 固件加载失败: ' + e.message, 'error');
+  } finally {
+    btn.disabled = false;
+  }
+});
 
 on('v1FirmwareFile', 'change', (e) => {
   const file = e.target.files && e.target.files[0];
