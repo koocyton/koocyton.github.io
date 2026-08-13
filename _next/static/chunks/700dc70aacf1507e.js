@@ -1,12 +1,12 @@
 (globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,5341,t=>{"use strict";var e=t.i(43476),a=t.i(15504);let l=`<div class="wrap">
-    <h1>泉盛 UV-K5 V3 / K1 刷机工具</h1>
-    <p class="subtitle">Web Serial \xb7 备份校准 / 刷固件 / 恢复校准 / 备份配置 / 恢复配置 / 写频 / 刷字库</p>
+    <h1>泉盛 UV-K5 / K1 刷机工具</h1>
+    <p class="subtitle">Web Serial \xb7 备份校准 / 刷固件 / 恢复校准 / 备份配置 / 恢复配置 / 写频 / 刷字库 / 旧版 K5</p>
 
     <div class="hint">
       <strong>使用说明</strong>
       <ol>
         <li>请使用 Chrome / Edge。点击各操作按钮时再连接串口，完成后会自动断开。</li>
-        <li><strong>刷固件</strong>：关机后按住 PTT，旋转开机旋钮进入刷机模式后再连接。</li>
+        <li><strong>刷固件</strong>（K1/K5 V3 与旧版 K5 相同）：关机后按住 PTT，旋转开机旋钮进入刷机模式后再连接。</li>
         <li><strong>备份/恢复校准、刷字库、备份/恢复配置、写频</strong>：正常开机进入使用界面后再连接（无需 BOOT）。</li>
         <li>建议先备份校准；固件与字库可远程获取，也可本地选择文件。</li>
         <li><strong>KOO 固件收音机 (中英文, 切换BK1080/SI4732改装，中文信道，网页写频，开机图片)</strong>
@@ -135,6 +135,18 @@
       </div>
     </div>
 
+    <div id="v1flashPanel" class="tab-panel" role="tabpanel">
+      <p class="panel-desc">旧版 UV-K5 / K6（非 K5 V3 / K1）刷入固件。协议与 <a href="https://k5.vicicode.com/#/tool/flash" target="_blank" rel="noopener noreferrer">K5Web 默认 Official</a> 一致。进入 BOOT 刷机模式后连接；支持原厂加密 packed .bin，也支持未加密 raw（≤60KB）。</p>
+      <div class="row">
+        <label class="file-btn" for="v1FirmwareFile">本地选择</label>
+        <input type="file" id="v1FirmwareFile" accept=".bin,application/octet-stream" />
+        <span class="file-name" id="v1FirmwareFileName">未选择文件</span>
+      </div>
+      <div class="row">
+        <button type="button" id="v1FlashBtn" class="primary" disabled>刷入固件</button>
+      </div>
+    </div>
+
     <div id="progressContainer" class="progress" hidden>
       <div class="progress-track"><div id="progressFill" class="progress-fill"></div></div>
       <span id="progressLabel" class="progress-label">0%</span>
@@ -151,5 +163,7 @@
       <a href="https://armel.github.io/uvtools2/" target="_blank" rel="noopener noreferrer">UVTools2</a>
       \xb7
       <a href="https://ethanyan6.github.io/Dondji/" target="_blank" rel="noopener noreferrer">Dondji</a>
+      \xb7
+      <a href="https://k5.vicicode.com/#/tool/flash" target="_blank" rel="noopener noreferrer">K5Web</a>
     </p>
   </div>`;function s(){return(0,a.useEffect)(()=>{let t=!1;window.__quanshengFlashToolsBooted=!1;let e="quansheng-flashtools-css";if(!document.getElementById(e)){let t=document.createElement("link");t.id=e,t.rel="stylesheet",t.href="/quansheng-flashtools/tool.css",document.head.appendChild(t)}let a="quansheng-flashtools-app-js",l=document.getElementById(a);l&&l.remove();let s=document.createElement("script");return s.id=a,s.src=`/quansheng-flashtools/app.js?v=${Date.now()}`,s.onload=()=>{t||window.bootQuanshengFlashTools?.()},s.onerror=()=>{t||console.error("[quansheng-flashtools] failed to load app.js")},document.body.appendChild(s),()=>{t=!0,window.__quanshengFlashToolsBooted=!1;let e=document.getElementById(a);e&&e.remove()}},[]),(0,e.jsx)("div",{className:"quansheng-flashtools-host",dangerouslySetInnerHTML:{__html:l}})}t.s(["default",()=>s])}]);
