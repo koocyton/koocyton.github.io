@@ -3,14 +3,14 @@
 import { useEffect } from "react";
 
 const TOOL_MARKUP = `<div class="wrap">
-    <h1>泉盛 UV-K5 V3 / K1 刷机工具</h1>
-    <p class="subtitle">Web Serial · 备份校准 / 刷固件 / 恢复校准 / 备份配置 / 恢复配置 / 写频 / 刷字库</p>
+    <h1>泉盛 UV-K5 / K1 刷机工具</h1>
+    <p class="subtitle">Web Serial · 备份校准 / 刷固件 / 恢复校准 / 备份配置 / 恢复配置 / 写频 / 刷字库 / 旧版 K5</p>
 
     <div class="hint">
       <strong>使用说明</strong>
       <ol>
         <li>请使用 Chrome / Edge。点击各操作按钮时再连接串口，完成后会自动断开。</li>
-        <li><strong>刷固件</strong>：关机后按住 PTT，旋转开机旋钮进入刷机模式后再连接。</li>
+        <li><strong>刷固件</strong>（K1/K5 V3 与旧版 K5 相同）：关机后按住 PTT，旋转开机旋钮进入刷机模式后再连接。</li>
         <li><strong>备份/恢复校准、刷字库、备份/恢复配置、写频</strong>：正常开机进入使用界面后再连接（无需 BOOT）。</li>
         <li>建议先备份校准；固件与字库可远程获取，也可本地选择文件。</li>
         <li><strong>KOO 固件收音机 (中英文, 切换BK1080/SI4732改装，中文信道，网页写频，开机图片)</strong>
@@ -139,6 +139,18 @@ const TOOL_MARKUP = `<div class="wrap">
       </div>
     </div>
 
+    <div id="v1flashPanel" class="tab-panel" role="tabpanel">
+      <p class="panel-desc">旧版 UV-K5 / K6（非 K5 V3 / K1）刷入固件。协议与 <a href="https://k5.vicicode.com/#/tool/flash" target="_blank" rel="noopener noreferrer">K5Web 默认 Official</a> 一致。进入 BOOT 刷机模式后连接；支持原厂加密 packed .bin，也支持未加密 raw（≤60KB）。</p>
+      <div class="row">
+        <label class="file-btn" for="v1FirmwareFile">本地选择</label>
+        <input type="file" id="v1FirmwareFile" accept=".bin,application/octet-stream" />
+        <span class="file-name" id="v1FirmwareFileName">未选择文件</span>
+      </div>
+      <div class="row">
+        <button type="button" id="v1FlashBtn" class="primary" disabled>刷入固件</button>
+      </div>
+    </div>
+
     <div id="progressContainer" class="progress" hidden>
       <div class="progress-track"><div id="progressFill" class="progress-fill"></div></div>
       <span id="progressLabel" class="progress-label">0%</span>
@@ -155,6 +167,8 @@ const TOOL_MARKUP = `<div class="wrap">
       <a href="https://armel.github.io/uvtools2/" target="_blank" rel="noopener noreferrer">UVTools2</a>
       ·
       <a href="https://ethanyan6.github.io/Dondji/" target="_blank" rel="noopener noreferrer">Dondji</a>
+      ·
+      <a href="https://k5.vicicode.com/#/tool/flash" target="_blank" rel="noopener noreferrer">K5Web</a>
     </p>
   </div>`;
 

@@ -3,6 +3,7 @@
  * Protocol adapted from:
  *   - UVTools2 by F4HWN (https://armel.github.io/uvtools2/)
  *   - Dondji by BD1AHN (Apache-2.0) https://ethanyan6.github.io/Dondji/
+ *   - K5Web Official flash (https://k5.vicicode.com/#/tool/flash)
  */
 (function () {
 'use strict';
@@ -62,9 +63,9 @@ let calibEepromBase = 0x1E00;
 
 // ========== STATE ==========
 let port = null, reader = null, writer = null;
-let firmwareData = null, fontData = null, calibData = null, cfgBackupData = null;
+let firmwareData = null, v1FirmwareData = null, fontData = null, calibData = null, cfgBackupData = null;
 let readBuffer = [], isReading = false;
-let isFlashing = false, isFontFlashing = false, isDumping = false, isRestoring = false;
+let isFlashing = false, isV1Flashing = false, isFontFlashing = false, isDumping = false, isRestoring = false;
 let isBackupCfg = false, isRestoreCfg = false;
 let isWritefreqBusy = false;
 
@@ -166,6 +167,18 @@ function createMessage(msgType, dataLen) {
 
 async function sendMessage(msg) {
   await writer.write(makePacket(msg));
+}
+
+/** K5Web Official 刷写：分片发送，避免部分浏览器一次写整包异常 */
+async function sendMessageChunked(msg, chunkSize = 64) {
+  const buf = makePacket(msg);
+  let offset = 0;
+  while (offset < buf.length) {
+    const end = Math.min(offset + chunkSize, buf.length);
+    await writer.write(buf.subarray(offset, end));
+    offset = end;
+    await sleep(1);
+  }
 }
 
 function makePacket(msg) {
@@ -562,6 +575,222 @@ on('flashBtn', 'click', async () => {
   });
   isFlashing = false;
   $('flashBtn').disabled = !firmwareData;
+});
+
+// ========== OLD K5 (K5Web Official) FIRMWARE ==========
+/** 原版 UV-K5 用户区上限 0xF000（末 4KB 为 bootloader） */
+const V1_FLASH_MAX_SIZE = 0xf000;
+/** K5Web Official 固定握手：*OEFW-LOSEHU，绕过 bootloader 版本校验 */
+const V1_HANDSHAKE_PAYLOAD = new Uint8Array([
+  0x30, 0x05, 0x10, 0x00,
+  0x2a, 0x4f, 0x45, 0x46, 0x57, 0x2d, 0x4c, 0x4f, 0x53, 0x45, 0x48, 0x55,
+  0x00, 0x00, 0x00, 0x00
+]);
+const V1_FW_XOR_TBL = new Uint8Array([
+  0x47, 0x22, 0xc0, 0x52, 0x5d, 0x57, 0x48, 0x94, 0xb1, 0x60, 0x60, 0xdb, 0x6f, 0xe3, 0x4c, 0x7c,
+  0xd8, 0x4a, 0xd6, 0x8b, 0x30, 0xec, 0x25, 0xe0, 0x4c, 0xd9, 0x00, 0x7f, 0xbf, 0xe3, 0x54, 0x05,
+  0xe9, 0x3a, 0x97, 0x6b, 0xb0, 0x6e, 0x0c, 0xfb, 0xb1, 0x1a, 0xe2, 0xc9, 0xc1, 0x56, 0x47, 0xe9,
+  0xba, 0xf1, 0x42, 0xb6, 0x67, 0x5f, 0x0f, 0x96, 0xf7, 0xc9, 0x3c, 0x84, 0x1b, 0x26, 0xe1, 0x4e,
+  0x3b, 0x6f, 0x66, 0xe6, 0xa0, 0x6a, 0xb0, 0xbf, 0xc6, 0xa5, 0x70, 0x3a, 0xba, 0x18, 0x9e, 0x27,
+  0x1a, 0x53, 0x5b, 0x71, 0xb1, 0x94, 0x1e, 0x18, 0xf2, 0xd6, 0x81, 0x02, 0x22, 0xfd, 0x5a, 0x28,
+  0x91, 0xdb, 0xba, 0x5d, 0x64, 0xc6, 0xfe, 0x86, 0x83, 0x9c, 0x50, 0x1c, 0x73, 0x03, 0x11, 0xd6,
+  0xaf, 0x30, 0xf4, 0x2c, 0x77, 0xb2, 0x7d, 0xbb, 0x3f, 0x29, 0x28, 0x57, 0x22, 0xd6, 0x92, 0x8b
+]);
+const V1_CRC16_TAB = [
+  0, 4129, 8258, 12387, 16516, 20645, 24774, 28903, 33032, 37161, 41290, 45419, 49548, 53677, 57806, 61935,
+  4657, 528, 12915, 8786, 21173, 17044, 29431, 25302, 37689, 33560, 45947, 41818, 54205, 50076, 62463, 58334,
+  9314, 13379, 1056, 5121, 25830, 29895, 17572, 21637, 42346, 46411, 34088, 38153, 58862, 62927, 50604, 54669,
+  13907, 9842, 5649, 1584, 30423, 26358, 22165, 18100, 46939, 42874, 38681, 34616, 63455, 59390, 55197, 51132,
+  18628, 22757, 26758, 30887, 2112, 6241, 10242, 14371, 51660, 55789, 59790, 63919, 35144, 39273, 43274, 47403,
+  23285, 19156, 31415, 27286, 6769, 2640, 14899, 10770, 56317, 52188, 64447, 60318, 39801, 35672, 47931, 43802,
+  27814, 31879, 19684, 23749, 11298, 15363, 3168, 7233, 60846, 64911, 52716, 56781, 44330, 48395, 36200, 40265,
+  32407, 28342, 24277, 20212, 15891, 11826, 7761, 3696, 65439, 61374, 57309, 53244, 48923, 44858, 40793, 36728,
+  37256, 33193, 45514, 41451, 53516, 49453, 61774, 57711, 4224, 161, 12482, 8419, 20484, 16421, 28742, 24679,
+  33721, 37784, 41979, 46042, 49981, 54044, 58239, 62302, 689, 4752, 8947, 13010, 16949, 21012, 25207, 29270,
+  46570, 42443, 38312, 34185, 62830, 58703, 54572, 50445, 13538, 9411, 5280, 1153, 29798, 25671, 21540, 17413,
+  42971, 47098, 34713, 38840, 59231, 63358, 50973, 55100, 9939, 14066, 1681, 5808, 26199, 30326, 17941, 22068,
+  55628, 51565, 63758, 59695, 39368, 35305, 47498, 43435, 22596, 18533, 30726, 26663, 6336, 2273, 14466, 10403,
+  52093, 56156, 60223, 64286, 35833, 39896, 43963, 48026, 19061, 23124, 27191, 31254, 2801, 6864, 10931, 14994,
+  64814, 60687, 56684, 52557, 48554, 44427, 40424, 36297, 31782, 27655, 23652, 19525, 15522, 11395, 7392, 3265,
+  61215, 65342, 53085, 57212, 44955, 49082, 36825, 40952, 28183, 32310, 20053, 24180, 11923, 16050, 3793, 7920
+];
+
+function v1Crc16Ccitt(data) {
+  let crc = 0;
+  for (let i = 0; i < data.length; i++) {
+    const out = V1_CRC16_TAB[((crc >> 8) ^ data[i]) & 255];
+    crc = out ^ (crc << 8);
+  }
+  return crc & 0xffff;
+}
+
+function v1FirmwareXor(src) {
+  const out = new Uint8Array(src);
+  const xorLen = V1_FW_XOR_TBL.length;
+  for (let i = 0; i < out.length; i++) out[i] ^= V1_FW_XOR_TBL[i % xorLen];
+  return out;
+}
+
+function v1DecodeCString(bytes) {
+  let end = 0;
+  while (end < bytes.length && bytes[end] !== 0) end++;
+  try {
+    return new TextDecoder().decode(bytes.subarray(0, end)).trim();
+  } catch (e) {
+    return '';
+  }
+}
+
+/**
+ * 解析旧版 K5 固件：CRC 通过则按 packed（XOR + 去掉 0x2000 处 16 字节版本）解包；
+ * CRC 失败且 ≤60KB 则当作 raw 编译产物。
+ */
+function v1PrepareFirmware(fileBytes) {
+  if (!fileBytes || fileBytes.length < 4) throw new Error('固件文件过短');
+  const body = fileBytes.subarray(0, fileBytes.length - 2);
+  const fileCrc = (fileBytes[fileBytes.length - 1] << 8) | fileBytes[fileBytes.length - 2];
+  const crcOk = v1Crc16Ccitt(body) === fileCrc;
+
+  const unpackPacked = () => {
+    const decoded = v1FirmwareXor(body);
+    const verOff = 0x2000;
+    const verLen = 16;
+    if (decoded.length < verOff + verLen) throw new Error('packed 固件过短，无法解析版本区');
+    const result = new Uint8Array(decoded.length - verLen);
+    result.set(decoded.subarray(0, verOff));
+    result.set(decoded.subarray(verOff + verLen), verOff);
+    const versionBytes = decoded.subarray(verOff, verOff + verLen);
+    return { data: result, packed: true, crcOk, version: v1DecodeCString(versionBytes) };
+  };
+
+  if (crcOk) return unpackPacked();
+  if (fileBytes.length <= V1_FLASH_MAX_SIZE) {
+    return { data: fileBytes, packed: false, crcOk: false, version: '' };
+  }
+  return unpackPacked();
+}
+
+function v1FlashGenerateCommand(block, address, totalSize) {
+  let data = block;
+  if (data.length < 0x100) {
+    const padded = new Uint8Array(0x100);
+    padded.set(data);
+    data = padded;
+  }
+  if (data.length !== 0x100) throw new Error('刷写块大小必须为 256 字节');
+  const addressFinal = (totalSize + 0xff) & ~0xff;
+  if (addressFinal > V1_FLASH_MAX_SIZE) throw new Error('固件过大（超过 0xF000 / 60KB）');
+  const cmd = new Uint8Array(16 + 0x100);
+  cmd[0] = 0x19;
+  cmd[1] = 0x05;
+  cmd[2] = 0x0c;
+  cmd[3] = 0x01;
+  cmd[4] = 0x8a;
+  cmd[5] = 0x8d;
+  cmd[6] = 0x9f;
+  cmd[7] = 0x1d;
+  cmd[8] = (address & 0xff00) >> 8;
+  cmd[9] = address & 0xff;
+  cmd[10] = (addressFinal & 0xff00) >> 8;
+  cmd[11] = 0x00;
+  cmd[12] = 0x01;
+  cmd[13] = 0x00;
+  cmd[14] = 0x00;
+  cmd[15] = 0x00;
+  cmd.set(data, 16);
+  return cmd;
+}
+
+async function waitForV1Bootloader(timeoutMs = 8000) {
+  log('等待旧版 K5 刷机模式（0x0518）...', 'info');
+  const deadline = Date.now() + timeoutMs;
+  while (Date.now() < deadline) {
+    await sleep(10);
+    const msg = fetchMessage(readBuffer);
+    if (!msg) continue;
+    if (msg.msgType !== MSG_NOTIFY_DEV_INFO) continue;
+    const uid = msg.data.length >= 16 ? msg.data.slice(0, 16) : msg.data;
+    let blVer = '';
+    if (msg.data.length > 16) {
+      let blEnd = msg.data.length;
+      for (let i = 16; i < Math.min(msg.data.length, 32); i++) {
+        if (msg.data[i] === 0) { blEnd = i; break; }
+      }
+      blVer = new TextDecoder().decode(msg.data.slice(16, blEnd));
+    }
+    log('UID: ' + hex(uid), 'info');
+    if (blVer) log('Bootloader: ' + blVer, 'info');
+    return { uid, blVersion: blVer };
+  }
+  throw new Error('超时：未检测到旧版 K5 刷机模式（请关机后按住 PTT 再开机）');
+}
+
+on('v1FirmwareFile', 'change', (e) => {
+  const file = e.target.files && e.target.files[0];
+  if (!file) return;
+  const fr = new FileReader();
+  fr.onload = (ev) => {
+    v1FirmwareData = new Uint8Array(ev.target.result);
+    $('v1FirmwareFileName').textContent = file.name + ' (' + v1FirmwareData.length + ' bytes)';
+    log('旧版 K5 固件已加载: ' + file.name, 'success');
+    $('v1FlashBtn').disabled = false;
+    e.target.value = '';
+  };
+  fr.readAsArrayBuffer(file);
+});
+
+on('v1FlashBtn', 'click', async () => {
+  if (!v1FirmwareData || isV1Flashing) return;
+  isV1Flashing = true;
+  await withSession($('v1FlashBtn'), async () => {
+    const prepared = v1PrepareFirmware(v1FirmwareData);
+    if (prepared.packed) {
+      if (prepared.crcOk) log('packed 固件 CRC 校验通过', 'success');
+      else log('packed 固件 CRC 校验失败，仍按加密格式解包', 'warning');
+      if (prepared.version) log('固件版本: ' + prepared.version, 'info');
+    } else {
+      log('未检测到 packed CRC，按 raw 固件刷入（' + prepared.data.length + ' bytes）', 'info');
+    }
+    if (prepared.data.length > V1_FLASH_MAX_SIZE) {
+      throw new Error('固件过大: ' + prepared.data.length + ' bytes（旧版 K5 上限 0xF000 / 60KB）');
+    }
+    log('待刷入 ' + prepared.data.length + ' bytes', 'info');
+    await waitForV1Bootloader();
+    log('发送 Official 握手 (*OEFW-LOSEHU)...', 'info');
+    await sendMessageChunked(V1_HANDSHAKE_PAYLOAD);
+    await sleep(100);
+    readBuffer = [];
+    log('开始刷入旧版 K5 固件...', 'info');
+    const fw = prepared.data;
+    let written = 0;
+    for (let addr = 0; addr < fw.length; addr += 0x100) {
+      updateProgress((addr / fw.length) * 100);
+      const slice = fw.subarray(addr, Math.min(addr + 0x100, fw.length));
+      const cmd = v1FlashGenerateCommand(slice, addr, fw.length);
+      let ok = false;
+      let retry = 0;
+      while (!ok) {
+        await sendMessageChunked(cmd);
+        const resp = await waitForMsg(MSG_PROG_FW_RESP, 300);
+        if (resp) {
+          ok = true;
+          retry = 0;
+        } else {
+          retry++;
+          if (retry > 3) throw new Error('写入超时 @ 0x' + addr.toString(16));
+          await sleep(50);
+        }
+      }
+      written += slice.length;
+      if ((addr / 0x100 + 1) % 16 === 0 || addr + 0x100 >= fw.length) {
+        log('已写入 0x' + addr.toString(16) + ' (' + written + '/' + fw.length + ')', 'success');
+      }
+    }
+    updateProgress(100);
+    log('旧版 K5 固件刷入完成', 'success');
+  });
+  isV1Flashing = false;
+  $('v1FlashBtn').disabled = !v1FirmwareData;
 });
 
 // ========== FONT ==========
@@ -3029,7 +3258,7 @@ function bootFlashTools() {
   window.__quanshengFlashToolsBooted = true;
   if (!('serial' in navigator)) {
     log('浏览器不支持 Web Serial API，请使用 Chrome / Edge', 'error');
-    ['flashBtn','fontFlashBtn','dumpBtn','restoreBtn','backupCfgBtn','restoreCfgBtn','writefreqReadBtn','writefreqWriteBtn'].forEach((id) => {
+    ['flashBtn','v1FlashBtn','fontFlashBtn','dumpBtn','restoreBtn','backupCfgBtn','restoreCfgBtn','writefreqReadBtn','writefreqWriteBtn'].forEach((id) => {
       const el = $(id); if (el) el.disabled = true;
     });
   } else {
