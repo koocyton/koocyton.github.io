@@ -24,12 +24,13 @@
 
     <div class="tabs" role="tablist">
       <button type="button" class="flash-tab active" role="tab" aria-selected="true" data-tab="dump">备份校准</button>
-      <button type="button" class="flash-tab" role="tab" aria-selected="false" data-tab="flash">刷固件</button>
+      <button type="button" class="flash-tab" role="tab" aria-selected="false" data-tab="flash">K1/K5V3 刷固件</button>
       <button type="button" class="flash-tab" role="tab" aria-selected="false" data-tab="restore">恢复校准</button>
       <button type="button" class="flash-tab" role="tab" aria-selected="false" data-tab="backupCfg">备份配置</button>
       <button type="button" class="flash-tab" role="tab" aria-selected="false" data-tab="restoreCfg">恢复配置</button>
       <button type="button" class="flash-tab" role="tab" aria-selected="false" data-tab="writefreq">写频</button>
       <button type="button" class="flash-tab" role="tab" aria-selected="false" data-tab="font">刷字库</button>
+      <button type="button" class="flash-tab" role="tab" aria-selected="false" data-tab="v1flash">旧版 K5 刷固件</button>
     </div>
 
     <div id="dumpPanel" class="tab-panel active" role="tabpanel">
