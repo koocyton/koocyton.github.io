@@ -9,6 +9,16 @@
         <li><strong>刷固件</strong>：关机后按住 PTT，旋转开机旋钮进入刷机模式后再连接。</li>
         <li><strong>备份/恢复校准、刷字库、备份/恢复配置、写频</strong>：正常开机进入使用界面后再连接（无需 BOOT）。</li>
         <li>建议先备份校准；固件与字库可远程获取，也可本地选择文件。</li>
+        <li><strong>KOO 固件收音机</strong>
+          <ul>
+            <li><strong>F + 0</strong> 进入收音机模式，默认 FM</li>
+            <li>收音机模式下，短按 <strong>F</strong> 切换 FM / AM</li>
+            <li>长按 <strong>F</strong> 进入单边带</li>
+            <li>单边带下短按 <strong>F</strong> 切换 USB / LSB / CW</li>
+            <li>短波下 <strong>M</strong> 切换 AGC / ATT / BW / STP 选项，侧键上下修改选项值</li>
+            <li>按 <strong>*</strong> 向上搜索</li>
+          </ul>
+        </li>
       </ol>
     </div>
 

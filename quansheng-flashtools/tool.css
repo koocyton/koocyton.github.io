@@ -62,6 +62,11 @@ h1 {
   padding-left: 1.25rem;
 }
 
+.hint ul {
+  margin: 0.25rem 0 0;
+  padding-left: 1.15rem;
+}
+
 .hint li {
   margin: 0.15rem 0;
 }
