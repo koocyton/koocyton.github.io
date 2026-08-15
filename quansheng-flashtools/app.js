@@ -8,10 +8,10 @@
 (function () {
 'use strict';
 
-const REMOTE_FIRMWARE_URL = 'https://github.com/koocyton/armel-uv-k5-firmware-custom/releases/download/20260508/k18-f4hwn-5.8.0-cn.radio.bin';
+const REMOTE_FIRMWARE_URL = '/quansheng-flashtools/k18-f4hwn-5.9.0-cn.radio.bin';
 const REMOTE_V1_FIRMWARE_URL = 'https://github.com/koocyton/armel-uv-k5-firmware-custom/releases/download/20260508/k5.f4hwn.si4732.packed.bin';
 const REMOTE_FONT_URL = 'https://github.com/koocyton/armel-uv-k5-firmware-custom/releases/download/20260508/cn_font.bin';
-const LOCAL_FIRMWARE_URL = '/quansheng-flashtools/k18-f4hwn-5.8.0-cn.radio.bin';
+const LOCAL_FIRMWARE_URL = '/quansheng-flashtools/k18-f4hwn-5.9.0-cn.radio.bin';
 const LOCAL_V1_FIRMWARE_URL = '/quansheng-flashtools/k5.f4hwn.si4732.packed.bin';
 const LOCAL_FONT_URL = '/quansheng-flashtools/cn_font.bin';
 const LOCAL_SSB_PATCH_URL = '/quansheng-flashtools/si4732_ssb_patch.bin';
@@ -534,7 +534,7 @@ on('fetchFirmwareBtn', 'click', async () => {
   btn.disabled = true;
   try {
     firmwareData = await fetchBinWithFallback(REMOTE_FIRMWARE_URL, LOCAL_FIRMWARE_URL, '固件');
-    $('firmwareFileName').textContent = 'k18-f4hwn-5.8.0-cn.radio.bin (' + firmwareData.length + ' bytes)';
+    $('firmwareFileName').textContent = 'k18-f4hwn-5.9.0-cn.radio.bin (' + firmwareData.length + ' bytes)';
     $('flashBtn').disabled = false;
   } catch (e) {
     log('固件加载失败: ' + e.message, 'error');
