@@ -14,6 +14,7 @@ const REMOTE_FONT_URL = 'https://github.com/koocyton/armel-uv-k5-firmware-custom
 const LOCAL_FIRMWARE_URL = '/quansheng-flashtools/k18-f4hwn-5.8.0-cn.radio.bin';
 const LOCAL_V1_FIRMWARE_URL = '/quansheng-flashtools/k5.f4hwn.si4732.packed.bin';
 const LOCAL_FONT_URL = '/quansheng-flashtools/cn_font.bin';
+const LOCAL_SSB_PATCH_URL = '/quansheng-flashtools/si4732_ssb_patch.bin';
 
 
 const BAUDRATE = 38400;
@@ -33,6 +34,10 @@ const MSG_SPI_FLASH_WRITE  = 0x0521;
 const MSG_SPI_FLASH_WRITE_RESP = 0x0522;
 const MSG_NOTIFY_BL_VER    = 0x0530;
 const MSG_REBOOT           = 0x05DD;
+const MSG_SPI_EXT_READ     = 0x05F0;
+const MSG_SPI_EXT_READ_RESP  = 0x05F1;
+const MSG_SPI_EXT_WRITE    = 0x05F2;
+const MSG_SPI_EXT_WRITE_RESP = 0x05F3;
 
 
 const OBFUS_TBL = new Uint8Array([
@@ -49,6 +54,11 @@ const CN_FONT_BITMAP_SIZE = 162384;
 const CN_FONT_CHAR_COUNT = 6766;
 const CN_FONT_VERSION     = 2;
 const SPI_CHUNK_SIZE      = 48;
+/** Si4732 SSB patch：与固件 SI473X_PATCH_SPI 一致，字库在 0x024000，互不重叠 */
+const SSB_PATCH_FLASH_BASE = 0x058000;
+const SSB_PATCH_EXPECTED_SIZE = 15832;
+/** 0x05F2 单块上限 120，且须为 8 的倍数 */
+const SSB_PATCH_CHUNK     = 120;
 const CALIB_SIZE          = 512;
 const LOGO_FLASH_ADDR     = 0x1FF000;
 const LOGO_HEADER_SIZE    = 8;
@@ -65,9 +75,9 @@ let calibEepromBase = 0x1E00;
 
 // ========== STATE ==========
 let port = null, reader = null, writer = null;
-let firmwareData = null, v1FirmwareData = null, fontData = null, calibData = null, cfgBackupData = null;
+let firmwareData = null, v1FirmwareData = null, fontData = null, ssbPatchData = null, calibData = null, cfgBackupData = null;
 let readBuffer = [], isReading = false;
-let isFlashing = false, isV1Flashing = false, isFontFlashing = false, isDumping = false, isRestoring = false;
+let isFlashing = false, isV1Flashing = false, isFontFlashing = false, isSsbFlashing = false, isDumping = false, isRestoring = false;
 let isBackupCfg = false, isRestoreCfg = false;
 let isWritefreqBusy = false;
 
@@ -894,6 +904,102 @@ on('fontFlashBtn', 'click', async () => {
   });
   isFontFlashing = false;
   $('fontFlashBtn').disabled = !fontData;
+});
+
+// ========== SSB PATCH (K1 / K5 V3, 0x05F2 @ 0x058000) ==========
+on('ssbFile', 'change', (e) => {
+  const file = e.target.files && e.target.files[0];
+  if (!file) return;
+  const fr = new FileReader();
+  fr.onload = (ev) => {
+    ssbPatchData = new Uint8Array(ev.target.result);
+    $('ssbFileName').textContent = file.name + ' (' + ssbPatchData.length + ' bytes)';
+    log('单边带补丁已加载: ' + file.name, 'success');
+    $('ssbFlashBtn').disabled = false;
+    e.target.value = '';
+  };
+  fr.readAsArrayBuffer(file);
+});
+
+on('fetchSsbBtn', 'click', async () => {
+  const btn = $('fetchSsbBtn');
+  btn.disabled = true;
+  try {
+    ssbPatchData = await fetchBinWithFallback(LOCAL_SSB_PATCH_URL, LOCAL_SSB_PATCH_URL, '单边带补丁');
+    $('ssbFileName').textContent = 'si4732_ssb_patch.bin (' + ssbPatchData.length + ' bytes)';
+    $('ssbFlashBtn').disabled = false;
+  } catch (e) {
+    log('单边带补丁加载失败: ' + e.message, 'error');
+  } finally {
+    btn.disabled = false;
+  }
+});
+
+on('ssbFlashBtn', 'click', async () => {
+  if (!ssbPatchData || isSsbFlashing) return;
+  isSsbFlashing = true;
+  await withSession($('ssbFlashBtn'), async () => {
+    if (ssbPatchData.length % 8 !== 0) {
+      throw new Error('补丁长度必须是 8 的倍数（当前 ' + ssbPatchData.length + '）');
+    }
+    if (SSB_PATCH_FLASH_BASE + ssbPatchData.length > 0x200000) {
+      throw new Error('补丁超出 SPI Flash 2MB 范围');
+    }
+    if (ssbPatchData.length !== SSB_PATCH_EXPECTED_SIZE) {
+      log('补丁大小 ' + ssbPatchData.length + ' 与默认 ' + SSB_PATCH_EXPECTED_SIZE + ' 不一致，仍继续写入', 'warning');
+    }
+    log('检测设备模式...', 'info');
+    const ts = Date.now() & 0xffffffff;
+    const reqMsg = createMessage(MSG_DEV_INFO_REQ, 4);
+    new DataView(reqMsg.buffer).setUint32(4, ts, true);
+    await sendMessage(reqMsg);
+    let isFirmwareMode = false;
+    for (let i = 0; i < 100; i++) {
+      await sleep(10);
+      const msg = fetchMessage(readBuffer);
+      if (!msg) continue;
+      if (msg.msgType === MSG_DEV_INFO_RESP) { isFirmwareMode = true; break; }
+    }
+    if (!isFirmwareMode) throw new Error('设备处于 BOOT 模式，请先刷入固件并正常开机后再刷单边带补丁');
+    log('开始写入单边带补丁 @ 0x' + SSB_PATCH_FLASH_BASE.toString(16) + '，共 ' + ssbPatchData.length + ' bytes', 'success');
+    let written = 0;
+    for (let i = 0; i < ssbPatchData.length; ) {
+      let chunkLen = Math.min(SSB_PATCH_CHUNK, ssbPatchData.length - i);
+      chunkLen -= chunkLen % 8;
+      if (chunkLen === 0) throw new Error('剩余数据不足 8 字节，协议无法写入');
+      const addr = SSB_PATCH_FLASH_BASE + i;
+      let ok = false;
+      for (let retry = 0; retry < 3 && !ok; retry++) {
+        if (retry > 0) await sleep(200);
+        const msg = createMessage(MSG_SPI_EXT_WRITE, 12 + chunkLen);
+        const v = new DataView(msg.buffer);
+        v.setUint32(4, addr, true);
+        msg[8] = chunkLen;
+        msg[9] = 0;
+        msg[10] = 0;
+        msg[11] = 0;
+        v.setUint32(12, ts, true);
+        for (let j = 0; j < chunkLen; j++) msg[16 + j] = ssbPatchData[i + j];
+        await sendMessage(msg);
+        const resp = await waitForMsg(MSG_SPI_EXT_WRITE_RESP, 300);
+        if (!resp || resp.data.length < 4) continue;
+        const ackAddr = new DataView(resp.data.buffer, resp.data.byteOffset, resp.data.byteLength).getUint32(0, true);
+        if ((ackAddr >>> 0) !== (addr >>> 0)) continue;
+        ok = true;
+      }
+      if (!ok) throw new Error('写入超时 @ 0x' + addr.toString(16));
+      written += chunkLen;
+      i += chunkLen;
+      updateProgress((written / ssbPatchData.length) * 100);
+      if (written % (SSB_PATCH_CHUNK * 20) === 0 || written >= ssbPatchData.length) {
+        log('写入进度 ' + written + ' / ' + ssbPatchData.length, 'info');
+      }
+    }
+    updateProgress(100);
+    log('单边带补丁刷入完成，共 ' + written + ' bytes', 'success');
+  });
+  isSsbFlashing = false;
+  $('ssbFlashBtn').disabled = !ssbPatchData;
 });
 
 // ========== CALIB DUMP ==========
@@ -3274,7 +3380,7 @@ function bootFlashTools() {
   window.__quanshengFlashToolsBooted = true;
   if (!('serial' in navigator)) {
     log('浏览器不支持 Web Serial API，请使用 Chrome / Edge', 'error');
-    ['flashBtn','v1FlashBtn','fontFlashBtn','dumpBtn','restoreBtn','backupCfgBtn','restoreCfgBtn','writefreqReadBtn','writefreqWriteBtn'].forEach((id) => {
+    ['flashBtn','v1FlashBtn','fontFlashBtn','ssbFlashBtn','dumpBtn','restoreBtn','backupCfgBtn','restoreCfgBtn','writefreqReadBtn','writefreqWriteBtn'].forEach((id) => {
       const el = $(id); if (el) el.disabled = true;
     });
   } else {
