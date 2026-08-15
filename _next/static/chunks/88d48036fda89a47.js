@@ -1,13 +1,13 @@
 (globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,5341,t=>{"use strict";var e=t.i(43476),a=t.i(15504);let l=`<div class="wrap">
     <h1>泉盛 UV-K5 / K1 刷机工具</h1>
-    <p class="subtitle">Web Serial \xb7 备份校准 / 刷固件 / 恢复校准 / 备份配置 / 恢复配置 / 写频 / 刷字库 / 旧版 K5</p>
+    <p class="subtitle">Web Serial \xb7 备份校准 / 刷固件 / 恢复校准 / 备份配置 / 恢复配置 / 写频 / 刷字库 / 单边带补丁 / 旧版 K5</p>
 
     <div class="hint">
       <strong>使用说明</strong>
       <ol>
         <li>请使用 Chrome / Edge。点击各操作按钮时再连接串口，完成后会自动断开。</li>
         <li><strong>刷固件</strong>（K1/K5 V3 与旧版 K5 相同）：关机后按住 PTT，旋转开机旋钮进入刷机模式后再连接。</li>
-        <li><strong>备份/恢复校准、刷字库、备份/恢复配置、写频</strong>：正常开机进入使用界面后再连接（无需 BOOT）。</li>
+        <li><strong>备份/恢复校准、刷字库、单边带补丁、备份/恢复配置、写频</strong>：正常开机进入使用界面后再连接（无需 BOOT）。</li>
         <li>建议先备份校准；固件与字库可远程获取，也可本地选择文件。</li>
         <li><strong>KOO 固件收音机 (中英文, 切换BK1080/SI4732改装，中文信道，网页写频，开机图片)</strong>
           <ul>
@@ -30,6 +30,7 @@
       <button type="button" class="flash-tab" role="tab" aria-selected="false" data-tab="restoreCfg">恢复配置</button>
       <button type="button" class="flash-tab" role="tab" aria-selected="false" data-tab="writefreq">写频</button>
       <button type="button" class="flash-tab" role="tab" aria-selected="false" data-tab="font">刷字库</button>
+      <button type="button" class="flash-tab" role="tab" aria-selected="false" data-tab="ssb">k1/k5v3 单边带补丁</button>
       <button type="button" class="flash-tab" role="tab" aria-selected="false" data-tab="v1flash">旧版 K5 刷固件</button>
     </div>
 
@@ -132,6 +133,19 @@
       </div>
       <div class="row">
         <button type="button" id="fontFlashBtn" class="primary" disabled>刷入字库</button>
+      </div>
+    </div>
+
+    <div id="ssbPanel" class="tab-panel" role="tabpanel">
+      <p class="panel-desc">将 Si4732 单边带 patch 写入 SPI Flash（基址 0x058000，与字库 0x024000 不重叠）。正常开机后连接；请使用与固件匹配的补丁。</p>
+      <div class="row">
+        <button type="button" id="fetchSsbBtn">远程获取</button>
+        <label class="file-btn" for="ssbFile">本地选择</label>
+        <input type="file" id="ssbFile" accept=".bin,application/octet-stream" />
+        <span class="file-name" id="ssbFileName">未选择文件</span>
+      </div>
+      <div class="row">
+        <button type="button" id="ssbFlashBtn" class="primary" disabled>刷入补丁</button>
       </div>
     </div>
 

@@ -28,7 +28,7 @@ body {
 }
 
 .wrap {
-  max-width: 42rem; /* 与主页 max-w-2xl 一致 */
+  max-width: calc(42rem + 100px);
   margin: 0 auto;
   padding: 2.5rem 1.25rem;
 }
