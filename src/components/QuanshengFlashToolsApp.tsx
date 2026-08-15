@@ -34,7 +34,7 @@ const TOOL_MARKUP = `<div class="wrap">
       <button type="button" class="flash-tab" role="tab" aria-selected="false" data-tab="restoreCfg">恢复配置</button>
       <button type="button" class="flash-tab" role="tab" aria-selected="false" data-tab="writefreq">写频</button>
       <button type="button" class="flash-tab" role="tab" aria-selected="false" data-tab="font">刷字库</button>
-      <button type="button" class="flash-tab" role="tab" aria-selected="false" data-tab="ssb">k1/k5v3 单边带补丁</button>
+      <button type="button" class="flash-tab" role="tab" aria-selected="false" data-tab="ssb">K1/K5V3 单边带补丁</button>
       <button type="button" class="flash-tab" role="tab" aria-selected="false" data-tab="v1flash">旧版 K5 刷固件</button>
     </div>
 
