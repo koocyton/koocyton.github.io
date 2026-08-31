@@ -71,6 +71,11 @@ h1 {
   margin: 0.15rem 0;
 }
 
+.tab-panel .firmware-notes {
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
 .tabs {
   display: flex;
   flex-wrap: wrap;

@@ -13,18 +13,6 @@ const TOOL_MARKUP = `<div class="wrap">
         <li><strong>刷固件</strong>（K1/K5 V3 与旧版 K5 相同）：关机后按住 PTT，旋转开机旋钮进入刷机模式后再连接。</li>
         <li><strong>备份/恢复校准、刷字库、单边带补丁、备份/恢复配置、写频</strong>：正常开机进入使用界面后再连接（无需 BOOT）。</li>
         <li>建议先备份校准；固件与字库可远程获取，也可本地选择文件。</li>
-        <li><strong>KOO 固件收音机 (中英文, 切换BK1080/SI4732改装，中文信道，网页写频，开机图片)</strong>
-          <ul>
-            <li><strong>F + 0</strong> 进入收音机模式，默认 FM</li>
-            <li>收音机模式下，短按 <strong>F</strong> 切换 FM / AM</li>
-            <li>收音机模式下，显示守听频道收到的频率</li>
-            <li>收音机模式下，长按 <strong>EXIT</strong>，进入播放收音机同时对讲机双守听</li>
-            <li>长按 <strong>F</strong> 进入单边带</li>
-            <li>单边带下短按 <strong>F</strong> 切换 USB / LSB / CW</li>
-            <li>短波下 <strong>M</strong> 切换 AGC / ATT / BW / STP 选项，侧键上下修改选项值</li>
-            <li>按 <strong>*</strong> 向上搜索</li>
-          </ul>
-        </li>
       </ol>
     </div>
 
@@ -57,6 +45,25 @@ const TOOL_MARKUP = `<div class="wrap">
       </div>
       <div class="row">
         <button type="button" id="flashBtn" class="primary" disabled>刷入固件</button>
+      </div>
+      <div class="hint firmware-notes">
+        <strong>固件说明</strong>
+        <ol>
+          <li><strong>KOO 固件收音机 (中英文, 切换BK1080/SI4732改装，中文信道，网页写频，开机图片)</strong>
+            <ul>
+              <li><strong>F + 0</strong> 进入收音机模式，默认 FM</li>
+              <li>收音机模式下，短按 <strong>F</strong> 切换 FM / AM</li>
+              <li>收音机模式下，显示守听频道收到的频率</li>
+              <li>收音机模式下，长按 <strong>EXIT</strong>，进入播放收音机同时对讲机双守听</li>
+              <li>长按 <strong>F</strong> 进入单边带</li>
+              <li>单边带下短按 <strong>F</strong> 切换 USB / LSB / CW</li>
+              <li>短波下 <strong>M</strong> 切换 AGC / ATT / BW / STP 选项，侧键上下修改选项值</li>
+              <li>按 <strong>*</strong> 向上搜索</li>
+            </ul>
+          </li>
+          <li>SI4732 短波单边带模式下，长按 <strong>0</strong> 进入 CW 解码。目前不准，考虑将内部音频飞线到 MCU 进入 ADC，增加解码准确率。</li>
+          <li>新增 APRS 功能：对讲机设置菜单可设置发送人、位置、消息、SSID 等信息；将频率保存到虚拟信道（APRS MSG 和 APRS POS，保存时在 1 信道之前）；然后在主菜单选择 APRS SENDER，按需要选择后继续按 <strong>M</strong> 发送 APRS 信息。</li>
+        </ol>
       </div>
     </div>
 
