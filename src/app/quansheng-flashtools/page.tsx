@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Comments from "@/components/Comments";
 import QuanshengFlashToolsApp from "@/components/QuanshengFlashToolsApp";
 
 export const metadata: Metadata = {
@@ -8,5 +9,12 @@ export const metadata: Metadata = {
 };
 
 export default function QuanshengFlashToolsPage() {
-  return <QuanshengFlashToolsApp />;
+  return (
+    <>
+      <QuanshengFlashToolsApp />
+      <div className="max-w-5xl mx-auto px-5 pb-10">
+        <Comments />
+      </div>
+    </>
+  );
 }
