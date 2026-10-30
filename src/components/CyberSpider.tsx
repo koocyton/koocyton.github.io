@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 type Point = { x: number; y: number };
-type Mode = "idle" | "track" | "aim" | "shoot" | "wrap" | "observe" | "snap";
+type Mode = "idle" | "track" | "aim" | "shoot" | "wrap" | "observe" | "snap" | "home" | "rest";
 
 const AIM_TIME = 0.22;
 const SHOOT_TIME = 0.32;
@@ -19,9 +19,11 @@ const BODY = { x: -11, y: -4, w: 22, h: 8 };
 
 type Leg = {
   hip: Point;
-  side: number;
+  rest: Point;
   group: number;
   bend: number;
+  arc: number;
+  swing: number;
   foot: Point;
   swingFrom: Point;
   swingTo: Point;
@@ -63,41 +65,22 @@ function toLocal(origin: Point, heading: number, p: Point): Point {
   return { x: dx * c + dy * s, y: -dx * s + dy * c };
 }
 
-function ikKnee(hip: Point, foot: Point, bend: number): Point {
-  const dx = foot.x - hip.x;
-  const dy = foot.y - hip.y;
-  const raw = Math.hypot(dx, dy) || 0.001;
-  const d = clamp(raw, Math.abs(L1 - L2) + 0.4, L1 + L2 - 0.4);
-  const scale = d / raw;
-  const fx = hip.x + dx * scale;
-  const fy = hip.y + dy * scale;
-  const ang = Math.atan2(fy - hip.y, fx - hip.x);
-  const cosA = clamp((L1 * L1 + d * d - L2 * L2) / (2 * L1 * d), -1, 1);
-  return {
-    x: hip.x + Math.cos(ang + bend * Math.acos(cosA)) * L1,
-    y: hip.y + Math.sin(ang + bend * Math.acos(cosA)) * L1,
-  };
+function polar(angle: number, radius: number): Point {
+  return { x: Math.sin(angle) * radius, y: -Math.cos(angle) * radius };
 }
 
-function plantLocal(hip: Point, side: number): Point {
-  const forward = hip.y < 0 ? -6 : 5;
-  return { x: hip.x + side * 14, y: hip.y + forward };
-}
+const LEGS: Array<{ hip: Point; rest: Point; group: number }> = [-2.55, -1.9, -1.2, -0.45, 0.45, 1.2, 1.9, 2.55].map(
+  (angle, index) => ({
+    hip: polar(angle, 8),
+    rest: polar(angle, 20),
+    group: index % 2,
+  }),
+);
 
 function makeLegs(origin: Point, heading: number): Leg[] {
-  const specs: Array<{ hip: Point; side: number; group: number }> = [
-    { hip: { x: -8, y: -4 }, side: -1, group: 0 },
-    { hip: { x: -3, y: -4 }, side: -1, group: 1 },
-    { hip: { x: 3, y: -4 }, side: 1, group: 1 },
-    { hip: { x: 8, y: -4 }, side: 1, group: 0 },
-    { hip: { x: -8, y: 4 }, side: -1, group: 1 },
-    { hip: { x: -3, y: 4 }, side: -1, group: 0 },
-    { hip: { x: 3, y: 4 }, side: 1, group: 0 },
-    { hip: { x: 8, y: 4 }, side: 1, group: 1 },
-  ];
-  return specs.map((spec) => {
-    const foot = toWorld(origin, heading, plantLocal(spec.hip, spec.side));
-    return { ...spec, bend: spec.side, foot, swingFrom: foot, swingTo: foot };
+  return LEGS.map((spec) => {
+    const foot = toWorld(origin, heading, spec.rest);
+    return { ...spec, bend: spec.rest.x >= 0 ? 1 : -1, arc: 1, swing: -1, foot, swingFrom: foot, swingTo: foot };
   });
 }
 
@@ -129,11 +112,19 @@ function drawSpider(ctx: CanvasRenderingContext2D, origin: Point, heading: numbe
     const reach = Math.hypot(footRaw.x - leg.hip.x, footRaw.y - leg.hip.y) || 0.001;
     const limit = L1 + L2;
     const foot = reach > limit ? mix(leg.hip, footRaw, limit / reach) : footRaw;
-    const kept = ikKnee(leg.hip, foot, leg.bend);
-    const flipped = ikKnee(leg.hip, foot, -leg.bend);
-    const outward = (knee: Point) => (knee.x - leg.hip.x) * leg.side;
-    const knee = outward(flipped) > outward(kept) + 1.2 ? flipped : kept;
-    if (knee === flipped) leg.bend = -leg.bend;
+    const dx = foot.x - leg.hip.x;
+    const dy = foot.y - leg.hip.y;
+    const len = Math.hypot(dx, dy) || 1;
+    const px = -dy / len;
+    const py = dx / len;
+    const mid = { x: (leg.hip.x + foot.x) / 2, y: (leg.hip.y + foot.y) / 2 };
+    const left = { x: mid.x + px * 6, y: mid.y + py * 6 };
+    const right = { x: mid.x - px * 6, y: mid.y - py * 6 };
+    const prefer = leg.bend >= 0 ? left : right;
+    const other = leg.bend >= 0 ? right : left;
+    const spread = (p: Point) => p.x * p.x + p.y * p.y;
+    const knee = spread(other) > spread(prefer) + 70 ? other : prefer;
+    leg.bend = knee === left ? 1 : -1;
     ctx.beginPath();
     ctx.moveTo(leg.hip.x, leg.hip.y);
     ctx.lineTo(knee.x, knee.y);
@@ -143,6 +134,47 @@ function drawSpider(ctx: CanvasRenderingContext2D, origin: Point, heading: numbe
 
   ctx.lineWidth = 1.35;
   ctx.strokeRect(BODY.x, BODY.y, BODY.w, BODY.h);
+  ctx.restore();
+}
+
+function webPerch(width: number): Point {
+  return { x: Math.max(64, width - 92), y: 74 };
+}
+
+function drawWeb(ctx: CanvasRenderingContext2D, width: number) {
+  const ox = width - 2;
+  const oy = 0;
+  const maxR = 158;
+  ctx.save();
+  ctx.translate(ox, oy);
+  ctx.lineCap = "round";
+  ctx.strokeStyle = "rgba(96, 86, 74, 0.38)";
+  ctx.lineWidth = 1;
+
+  const spokes = 8;
+  for (let i = 0; i < spokes; i++) {
+    if (i === 2 || i === 6) continue;
+    const ang = Math.PI / 2 + (i / (spokes - 1)) * (Math.PI / 2) + Math.sin(i * 1.7) * 0.03;
+    const len = maxR * (0.78 + ((i * 5) % 3) * 0.07);
+    ctx.beginPath();
+    ctx.moveTo(4, 2);
+    ctx.lineTo(Math.cos(ang) * len, Math.sin(ang) * len);
+    ctx.stroke();
+  }
+
+  for (let ring = 1; ring <= 5; ring++) {
+    const rad = (ring / 5) * maxR * 0.9 + Math.sin(ring * 2.1) * 2;
+    const gap = ring === 3 ? 0.42 : ring === 5 ? 0.28 : 0.05;
+    ctx.beginPath();
+    ctx.arc(0, 0, rad, Math.PI / 2 + ring * 0.04, Math.PI - gap);
+    ctx.stroke();
+  }
+
+  ctx.strokeStyle = "rgba(96, 86, 74, 0.28)";
+  ctx.beginPath();
+  ctx.moveTo(-48, 78);
+  ctx.quadraticCurveTo(-36, 118, -58, 132);
+  ctx.stroke();
   ctx.restore();
 }
 
@@ -198,6 +230,7 @@ export default function CyberSpider() {
     const mouse = { x: 120, y: 120 };
     const capture = { x: 120, y: 120 };
     let wander = { x: 180, y: 160 };
+    let untilHome = 10;
     let wanderAge = 0;
 
     const pickWander = () => {
@@ -210,7 +243,7 @@ export default function CyberSpider() {
     };
     let legs = makeLegs(spider, spider.heading);
     let gait = 0;
-    let gaitGroup = -1;
+    let stepGroup = -1;
 
     let mode: Mode = "idle";
     let seen = false;
@@ -264,7 +297,10 @@ export default function CyberSpider() {
       }
       if (moved > 1.6) {
         lastMove = performance.now();
-        if (mode !== "track" && mode !== "snap" && mode !== "idle" && dist(mouse, capture) > ESCAPE_DISTANCE) {
+        if (mode === "home" || mode === "rest") {
+          untilHome = 14;
+          enter("track");
+        } else if (mode !== "track" && mode !== "snap" && mode !== "idle" && dist(mouse, capture) > ESCAPE_DISTANCE) {
           if (mode === "aim") enter("track");
           else enter("snap");
         }
@@ -275,7 +311,7 @@ export default function CyberSpider() {
       const next = (event as PointerEvent).relatedTarget;
       if (next) return;
       outside = true;
-      if (mode !== "idle" && mode !== "track") enter("track");
+      if (mode !== "idle" && mode !== "track" && mode !== "home" && mode !== "rest") enter("track");
       pickWander();
     };
 
@@ -312,14 +348,27 @@ export default function CyberSpider() {
       }
 
       const roaming = !seen || outside;
-      if (roaming && mode !== "idle" && mode !== "track") enter("track");
+      if (roaming && mode !== "idle" && mode !== "track" && mode !== "home" && mode !== "rest") enter("track");
+      if ((mode === "track" || mode === "idle" || mode === "snap") && untilHome > 0) untilHome -= dt;
+      if (untilHome <= 0 && (mode === "track" || mode === "idle" || mode === "snap")) enter("home");
+      if (mode === "home" && dist(spider, webPerch(width)) < 16) enter("rest");
+      if (mode === "rest" && modeTime > 7) {
+        untilHome = 16 + Math.random() * 8;
+        enter(roaming ? "idle" : "track");
+      }
 
       let goalX = spider.x;
       let goalY = spider.y;
       let face = spider.heading;
       let maxSpeed = 110;
 
-      if (roaming) {
+      if (mode === "home" || mode === "rest") {
+        const perch = webPerch(width);
+        goalX = perch.x;
+        goalY = perch.y;
+        face = mode === "rest" ? Math.atan2(0.45, -1) : Math.atan2(perch.y - spider.y, perch.x - spider.x);
+        maxSpeed = mode === "rest" ? 24 : 130;
+      } else if (roaming) {
         wanderAge += dt;
         if (dist(spider, wander) < 28 || wanderAge > 5) pickWander();
         goalX = wander.x;
@@ -330,11 +379,11 @@ export default function CyberSpider() {
         const d = Math.max(1, range);
         const ux = (mouse.x - spider.x) / d;
         const uy = (mouse.y - spider.y) / d;
-        const hold = mouseStill ? 70 : 96;
+        const hold = mouseStill ? 62 : 48;
         goalX = mouse.x - ux * hold;
         goalY = mouse.y - uy * hold;
         face = Math.atan2(mouse.y - spider.y, mouse.x - spider.x);
-        maxSpeed = mouseStill ? 90 : 110;
+        maxSpeed = mouseStill ? 170 : 260;
       } else if (mode === "aim" || mode === "shoot" || mode === "wrap") {
         const d = Math.max(1, dist(spider, capture));
         const ux = (capture.x - spider.x) / d;
@@ -342,7 +391,7 @@ export default function CyberSpider() {
         goalX = capture.x - ux * 74;
         goalY = capture.y - uy * 74;
         face = Math.atan2(capture.y - spider.y, capture.x - spider.x);
-        maxSpeed = 100;
+        maxSpeed = 180;
       } else if (mode === "observe") {
         observeTime += dt;
         const sway = observeTime * 0.7;
@@ -353,10 +402,11 @@ export default function CyberSpider() {
         maxSpeed = 80;
       }
 
+      const chasing = !roaming && (mode === "track" || mode === "snap");
       const toGoal = Math.hypot(goalX - spider.x, goalY - spider.y);
       if (toGoal > 0.8) {
-        const sp = Math.min(maxSpeed, toGoal * 4);
-        const blend = 1 - Math.exp(-dt * 6);
+        const sp = Math.min(maxSpeed, toGoal * (chasing ? 8 : 4));
+        const blend = 1 - Math.exp(-dt * (chasing ? 10 : 6));
         spider.vx = lerp(spider.vx, ((goalX - spider.x) / toGoal) * sp, blend);
         spider.vy = lerp(spider.vy, ((goalY - spider.y) / toGoal) * sp, blend);
       } else {
@@ -366,32 +416,57 @@ export default function CyberSpider() {
       }
       spider.x = clamp(spider.x + spider.vx * dt, 36, width - 36);
       spider.y = clamp(spider.y + spider.vy * dt, 36, height - 36);
-      spider.heading += angDiff(spider.heading, face) * Math.min(1, dt * 4.5);
+      spider.heading += angDiff(spider.heading, face) * Math.min(1, dt * (chasing ? 9 : 4.5));
 
       const speed = Math.hypot(spider.vx, spider.vy);
-      if (speed > 8) gait += dt / 0.15;
-      else if (gait % 1 > 0.02) gait += dt / 0.14;
+      const stepSpan = clamp(10 / Math.max(speed, 55), 0.09, 0.2);
+      if (speed > 14) gait += dt / stepSpan;
       const group = Math.floor(gait) % 2;
-      const stepT = easeInOut(gait % 1);
-      if (group !== gaitGroup) {
-        gaitGroup = group;
+      if (speed > 14 && group !== stepGroup) {
+        stepGroup = group;
         for (const leg of legs) {
-          if (leg.group !== group) continue;
+          if (leg.group !== group || leg.swing >= 0) continue;
+          const goal = toWorld(spider, spider.heading, { x: leg.rest.x, y: leg.rest.y - 5 });
+          if (dist(leg.foot, goal) < 3) continue;
           leg.swingFrom = { ...leg.foot };
-          leg.swingTo = toWorld(spider, spider.heading, plantLocal(leg.hip, leg.side));
+          leg.swingTo = goal;
+          const sx = goal.x - leg.foot.x;
+          const sy = goal.y - leg.foot.y;
+          const sl = Math.hypot(sx, sy) || 1;
+          const px = -sy / sl;
+          const py = sx / sl;
+          const mid = mix(leg.foot, goal, 0.5);
+          const left = { x: mid.x + px, y: mid.y + py };
+          const right = { x: mid.x - px, y: mid.y - py };
+          leg.arc = dist(left, spider) >= dist(right, spider) ? 1 : -1;
+          leg.swing = 0;
         }
       }
       for (const leg of legs) {
-        if (leg.group !== group) continue;
-        leg.foot = mix(leg.swingFrom, leg.swingTo, stepT);
-      }
-      for (const leg of legs) {
-        if (leg.group === group) continue;
-        const hip = toWorld(spider, spider.heading, leg.hip);
-        if (dist(hip, leg.foot) > L1 + L2 + 4) {
-          leg.swingFrom = { ...leg.foot };
-          leg.swingTo = toWorld(spider, spider.heading, plantLocal(leg.hip, leg.side));
+        if (leg.swing < 0) {
+          const local = toLocal(spider, spider.heading, leg.foot);
+          if (dist(local, leg.rest) > 20) {
+            leg.swingFrom = { ...leg.foot };
+            leg.swingTo = toWorld(spider, spider.heading, { x: leg.rest.x, y: leg.rest.y - 5 });
+            leg.arc = leg.rest.x >= 0 ? 1 : -1;
+            leg.swing = 0;
+          }
+          continue;
+        }
+        leg.swing = Math.min(1, leg.swing + dt / Math.max(0.08, stepSpan * 0.92));
+        const t = easeInOut(leg.swing);
+        const base = mix(leg.swingFrom, leg.swingTo, t);
+        const sx = leg.swingTo.x - leg.swingFrom.x;
+        const sy = leg.swingTo.y - leg.swingFrom.y;
+        const sl = Math.hypot(sx, sy) || 1;
+        const arc = Math.sin(Math.PI * t) * 4.5;
+        leg.foot = {
+          x: base.x + (-sy / sl) * leg.arc * arc,
+          y: base.y + (sx / sl) * leg.arc * arc,
+        };
+        if (leg.swing >= 1) {
           leg.foot = { ...leg.swingTo };
+          leg.swing = -1;
         }
       }
 
@@ -407,6 +482,7 @@ export default function CyberSpider() {
                 : 0;
 
       ctx.clearRect(0, 0, width, height);
+      drawWeb(ctx, width);
       if (silk > 0) {
         const from = toWorld(spider, spider.heading, { x: 0, y: -4 });
         drawSilk(ctx, from, capture, silk, time, mode === "wrap" || mode === "observe");
