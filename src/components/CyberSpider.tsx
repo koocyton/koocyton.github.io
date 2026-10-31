@@ -156,6 +156,7 @@ function webPerch(width: number): Point {
 }
 
 const FLOWER_STEM = 50;
+const FLOWER_GUARD = 168;
 
 function flowerPose(width: number, height: number, time: number) {
   const root = { x: Math.max(96, width - 74), y: height - 16 };
@@ -521,6 +522,7 @@ export default function CyberSpider() {
       let face = spider.heading;
       let maxSpeed = 110;
       let mending = false;
+      let guarding = false;
 
       if (mode === "home" || mode === "rest") {
         const perch = webPerch(width);
@@ -581,14 +583,27 @@ export default function CyberSpider() {
         face = Math.atan2(wander.y - spider.y, wander.x - spider.x);
         maxSpeed = 70;
       } else if (mode === "track") {
-        const d = Math.max(1, range);
-        const ux = (mouse.x - spider.x) / d;
-        const uy = (mouse.y - spider.y) / d;
-        const hold = mouseStill ? 62 : 48;
-        goalX = mouse.x - ux * hold;
-        goalY = mouse.y - uy * hold;
-        face = Math.atan2(mouse.y - spider.y, mouse.x - spider.x);
-        maxSpeed = mouseStill ? 170 : 260;
+        const blossom = flowerPose(width, height, time).head;
+        const span = Math.max(1, dist(mouse, blossom));
+        if (span < FLOWER_GUARD) {
+          guarding = true;
+          const ux = (mouse.x - blossom.x) / span;
+          const uy = (mouse.y - blossom.y) / span;
+          const shield = Math.min(34, span * 0.55);
+          goalX = blossom.x + ux * shield;
+          goalY = blossom.y + uy * shield;
+          face = Math.atan2(mouse.y - spider.y, mouse.x - spider.x);
+          maxSpeed = mouseStill ? 150 : 220;
+        } else {
+          const d = Math.max(1, range);
+          const ux = (mouse.x - spider.x) / d;
+          const uy = (mouse.y - spider.y) / d;
+          const hold = mouseStill ? 62 : 48;
+          goalX = mouse.x - ux * hold;
+          goalY = mouse.y - uy * hold;
+          face = Math.atan2(mouse.y - spider.y, mouse.x - spider.x);
+          maxSpeed = mouseStill ? 170 : 260;
+        }
       }
 
       const chasing = !roaming && mode === "track";
@@ -668,7 +683,7 @@ export default function CyberSpider() {
       }
 
       const found = seen && !outside;
-      const close = found && range < LASER_RANGE;
+      const close = found && !guarding && range < LASER_RANGE;
       const aimError = Math.abs(angDiff(spider.heading, Math.atan2(mouse.y - spider.y, mouse.x - spider.x)));
       const laserHit = close && aimError < 0.4;
       const fond = mode === "flower";
