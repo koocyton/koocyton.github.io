@@ -3,15 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 
 type Point = { x: number; y: number };
-type Mode = "idle" | "track" | "aim" | "shoot" | "wrap" | "observe" | "snap" | "home" | "rest";
+type Mode = "idle" | "track" | "home" | "rest";
 
-const AIM_TIME = 0.22;
-const SHOOT_TIME = 0.32;
-const WRAP_TIME = 0.9;
-const SNAP_TIME = 0.36;
 const STILL_TIME = 0.4;
-const CATCH_RANGE = 180;
-const ESCAPE_DISTANCE = 28;
+const LASER_RANGE = 150;
 
 const BODY = { x: -11, y: -4, w: 22, h: 8 };
 const EYES = [
@@ -47,10 +42,6 @@ function angDiff(from: number, to: number) {
   while (d > Math.PI) d -= Math.PI * 2;
   while (d < -Math.PI) d += Math.PI * 2;
   return d;
-}
-
-function easeOut(t: number) {
-  return 1 - (1 - t) * (1 - t);
 }
 
 function easeInOut(t: number) {
@@ -117,7 +108,7 @@ function toWorld(origin: Point, heading: number, p: Point): Point {
   };
 }
 
-function drawSpider(ctx: CanvasRenderingContext2D, origin: Point, heading: number, legs: Leg[]) {
+function drawSpider(ctx: CanvasRenderingContext2D, origin: Point, heading: number, legs: Leg[], eyeColor: string) {
   ctx.save();
   ctx.translate(origin.x, origin.y);
   ctx.rotate(heading + Math.PI / 2);
@@ -140,7 +131,7 @@ function drawSpider(ctx: CanvasRenderingContext2D, origin: Point, heading: numbe
 
   ctx.lineWidth = 1.35;
   ctx.strokeRect(BODY.x, BODY.y, BODY.w, BODY.h);
-  ctx.fillStyle = "#161616";
+  ctx.fillStyle = eyeColor;
   for (const eye of EYES) {
     ctx.beginPath();
     ctx.arc(eye.x, eye.y, 1.45, 0, Math.PI * 2);
@@ -190,28 +181,57 @@ function drawWeb(ctx: CanvasRenderingContext2D, width: number) {
   ctx.restore();
 }
 
-function drawSilk(ctx: CanvasRenderingContext2D, from: Point, target: Point, reach: number, time: number, wrapped: boolean) {
-  const tip = {
-    x: lerp(from.x, target.x, reach),
-    y: lerp(from.y, target.y, reach),
-  };
-  ctx.strokeStyle = "#2f6fed";
-  ctx.lineWidth = 1;
+type Scorch = { x: number; y: number; seed: number; size: number };
+
+function drawScorches(ctx: CanvasRenderingContext2D, marks: Scorch[]) {
+  for (const mark of marks) {
+    ctx.save();
+    ctx.translate(mark.x, mark.y);
+    const glow = ctx.createRadialGradient(0, 0, 1, 0, 0, mark.size);
+    glow.addColorStop(0, "rgba(32, 18, 12, 0.78)");
+    glow.addColorStop(0.38, "rgba(110, 48, 18, 0.42)");
+    glow.addColorStop(0.72, "rgba(170, 96, 42, 0.16)");
+    glow.addColorStop(1, "rgba(170, 96, 42, 0)");
+    ctx.fillStyle = glow;
+    ctx.beginPath();
+    ctx.arc(0, 0, mark.size, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = "rgba(24, 14, 8, 0.62)";
+    ctx.lineWidth = 1;
+    ctx.lineCap = "round";
+    for (let i = 0; i < 4; i++) {
+      const angle = mark.seed + i * 1.7;
+      ctx.beginPath();
+      ctx.moveTo(Math.cos(angle) * 1.4, Math.sin(angle) * 1.4);
+      ctx.lineTo(Math.cos(angle + 0.45) * mark.size * 0.72, Math.sin(angle + 0.15) * mark.size * 0.68);
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
+}
+
+function drawLaser(ctx: CanvasRenderingContext2D, from: Point, to: Point, time: number) {
+  const flick = 0.72 + Math.sin(time * 46) * 0.28;
+  ctx.save();
+  ctx.lineCap = "round";
+  ctx.strokeStyle = `rgba(255, 64, 24, ${0.38 * flick})`;
+  ctx.lineWidth = 3.4;
   ctx.beginPath();
   ctx.moveTo(from.x, from.y);
-  ctx.lineTo(tip.x, tip.y);
+  ctx.lineTo(to.x, to.y);
   ctx.stroke();
-
-  if (!wrapped) return;
-  const radius = 14 + Math.sin(time * 3) * 2;
+  ctx.strokeStyle = `rgba(255, 236, 214, ${0.92 * flick})`;
+  ctx.lineWidth = 1.15;
+  ctx.stroke();
+  const burst = ctx.createRadialGradient(to.x, to.y, 0, to.x, to.y, 11);
+  burst.addColorStop(0, "rgba(255, 248, 230, 0.95)");
+  burst.addColorStop(0.45, "rgba(255, 110, 36, 0.55)");
+  burst.addColorStop(1, "rgba(255, 80, 20, 0)");
+  ctx.fillStyle = burst;
   ctx.beginPath();
-  for (let i = 0; i < 6; i++) {
-    const a = time * 1.4 + (i / 6) * Math.PI * 2;
-    const b = a + 0.7;
-    ctx.moveTo(target.x + Math.cos(a) * radius, target.y + Math.sin(a) * radius);
-    ctx.lineTo(target.x + Math.cos(b) * (radius - 6), target.y + Math.sin(b) * (radius - 6));
-  }
-  ctx.stroke();
+  ctx.arc(to.x, to.y, 11, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
 }
 
 export default function CyberSpider() {
@@ -240,7 +260,6 @@ export default function CyberSpider() {
 
     const spider = { x: 120, y: 120, heading: 0, vx: 0, vy: 0 };
     const mouse = { x: 120, y: 120 };
-    const capture = { x: 120, y: 120 };
     let wander = { x: 180, y: 160 };
     let untilHome = 10;
     let wanderAge = 0;
@@ -256,14 +275,14 @@ export default function CyberSpider() {
     let legs = makeLegs(spider, spider.heading);
     let gait = 0;
     let stepGroup = -1;
+    const scorches: Scorch[] = [];
+    let scorchCool = 0;
 
     let mode: Mode = "idle";
     let seen = false;
     let outside = false;
     let lastMove = 0;
     let modeTime = 0;
-    let observeTime = 0;
-    let perch = 0;
     let time = 0;
     let last = performance.now();
     let raf = 0;
@@ -289,10 +308,6 @@ export default function CyberSpider() {
     const enter = (next: Mode) => {
       mode = next;
       modeTime = 0;
-      if (next === "observe") {
-        observeTime = 0;
-        perch = Math.atan2(spider.y - capture.y, spider.x - capture.x);
-      }
     };
 
     const onPointer = (event: PointerEvent) => {
@@ -312,9 +327,6 @@ export default function CyberSpider() {
         if (mode === "home" || mode === "rest") {
           untilHome = 14;
           enter("track");
-        } else if (mode !== "track" && mode !== "snap" && mode !== "idle" && dist(mouse, capture) > ESCAPE_DISTANCE) {
-          if (mode === "aim") enter("track");
-          else enter("snap");
         }
       }
     };
@@ -323,7 +335,7 @@ export default function CyberSpider() {
       const next = (event as PointerEvent).relatedTarget;
       if (next) return;
       outside = true;
-      if (mode !== "idle" && mode !== "track" && mode !== "home" && mode !== "rest") enter("track");
+      if (mode !== "idle" && mode !== "home" && mode !== "rest") enter("idle");
       pickWander();
     };
 
@@ -345,24 +357,9 @@ export default function CyberSpider() {
       const mouseStill = seen && !outside && now - lastMove > STILL_TIME * 1000;
       const range = dist(spider, mouse);
 
-      if (mode === "track" && mouseStill && range < CATCH_RANGE) {
-        capture.x = mouse.x;
-        capture.y = mouse.y;
-        enter("aim");
-      } else if (mode === "aim" && modeTime >= AIM_TIME) {
-        enter("shoot");
-      } else if (mode === "shoot" && modeTime >= SHOOT_TIME) {
-        enter("wrap");
-      } else if (mode === "wrap" && modeTime >= WRAP_TIME) {
-        enter("observe");
-      } else if (mode === "snap" && modeTime >= SNAP_TIME) {
-        enter("track");
-      }
-
       const roaming = !seen || outside;
-      if (roaming && mode !== "idle" && mode !== "track" && mode !== "home" && mode !== "rest") enter("track");
-      if ((mode === "track" || mode === "idle" || mode === "snap") && untilHome > 0) untilHome -= dt;
-      if (untilHome <= 0 && (mode === "track" || mode === "idle" || mode === "snap")) enter("home");
+      if ((mode === "track" || mode === "idle") && untilHome > 0) untilHome -= dt;
+      if (untilHome <= 0 && (mode === "track" || mode === "idle")) enter("home");
       if (mode === "home" && dist(spider, webPerch(width)) < 16) enter("rest");
       if (mode === "rest" && modeTime > 7) {
         untilHome = 16 + Math.random() * 8;
@@ -387,7 +384,7 @@ export default function CyberSpider() {
         goalY = wander.y;
         face = Math.atan2(wander.y - spider.y, wander.x - spider.x);
         maxSpeed = 70;
-      } else if (mode === "track" || mode === "snap") {
+      } else if (mode === "track") {
         const d = Math.max(1, range);
         const ux = (mouse.x - spider.x) / d;
         const uy = (mouse.y - spider.y) / d;
@@ -396,25 +393,9 @@ export default function CyberSpider() {
         goalY = mouse.y - uy * hold;
         face = Math.atan2(mouse.y - spider.y, mouse.x - spider.x);
         maxSpeed = mouseStill ? 170 : 260;
-      } else if (mode === "aim" || mode === "shoot" || mode === "wrap") {
-        const d = Math.max(1, dist(spider, capture));
-        const ux = (capture.x - spider.x) / d;
-        const uy = (capture.y - spider.y) / d;
-        goalX = capture.x - ux * 74;
-        goalY = capture.y - uy * 74;
-        face = Math.atan2(capture.y - spider.y, capture.x - spider.x);
-        maxSpeed = 180;
-      } else if (mode === "observe") {
-        observeTime += dt;
-        const sway = observeTime * 0.7;
-        const lean = 78;
-        goalX = capture.x + Math.cos(perch + sway) * lean;
-        goalY = capture.y + Math.sin(perch + sway) * lean;
-        face = Math.atan2(capture.y - spider.y, capture.x - spider.x);
-        maxSpeed = 80;
       }
 
-      const chasing = !roaming && (mode === "track" || mode === "snap");
+      const chasing = !roaming && mode === "track";
       const toGoal = Math.hypot(goalX - spider.x, goalY - spider.y);
       if (toGoal > 0.8) {
         const sp = Math.min(maxSpeed, toGoal * (chasing ? 8 : 4));
@@ -464,24 +445,35 @@ export default function CyberSpider() {
         }
       }
 
-      const silk =
-        mode === "aim"
-          ? 0.2
-          : mode === "shoot"
-            ? easeOut(clamp(modeTime / SHOOT_TIME, 0, 1))
-            : mode === "wrap" || mode === "observe"
-              ? 1
-              : mode === "snap"
-                ? Math.max(0, 1 - modeTime / SNAP_TIME)
-                : 0;
+      const found = seen && !outside;
+      const close = found && range < LASER_RANGE;
+      const aimError = Math.abs(angDiff(spider.heading, Math.atan2(mouse.y - spider.y, mouse.x - spider.x)));
+      const laserHit = close && aimError < 0.4;
+      const eyeColor = close ? "#e0232a" : found ? "#2f6fed" : "#161616";
+      scorchCool -= dt;
+      if (laserHit && scorchCool <= 0) {
+        const lastMark = scorches[scorches.length - 1];
+        if (!lastMark || dist(lastMark, mouse) > 14) {
+          scorches.push({
+            x: mouse.x,
+            y: mouse.y,
+            seed: Math.random() * Math.PI * 2,
+            size: 12 + Math.random() * 8,
+          });
+          if (scorches.length > 40) scorches.shift();
+          scorchCool = 0.08;
+        }
+      }
 
       ctx.clearRect(0, 0, width, height);
       drawWeb(ctx, width);
-      if (silk > 0) {
-        const from = toWorld(spider, spider.heading, { x: 0, y: -4 });
-        drawSilk(ctx, from, capture, silk, time, mode === "wrap" || mode === "observe");
+      drawScorches(ctx, scorches);
+      if (laserHit) {
+        for (const eye of EYES) {
+          drawLaser(ctx, toWorld(spider, spider.heading, eye), mouse, time);
+        }
       }
-      drawSpider(ctx, spider, spider.heading, legs);
+      drawSpider(ctx, spider, spider.heading, legs, eyeColor);
     };
 
     raf = requestAnimationFrame(frame);
