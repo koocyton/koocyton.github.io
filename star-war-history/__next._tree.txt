@@ -4,4 +4,4 @@
 :HL["/_next/static/chunks/21665e861cb7c6ee.css","style"]
 :HL["/_next/static/chunks/92f8e98dda80641e.css","style"]
 :HL["/_next/static/chunks/b4e6af2abcf54685.css","style"]
-0:{"buildId":"eGlL7sG6BH3kzr21YG6qn","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"star-war-history","paramType":null,"paramKey":"star-war-history","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
+0:{"buildId":"zY9iUZd3yQHqo1tIz272p","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"star-war-history","paramType":null,"paramKey":"star-war-history","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
