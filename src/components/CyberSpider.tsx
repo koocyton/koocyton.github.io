@@ -322,13 +322,8 @@ export default function CyberSpider() {
         lastMove = performance.now();
         return;
       }
-      if (moved > 1.6) {
-        lastMove = performance.now();
-        if (mode === "home" || mode === "rest") {
-          untilHome = 14;
-          enter("track");
-        }
-      }
+      if (moved > 1.6) lastMove = performance.now();
+      if (mode !== "track") enter("track");
     };
 
     const onLeave = (event: Event) => {
@@ -358,8 +353,11 @@ export default function CyberSpider() {
       const range = dist(spider, mouse);
 
       const roaming = !seen || outside;
-      if ((mode === "track" || mode === "idle") && untilHome > 0) untilHome -= dt;
-      if (untilHome <= 0 && (mode === "track" || mode === "idle")) enter("home");
+      if (!roaming && mode !== "track") enter("track");
+      if (roaming && mode !== "home" && mode !== "rest") {
+        if (untilHome > 0) untilHome -= dt;
+        if (untilHome <= 0) enter("home");
+      }
       if (mode === "home" && dist(spider, webPerch(width)) < 16) enter("rest");
       if (mode === "rest" && modeTime > 7) {
         untilHome = 16 + Math.random() * 8;
