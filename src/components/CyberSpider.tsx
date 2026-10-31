@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 type Point = { x: number; y: number };
-type Mode = "idle" | "track" | "home" | "rest";
+type Mode = "idle" | "track" | "home" | "rest" | "repair";
 
 const STILL_TIME = 0.4;
 const LASER_RANGE = 150;
@@ -210,6 +210,23 @@ function drawScorches(ctx: CanvasRenderingContext2D, marks: Scorch[]) {
   }
 }
 
+function drawMend(ctx: CanvasRenderingContext2D, at: Point, time: number, size: number) {
+  ctx.save();
+  ctx.translate(at.x, at.y);
+  ctx.lineCap = "round";
+  ctx.strokeStyle = "rgba(226, 228, 232, 0.9)";
+  ctx.lineWidth = 1.15;
+  for (let i = 0; i < 3; i++) {
+    const angle = time * 11 + i * 2.15;
+    const reach = Math.max(3.5, size * 0.5);
+    ctx.beginPath();
+    ctx.moveTo(Math.cos(angle) * 1.1, Math.sin(angle) * 1.1);
+    ctx.lineTo(Math.cos(angle + 0.7) * reach, Math.sin(angle + 0.25) * reach);
+    ctx.stroke();
+  }
+  ctx.restore();
+}
+
 function drawLaser(ctx: CanvasRenderingContext2D, from: Point, to: Point, time: number) {
   const flick = 0.72 + Math.sin(time * 46) * 0.28;
   ctx.save();
@@ -277,6 +294,19 @@ export default function CyberSpider() {
     let stepGroup = -1;
     const scorches: Scorch[] = [];
     let scorchCool = 0;
+    let repairTarget: Scorch | null = null;
+
+    const pickRepair = () => {
+      repairTarget = null;
+      let best = Infinity;
+      for (const mark of scorches) {
+        const gap = dist(spider, mark);
+        if (gap < best) {
+          best = gap;
+          repairTarget = mark;
+        }
+      }
+    };
 
     let mode: Mode = "idle";
     let seen = false;
@@ -330,6 +360,13 @@ export default function CyberSpider() {
       const next = (event as PointerEvent).relatedTarget;
       if (next) return;
       outside = true;
+      if (scorches.length > 0) {
+        if (mode !== "repair") {
+          repairTarget = null;
+          enter("repair");
+        }
+        return;
+      }
       if (mode !== "idle" && mode !== "home" && mode !== "rest") enter("idle");
       pickWander();
     };
@@ -354,7 +391,18 @@ export default function CyberSpider() {
 
       const roaming = !seen || outside;
       if (!roaming && mode !== "track") enter("track");
-      if (roaming && mode !== "home" && mode !== "rest") {
+      if (roaming && scorches.length > 0) {
+        if (mode !== "repair") {
+          repairTarget = null;
+          enter("repair");
+        }
+      } else if (mode === "repair") {
+        repairTarget = null;
+        untilHome = 12 + Math.random() * 10;
+        enter("idle");
+        pickWander();
+      }
+      if (roaming && scorches.length === 0 && mode !== "home" && mode !== "rest") {
         if (untilHome > 0) untilHome -= dt;
         if (untilHome <= 0) enter("home");
       }
@@ -368,6 +416,7 @@ export default function CyberSpider() {
       let goalY = spider.y;
       let face = spider.heading;
       let maxSpeed = 110;
+      let mending = false;
 
       if (mode === "home" || mode === "rest") {
         const perch = webPerch(width);
@@ -375,6 +424,26 @@ export default function CyberSpider() {
         goalY = perch.y;
         face = mode === "rest" ? Math.atan2(0.45, -1) : Math.atan2(perch.y - spider.y, perch.x - spider.x);
         maxSpeed = mode === "rest" ? 24 : 130;
+      } else if (mode === "repair") {
+        if (!repairTarget || !scorches.includes(repairTarget)) pickRepair();
+        if (repairTarget) {
+          const gap = Math.max(1, dist(spider, repairTarget));
+          const ux = (repairTarget.x - spider.x) / gap;
+          const uy = (repairTarget.y - spider.y) / gap;
+          goalX = repairTarget.x - ux * 16;
+          goalY = repairTarget.y - uy * 16;
+          face = Math.atan2(repairTarget.y - spider.y, repairTarget.x - spider.x);
+          maxSpeed = gap < 56 ? 52 : 150;
+          if (gap < 72) {
+            mending = true;
+            repairTarget.size -= dt * 22;
+            if (repairTarget.size <= 2.2) {
+              const index = scorches.indexOf(repairTarget);
+              if (index >= 0) scorches.splice(index, 1);
+              repairTarget = null;
+            }
+          }
+        }
       } else if (roaming) {
         wanderAge += dt;
         if (dist(spider, wander) < 28 || wanderAge > 5) pickWander();
@@ -466,6 +535,7 @@ export default function CyberSpider() {
       ctx.clearRect(0, 0, width, height);
       drawWeb(ctx, width);
       drawScorches(ctx, scorches);
+      if (mending && repairTarget) drawMend(ctx, repairTarget, time, repairTarget.size);
       if (laserHit) {
         for (const eye of EYES) {
           drawLaser(ctx, toWorld(spider, spider.heading, eye), mouse, time);
