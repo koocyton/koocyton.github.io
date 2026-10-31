@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 type Point = { x: number; y: number };
-type Mode = "idle" | "track" | "home" | "rest" | "repair";
+type Mode = "idle" | "track" | "home" | "rest" | "repair" | "flower";
 
 const STILL_TIME = 0.4;
 const LASER_RANGE = 150;
@@ -155,6 +155,80 @@ function webPerch(width: number): Point {
   return { x: Math.max(64, width - 92), y: 74 };
 }
 
+const FLOWER_STEM = 50;
+
+function flowerPose(width: number, height: number, time: number) {
+  const root = { x: Math.max(96, width - 74), y: height - 16 };
+  const sway = Math.sin(time * 1.45) * 0.16 + Math.sin(time * 0.65) * 0.045;
+  return {
+    root,
+    sway,
+    head: {
+      x: root.x + Math.sin(sway) * FLOWER_STEM,
+      y: root.y - Math.cos(sway) * FLOWER_STEM,
+    },
+  };
+}
+
+function drawFlower(ctx: CanvasRenderingContext2D, width: number, height: number, time: number) {
+  const { root, sway } = flowerPose(width, height, time);
+  ctx.save();
+  ctx.translate(root.x, root.y);
+  ctx.rotate(sway);
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
+  ctx.strokeStyle = "#3c8f4e";
+  ctx.lineWidth = 1.7;
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.quadraticCurveTo(5, -22, 0, -FLOWER_STEM);
+  ctx.stroke();
+
+  const leaf = (side: number, y: number) => {
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.quadraticCurveTo(side * 9, y - 7, side * 13, y - 1);
+    ctx.quadraticCurveTo(side * 7, y + 4, 0, y);
+    ctx.fillStyle = "#4e9a55";
+    ctx.fill();
+  };
+  leaf(-1, -16);
+  leaf(1, -30);
+
+  ctx.translate(0, -FLOWER_STEM);
+  for (let i = 0; i < 5; i++) {
+    ctx.save();
+    ctx.rotate((i / 5) * Math.PI * 2);
+    ctx.fillStyle = i % 2 === 0 ? "#f08aa4" : "#f4a0b4";
+    ctx.beginPath();
+    ctx.ellipse(0, -6.4, 3.2, 5.5, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+  ctx.fillStyle = "#f2c14d";
+  ctx.beginPath();
+  ctx.arc(0, 0, 2.7, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
+}
+
+type Heart = { x: number; y: number; life: number };
+
+function drawHeart(ctx: CanvasRenderingContext2D, x: number, y: number, scale: number, alpha: number) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.scale(scale, scale);
+  ctx.beginPath();
+  ctx.moveTo(0, 0.35);
+  ctx.bezierCurveTo(-0.4, -0.35, -1.15, -0.15, -1.05, 0.35);
+  ctx.bezierCurveTo(-0.95, 0.85, -0.2, 1.05, 0, 1.45);
+  ctx.bezierCurveTo(0.2, 1.05, 0.95, 0.85, 1.05, 0.35);
+  ctx.bezierCurveTo(1.15, -0.15, 0.4, -0.35, 0, 0.35);
+  ctx.fillStyle = `rgba(214, 70, 112, ${alpha})`;
+  ctx.fill();
+  ctx.restore();
+}
+
 function drawWeb(ctx: CanvasRenderingContext2D, width: number) {
   const ox = width - 2;
   const oy = 0;
@@ -290,6 +364,11 @@ export default function CyberSpider() {
     const mouse = { x: 120, y: 120 };
     let wander = { x: 180, y: 160 };
     let untilHome = 10;
+    let untilFlower = 6 + Math.random() * 4;
+    let flowerHold = 0;
+    let kissCool = 0;
+    let flowerHead: Point | null = null;
+    const hearts: Heart[] = [];
     let wanderAge = 0;
 
     const pickWander = () => {
@@ -373,12 +452,13 @@ export default function CyberSpider() {
       outside = true;
       if (scorches.length > 0) {
         if (mode !== "repair") {
+          if (mode === "flower") untilFlower = 16 + Math.random() * 10;
           repairTarget = null;
           enter("repair");
         }
         return;
       }
-      if (mode !== "idle" && mode !== "home" && mode !== "rest") enter("idle");
+      if (mode !== "idle" && mode !== "home" && mode !== "rest" && mode !== "flower") enter("idle");
       pickWander();
     };
 
@@ -401,9 +481,14 @@ export default function CyberSpider() {
       const range = dist(spider, mouse);
 
       const roaming = !seen || outside;
-      if (!roaming && mode !== "track") enter("track");
+      flowerHead = null;
+      if (!roaming && mode !== "track") {
+        if (mode === "flower") untilFlower = 16 + Math.random() * 10;
+        enter("track");
+      }
       if (roaming && scorches.length > 0) {
         if (mode !== "repair") {
+          if (mode === "flower") untilFlower = 16 + Math.random() * 10;
           repairTarget = null;
           enter("repair");
         }
@@ -413,7 +498,15 @@ export default function CyberSpider() {
         enter("idle");
         pickWander();
       }
-      if (roaming && scorches.length === 0 && mode !== "home" && mode !== "rest") {
+      if (roaming && scorches.length === 0 && mode === "idle") {
+        if (untilFlower > 0) untilFlower -= dt;
+        if (untilFlower <= 0) {
+          flowerHold = 0;
+          kissCool = 0.4;
+          enter("flower");
+        }
+      }
+      if (roaming && scorches.length === 0 && mode !== "home" && mode !== "rest" && mode !== "flower") {
         if (untilHome > 0) untilHome -= dt;
         if (untilHome <= 0) enter("home");
       }
@@ -453,6 +546,31 @@ export default function CyberSpider() {
               if (index >= 0) scorches.splice(index, 1);
               repairTarget = null;
             }
+          }
+        }
+      } else if (mode === "flower") {
+        const pose = flowerPose(width, height, time);
+        flowerHead = pose.head;
+        const gap = dist(spider, pose.head);
+        if (gap > 26) {
+          flowerHold = 0;
+          goalX = pose.head.x;
+          goalY = pose.head.y;
+          face = Math.atan2(pose.head.y - spider.y, pose.head.x - spider.x);
+          maxSpeed = 155;
+        } else {
+          flowerHold += dt;
+          const nuzzle = Math.sin(flowerHold * 2.6);
+          goalX = pose.head.x + Math.cos(flowerHold * 1.4) * 3.5;
+          goalY = pose.head.y + nuzzle * 2.4;
+          face = Math.atan2(pose.head.y + 6 - spider.y, pose.head.x - spider.x) + nuzzle * 0.5;
+          maxSpeed = 40;
+          if (flowerHold > 6.8) {
+            untilFlower = 22 + Math.random() * 14;
+            untilHome = 12 + Math.random() * 8;
+            flowerHead = null;
+            enter("idle");
+            pickWander();
           }
         }
       } else if (roaming) {
@@ -532,12 +650,45 @@ export default function CyberSpider() {
           }
         }
       }
+      if (flowerHead && flowerHold > 0.15) {
+        const base = Math.atan2(spider.y - flowerHead.y, spider.x - flowerHead.x);
+        for (const leg of legs) {
+          if (leg.pair !== 0) continue;
+          const ang = leg.side * 0.9 + Math.sin(time * 3 + leg.side) * 0.12;
+          leg.foot = mix(
+            leg.foot,
+            {
+              x: flowerHead.x + Math.cos(base + ang) * 13,
+              y: flowerHead.y + Math.sin(base + ang) * 11,
+            },
+            1 - Math.exp(-dt * 7),
+          );
+          leg.swing = -1;
+        }
+      }
 
       const found = seen && !outside;
       const close = found && range < LASER_RANGE;
       const aimError = Math.abs(angDiff(spider.heading, Math.atan2(mouse.y - spider.y, mouse.x - spider.x)));
       const laserHit = close && aimError < 0.4;
-      const eyeColor = close ? "#e0232a" : found ? "#2f6fed" : "#161616";
+      const fond = mode === "flower";
+      const eyeColor = close ? "#e0232a" : found ? "#2f6fed" : fond ? "#d4537a" : "#161616";
+      if (flowerHead && flowerHold > 0.35) {
+        kissCool -= dt;
+        if (kissCool <= 0) {
+          hearts.push({
+            x: flowerHead.x + (Math.random() - 0.5) * 8,
+            y: flowerHead.y - 8,
+            life: 1.15,
+          });
+          kissCool = 0.85;
+        }
+      }
+      for (let i = hearts.length - 1; i >= 0; i--) {
+        hearts[i].life -= dt;
+        hearts[i].y -= dt * 18;
+        if (hearts[i].life <= 0) hearts.splice(i, 1);
+      }
       scorchCool -= dt;
       if (laserHit && scorchCool <= 0) {
         const lastMark = scorches[scorches.length - 1];
@@ -555,6 +706,7 @@ export default function CyberSpider() {
 
       ctx.clearRect(0, 0, width, height);
       drawWeb(ctx, width);
+      drawFlower(ctx, width, height, time);
       drawScorches(ctx, scorches);
       if (mending && repairTarget) drawMend(ctx, repairTarget, time, repairTarget.size);
       if (laserHit) {
@@ -563,6 +715,7 @@ export default function CyberSpider() {
         }
       }
       drawSpider(ctx, spider, spider.heading, legs, eyeColor);
+      for (const heart of hearts) drawHeart(ctx, heart.x, heart.y, 4.6, clamp(heart.life, 0, 1));
     };
 
     raf = requestAnimationFrame(frame);
