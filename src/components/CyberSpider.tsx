@@ -19,6 +19,8 @@ type Leg = {
   rest: Point;
   side: number;
   group: number;
+  pair: number;
+  knee: number;
   foot: Point;
   swing: number;
   from: Point;
@@ -57,18 +59,26 @@ function toLocal(origin: Point, heading: number, p: Point): Point {
   return { x: dx * c + dy * s, y: -dx * s + dy * c };
 }
 
+const REAR_SCALE = 2 / 3;
 const PAIRS = [
-  { hipY: -3.05, footX: 22, footY: -15 },
-  { hipY: 1.05, footX: 27, footY: 5.5 },
-  { hipY: 3.05, footX: 22, footY: 15 },
+  { hipY: -3.05, footX: 22, footY: -15, knee: 5.5 },
+  { hipY: 1.05, footX: 27, footY: 5.5, knee: 5.5 },
+  {
+    hipY: 3.05,
+    footX: 11 + (22 - 11) * REAR_SCALE,
+    footY: 3.05 + (15 - 3.05) * REAR_SCALE,
+    knee: 5.5 * REAR_SCALE,
+  },
 ];
 
-const LEGS: Array<Pick<Leg, "hip" | "rest" | "side" | "group">> = [-1, 1].flatMap((side) =>
+const LEGS: Array<Pick<Leg, "hip" | "rest" | "side" | "group" | "pair" | "knee">> = [-1, 1].flatMap((side) =>
   PAIRS.map((pair, index) => ({
     hip: { x: side * 11, y: pair.hipY },
     rest: { x: side * pair.footX, y: pair.footY },
     side,
     group: (index + (side < 0 ? 0 : 1)) % 2,
+    pair: index,
+    knee: pair.knee,
   })),
 );
 
@@ -83,7 +93,7 @@ function mix(a: Point, b: Point, t: number): Point {
   return { x: lerp(a.x, b.x, t), y: lerp(a.y, b.y, t) };
 }
 
-function outwardKnee(hip: Point, foot: Point, side: number): Point {
+function outwardKnee(hip: Point, foot: Point, side: number, bulge: number): Point {
   const mx = lerp(hip.x, foot.x, 0.46);
   const my = lerp(hip.y, foot.y, 0.46);
   const dx = foot.x - hip.x;
@@ -95,7 +105,7 @@ function outwardKnee(hip: Point, foot: Point, side: number): Point {
     px = -px;
     py = -py;
   }
-  return { x: mx + px * 5.5, y: my + py * 5.5 };
+  return { x: mx + px * bulge, y: my + py * bulge };
 }
 
 function toWorld(origin: Point, heading: number, p: Point): Point {
@@ -120,8 +130,9 @@ function drawSpider(ctx: CanvasRenderingContext2D, origin: Point, heading: numbe
   for (const leg of legs) {
     const footRaw = toLocal(origin, heading, leg.foot);
     const reach = Math.hypot(footRaw.x - leg.hip.x, footRaw.y - leg.hip.y) || 0.001;
-    const foot = reach > 32 ? mix(leg.hip, footRaw, 32 / reach) : footRaw;
-    const knee = outwardKnee(leg.hip, foot, leg.side);
+    const limit = leg.pair === 2 ? 32 * REAR_SCALE : 32;
+    const foot = reach > limit ? mix(leg.hip, footRaw, limit / reach) : footRaw;
+    const knee = outwardKnee(leg.hip, foot, leg.side, leg.knee);
     ctx.beginPath();
     ctx.moveTo(leg.hip.x, leg.hip.y);
     ctx.lineTo(knee.x, knee.y);
@@ -487,7 +498,11 @@ export default function CyberSpider() {
         for (const leg of legs) {
           if (leg.group !== group || leg.swing >= 0) continue;
           leg.from = toLocal(spider, spider.heading, leg.foot);
-          leg.to = { x: leg.rest.x, y: leg.rest.y - 5 };
+          leg.to = { x: leg.rest.x, y: leg.pair === 1 ? leg.rest.y : leg.rest.y - 5 };
+          if (leg.pair === 1) {
+            leg.from.y = Math.max(leg.from.y, leg.hip.y);
+            leg.to.y = Math.max(leg.to.y, leg.hip.y);
+          }
           leg.swing = 0;
         }
       }
@@ -497,18 +512,24 @@ export default function CyberSpider() {
             const rest = toWorld(spider, spider.heading, leg.rest);
             leg.foot = mix(leg.foot, rest, 1 - Math.exp(-dt * 10));
           }
-          continue;
+        } else {
+          leg.swing = Math.min(1, leg.swing + dt / Math.max(0.08, stepSpan * 0.92));
+          const t = easeInOut(leg.swing);
+          const lift = Math.sin(Math.PI * t) * 4.5 * leg.side;
+          leg.foot = toWorld(spider, spider.heading, {
+            x: lerp(leg.from.x, leg.to.x, t) + lift,
+            y: lerp(leg.from.y, leg.to.y, t),
+          });
+          if (leg.swing >= 1) {
+            leg.foot = toWorld(spider, spider.heading, leg.to);
+            leg.swing = -1;
+          }
         }
-        leg.swing = Math.min(1, leg.swing + dt / Math.max(0.08, stepSpan * 0.92));
-        const t = easeInOut(leg.swing);
-        const lift = Math.sin(Math.PI * t) * 4.5 * leg.side;
-        leg.foot = toWorld(spider, spider.heading, {
-          x: lerp(leg.from.x, leg.to.x, t) + lift,
-          y: lerp(leg.from.y, leg.to.y, t),
-        });
-        if (leg.swing >= 1) {
-          leg.foot = toWorld(spider, spider.heading, leg.to);
-          leg.swing = -1;
+        if (leg.pair === 1) {
+          const local = toLocal(spider, spider.heading, leg.foot);
+          if (local.y < leg.hip.y) {
+            leg.foot = toWorld(spider, spider.heading, { x: local.x, y: leg.hip.y });
+          }
         }
       }
 
