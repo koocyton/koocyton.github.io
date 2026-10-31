@@ -342,16 +342,11 @@ export default function CyberSpider() {
   const [active, setActive] = useState(false);
 
   useEffect(() => {
-    const fine = window.matchMedia("(pointer: fine)");
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => setActive(fine.matches && !reduce.matches);
+    const update = () => setActive(!reduce.matches);
     update();
-    fine.addEventListener("change", update);
     reduce.addEventListener("change", update);
-    return () => {
-      fine.removeEventListener("change", update);
-      reduce.removeEventListener("change", update);
-    };
+    return () => reduce.removeEventListener("change", update);
   }, []);
 
   useEffect(() => {
