@@ -13,20 +13,21 @@ const STILL_TIME = 0.4;
 const CATCH_RANGE = 180;
 const ESCAPE_DISTANCE = 28;
 
-const L1 = 14;
-const L2 = 16;
 const BODY = { x: -11, y: -4, w: 22, h: 8 };
+const EYES = [
+  { x: -3.8, y: -6.6 },
+  { x: 3.8, y: -6.6 },
+];
 
 type Leg = {
   hip: Point;
   rest: Point;
+  side: number;
   group: number;
-  bend: number;
-  arc: number;
-  swing: number;
   foot: Point;
-  swingFrom: Point;
-  swingTo: Point;
+  swing: number;
+  from: Point;
+  to: Point;
 };
 
 function clamp(v: number, a: number, b: number) {
@@ -65,27 +66,45 @@ function toLocal(origin: Point, heading: number, p: Point): Point {
   return { x: dx * c + dy * s, y: -dx * s + dy * c };
 }
 
-function polar(angle: number, radius: number): Point {
-  return { x: Math.sin(angle) * radius, y: -Math.cos(angle) * radius };
-}
+const PAIRS = [
+  { hipY: -3.05, footX: 22, footY: -15 },
+  { hipY: 1.05, footX: 27, footY: 5.5 },
+  { hipY: 3.05, footX: 22, footY: 15 },
+];
 
-const LEGS: Array<{ hip: Point; rest: Point; group: number }> = [-2.55, -1.9, -1.2, -0.45, 0.45, 1.2, 1.9, 2.55].map(
-  (angle, index) => ({
-    hip: polar(angle, 8),
-    rest: polar(angle, 20),
-    group: index % 2,
-  }),
+const LEGS: Array<Pick<Leg, "hip" | "rest" | "side" | "group">> = [-1, 1].flatMap((side) =>
+  PAIRS.map((pair, index) => ({
+    hip: { x: side * 11, y: pair.hipY },
+    rest: { x: side * pair.footX, y: pair.footY },
+    side,
+    group: (index + (side < 0 ? 0 : 1)) % 2,
+  })),
 );
 
 function makeLegs(origin: Point, heading: number): Leg[] {
   return LEGS.map((spec) => {
     const foot = toWorld(origin, heading, spec.rest);
-    return { ...spec, bend: spec.rest.x >= 0 ? 1 : -1, arc: 1, swing: -1, foot, swingFrom: foot, swingTo: foot };
+    return { ...spec, foot, swing: -1, from: spec.rest, to: spec.rest };
   });
 }
 
 function mix(a: Point, b: Point, t: number): Point {
   return { x: lerp(a.x, b.x, t), y: lerp(a.y, b.y, t) };
+}
+
+function outwardKnee(hip: Point, foot: Point, side: number): Point {
+  const mx = lerp(hip.x, foot.x, 0.46);
+  const my = lerp(hip.y, foot.y, 0.46);
+  const dx = foot.x - hip.x;
+  const dy = foot.y - hip.y;
+  const len = Math.hypot(dx, dy) || 1;
+  let px = -dy / len;
+  let py = dx / len;
+  if (px * side < 0) {
+    px = -px;
+    py = -py;
+  }
+  return { x: mx + px * 5.5, y: my + py * 5.5 };
 }
 
 function toWorld(origin: Point, heading: number, p: Point): Point {
@@ -110,21 +129,8 @@ function drawSpider(ctx: CanvasRenderingContext2D, origin: Point, heading: numbe
   for (const leg of legs) {
     const footRaw = toLocal(origin, heading, leg.foot);
     const reach = Math.hypot(footRaw.x - leg.hip.x, footRaw.y - leg.hip.y) || 0.001;
-    const limit = L1 + L2;
-    const foot = reach > limit ? mix(leg.hip, footRaw, limit / reach) : footRaw;
-    const dx = foot.x - leg.hip.x;
-    const dy = foot.y - leg.hip.y;
-    const len = Math.hypot(dx, dy) || 1;
-    const px = -dy / len;
-    const py = dx / len;
-    const mid = { x: (leg.hip.x + foot.x) / 2, y: (leg.hip.y + foot.y) / 2 };
-    const left = { x: mid.x + px * 6, y: mid.y + py * 6 };
-    const right = { x: mid.x - px * 6, y: mid.y - py * 6 };
-    const prefer = leg.bend >= 0 ? left : right;
-    const other = leg.bend >= 0 ? right : left;
-    const spread = (p: Point) => p.x * p.x + p.y * p.y;
-    const knee = spread(other) > spread(prefer) + 70 ? other : prefer;
-    leg.bend = knee === left ? 1 : -1;
+    const foot = reach > 32 ? mix(leg.hip, footRaw, 32 / reach) : footRaw;
+    const knee = outwardKnee(leg.hip, foot, leg.side);
     ctx.beginPath();
     ctx.moveTo(leg.hip.x, leg.hip.y);
     ctx.lineTo(knee.x, knee.y);
@@ -134,6 +140,12 @@ function drawSpider(ctx: CanvasRenderingContext2D, origin: Point, heading: numbe
 
   ctx.lineWidth = 1.35;
   ctx.strokeRect(BODY.x, BODY.y, BODY.w, BODY.h);
+  ctx.fillStyle = "#161616";
+  for (const eye of EYES) {
+    ctx.beginPath();
+    ctx.arc(eye.x, eye.y, 1.45, 0, Math.PI * 2);
+    ctx.fill();
+  }
   ctx.restore();
 }
 
@@ -426,46 +438,28 @@ export default function CyberSpider() {
         stepGroup = group;
         for (const leg of legs) {
           if (leg.group !== group || leg.swing >= 0) continue;
-          const goal = toWorld(spider, spider.heading, { x: leg.rest.x, y: leg.rest.y - 5 });
-          if (dist(leg.foot, goal) < 3) continue;
-          leg.swingFrom = { ...leg.foot };
-          leg.swingTo = goal;
-          const sx = goal.x - leg.foot.x;
-          const sy = goal.y - leg.foot.y;
-          const sl = Math.hypot(sx, sy) || 1;
-          const px = -sy / sl;
-          const py = sx / sl;
-          const mid = mix(leg.foot, goal, 0.5);
-          const left = { x: mid.x + px, y: mid.y + py };
-          const right = { x: mid.x - px, y: mid.y - py };
-          leg.arc = dist(left, spider) >= dist(right, spider) ? 1 : -1;
+          leg.from = toLocal(spider, spider.heading, leg.foot);
+          leg.to = { x: leg.rest.x, y: leg.rest.y - 5 };
           leg.swing = 0;
         }
       }
       for (const leg of legs) {
         if (leg.swing < 0) {
-          const local = toLocal(spider, spider.heading, leg.foot);
-          if (dist(local, leg.rest) > 20) {
-            leg.swingFrom = { ...leg.foot };
-            leg.swingTo = toWorld(spider, spider.heading, { x: leg.rest.x, y: leg.rest.y - 5 });
-            leg.arc = leg.rest.x >= 0 ? 1 : -1;
-            leg.swing = 0;
+          if (speed < 10) {
+            const rest = toWorld(spider, spider.heading, leg.rest);
+            leg.foot = mix(leg.foot, rest, 1 - Math.exp(-dt * 10));
           }
           continue;
         }
         leg.swing = Math.min(1, leg.swing + dt / Math.max(0.08, stepSpan * 0.92));
         const t = easeInOut(leg.swing);
-        const base = mix(leg.swingFrom, leg.swingTo, t);
-        const sx = leg.swingTo.x - leg.swingFrom.x;
-        const sy = leg.swingTo.y - leg.swingFrom.y;
-        const sl = Math.hypot(sx, sy) || 1;
-        const arc = Math.sin(Math.PI * t) * 4.5;
-        leg.foot = {
-          x: base.x + (-sy / sl) * leg.arc * arc,
-          y: base.y + (sx / sl) * leg.arc * arc,
-        };
+        const lift = Math.sin(Math.PI * t) * 4.5 * leg.side;
+        leg.foot = toWorld(spider, spider.heading, {
+          x: lerp(leg.from.x, leg.to.x, t) + lift,
+          y: lerp(leg.from.y, leg.to.y, t),
+        });
         if (leg.swing >= 1) {
-          leg.foot = { ...leg.swingTo };
+          leg.foot = toWorld(spider, spider.heading, leg.to);
           leg.swing = -1;
         }
       }
